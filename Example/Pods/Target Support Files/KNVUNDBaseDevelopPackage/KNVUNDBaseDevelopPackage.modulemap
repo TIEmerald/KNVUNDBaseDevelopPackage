@@ -1,0 +1,6 @@
+framework module KNVUNDBaseDevelopPackage {
+  umbrella header "KNVUNDBaseDevelopPackage-umbrella.h"
+
+  export *
+  module * { export * }
+}

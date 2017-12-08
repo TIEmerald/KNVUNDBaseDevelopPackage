@@ -1,0 +1,6 @@
+framework module Pods_KNVUNDBaseDevelopPackage_Example {
+  umbrella header "Pods-KNVUNDBaseDevelopPackage_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
