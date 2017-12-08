@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'KNVUNDBaseDevelopPackage_Example' do
+  pod 'KNVUNDBaseDevelopPackage', :path => '../'
+
+  target 'KNVUNDBaseDevelopPackage_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta+Snapshots'
+  end
+end
