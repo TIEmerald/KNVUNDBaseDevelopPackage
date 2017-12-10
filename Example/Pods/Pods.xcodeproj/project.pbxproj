@@ -23,6 +23,8 @@
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC5EEA6B4746F1531DD69BC488E69F4 /* SPTTestSuite.m */; };
 		20AAB9821FDA7B4F007EC488 /* KNVUNDBaseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20AAB9801FDA7B4F007EC488 /* KNVUNDBaseModel.h */; };
 		20AAB9831FDA7B4F007EC488 /* KNVUNDBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB9811FDA7B4F007EC488 /* KNVUNDBaseModel.m */; };
+		20C1A2511FDD022C00113876 /* KNVUNDLocalRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C1A24F1FDD022C00113876 /* KNVUNDLocalRelatedTool.h */; };
+		20C1A2521FDD022C00113876 /* KNVUNDLocalRelatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C1A2501FDD022C00113876 /* KNVUNDLocalRelatedTool.m */; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 1795ED3D682D8EDC5CEC1EA831BEECEA /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21B3DAADDCABBFDD03478CCBF5DE49D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA3435632E518FBB1B6085FE5AF4B8E /* Foundation.framework */; };
 		255345DF9F3F6DDC70B0ABAF2775324B /* SPTCompiledExample.m in Sources */ = {isa = PBXBuildFile; fileRef = C468A58BBD0142C1B15D5D1E99CD14D2 /* SPTCompiledExample.m */; };
@@ -239,6 +241,8 @@
 		1E7BBDA96EB748B4566D121043C548C0 /* Specta-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Specta-prefix.pch"; sourceTree = "<group>"; };
 		20AAB9801FDA7B4F007EC488 /* KNVUNDBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDBaseModel.h; sourceTree = "<group>"; };
 		20AAB9811FDA7B4F007EC488 /* KNVUNDBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDBaseModel.m; sourceTree = "<group>"; };
+		20C1A24F1FDD022C00113876 /* KNVUNDLocalRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDLocalRelatedTool.h; sourceTree = "<group>"; };
+		20C1A2501FDD022C00113876 /* KNVUNDLocalRelatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDLocalRelatedTool.m; sourceTree = "<group>"; };
 		222277628576E6CB279473688BA88F01 /* EXPMatchers+conformTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+conformTo.m"; path = "Expecta/Matchers/EXPMatchers+conformTo.m"; sourceTree = "<group>"; };
 		222B35F590250B97F30D1C37C402B693 /* EXPMatchers+beInTheRangeOf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beInTheRangeOf.h"; path = "Expecta/Matchers/EXPMatchers+beInTheRangeOf.h"; sourceTree = "<group>"; };
 		22C6E607E674AB20554080B3E2A4B463 /* EXPMatchers+FBSnapshotTest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+FBSnapshotTest.m"; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 		20AAB97E1FDA7B07007EC488 /* Base Elements */ = {
 			isa = PBXGroup;
 			children = (
+				20C1A24E1FDD020A00113876 /* Tools */,
 				20AAB97F1FDA7B18007EC488 /* Models */,
 			);
 			path = "Base Elements";
@@ -512,6 +517,15 @@
 				20AAB9811FDA7B4F007EC488 /* KNVUNDBaseModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		20C1A24E1FDD020A00113876 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				20C1A24F1FDD022C00113876 /* KNVUNDLocalRelatedTool.h */,
+				20C1A2501FDD022C00113876 /* KNVUNDLocalRelatedTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		237CE44B01A3CE05485F553E8BF45E8C /* iOS */ = {
@@ -897,6 +911,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */,
+				20C1A2511FDD022C00113876 /* KNVUNDLocalRelatedTool.h in Headers */,
 				5D4700451D6C9DFC6D5FFB86671EA2AC /* EXPDefines.h in Headers */,
 				39461DAB3DE2637F4AE2BA94F19DCF2B /* EXPDoubleTuple.h in Headers */,
 				0E86BBA3A65849769B47995A5E91C881 /* Expecta-umbrella.h in Headers */,
@@ -1207,6 +1222,7 @@
 				C14CD98EE4DDC0B7689F058D5B79CC47 /* EXPMatchers+beGreaterThanOrEqualTo.m in Sources */,
 				CD22121B77F0F8E2B6A58AF6226038C2 /* EXPMatchers+beIdenticalTo.m in Sources */,
 				778C9F1A1715E05313578E39AB46726E /* EXPMatchers+beInstanceOf.m in Sources */,
+				20C1A2521FDD022C00113876 /* KNVUNDLocalRelatedTool.m in Sources */,
 				508B6D0572C0C3B4A3E019B814595D4A /* EXPMatchers+beInTheRangeOf.m in Sources */,
 				DF883524C3F35145D74166C01BCFCFC3 /* EXPMatchers+beKindOf.m in Sources */,
 				47D171E32EAE4FB61A9971B9BC00226D /* EXPMatchers+beLessThan.m in Sources */,
