@@ -57,6 +57,11 @@
 
 #pragma mark - Currency Related
 #pragma mark Display
++ (NSString *_Nonnull)getCurrencySymbolFromLocal:(NSLocale *_Nonnull)checkingLocale
+{
+    return [checkingLocale objectForKey:NSLocaleCurrencySymbol];
+}
+
 + (NSString *_Nonnull)getDefaultCurrencyStringFromValue:(NSNumber * _Nullable)value
 {
     NSNumberFormatter *currencyFormatter = [self getCurrentCurrencyNumberFormatter];

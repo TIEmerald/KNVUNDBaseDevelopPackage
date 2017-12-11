@@ -21,6 +21,8 @@
 
 #pragma mark - Currency Related
 #pragma mark Display
++ (NSString *_Nonnull)getCurrencySymbolFromLocal:(NSLocale *_Nonnull)checkingLocale;
+
 /*!
  * @brief I build this method is considering that perhaps in the future we might need to support other currency. To save us from much changes, we can use this method in the place we need to format currency.
  * @param value The money value you want to formate
