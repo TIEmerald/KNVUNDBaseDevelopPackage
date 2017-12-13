@@ -9,8 +9,12 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - KNVUNDBaseDevelopPackage (0.1.0)
+  - KNVUNDBaseDevelopPackage (0.1.0):
+    - ZXingObjC
   - Specta (1.0.7)
+  - ZXingObjC (3.2.2):
+    - ZXingObjC/All (= 3.2.2)
+  - ZXingObjC/All (3.2.2)
 
 DEPENDENCIES:
   - Expecta
@@ -27,8 +31,9 @@ SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   Expecta+Snapshots: dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  KNVUNDBaseDevelopPackage: e70b050c78f75b89d4ded73c762971951e475905
+  KNVUNDBaseDevelopPackage: 0dc4ce586495f9840f3c40b2ba1f5fa46ddd3a0c
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
 PODFILE CHECKSUM: d1bd74383164f89cb3443ee4eff5ee57716f844b
 

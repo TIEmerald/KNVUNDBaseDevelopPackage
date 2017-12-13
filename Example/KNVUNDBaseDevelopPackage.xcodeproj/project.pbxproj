@@ -305,10 +305,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Example/Pods-KNVUNDBaseDevelopPackage_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.framework",
+				"${BUILT_PRODUCTS_DIR}/ZXingObjC/ZXingObjC.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KNVUNDBaseDevelopPackage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXingObjC.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
