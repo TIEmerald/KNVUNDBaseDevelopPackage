@@ -32,4 +32,19 @@
     }
 }
 
+#pragma mark - Encoding and Decoding Related
+/// It's better to ensure these two methods are used as a pair.
++ (NSString *_Nullable)getBase64EncodedStringFromUIImage:(UIImage *_Nonnull)originalImage
+{
+    NSData *imageData = UIImagePNGRepresentation(originalImage);
+    return [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
++ (UIImage *_Nullable)getOriginalImageFromBase64EncodedString:(NSString *_Nonnull)encodedImageString
+{
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:encodedImageString
+                                                      options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [UIImage imageWithData:data];
+}
+
 @end
