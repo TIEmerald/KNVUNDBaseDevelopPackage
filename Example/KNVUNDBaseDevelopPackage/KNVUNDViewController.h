@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+#import "KNVUNDImageRelatedTool.h"
+
 @interface KNVUNDViewController : UIViewController
 
 @end

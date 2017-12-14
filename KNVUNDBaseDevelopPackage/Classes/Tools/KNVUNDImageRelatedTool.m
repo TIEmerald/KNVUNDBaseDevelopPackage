@@ -9,25 +9,39 @@
 
 @implementation KNVUNDImageRelatedTool
 
+#pragma mark - KNVUNDBaseModel
++ (BOOL)shouldShowClassMethodLog
+{
+    return YES;
+}
+
 #pragma mark - Image Generating Related
 /// This method use ZXingObjC Package to generating related BarCode.
 + (UIImage *_Nullable)generateSpecialBarCodeFromString:(NSString *_Nonnull)barcodeString withZXBarcodeFormat:(ZXBarcodeFormat)generatingFormat width:(CGFloat)width andHeight:(CGFloat)height
 {
-    NSError *error = nil;
-    ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-    ZXBitMatrix* result = [writer encode:barcodeString
-                                  format:generatingFormat
-                                   width:width
-                                  height:height
-                                   error:&error];
-    if (result) {
-        CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
-        return [UIImage imageWithCGImage:image];
+    @try {
+        NSError *error = nil;
+        ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
+        ZXBitMatrix* result = [writer encode:barcodeString
+                                      format:generatingFormat
+                                       width:width
+                                      height:height
+                                       error:&error];
+        if (result) {
+            CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
+            return [UIImage imageWithCGImage:image];
+        }
+        else {
+            [self performConsoleLogWithLogStringFormat:@"Failed to generating BarCode Image with - %@ (Error: %@)",
+             barcodeString,
+             error.localizedDescription];
+            return nil;
+        }
     }
-    else {
-        [self performConsoleLogWithLogStringFormat:@"Failed to generating BarCode Image with - %@ (Error: %@)",
+    @catch(NSException *exception) {
+        [self performConsoleLogWithLogStringFormat:@"Failed to generating BarCode Image with - %@ (Exception: %@)",
          barcodeString,
-         error.localizedDescription];
+         exception.reason];
         return nil;
     }
 }
