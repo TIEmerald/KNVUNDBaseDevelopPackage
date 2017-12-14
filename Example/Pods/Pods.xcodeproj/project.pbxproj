@@ -2885,6 +2885,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = KNVUND;
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 			};
