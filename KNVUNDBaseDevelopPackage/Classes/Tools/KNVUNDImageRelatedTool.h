@@ -14,6 +14,7 @@
 #pragma mark - Image Generating Related
 /// This method use ZXingObjC Package to generating related BarCode.
 + (UIImage *_Nullable)generateSpecialBarCodeFromString:(NSString *_Nonnull)barcodeString withZXBarcodeFormat:(ZXBarcodeFormat)generatingFormat width:(CGFloat)width andHeight:(CGFloat)height;
++ (ZXResult *_Nullable)readResultFromBarcodeFormatedImage:(UIImage *_Nonnull)checkingImage; /// In the Result will tell you what string have encoded inside this image and what format it is.
 
 #pragma mark - Encoding and Decoding Related
 /// It's better to ensure these two methods are used as a pair.

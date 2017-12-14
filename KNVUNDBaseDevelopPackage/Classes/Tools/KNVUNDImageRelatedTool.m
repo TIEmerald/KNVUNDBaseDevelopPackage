@@ -32,6 +32,25 @@
     }
 }
 
++ (ZXResult *_Nullable)readResultFromBarcodeFormatedImage:(UIImage *_Nonnull)checkingImage
+{
+    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:checkingImage.CGImage];
+    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
+    
+    NSError *error = nil;
+    
+    // There are a number of hints we can give to the reader, including
+    // possible formats, allowed lengths, and the string encoding.
+    ZXDecodeHints *hints = [ZXDecodeHints hints];
+    
+    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
+    ZXResult *result = [reader decode:bitmap
+                                hints:hints
+                                error:&error];
+    
+    return result;
+}
+
 #pragma mark - Encoding and Decoding Related
 /// It's better to ensure these two methods are used as a pair.
 + (NSString *_Nullable)getBase64EncodedStringFromUIImage:(UIImage *_Nonnull)originalImage
