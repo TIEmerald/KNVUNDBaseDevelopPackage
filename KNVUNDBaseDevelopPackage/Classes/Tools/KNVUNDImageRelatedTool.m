@@ -48,21 +48,29 @@
 
 + (ZXResult *_Nullable)readResultFromBarcodeFormatedImage:(UIImage *_Nonnull)checkingImage
 {
-    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:checkingImage.CGImage];
-    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
-    
-    NSError *error = nil;
-    
-    // There are a number of hints we can give to the reader, including
-    // possible formats, allowed lengths, and the string encoding.
-    ZXDecodeHints *hints = [ZXDecodeHints hints];
-    
-    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
-    ZXResult *result = [reader decode:bitmap
-                                hints:hints
-                                error:&error];
-    
-    return result;
+    @try {
+        ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:checkingImage.CGImage];
+        ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
+        
+        NSError *error = nil;
+        
+        // There are a number of hints we can give to the reader, including
+        // possible formats, allowed lengths, and the string encoding.
+        ZXDecodeHints *hints = [ZXDecodeHints hints];
+        
+        ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
+        ZXResult *result = [reader decode:bitmap
+                                    hints:hints
+                                    error:&error];
+        
+        return result;
+    }
+    @catch(NSException *exception) {
+        [self performConsoleLogWithLogStringFormat:@"Failed to read barcode result from image - %@ (Exception: %@)",
+         checkingImage,
+         exception.reason];
+        return nil;
+    }
 }
 
 #pragma mark - Encoding and Decoding Related
