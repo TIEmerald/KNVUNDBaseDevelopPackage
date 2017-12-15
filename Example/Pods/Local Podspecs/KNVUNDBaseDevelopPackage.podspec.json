@@ -22,6 +22,12 @@
   "dependencies": {
     "ZXingObjC": [
 
+    ],
+    "MZFormSheetPresentationController": [
+
+    ],
+    "RMessage": [
+
     ]
   }
 }

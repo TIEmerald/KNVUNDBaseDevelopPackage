@@ -9,8 +9,18 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - HexColors (4.0.0)
   - KNVUNDBaseDevelopPackage (0.1.0):
+    - MZFormSheetPresentationController
+    - RMessage
     - ZXingObjC
+  - MZAppearance (1.1.6)
+  - MZFormSheetPresentationController (2.4.3):
+    - MZAppearance
+  - PPTopMostController (0.0.1)
+  - RMessage (2.1.5):
+    - HexColors (~> 4.0)
+    - PPTopMostController
   - Specta (1.0.7)
   - ZXingObjC (3.2.2):
     - ZXingObjC/All (= 3.2.2)
@@ -31,7 +41,12 @@ SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   Expecta+Snapshots: dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  KNVUNDBaseDevelopPackage: 0dc4ce586495f9840f3c40b2ba1f5fa46ddd3a0c
+  HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
+  KNVUNDBaseDevelopPackage: 9ae058fe9a640a8b13cacdb6d28e3cca638c167a
+  MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
+  MZFormSheetPresentationController: fbfdbad31884f16fac17fbe3c44c168306cc1095
+  PPTopMostController: 4e6f1e5f8c645bdcc74cd837a20f607ff262c048
+  RMessage: 31d44bd26a8f353f987d2e7194f3e9ffb203cbf2
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
   ZXingObjC: 2c95a0dc52daac69b23ec78fad8fa2fec05f8981
 
