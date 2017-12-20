@@ -41,4 +41,5 @@ TODO: Add long description of the pod here.
     s.dependency 'ZXingObjC'
     s.dependency 'MZFormSheetPresentationController'
     s.dependency 'RMessage'
+    s.dependency 'LinqToObjectiveC'
 end
