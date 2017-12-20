@@ -16,6 +16,10 @@
 + (UIImage *_Nullable)generateSpecialBarCodeFromString:(NSString *_Nonnull)barcodeString withZXBarcodeFormat:(ZXBarcodeFormat)generatingFormat width:(CGFloat)width andHeight:(CGFloat)height;
 + (ZXResult *_Nullable)readResultFromBarcodeFormatedImage:(UIImage *_Nonnull)checkingImage; /// In the Result will tell you what string have encoded inside this image and what format it is.
 
+
+/// This method we will get a pure Image with Color
++ (UIImage *_Nonnull)generateImageWithColor:(UIColor *_Nonnull)fromColor;
+
 #pragma mark - Encoding and Decoding Related
 /// It's better to ensure these two methods are used as a pair.
 + (NSString *_Nullable)getBase64EncodedStringFromUIImage:(UIImage *_Nonnull)originalImage;
