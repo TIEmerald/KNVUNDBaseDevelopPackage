@@ -28,14 +28,46 @@
 
 @implementation KNVUNDButtonsSelectionHelper
 
+#pragma mark - Getters & Setters
+#pragma mark - Getters
+
+#pragma mark - Setters
+- (void)setIsForceSelection:(BOOL)isForceSelection
+{
+    _isForceSelection = isForceSelection;
+    if (isForceSelection && [[self currentSelectedButtons] count] == 0) {
+        [self selectKNVUNDBSButton:_currentAssociatedButtons.firstObject];
+    }
+}
+
+- (void)setIsSingleSelection:(BOOL)isSingleSelection
+{
+    _isSingleSelection = isSingleSelection;
+    BOOL hasSelectedButton = NO;
+    for (KNVUNDButtonsSelectionButton *selectedButton in [self currentSelectedButtons]) {
+        if (hasSelectedButton) {
+            [self deSelectKNVUNDBSButton:selectedButton];
+        }
+        hasSelectedButton = YES;
+    }
+}
+
 #pragma mark - Set Up Method
-- (void)setupWithHelperButtonsArray:(NSArray<KNVUNDButtonsSelectionButton *> *_Nonnull)buttons
+- (void)setupWithHelperButtonsArray:(NSArray<KNVUNDButtonsSelectionButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<KNVUNDButtonsSelectionButton *> *_Nullable)selectedButtons
 {
     _currentAssociatedButtons = buttons;
     for (KNVUNDButtonsSelectionButton *selectionButton in buttons) {
         [selectionButton addTarget:self
                             action:@selector(didTapBSButton:)
                   forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    NSArray *preSelectingArray = selectedButtons ?: (self.isForceSelection) ? @[buttons.firstObject] : @[];
+    for (KNVUNDButtonsSelectionButton *selectingButton in preSelectingArray) {
+        if (self.isSingleSelection && [[self currentSelectedButtons] count] > 0) {
+            break;
+        }
+        [self selectKNVUNDBSButton:selectingButton];
     }
 }
 
