@@ -6,8 +6,9 @@
 //  Copyright (c) 2017 niyejunze.j@gmail.com. All rights reserved.
 //
 
-@import UIKit;
+#import "KNVUNDBaseViewController.h"
+#import "KNVUNDImageRelatedTool.h"
 
-@interface KNVUNDViewController : UIViewController
+@interface KNVUNDViewController : KNVUNDBaseViewController
 
 @end

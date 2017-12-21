@@ -102,11 +102,23 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LinqToObjectiveC/LinqToObjectiveC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MZAppearance/MZAppearance.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MZFormSheetPresentationController/MZFormSheetPresentationController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RMessage/RMessage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ZXingObjC/ZXingObjC.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/LinqToObjectiveC/LinqToObjectiveC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MZAppearance/MZAppearance.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MZFormSheetPresentationController/MZFormSheetPresentationController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RMessage/RMessage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ZXingObjC/ZXingObjC.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

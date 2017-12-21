@@ -22,6 +22,15 @@
   "dependencies": {
     "ZXingObjC": [
 
+    ],
+    "MZFormSheetPresentationController": [
+
+    ],
+    "RMessage": [
+
+    ],
+    "LinqToObjectiveC": [
+
     ]
   }
 }
