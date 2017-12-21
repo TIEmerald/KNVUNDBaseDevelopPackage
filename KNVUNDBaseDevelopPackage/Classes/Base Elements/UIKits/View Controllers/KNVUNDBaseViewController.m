@@ -78,6 +78,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [self dismissCurrentPresentationViewWithAnimation:YES]; /// Dismiss Presented View if needed.
 }
 
 #pragma mark - Getters & Setters
