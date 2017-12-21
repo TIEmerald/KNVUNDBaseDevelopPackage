@@ -272,12 +272,6 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     _currentPresentingViewController = nil;
 }
 
-#pragma mark - KNVApplicationCMDisplayingDelegate
-- (void)reloadCurrentViewControllerUIAfterModelBeModified
-{
-    
-}
-
 #pragma mark - Support Methods
 - (void)showUpBannerWithTitle:(NSString *)title message:(NSString *)message andBannerType:(KNVUNDBaseVCBannerMessageType)bannerType
 {
