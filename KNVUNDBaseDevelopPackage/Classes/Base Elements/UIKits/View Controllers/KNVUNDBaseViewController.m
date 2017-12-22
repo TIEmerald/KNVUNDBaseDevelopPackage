@@ -151,9 +151,9 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - Banner Message Related
 - (void)displayBannerMessageWithBannerType:(KNVUNDBaseVCBannerMessageType)type title:(NSString *)title andMessage:(NSString *)message
 {
-    [self displayBannerMessageWithBannerType:type
-                                       title:title
-                                  andMessage:message];
+    [self showUpBannerWithTitle:title
+                        message:message
+                  andBannerType:type];
 }
 
 #pragma mark - Present View Related
@@ -279,12 +279,16 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-                                             title:title
-                                          subtitle:message
-                                              type:bannerType
+                                             title:title subtitle:message
+                                         iconImage:nil
+                                              type:(RMessageType)bannerType
                                     customTypeName:@""
                                           duration:self.bannerShowingTime
-                                          callback:nil];
+                                          callback:nil
+                                       buttonTitle:nil
+                                    buttonCallback:nil
+                                        atPosition:RMessagePositionBottom
+                              canBeDismissedByUser:YES];
     }];
 }
 
