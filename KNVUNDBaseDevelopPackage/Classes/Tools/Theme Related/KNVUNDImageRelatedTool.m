@@ -86,6 +86,47 @@
     return image;
 }
 
+CGFloat const KNVUNDImageRelatedTool_ImageFromString_Default_Width = 576;
+
++ (UIImage *_Nullable)generateImageFromAttributedString:(NSAttributedString *_Nonnull)attributedString imageWidth:(CGFloat)imageWidth shouldFixingWidth:(BOOL)shouldFixingWidth backgroundColor:(UIColor *_Nullable)backgroundColor andTextColor:(UIColor *_Nullable)textColor
+{
+    CGSize size = CGSizeMake(imageWidth == 0 ? KNVUNDImageRelatedTool_ImageFromString_Default_Width : imageWidth, CGFLOAT_MAX);
+    CGRect textRect = [attributedString boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    size = CGSizeMake(shouldFixingWidth ? size.width : textRect.size.width, textRect.size.height);
+    
+    CGFloat newTextOriginX = (size.width - textRect.size.width) / 2; /// WE need center the text.. if the text size is maller than the size we expected
+    textRect = CGRectMake(newTextOriginX, textRect.origin.y, textRect.size.width, textRect.size.height);
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        if ([[UIScreen mainScreen] scale] == 2.0) {
+            UIGraphicsBeginImageContextWithOptions(size, NO, 1.0);
+        } else {
+            UIGraphicsBeginImageContext(size);
+        }
+    } else {
+        UIGraphicsBeginImageContext(size);
+    }
+    CGContextRef ctr = UIGraphicsGetCurrentContext();
+    
+    // Set background to white
+    CGRect rect = CGRectMake(0, 0, size.width + 1, size.height + 1);
+    UIColor *color = backgroundColor ?: [UIColor whiteColor];
+    [color set];
+    CGContextFillRect(ctr, rect);
+    
+    // Set text to black
+    color = textColor ?: [UIColor blackColor];
+    [color set];
+    [attributedString drawInRect:textRect];
+    
+    // Transfer image & end context
+    UIImage *image = [UIGraphicsGetImageFromCurrentImageContext() imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 #pragma mark - Encoding and Decoding Related
 /// It's better to ensure these two methods are used as a pair.
 + (NSString *_Nullable)getBase64EncodedStringFromUIImage:(UIImage *_Nonnull)originalImage
