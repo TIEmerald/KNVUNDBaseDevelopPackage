@@ -30,10 +30,6 @@
  */
 + (UIImage *_Nullable)generateImageFromAttributedString:(NSAttributedString *_Nonnull)attributedString imageWidth:(CGFloat)imageWidth shouldFixingWidth:(BOOL)shouldFixingWidth backgroundColor:(UIColor *_Nullable)backgroundColor andTextColor:(UIColor *_Nullable)textColor;
 
-#pragma mark - Modify Images
-+ (NSArray *_Nonnull)getImageArrayByCropImageHorizentally:(UIImage *_Nonnull)originImage withMaximumSubImageHeightInPixel:(CGFloat)maximumSubImageHeightInPixel andBackgroundColor:(UIColor *_Nullable)backgroundColor;
-+ (UIImage *_Nullable)cropImage:(UIImage *_Nonnull)originImage withRect:(CGRect)rect;
-
 #pragma mark - Encoding and Decoding Related
 /// It's better to ensure these two methods are used as a pair.
 + (NSString *_Nullable)getBase64EncodedStringFromUIImage:(UIImage *_Nonnull)originalImage;
