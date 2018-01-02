@@ -23,8 +23,6 @@ struct PixelColors
     
     NSMutableArray *returnImageArray = [NSMutableArray new];
     
-    NSUInteger lastYCutPointInPixel = 0;
-    BOOL hasContentSinceLastCut = NO;
     CGFloat scale = originImage.scale;
     
     // Step One.. Find out the cuting Points....
@@ -51,6 +49,10 @@ struct PixelColors
     NSInteger lastPixelYThatCouldCut = NSNotFound;
     struct PixelColors colorCouldCut = [self getPixelColorsFromUIColor:backgroundColor];
     
+    // Cutting Logic
+    NSUInteger lastYCutPointInPixel = 0;
+    BOOL hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut = NO;
+    BOOL hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY = NO;
     for (NSUInteger checkingPixelY = 0; checkingPixelY < height; checkingPixelY += 1) {
         // Logic One.... Find out the Pixel that we could cut...
         BOOL couldCut = YES;
@@ -71,24 +73,51 @@ struct PixelColors
         }
         if (couldCut) {
             lastPixelYThatCouldCut = checkingPixelY;
+            if (hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY) {
+                hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut = YES;
+                hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY = NO;
+            }
         } else {
-            hasContentSinceLastCut = YES;
+            hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY = YES;
         }
         
         // Logic Two... If checking Pixel exceed the unit height, or reach the end, we will perform cut function
-        if ((checkingPixelY - lastYCutPointInPixel >= maximumSubImageHeightInPixel) || checkingPixelY == height - 1 ){
-            NSUInteger newYCutPointInPixel = (lastPixelYThatCouldCut == NSNotFound) ? checkingPixelY : lastPixelYThatCouldCut;
+        // There are two scenario we need to handle
+        BOOL didReachTheMaximumImageHeightInPixel = (checkingPixelY - lastYCutPointInPixel >= maximumSubImageHeightInPixel);
+        BOOL didReachTheEndLineOfOriginImage = checkingPixelY == height - 1;
+        if (didReachTheMaximumImageHeightInPixel) {
+            BOOL hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY = lastPixelYThatCouldCut == NSNotFound;
+            NSUInteger newYCutPointInPixel = hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? checkingPixelY : lastPixelYThatCouldCut;
+            BOOL imageHasContent = hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? (hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY || hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut) : hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut;
+            
             CGRect cuttingSize = CGRectMake(0,
                                             lastYCutPointInPixel / scale,
                                             originImage.size.width,
                                             (newYCutPointInPixel - lastYCutPointInPixel) / scale);
             UIImage *newImage = [self cropImage:originImage
                                        withRect:cuttingSize];
-            if (newImage != nil && (acceptImageWithoutContent || hasContentSinceLastCut)) {
+            if (newImage != nil && (acceptImageWithoutContent || imageHasContent)) {
                 [returnImageArray addObject:newImage];
             }
             
             lastYCutPointInPixel = newYCutPointInPixel;
+            hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut = NO;
+            if (hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY) {
+                hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY = NO;
+            }
+        }
+        
+        if (didReachTheEndLineOfOriginImage && lastYCutPointInPixel != checkingPixelY) { // Which means we have reached the last line of the image
+            BOOL imageHasContent = hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY || hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut;
+            CGRect cuttingSize = CGRectMake(0,
+                                            lastYCutPointInPixel / scale,
+                                            originImage.size.width,
+                                            (height - lastYCutPointInPixel) / scale);
+            UIImage *newImage = [self cropImage:originImage
+                                       withRect:cuttingSize];
+            if (newImage != nil && (acceptImageWithoutContent || imageHasContent)) {
+                [returnImageArray addObject:newImage];
+            }
         }
     }
     
