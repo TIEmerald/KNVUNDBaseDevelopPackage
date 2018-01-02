@@ -92,6 +92,8 @@
 		1ED59510464CDB977A26C11FF614D9BA /* ZXDataMatrixDataBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = E002EE47DC03272010A0503CE2EAB362 /* ZXDataMatrixDataBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE5CC92202647AB74A63B93AF4D4AE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2C576A3A1880AA94B8773CD0FECDBD /* QuartzCore.framework */; };
 		2034AE1F93055A7A386B83C8E539011B /* ZXTextParsedResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 46375A4800F2940C4934FCD45262A7C5 /* ZXTextParsedResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		209EE6D11FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */; };
+		209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3159C827F86C7619F2C32DC9F49B6 /* SPTTestSuite.m */; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CF330434B062EDA247355F044D4579A /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		215B2357D6F3ADFF8A73999CE078A8EA /* ZXRSSExpandedDecodedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A685C3CABA72D3FAB92516781BA6C30E /* ZXRSSExpandedDecodedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1065,6 +1067,8 @@
 		1FF988F78ABFDA18CB58298E2CF0D78F /* ZXTelParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXTelParsedResult.m; path = ZXingObjC/client/result/ZXTelParsedResult.m; sourceTree = "<group>"; };
 		2046839737BB364388D7E95400F448EA /* NSValue+Expecta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSValue+Expecta.h"; path = "Expecta/NSValue+Expecta.h"; sourceTree = "<group>"; };
 		2064CBCA28880E4B38ED3EB5768FD1A2 /* EXPMatcherHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPMatcherHelpers.h; path = Expecta/Matchers/EXPMatcherHelpers.h; sourceTree = "<group>"; };
+		209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDImageRelatedTool+ImageModifyRelated.h"; sourceTree = "<group>"; };
+		209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDImageRelatedTool+ImageModifyRelated.m"; sourceTree = "<group>"; };
 		20FDC8E0FD6E34002B479735E0BED09E /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
 		2167152183BDF3A452A46A46D7EE7D70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		2168802986B4663881CE9E926AD78D82 /* ZXAI01decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAI01decoder.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI01decoder.h; sourceTree = "<group>"; };
@@ -1959,6 +1963,8 @@
 			children = (
 				3046343D29A189C4469BE180BB8713EA /* KNVUNDImageRelatedTool.h */,
 				C876C42B17451545C5E0FC230D49F5F5 /* KNVUNDImageRelatedTool.m */,
+				209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */,
+				209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */,
 			);
 			path = "Theme Related";
 			sourceTree = "<group>";
@@ -3076,6 +3082,7 @@
 				52761B59BF6ED05B0A1F4F4D63C7B5D3 /* KNVUNDImageRelatedTool.h in Headers */,
 				005A34444ED5E47BE5F406BB547A2152 /* KNVUNDLocalRelatedTool.h in Headers */,
 				34ED897A49DF9E6627EA60BFE2B40ED4 /* KNVUNDThreadRelatedTool.h in Headers */,
+				209EE6D11FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4201,6 +4208,7 @@
 			files = (
 				5B5C694176DEFB7ED2C0AD21EB3A539E /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
 				A5A7675F3BF93CBE4158374AA713D253 /* KNVUNDBaseModel.m in Sources */,
+				209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
 				A672A6B062FF148F107520655477A1A8 /* KNVUNDBaseViewController.m in Sources */,
 				E3C2FCBF8A5349F674F7F2A1D45331FB /* KNVUNDButtonsSelectionHelper.m in Sources */,
 				8E12772DDC607029761121421BD05143 /* KNVUNDDebugTool.m in Sources */,
