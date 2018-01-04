@@ -104,7 +104,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - HTML-like Strings
