@@ -21,6 +21,9 @@
 + (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString;
 + (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
 
+#pragma mark - Properties Related
++ (NSDictionary *)propertyDescriptions;
+
 #pragma mark - Log Related
 // If you want to log anything for current model, please call this method inside.
 - (void)performConsoleLogWithLogString:(NSString *_Nonnull)string;

@@ -67,11 +67,21 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
     return self;
 }
 
-- (instancetype)initWithType:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location
+- (instancetype)initWithPropertyName:(NSString *)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location
 {
     if (self = [self init]) {
+        self.propertyName = propertyName;
         self.type = type;
         self.location = location;
+    }
+    return self;
+}
+
+- (instancetype)initWithPropertyName:(NSString *)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type location:(NSUInteger)location attributesDictionary:(NSDictionary *)attributes andContentValue:(NSString *)contentValue
+{
+    if (self = [self initWithPropertyName:propertyName type:type andLocation:location]) {
+        self.additionalAttribute = attributes;
+        self.contentValue = contentValue;
     }
     return self;
 }
@@ -173,6 +183,8 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
 }
 
 #pragma mark - Reading
+NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
+
 + (NSArray *_Nonnull)readFormatedString:(NSMutableString *_Nonnull)formatedString withPropertyName:(NSString *_Nonnull)propertyName fromStartCheckingLocation:(NSUInteger)startCheckingLocation checkingTimes:(NSUInteger)checkingTimes shouldRemoveContentValue:(BOOL)shouldRemoveContentValue
 {
     
@@ -206,6 +218,9 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
     
     KNVUNDFSRToolHTMLLikeStringModel *foundModel = newModel;
     KNVUNDFSRToolHTMLLikeStringModel *confirmedModel = nil;
+    NSUInteger insertingModelInsertLocation = 0;
+    BOOL shouldBackToLastLevelWhenFinished = newModel != nil; /// If we have passed newModel which means this method is called in nested... we need to back to privious level when this level checking is finished
+    BOOL shouldStop = NO;
     BOOL haveCheckedAttributes = NO;
     
     NSUInteger remainingCheckingTimes = checkingTimes;
@@ -259,7 +274,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         resetIdentifierStringChecking();
     };
     
-    while (*checkingIndex < formatedString.length && confirmedModel == nil) {
+    while (*checkingIndex < formatedString.length && !shouldStop) {
         char currentCheckingChar = [formatedString characterAtIndex:*checkingIndex];
         
         [self performConsoleLogWithLogStringFormat:@"Checking Character at Index: %@ ---- \'%c\'",
@@ -330,10 +345,11 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
                                                         andCompareChar:currentCheckingChar
                                               isNextCompareCharValid:isNextCharEmpty || nextChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
         if (foundFormatTypeFirstPartBeginString) {
-            KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithType:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
-                                                                                                    andLocation:currentCheckingIndex - checkingIndexInFormatTypeFirstWrapperStart + 1];
+            KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:propertyName
+                                                                                                                   type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                            andLocation:currentCheckingIndex - checkingIndexInFormatTypeFirstWrapperStart + 1];
             [self performConsoleLogWithLogStringFormat:@"Found Possible Format Type Property at Location: %@.",
-             @(currentCheckingIndex - checkingIndexInFormatTypeFirstWrapperStart + 1)];
+             @(newModel.location)];
             
             if (foundModel == nil) {
                 foundModel = newModel;
@@ -353,10 +369,11 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         }
         
         if (foundPlaceholderTypeBeginString) {
-            KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithType:KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder
-                                                                                                    andLocation:currentCheckingIndex - checkingIndexInPlaceholderTypeWrapperStart + 1];
+            KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:propertyName
+                                                                                                                   type:KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder
+                                                                                                            andLocation:currentCheckingIndex - checkingIndexInPlaceholderTypeWrapperStart + 1];
             [self performConsoleLogWithLogStringFormat:@"Found Possible Placeholder Type Property at Location: %@.",
-             @(currentCheckingIndex - checkingIndexInPlaceholderTypeWrapperStart + 1)];
+             @(newModel.location)];
             
             if (foundModel == nil) {
                 foundModel = newModel;
@@ -413,6 +430,8 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
                     confirmedModel = foundModel;
                 } else {
                     formatTypeFirstPartRange = propertyPartRange; /// Stored for the deleting logic
+                    [self performConsoleLogWithLogStringFormat:@"Update Stored Format Type First Part Range --- %@",
+                     NSStringFromRange(formatTypeFirstPartRange)];
                 }
             }
             
@@ -486,11 +505,23 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
                 confirmedModel = foundModel;
             }
         }
-    }
-    
-    if (confirmedModel) {
-        confirmedModel.location -= outsideLength; // We need to modify the Location... because we will remove some code in out side of current method call
-        [returnArray addObject:confirmedModel];
+        
+        if (confirmedModel) {
+            confirmedModel.location -= outsideLength; // We need to modify the Location... because we will remove some code in out side of current method call
+            [returnArray insertObject:confirmedModel
+                              atIndex:insertingModelInsertLocation];
+            insertingModelInsertLocation = [returnArray count];
+            
+            foundModel = nil;
+            confirmedModel = nil;
+            haveCheckedAttributes = NO;
+            
+            if (remainingCheckingTimes == 1 || shouldBackToLastLevelWhenFinished) {
+                shouldStop = YES;
+            } else if (remainingCheckingTimes != 0) {
+                remainingCheckingTimes -= 1;
+            }
+        }
     }
     
     return returnArray;

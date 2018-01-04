@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		20125CC11FE219730006A70C /* KNVUNDImageRelatedToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */; };
+		20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */; };
+		20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */; };
 		33C0B25C8AE86D27B1D8765A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308B578D502E122EE3D3A58A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -39,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDImageRelatedToolTests.m; sourceTree = "<group>"; };
+		20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFormatedStringRelatedToolTests.m; sourceTree = "<group>"; };
+		20D66BB61FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h"; sourceTree = "<group>"; };
+		20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m"; sourceTree = "<group>"; };
 		308B578D502E122EE3D3A58A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KNVUNDBaseDevelopPackage_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32252ECE5F71A3A55DBA61AB /* Pods-KNVUNDBaseDevelopPackage_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KNVUNDBaseDevelopPackage_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Tests/Pods-KNVUNDBaseDevelopPackage_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3DC883B47C0D2C8F7BB7BC9C /* Pods-KNVUNDBaseDevelopPackage_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KNVUNDBaseDevelopPackage_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Tests/Pods-KNVUNDBaseDevelopPackage_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,9 +105,28 @@
 		20125CBF1FE219730006A70C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				20D66BB41FFDF67A00AB8E99 /* KNVUNDFormatedStringRelatedTool */,
 				20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		20D66BB41FFDF67A00AB8E99 /* KNVUNDFormatedStringRelatedTool */ = {
+			isa = PBXGroup;
+			children = (
+				20D66BB51FFDF68B00AB8E99 /* Models */,
+				20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */,
+			);
+			path = KNVUNDFormatedStringRelatedTool;
+			sourceTree = "<group>";
+		};
+		20D66BB51FFDF68B00AB8E99 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20D66BB61FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h */,
+				20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -463,7 +487,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */,
 				20125CC11FE219730006A70C /* KNVUNDImageRelatedToolTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

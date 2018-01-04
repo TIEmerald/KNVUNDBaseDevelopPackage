@@ -23,6 +23,10 @@ typedef enum : NSUInteger {
 //// This value only useful when you
 @property (nonatomic, strong, nullable) NSString *contentValue; /// If this value is not nil, the formated string will be <propertyName additionalAttributeKey=additionalAttributeValue>contentValue</propertyName>
 
+#pragma mark - Initial
+- (instancetype _Nonnull)initWithPropertyName:(NSString *_Nonnull)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location;
+- (instancetype _Nonnull)initWithPropertyName:(NSString *_Nonnull)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type location:(NSUInteger)location attributesDictionary:(NSDictionary *_Nullable)attributes andContentValue:(NSString *_Nullable)contentValue;
+
 @end
 
 @interface KNVUNDFormatedStringRelatedTool : KNVUNDBaseModel
@@ -32,6 +36,8 @@ typedef enum : NSUInteger {
 + (NSString *_Nullable)generateFormatedStringWithHTMLLikeStringModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nonnull)fromModel withError:(NSError *_Nullable *_Nullable)error;
 
 #pragma mark - Reading
+extern NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes;
+
 /*!
  * @brief This method will read the property name you want to check inside the mutable string you passed in and will delete all formated logic from the same mutable string.
  * @param formatedString The formated String you want to read.
