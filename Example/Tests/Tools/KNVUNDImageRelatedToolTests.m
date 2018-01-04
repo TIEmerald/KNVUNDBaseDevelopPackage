@@ -8,7 +8,7 @@
 
 // https://github.com/Specta/Specta
 
-#import "KNVUNDViewController.h"
+#import "KNVUNDImageRelatedTool.h"
 
 SpecBegin(KNVUNDImageRelatedTool)
 
