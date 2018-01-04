@@ -92,7 +92,7 @@
 		1ED59510464CDB977A26C11FF614D9BA /* ZXDataMatrixDataBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = E002EE47DC03272010A0503CE2EAB362 /* ZXDataMatrixDataBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FE5CC92202647AB74A63B93AF4D4AE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2C576A3A1880AA94B8773CD0FECDBD /* QuartzCore.framework */; };
 		2034AE1F93055A7A386B83C8E539011B /* ZXTextParsedResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 46375A4800F2940C4934FCD45262A7C5 /* ZXTextParsedResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		205279981FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 205279961FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.h */; };
+		205279981FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 205279961FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		205279991FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 205279971FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.m */; };
 		2052799D1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2052799B1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2052799E1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2052799C1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.m */; };

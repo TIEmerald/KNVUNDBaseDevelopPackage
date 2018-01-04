@@ -13,30 +13,89 @@
 // Categories
 #import "NSString+KNVUNDBasic.h"
 
+@interface KNVUNDFSRToolHTMLLikeStringModel(){
+    NSMutableDictionary *_storingAttringbutesDic;
+}
+
+@end
+
 @implementation KNVUNDFSRToolHTMLLikeStringModel
 
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start = @"<";
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End = @">";
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier = @"/";
+char const KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start = '<';
+char const KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End = '>';
+char const KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier = '/';
 
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start = @"[";
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End = @"]";
+char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start = '[';
+char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End = ']';
 
 NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal = @"=";
 
+#pragma mark - Getters && Setters
+#pragma mark - Getters
+- (NSDictionary *)additionalAttribute
+{
+    return _storingAttringbutesDic;
+}
+
+#pragma mark - Setters
+- (void)setAdditionalAttribute:(NSDictionary *)additionalAttribute
+{
+    if (additionalAttribute == nil) {
+        [_storingAttringbutesDic removeAllObjects];
+    } else {
+        for (NSString *keyValue in additionalAttribute.allKeys) {
+            [_storingAttringbutesDic setValue:additionalAttribute[keyValue]
+                                       forKey:keyValue];
+        }
+    }
+}
+
+- (void)updateAddictionalAttributeKey:(NSString *)key withValue:(id)value
+{
+    if (key != nil) {
+        [_storingAttringbutesDic setValue:value
+                                   forKey:key];
+    }
+}
+
 #pragma mark - Initial
-- (instancetype)initWithType:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location
+- (instancetype)init
 {
     if (self = [super init]) {
+        _storingAttringbutesDic = [NSMutableDictionary new];
+    }
+    return self;
+}
+
+- (instancetype)initWithType:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location
+{
+    if (self = [self init]) {
         self.type = type;
         self.location = location;
     }
     return self;
 }
 
+#pragma mark - Validators
+- (BOOL)isFormatType
+{
+    return self.type == KNVUNDFSRToolHTMLLikeStringModel_Type_Format;
+}
+
+- (BOOL)isPlaceholderType
+{
+    return self.type == KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder;
+}
+
 @end
 
 @implementation KNVUNDFormatedStringRelatedTool
+
+#pragma mark - KNVUNDBaseModel
++ (BOOL)shouldShowClassMethodLog
+{
+    return YES;
+}
 
 #pragma mark - HTML-like Strings
 #pragma mark - Generating
@@ -60,30 +119,28 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
 #pragma mark Support Method
 + (NSString *_Nonnull)generateFormatTypeFormatedStringFromModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nonnull)fromModel withError:(NSError ** _Nullable)error
 {
-    NSMutableString *returnString = [NSMutableString stringWithString:KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start];
+    NSString *endingWrapper = [NSString stringWithFormat:@"%c%c%@%c",
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier,
+                               fromModel.propertyName,
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
     
-    [returnString appendString:fromModel.propertyName];
-    [returnString appendString:[self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute]];
-    [returnString appendString:KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
-    [returnString appendString:fromModel.contentValue ?: @""];
-    [returnString appendFormat:@"%@%@%@%@",
-     KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
-     KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier,
-     fromModel.propertyName,
-     KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
-    
-    return returnString;
+    return [NSString stringWithFormat:@"%c%@%@%c%@%@",
+            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
+            fromModel.propertyName,
+            [self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute],
+            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End,
+            fromModel.contentValue ?: @"",
+            endingWrapper];
 }
 
 + (NSString *_Nonnull)generatePlaceholderTypeFormatedStringFromModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nonnull)fromModel withError:(NSError ** _Nullable)error
 {
-    NSMutableString *returnString = [NSMutableString stringWithString:KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start];
-    
-    [returnString appendString:fromModel.propertyName];
-    [returnString appendString:[self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute]];
-    [returnString appendString:KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
-    
-    return returnString;
+    return [NSString stringWithFormat:@"%c%@%@%c",
+            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start,
+            fromModel.propertyName,
+            [self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute],
+            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
 }
 
 + (NSString *_Nonnull)generateFomatedStringFromAdditionalAttributes:(NSDictionary *_Nonnull)additionalAttributes
@@ -127,48 +184,157 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
     
     NSUInteger checkingIndex = startCheckingLocation;
     
+    [self performConsoleLogWithLogStringFormat:@"Checking Property Name: %@, \nStarting Checking Location: %@\n Checking Times: %@\n Should Remove Content Value: %@\n Checking Formated String: %@",
+     propertyName,
+     @(startCheckingLocation),
+     @(checkingTimes),
+     @(shouldRemoveContentValue),
+     formatedString];
+    
     return [self readFormatedString:formatedString
                    withPropertyName:usingPropertyName
                       checkingIndex:&checkingIndex
                       checkingTimes:checkingTimes
            shouldRemoveContentValue:shouldRemoveContentValue
-          andNewHTMLLikeStringModel:nil];
+             newHTMLLikeStringModel:nil
+        outsideFirstPartTotalLength:0];
 }
 
-+ (NSArray *_Nonnull)readFormatedString:(NSMutableString *_Nonnull)formatedString withPropertyName:(NSString *_Nonnull)propertyName checkingIndex:(NSUInteger *)checkingIndex checkingTimes:(NSUInteger)checkingTimes shouldRemoveContentValue:(BOOL)shouldRemoveContentValue andNewHTMLLikeStringModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nullable)newModel
++ (NSArray *_Nonnull)readFormatedString:(NSMutableString *_Nonnull)formatedString withPropertyName:(NSString *_Nonnull)propertyName checkingIndex:(NSUInteger *)checkingIndex checkingTimes:(NSUInteger)checkingTimes shouldRemoveContentValue:(BOOL)shouldRemoveContentValue newHTMLLikeStringModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nullable)newModel outsideFirstPartTotalLength:(NSUInteger)outsideLength
 {
     NSMutableArray *returnArray = [NSMutableArray array];
     
     KNVUNDFSRToolHTMLLikeStringModel *foundModel = newModel;
-    BOOL shouldStopChecking = NO;
+    KNVUNDFSRToolHTMLLikeStringModel *confirmedModel = nil;
+    BOOL haveCheckedAttributes = NO;
     
     NSUInteger remainingCheckingTimes = checkingTimes;
     
-    NSUInteger checkingIndexInFormatWrapperStart = 0;
-    NSUInteger checkingIndexInPlaceholderWrapperStart = 0;
-    
-    NSString *formatTypeFirstPartBeginString = [KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start stringByAppendingString:propertyName];
-    NSString *formatTypeFirstPartEndString = KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End;
-    NSString *formatTypeSecondPartString = [NSString stringWithFormat:@"%@%@%@%@",
+    NSString *formatTypeFirstPartBeginString = [NSString stringWithFormat:@"%c%@",
+                                                KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
+                                                propertyName];
+    NSString *formatTypeSecondPartString = [NSString stringWithFormat:@"%c%c%@%c",
                                             KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
                                             KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier,
                                             propertyName,
                                             KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
     
-    NSString *placeholderTypeBeginString = [KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start stringByAppendingString:propertyName];
-    NSString *placeholderTypeEndString = KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End;
+    NSString *placeholderTypeBeginString = [NSString stringWithFormat:@"%c%@",
+                                            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start,
+                                            propertyName];
     
-    while (*checkingIndex < formatedString.length && !shouldStopChecking) {
+    __block NSUInteger checkingIndexInFormatTypeFirstWrapperStart = 0;
+    __block NSUInteger checkingIndexInPlaceholderTypeWrapperStart = 0;
+    __block NSUInteger checkingIndexInFormatTypeFirstWrapperEnd = 0;
+    __block NSUInteger checkingIndexInPlaceholderTypeWrapperEnd = 0;
+    __block NSUInteger checkingIndexInFormatTypeSecondWrapper = 0;
+    __block NSUInteger checkingIndexForEqualSignInAttributes = 0;
+    
+    NSRange formatTypeFirstPartRange;
+    
+    NSString *storedAttributeKeyValue = @"";
+    
+    BOOL hasStartSingleQuotationMark = NO;
+    BOOL hasStartDoubleQuotationMark = NO;
+    BOOL shouldIgnoreNextFunctionChar = NO;
+    __block NSString *currentReadingString = @"";
+    __block NSString *lastReadingCompleteString = @"";
+    
+    void(^resetIdentifierStringChecking)() = ^(){
+        checkingIndexInFormatTypeFirstWrapperStart = 0;
+        checkingIndexInPlaceholderTypeWrapperStart = 0;
+        checkingIndexInFormatTypeFirstWrapperEnd = 0;
+        checkingIndexInPlaceholderTypeWrapperEnd = 0;
+        checkingIndexInFormatTypeSecondWrapper = 0;
+        checkingIndexForEqualSignInAttributes = 0;
+    };
+    
+    void(^completeCurrentReadingFunction)() = ^(){
+        if (!hasStartSingleQuotationMark && !hasStartDoubleQuotationMark) {
+            lastReadingCompleteString = currentReadingString;
+            currentReadingString = @"";
+            [self performConsoleLogWithLogStringFormat:@"Stop Previous Reading Scope --- Last Reading Scope Content: %@",
+             lastReadingCompleteString];
+        }
+        resetIdentifierStringChecking();
+    };
+    
+    while (*checkingIndex < formatedString.length && confirmedModel == nil) {
         char currentCheckingChar = [formatedString characterAtIndex:*checkingIndex];
+        
+        [self performConsoleLogWithLogStringFormat:@"Checking Character at Index: %@ ---- \'%c\'",
+         @(*checkingIndex),
+         currentCheckingChar];
+        
+        NSUInteger currentCheckingIndex = *checkingIndex;
+        // The reason why we want to increase to next checking Index in here because it's easier for us to handle the deleting property range logic
+        *checkingIndex += 1;
+        
+        if (shouldIgnoreNextFunctionChar) {
+            shouldIgnoreNextFunctionChar = NO;
+            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+            resetIdentifierStringChecking();
+            continue;
+        }
+        
+        if (currentCheckingChar == '\\') {
+            shouldIgnoreNextFunctionChar = YES;
+            continue;
+        }
+        
+        if (currentCheckingChar == '\'') {
+            hasStartSingleQuotationMark = !hasStartSingleQuotationMark;
+            completeCurrentReadingFunction();
+            continue;
+        }
+        
+        if (currentCheckingChar == '"') {
+            hasStartDoubleQuotationMark = !hasStartDoubleQuotationMark;
+            if (!hasStartDoubleQuotationMark) {
+                hasStartSingleQuotationMark = NO;
+            }
+            completeCurrentReadingFunction();
+            continue;
+        }
+        
+        BOOL inQuotation = hasStartSingleQuotationMark || hasStartDoubleQuotationMark;
+        if (inQuotation) {
+            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+            continue;
+        }
+        
+        char previousChar = (currentCheckingIndex == 0) ? ' ' : [formatedString characterAtIndex:currentCheckingIndex - 1];
+        BOOL isPreviousCharEmpty = [[NSCharacterSet whitespaceCharacterSet] characterIsMember:previousChar];
+        BOOL isCurrentCharacterEmpty = [[NSCharacterSet whitespaceCharacterSet] characterIsMember:currentCheckingChar];
+        char nextChar = (currentCheckingIndex >= (formatedString.length - 1)) ? ' ' : [formatedString characterAtIndex:currentCheckingIndex + 1];
+        BOOL isNextCharEmpty = [[NSCharacterSet whitespaceCharacterSet] characterIsMember:nextChar];
+        
+        if (isCurrentCharacterEmpty) {
+            if (currentReadingString.length > 0) {
+                completeCurrentReadingFunction();
+            }
+            if (isPreviousCharEmpty) {
+                continue;
+            }
+        }
+        
+        currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+        
+        // Part One: Check the Property Starting Identifiers.
         BOOL foundFormatTypeFirstPartBeginString = [self findMatchedString:formatTypeFirstPartBeginString
-                                                         withCheckingIndex:&checkingIndexInFormatWrapperStart
-                                                            andCompareChar:currentCheckingChar];
+                                                         withCheckingIndex:&checkingIndexInFormatTypeFirstWrapperStart
+                                                            andCompareChar:currentCheckingChar
+                                                  isNextCompareCharValid:isNextCharEmpty || nextChar == KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
         BOOL foundPlaceholderTypeBeginString = [self findMatchedString:placeholderTypeBeginString
-                                                     withCheckingIndex:&checkingIndexInPlaceholderWrapperStart
-                                                        andCompareChar:currentCheckingChar];
+                                                     withCheckingIndex:&checkingIndexInPlaceholderTypeWrapperStart
+                                                        andCompareChar:currentCheckingChar
+                                              isNextCompareCharValid:isNextCharEmpty || nextChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
         if (foundFormatTypeFirstPartBeginString) {
             KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithType:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
-                                                                                                    andLocation:*checkingIndex - checkingIndexInFormatWrapperStart + 1];
+                                                                                                    andLocation:currentCheckingIndex - checkingIndexInFormatTypeFirstWrapperStart + 1];
+            [self performConsoleLogWithLogStringFormat:@"Found Possible Format Type Property at Location: %@.",
+             @(currentCheckingIndex - checkingIndexInFormatTypeFirstWrapperStart + 1)];
+            
             if (foundModel == nil) {
                 foundModel = newModel;
             } else if(remainingCheckingTimes != 1) {
@@ -177,7 +343,8 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
                                                      checkingIndex:&*checkingIndex
                                                      checkingTimes:remainingCheckingTimes - 1
                                           shouldRemoveContentValue:shouldRemoveContentValue
-                                         andNewHTMLLikeStringModel:newModel];
+                                            newHTMLLikeStringModel:newModel
+                                       outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }
@@ -187,7 +354,10 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         
         if (foundPlaceholderTypeBeginString) {
             KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithType:KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder
-                                                                                                    andLocation:*checkingIndex - checkingIndexInPlaceholderWrapperStart + 1];
+                                                                                                    andLocation:currentCheckingIndex - checkingIndexInPlaceholderTypeWrapperStart + 1];
+            [self performConsoleLogWithLogStringFormat:@"Found Possible Placeholder Type Property at Location: %@.",
+             @(currentCheckingIndex - checkingIndexInPlaceholderTypeWrapperStart + 1)];
+            
             if (foundModel == nil) {
                 foundModel = newModel;
             } else if(remainingCheckingTimes != 1) {
@@ -196,7 +366,8 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
                                                      checkingIndex:&*checkingIndex
                                                      checkingTimes:remainingCheckingTimes - 1
                                           shouldRemoveContentValue:shouldRemoveContentValue
-                                         andNewHTMLLikeStringModel:newModel];
+                                            newHTMLLikeStringModel:newModel
+                                       outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }
@@ -204,14 +375,129 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
             }
         }
         
-        *checkingIndex += 1;
+        
+        // Part Two: Before we find the ending part... We need to check the the Attributs of current found Model
+        if (!haveCheckedAttributes && foundModel != nil) {
+            BOOL foundTheEndPartOfTheProperty = NO;
+            if ([foundModel isPlaceholderType]) {
+                foundTheEndPartOfTheProperty = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End;
+            } else {
+                foundTheEndPartOfTheProperty = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End;
+            }
+            
+            // Logic of found the end part
+            if (foundTheEndPartOfTheProperty) {
+                // 1. Mark we have found the Attribute.
+                haveCheckedAttributes = YES;
+                
+                NSRange propertyPartRange = NSMakeRange(foundModel.location, currentCheckingIndex - foundModel.location + 1);
+                
+                // 2. if the found Model Type is Placeholder, we will stop checking
+                if ([foundModel isPlaceholderType]) {
+                    NSString *beforeDeletingString = [NSString stringWithString:formatedString];
+                    NSUInteger beforeDeletingIndex = *checkingIndex;
+                    
+                    NSString *propertyFullString = [formatedString substringWithRange:propertyPartRange];
+                    
+                    [formatedString deleteCharactersInRange:propertyPartRange];
+                    *checkingIndex = *checkingIndex - propertyPartRange.length;
+                    
+                    [self performConsoleLogWithLogStringFormat:@"Confirm Placeholder Type Property at Range: %@  ----  %@ \nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                     NSStringFromRange(propertyPartRange),
+                     propertyFullString,
+                     @(beforeDeletingIndex),
+                     @(*checkingIndex),
+                     beforeDeletingString,
+                     formatedString];
+                    
+                    confirmedModel = foundModel;
+                } else {
+                    formatTypeFirstPartRange = propertyPartRange; /// Stored for the deleting logic
+                }
+            }
+            
+            
+            BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End;
+            if (findEqualSign) {
+                // 1. Remove the equal Sign from the current reading String
+                currentReadingString = [currentReadingString substringToIndex:currentReadingString.length - 1];
+                completeCurrentReadingFunction();
+                storedAttributeKeyValue = lastReadingCompleteString;
+            }
+            
+            if (isCurrentCharacterEmpty && storedAttributeKeyValue.length > 0) {
+                [foundModel updateAddictionalAttributeKey:storedAttributeKeyValue
+                                                withValue:lastReadingCompleteString];
+            }
+        }
+        
+        // We need to find out the Ending Part of the Format
+        if (haveCheckedAttributes && [foundModel isFormatType]) {
+            BOOL foundFormatTypeSecondPart = [self findMatchedString:formatTypeSecondPartString
+                                                   withCheckingIndex:&checkingIndexInFormatTypeSecondWrapper
+                                                      andCompareChar:currentCheckingChar
+                                            isNextCompareCharValid:YES];
+            
+            if (foundFormatTypeSecondPart) {
+                NSRange secondPartRange = NSMakeRange(currentCheckingIndex - checkingIndexInFormatTypeSecondWrapper + 1, checkingIndexInFormatTypeSecondWrapper);
+                NSUInteger contentStartingIndex = formatTypeFirstPartRange.location + formatTypeFirstPartRange.length;
+                NSRange contentRange = NSMakeRange(contentStartingIndex, secondPartRange.location - contentStartingIndex);
+                NSRange fullRange = NSMakeRange(formatTypeFirstPartRange.location, contentRange.length + formatTypeFirstPartRange.length + secondPartRange.length);
+                
+                foundModel.contentValue = [formatedString substringWithRange:contentRange];
+                NSString *fullString = [formatedString substringWithRange:fullRange];
+                
+                if (shouldRemoveContentValue) {
+                    NSString *beforeDeletingString = [NSString stringWithString:formatedString];
+                    NSUInteger beforeDeletingIndex = *checkingIndex;
+                    
+                    [formatedString deleteCharactersInRange:fullRange];
+                    *checkingIndex = *checkingIndex - fullRange.length;
+                    
+                    [self performConsoleLogWithLogStringFormat:@"Confirm Format Type Property at Range: %@ ----  %@ \nContent: %@\nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                     NSStringFromRange(fullRange),
+                     fullString,
+                     foundModel.contentValue,
+                     @(beforeDeletingIndex),
+                     @(*checkingIndex),
+                     beforeDeletingString,
+                     formatedString];
+                } else {
+                    NSString *beforeDeletingString = [NSString stringWithString:formatedString];
+                    NSUInteger beforeDeletingIndex = *checkingIndex;
+                    
+                    [formatedString deleteCharactersInRange:secondPartRange];
+                    *checkingIndex = *checkingIndex - secondPartRange.length;
+                    
+                    [formatedString deleteCharactersInRange:formatTypeFirstPartRange];
+                    *checkingIndex = *checkingIndex - formatTypeFirstPartRange.length;
+                    
+                    [self performConsoleLogWithLogStringFormat:@"Confirm Format Type Property at Range: %@ and %@ ----  %@ \nContent: %@\nChange Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                     NSStringFromRange(formatTypeFirstPartRange),
+                     NSStringFromRange(secondPartRange),
+                     fullString,
+                     foundModel.contentValue,
+                     @(beforeDeletingIndex),
+                     @(*checkingIndex),
+                     beforeDeletingString,
+                     formatedString];
+                }
+                
+                confirmedModel = foundModel;
+            }
+        }
+    }
+    
+    if (confirmedModel) {
+        confirmedModel.location -= outsideLength; // We need to modify the Location... because we will remove some code in out side of current method call
+        [returnArray addObject:confirmedModel];
     }
     
     return returnArray;
 }
 
 #pragma mark Support Methods
-+ (BOOL)findMatchedString:(NSString *)checkingString withCheckingIndex:(NSUInteger *)checkingIndex andCompareChar:(char)comparingChar
++ (BOOL)findMatchedString:(NSString *)checkingString withCheckingIndex:(NSUInteger *)checkingIndex andCompareChar:(char)comparingChar isNextCompareCharValid:(BOOL)isNextCompareCharIsEmpty // If we want to guarantee the checking string have been found.... if the next Char is not valid ... means the the Matched String might not match...
 {
     NSUInteger index = *checkingIndex;
     if (index >= checkingString.length) {
@@ -224,7 +510,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         *checkingIndex = 0;
     }
     
-    if (*checkingIndex >= checkingString.length) {
+    if (*checkingIndex >= checkingString.length && isNextCompareCharIsEmpty) {
         return YES;
     } else {
         return NO;

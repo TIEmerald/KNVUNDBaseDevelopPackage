@@ -9,6 +9,11 @@
 
 @interface NSString (KNVUNDBasic)
 
+#pragma mark - Modify
+#pragma mark Trimming
 - (NSString *)stringByTrimmingWhiteSpaces;
+
+#pragma mark Character Related
+- (NSString *)stringByAppendACharacter:(char)aChar;
 
 @end
