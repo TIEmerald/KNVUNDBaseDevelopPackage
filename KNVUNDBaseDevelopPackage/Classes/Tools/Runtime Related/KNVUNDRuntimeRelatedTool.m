@@ -9,10 +9,18 @@
 
 #import <objc/runtime.h>
 
+@interface KNVUNDRRTPropertyDetailsModel()
+
+@end
+
+@implementation KNVUNDRRTPropertyDetailsModel
+
+@end
+
 @implementation KNVUNDRuntimeRelatedTool
 
-#pragma mark - Property Related Methods
-+ (void)loopThroughAllPropertiesOfObject:(id)object withLoopBlock:(void(^)(NSString *propertyName, KNVUNDRuntimeRelatedTool_PropertyType propertyType, NSString *typeName, id value, BOOL *stopLoop))loopBlock
+#pragma mark - Property Related Methodss
++ (void)loopThroughAllPropertiesOfObject:(id)object withLoopBlock:(void(^)(KNVUNDRRTPropertyDetailsModel *_Nonnull detailsModel, BOOL *stopLoop))loopBlock
 {
     [self loopThroughAllPropertiesOfObject:object
                withAttributStringLoopBlock:^(NSString * _Nonnull propertyName, NSString * _Nonnull attributeString, id  _Nullable value, BOOL * _Nonnull stopLoop) {
@@ -21,10 +29,12 @@
                    KNVUNDRuntimeRelatedTool_PropertyType propertyType = [self getPropertyTypeFromPropertyAttributeString:attributes[0]
                                                                                                         withDetailedName:&typeName];
                    if (loopBlock) {
-                       loopBlock(propertyName,
-                                 propertyType,
-                                 typeName,
-                                 value,
+                       KNVUNDRRTPropertyDetailsModel *usingDetailsModel = [KNVUNDRRTPropertyDetailsModel new];
+                       usingDetailsModel.propertyName = propertyName;
+                       usingDetailsModel.propertyType = propertyType;
+                       usingDetailsModel.typeName = typeName;
+                       usingDetailsModel.value = value;
+                       loopBlock(usingDetailsModel,
                                  stopLoop);
                    }
                    

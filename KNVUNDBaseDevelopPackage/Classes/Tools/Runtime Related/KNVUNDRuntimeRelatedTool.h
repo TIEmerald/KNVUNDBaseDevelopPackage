@@ -29,10 +29,19 @@ typedef enum : NSUInteger {
     KNVUNDRuntimeRelatedTool_PropertyType_Selector
 } KNVUNDRuntimeRelatedTool_PropertyType;
 
+@interface KNVUNDRRTPropertyDetailsModel : KNVUNDBaseModel
+
+@property (nonatomic, strong, nonnull) NSString *propertyName;
+@property (nonatomic, strong, nullable) NSString *typeName;
+@property (nonatomic) KNVUNDRuntimeRelatedTool_PropertyType propertyType;
+@property (nonatomic, nullable) id value;
+
+@end
+
 @interface KNVUNDRuntimeRelatedTool : KNVUNDBaseModel
 
 #pragma mark - Property Related Methods
-+ (void)loopThroughAllPropertiesOfObject:(id _Nonnull)object withLoopBlock:(void(^_Nonnull)(NSString *_Nonnull propertyName, KNVUNDRuntimeRelatedTool_PropertyType propertyType, NSString *_Nullable typeName, id _Nullable value, BOOL *_Nonnull stopLoop))loopBlock;
++ (void)loopThroughAllPropertiesOfObject:(id _Nonnull)object withLoopBlock:(void(^_Nonnull)(KNVUNDRRTPropertyDetailsModel *_Nonnull detailsModel, BOOL *stopLoop))loopBlock;
 + (void)loopThroughAllPropertiesOfObject:(id _Nonnull)object withAttributStringLoopBlock:(void(^_Nonnull)(NSString *_Nonnull propertyName, NSString *_Nonnull attributeString,  id _Nullable value, BOOL *_Nonnull stopLoop))loopBlock;
 
 @end

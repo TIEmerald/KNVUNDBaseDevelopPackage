@@ -130,10 +130,10 @@
     __block BOOL returnValue = YES;
     
     [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:object
-                                                 withLoopBlock:^(NSString * _Nonnull propertyName, KNVUNDRuntimeRelatedTool_PropertyType propertyType, NSString * _Nullable typeName, id  _Nullable value, BOOL * _Nonnull stopLoop) {
-                                                     BOOL isObject = propertyType == KNVUNDRuntimeRelatedTool_PropertyType_Object;
-                                                     id selfPropertyValue = [self valueForKey:(NSString *)propertyName];
-                                                     id objectPropertyValue = value;
+                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
+                                                     BOOL isObject = detailsModel.propertyType == KNVUNDRuntimeRelatedTool_PropertyType_Object;
+                                                     id selfPropertyValue = [self valueForKey:(NSString *)detailsModel.propertyName];
+                                                     id objectPropertyValue = detailsModel.value;
                                                      
                                                      if (!isObject && selfPropertyValue == objectPropertyValue) {
                                                          return;
@@ -143,6 +143,7 @@
                                                      returnValue = NO;
                                                      *stopLoop = YES;
                                                  }];
+    
     return returnValue;
 }
 
