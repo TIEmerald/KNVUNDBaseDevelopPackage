@@ -102,6 +102,7 @@ char const KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Selector = ':';
     @try{
         char identifierChar = [propertyAttributeString characterAtIndex:1];
         NSString *detailedSubString = [propertyAttributeString substringFromIndex:2];
+        NSRange supportinRange;
         switch (identifierChar) {
             case KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Char:
                 return KNVUNDRuntimeRelatedTool_PropertyType_Char;
@@ -138,6 +139,10 @@ char const KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Selector = ':';
             case KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Selector:
                 return KNVUNDRuntimeRelatedTool_PropertyType_Selector;
             case KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Ojbect:
+                supportinRange = [detailedSubString rangeOfString:@"<"]; /// We will remove the Proptocols....
+                if (supportinRange.location != NSNotFound) {
+                    detailedSubString = [detailedSubString substringToIndex:supportinRange.location];
+                }
                 *detailedName = [detailedSubString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
                 return KNVUNDRuntimeRelatedTool_PropertyType_Object;
             default:
