@@ -7,7 +7,8 @@
 
 #import "KNVUNDBaseModel.h"
 
-#import <objc/runtime.h>
+// Tools
+#import "KNVUNDRuntimeRelatedTool.h"
 
 @implementation KNVUNDBaseModel
 
@@ -67,15 +68,11 @@
 + (NSDictionary *)propertyDescriptions
 {
     NSMutableDictionary *returnDict = [NSMutableDictionary new];
-    unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList(self, &outCount);
-    for (i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
-        NSString *propertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
-        NSString *attributeString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
-        [returnDict setObject:attributeString
-                       forKey:propertyName];
-    }
+    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:[self new]
+                                   withAttributStringLoopBlock:^(NSString * _Nonnull propertyName, NSString * _Nonnull attributeString, id  _Nullable value, BOOL * _Nonnull stopLoop) {
+                                       [returnDict setObject:attributeString
+                                                      forKey:propertyName];
+                                   }];
     return returnDict;
 }
 
@@ -130,38 +127,24 @@
         return NO;
     }
     
-    unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-    for (i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
-        NSString *propertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
-        NSString *attributeString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
-        
-        /// Property Attributs Example
-        //// Documentation: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100-SW1
-//        Printing description of propertyDict:
-//        {
-//            additionalAttribute = "T@\"NSDictionary\",&,N";
-//            contentValue = "T@\"NSString\",&,N,V_contentValue";
-//            location = "TQ,N,V_location";
-//            propertyName = "T@\"NSString\",&,N,V_propertyName";
-//            type = "TQ,N,V_type";
-//        }
-        
-        NSArray *attributes = [attributeString componentsSeparatedByString:@","];
-        BOOL isObject = [attributes[1] isEqual:@"&"];
-        
-        id selfPropertyValue = [self valueForKey:(NSString *)propertyName];
-        id objectPropertyValue = [object valueForKey:(NSString *)propertyName];
-        
-        if (!isObject && selfPropertyValue == objectPropertyValue) {
-            continue;
-        } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && [selfPropertyValue isEqual:objectPropertyValue]){
-            continue;
-        }
-        return NO;
-    }
-    return YES;
+    __block BOOL returnValue = YES;
+    
+    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:object
+                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
+                                                     BOOL isObject = detailsModel.propertyType == KNVUNDRuntimeRelatedTool_PropertyType_Object;
+                                                     id selfPropertyValue = [self valueForKey:(NSString *)detailsModel.propertyName];
+                                                     id objectPropertyValue = detailsModel.value;
+                                                     
+                                                     if (!isObject && selfPropertyValue == objectPropertyValue) {
+                                                         return;
+                                                     } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && [selfPropertyValue isEqual:objectPropertyValue]){
+                                                         return;
+                                                     }
+                                                     returnValue = NO;
+                                                     *stopLoop = YES;
+                                                 }];
+    
+    return returnValue;
 }
 
 @end

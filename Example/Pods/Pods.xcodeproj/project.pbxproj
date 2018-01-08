@@ -101,6 +101,10 @@
 		209EE6D11FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */; };
 		209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3159C827F86C7619F2C32DC9F49B6 /* SPTTestSuite.m */; };
+		20A4296F2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */; };
+		20A429702003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */; };
+		20D66BC01FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D66BBE1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h */; };
+		20D66BC11FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BBF1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m */; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CF330434B062EDA247355F044D4579A /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		215B2357D6F3ADFF8A73999CE078A8EA /* ZXRSSExpandedDecodedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A685C3CABA72D3FAB92516781BA6C30E /* ZXRSSExpandedDecodedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AFEBCD3A94A40A5745E93E9C0C8982 /* ZXingObjCAztec.h in Headers */ = {isa = PBXBuildFile; fileRef = E345304171707A7D81118B89BA6655EE /* ZXingObjCAztec.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1081,6 +1085,10 @@
 		2064CBCA28880E4B38ED3EB5768FD1A2 /* EXPMatcherHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPMatcherHelpers.h; path = Expecta/Matchers/EXPMatcherHelpers.h; sourceTree = "<group>"; };
 		209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDImageRelatedTool+ImageModifyRelated.h"; sourceTree = "<group>"; };
 		209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDImageRelatedTool+ImageModifyRelated.m"; sourceTree = "<group>"; };
+		20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KNVUNDPropertyModifyRelated.h"; sourceTree = "<group>"; };
+		20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KNVUNDPropertyModifyRelated.m"; sourceTree = "<group>"; };
+		20D66BBE1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDRuntimeRelatedTool.h; sourceTree = "<group>"; };
+		20D66BBF1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDRuntimeRelatedTool.m; sourceTree = "<group>"; };
 		20FDC8E0FD6E34002B479735E0BED09E /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
 		2167152183BDF3A452A46A46D7EE7D70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		2168802986B4663881CE9E926AD78D82 /* ZXAI01decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAI01decoder.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI01decoder.h; sourceTree = "<group>"; };
@@ -1991,6 +1999,7 @@
 		2052799F1FFCA1E800BBED7F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				20A4296C2003242A00B4BF0F /* NSObject */,
 				205279A01FFCA20E00BBED7F /* NSString */,
 			);
 			path = Categories;
@@ -2005,6 +2014,15 @@
 			path = NSString;
 			sourceTree = "<group>";
 		};
+		20A4296C2003242A00B4BF0F /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */,
+				20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
 		20C1DA4E1FEA8B58005401F0 /* Theme Related */ = {
 			isa = PBXGroup;
 			children = (
@@ -2014,6 +2032,15 @@
 				209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */,
 			);
 			path = "Theme Related";
+			sourceTree = "<group>";
+		};
+		20D66BBD1FFEF06C00AB8E99 /* Runtime Related */ = {
+			isa = PBXGroup;
+			children = (
+				20D66BBE1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h */,
+				20D66BBF1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m */,
+			);
+			path = "Runtime Related";
 			sourceTree = "<group>";
 		};
 		31A7583189251CC14728506DADC08E6A /* Support Files */ = {
@@ -3044,6 +3071,7 @@
 		F188D71852165DBF2150715A8DA0EBA9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				20D66BBD1FFEF06C00AB8E99 /* Runtime Related */,
 				2052799A1FFCA04E00BBED7F /* Error Code Related */,
 				205279951FFC873700BBED7F /* String Related */,
 				20C1DA4E1FEA8B58005401F0 /* Theme Related */,
@@ -3125,6 +3153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B621FE87CCF717173DDE0100D3E1C0 /* KNVUNDBaseDevelopPackage-umbrella.h in Headers */,
+				20A4296F2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
 				E357F2E7486C4A86D9DDBB49475F8886 /* KNVUNDBaseModel.h in Headers */,
 				017B2ED80D2508160BFD3232ECDFF6F6 /* KNVUNDBaseViewController.h in Headers */,
 				2052799D1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.h in Headers */,
@@ -3133,6 +3162,7 @@
 				205279981FFC87B100BBED7F /* KNVUNDFormatedStringRelatedTool.h in Headers */,
 				205279A31FFCA22F00BBED7F /* NSString+KNVUNDBasic.h in Headers */,
 				52761B59BF6ED05B0A1F4F4D63C7B5D3 /* KNVUNDImageRelatedTool.h in Headers */,
+				20D66BC01FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h in Headers */,
 				005A34444ED5E47BE5F406BB547A2152 /* KNVUNDLocalRelatedTool.h in Headers */,
 				34ED897A49DF9E6627EA60BFE2B40ED4 /* KNVUNDThreadRelatedTool.h in Headers */,
 				209EE6D11FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */,
@@ -4263,10 +4293,12 @@
 				5B5C694176DEFB7ED2C0AD21EB3A539E /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
 				A5A7675F3BF93CBE4158374AA713D253 /* KNVUNDBaseModel.m in Sources */,
 				2052799E1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.m in Sources */,
+				20A429702003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */,
 				209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
 				A672A6B062FF148F107520655477A1A8 /* KNVUNDBaseViewController.m in Sources */,
 				E3C2FCBF8A5349F674F7F2A1D45331FB /* KNVUNDButtonsSelectionHelper.m in Sources */,
 				8E12772DDC607029761121421BD05143 /* KNVUNDDebugTool.m in Sources */,
+				20D66BC11FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m in Sources */,
 				205279A41FFCA22F00BBED7F /* NSString+KNVUNDBasic.m in Sources */,
 				710E46E84ED12621453A94EEAEBFAE9C /* KNVUNDImageRelatedTool.m in Sources */,
 				E5053A12E97F5D7C2C506BD20067C01D /* KNVUNDLocalRelatedTool.m in Sources */,
