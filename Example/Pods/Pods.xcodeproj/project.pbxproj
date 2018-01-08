@@ -101,6 +101,8 @@
 		209EE6D11FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */; };
 		209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE3159C827F86C7619F2C32DC9F49B6 /* SPTTestSuite.m */; };
+		20A4296F2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */; };
+		20A429702003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */; };
 		20D66BC01FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D66BBE1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h */; };
 		20D66BC11FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BBF1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m */; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CF330434B062EDA247355F044D4579A /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1083,6 +1085,8 @@
 		2064CBCA28880E4B38ED3EB5768FD1A2 /* EXPMatcherHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPMatcherHelpers.h; path = Expecta/Matchers/EXPMatcherHelpers.h; sourceTree = "<group>"; };
 		209EE6CF1FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDImageRelatedTool+ImageModifyRelated.h"; sourceTree = "<group>"; };
 		209EE6D01FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDImageRelatedTool+ImageModifyRelated.m"; sourceTree = "<group>"; };
+		20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KNVUNDPropertyModifyRelated.h"; sourceTree = "<group>"; };
+		20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KNVUNDPropertyModifyRelated.m"; sourceTree = "<group>"; };
 		20D66BBE1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDRuntimeRelatedTool.h; sourceTree = "<group>"; };
 		20D66BBF1FFEF09000AB8E99 /* KNVUNDRuntimeRelatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDRuntimeRelatedTool.m; sourceTree = "<group>"; };
 		20FDC8E0FD6E34002B479735E0BED09E /* UINavigationController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+PPTopMostController.m"; path = "PPTopMostController-Files/UINavigationController+PPTopMostController.m"; sourceTree = "<group>"; };
@@ -1995,6 +1999,7 @@
 		2052799F1FFCA1E800BBED7F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				20A4296C2003242A00B4BF0F /* NSObject */,
 				205279A01FFCA20E00BBED7F /* NSString */,
 			);
 			path = Categories;
@@ -2007,6 +2012,15 @@
 				205279A21FFCA22F00BBED7F /* NSString+KNVUNDBasic.m */,
 			);
 			path = NSString;
+			sourceTree = "<group>";
+		};
+		20A4296C2003242A00B4BF0F /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				20A4296D2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h */,
+				20A4296E2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m */,
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 		20C1DA4E1FEA8B58005401F0 /* Theme Related */ = {
@@ -3139,6 +3153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B621FE87CCF717173DDE0100D3E1C0 /* KNVUNDBaseDevelopPackage-umbrella.h in Headers */,
+				20A4296F2003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
 				E357F2E7486C4A86D9DDBB49475F8886 /* KNVUNDBaseModel.h in Headers */,
 				017B2ED80D2508160BFD3232ECDFF6F6 /* KNVUNDBaseViewController.h in Headers */,
 				2052799D1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.h in Headers */,
@@ -4278,6 +4293,7 @@
 				5B5C694176DEFB7ED2C0AD21EB3A539E /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
 				A5A7675F3BF93CBE4158374AA713D253 /* KNVUNDBaseModel.m in Sources */,
 				2052799E1FFCA07300BBED7F /* KNVUNDRootErrorCodeTool.m in Sources */,
+				20A429702003246400B4BF0F /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */,
 				209EE6D21FF6253400826A16 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
 				A672A6B062FF148F107520655477A1A8 /* KNVUNDBaseViewController.m in Sources */,
 				E3C2FCBF8A5349F674F7F2A1D45331FB /* KNVUNDButtonsSelectionHelper.m in Sources */,
