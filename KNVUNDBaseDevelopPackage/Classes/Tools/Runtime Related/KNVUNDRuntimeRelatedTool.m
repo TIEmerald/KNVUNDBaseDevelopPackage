@@ -15,6 +15,14 @@
 
 @implementation KNVUNDRRTPropertyDetailsModel
 
+- (NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"%@ (%@) --- %@",
+            self.propertyName,
+            self.typeName,
+            self.value];
+}
+
 @end
 
 @implementation KNVUNDRuntimeRelatedTool
