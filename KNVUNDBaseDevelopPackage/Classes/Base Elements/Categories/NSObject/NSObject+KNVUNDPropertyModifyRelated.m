@@ -104,7 +104,7 @@
                           andMappingDictionary:mappingDictionary
                       avoidObjectPropertyNames:avoidingProperties
                        withModifyPropertyBlock:^(KNVUNDRRTPropertyDetailsModel *selfPropertyDetails, KNVUNDRRTPropertyDetailsModel *objectPropertyDetails, BOOL isTwoPropertyDetailsValid) {
-                           id passingValue = [[self class]getDefaultValueForPropertyDetails:selfPropertyDetails];
+                           id passingValue = nil;
                            if (isTwoPropertyDetailsValid) {
                                passingValue = objectPropertyDetails.value;
                                KNVUNDRuntimeRelatedTool_PropertyType propertyType = selfPropertyDetails.propertyType; // When we reach this block, we are sure that the property type are same.
@@ -118,6 +118,8 @@
                                                            toPropertytypeName:selfPropertyTypeName];
                                }
                            }
+                           // We will update the value to default value if the the value is nil...
+                           passingValue = passingValue ?: [[self class]getDefaultValueForPropertyDetails:objectPropertyDetails];
                            [self setValue:passingValue
                                    forKey:selfPropertyDetails.propertyName];
                        }];
@@ -150,7 +152,7 @@
                           andMappingDictionary:mappingDictionary
                       avoidObjectPropertyNames:avoidingProperties
                        withModifyPropertyBlock:^(KNVUNDRRTPropertyDetailsModel *selfPropertyDetails, KNVUNDRRTPropertyDetailsModel *objectPropertyDetails, BOOL isTwoPropertyDetailsValid) {
-                           id passingValue = [[self class]getDefaultValueForPropertyDetails:objectPropertyDetails];
+                           id passingValue = nil;
                            if (isTwoPropertyDetailsValid) {
                                passingValue = selfPropertyDetails.value;
                                KNVUNDRuntimeRelatedTool_PropertyType propertyType = selfPropertyDetails.propertyType; // When we reach this block, we are sure that the property type are same.
@@ -164,6 +166,8 @@
                                                            toPropertytypeName:objectPropertyTypeName];
                                }
                            }
+                           // We will update the value to default value if the the value is nil...
+                           passingValue = passingValue ?: [[self class]getDefaultValueForPropertyDetails:objectPropertyDetails];
                            [object setValue:passingValue
                                      forKey:objectPropertyDetails.propertyName];
                        }];
