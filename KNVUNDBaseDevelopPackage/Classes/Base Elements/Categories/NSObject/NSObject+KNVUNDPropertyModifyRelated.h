@@ -17,6 +17,8 @@
 /// The formate of this dictionary is <String(property type name in object), @[String(property type name in Self)]>
 + (NSDictionary *)objectObjectTypePropertNameMappingDictionary;
 + (BOOL)supportObjectPropertyType:(KNVUNDRuntimeRelatedTool_PropertyType)objectPropertyType;
+/// Override this method if you want to ensure the value is not nil;
++ (id)getDefaultValueForPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)propertyDetails;
 - (id)converObjectTypeValue:(id)value fromPropertyTypeName:(NSString *)fromTypeName toPropertytypeName:(NSString *)toTypeName;
 
 #pragma mark - Initial
