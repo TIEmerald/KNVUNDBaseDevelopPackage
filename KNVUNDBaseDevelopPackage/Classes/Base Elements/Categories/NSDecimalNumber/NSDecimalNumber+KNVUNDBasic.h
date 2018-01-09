@@ -9,6 +9,15 @@
 
 @interface NSDecimalNumber (KNVUNDBasic)
 
+#pragma mark - Validators
 - (BOOL)couldBecomeDivisor;
+- (BOOL)couldPassToOperator;
+
+#pragma mark - Calculation Operator
+/// In this Safely Calculation Methods, as long as the operand is invlid(is not number, or the value is nil), we will return zero.
+- (NSDecimalNumber *)decimalNumberBySafelyAdding:(NSDecimalNumber *)decimalNumber;
+- (NSDecimalNumber *)decimalNumberBySafelySubtracting:(NSDecimalNumber *)decimalNumber;
+- (NSDecimalNumber *)decimalNumberBySafelyMultiplyingBy:(NSDecimalNumber *)decimalNumber;
+- (NSDecimalNumber *)decimalNumberBySafelyDividingBy:(NSDecimalNumber *)decimalNumber;
 
 @end
