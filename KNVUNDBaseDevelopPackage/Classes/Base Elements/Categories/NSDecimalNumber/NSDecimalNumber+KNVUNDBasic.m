@@ -36,7 +36,7 @@
 
 - (NSDecimalNumber *)decimalNumberBySafelySubtracting:(NSDecimalNumber *)decimalNumber
 {
-    return [self decimalNumberBySafelyAdding:decimalNumber
+    return [self decimalNumberBySafelySubtracting:decimalNumber
                          withBehavior:nil];
 }
 
