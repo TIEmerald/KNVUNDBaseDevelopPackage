@@ -28,6 +28,13 @@
     KNVUNDButtonsSelectionButton *buttonOne = [self generateSelectionButton];
     [buttonOne setTitle:@"Button One"
                forState:UIControlStateNormal];
+    [buttonOne setUpWithSelectedFunction:^(UIButton * _Nonnull relatedButton) {
+        [self displayBannerMessageWithBannerType:KNVUNDBaseVCBannerMessageType_Notify
+                                           title:@"Test Banner Title"
+                                      andMessage:@"Test Banner Message"];
+    } andDeSelectedFunction:^(UIButton * _Nonnull relatedButton) {
+        
+    }];
     buttonOne.frame = CGRectMake(20, 20, 100, 40);
     [self.view addSubview:buttonOne];
     
