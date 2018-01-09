@@ -17,7 +17,7 @@
 @end
 
 #pragma mark -
-@interface KNVUNDBaseViewController ()
+@interface KNVUNDBaseViewController () <RMessageProtocol>
 
 @end
 
@@ -274,12 +274,20 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     _currentPresentingViewController = nil;
 }
 
+#pragma mark - RMessageProtocol
+- (void)customizeMessageView:(RMessageView *)messageView
+{
+    
+}
+
+
 #pragma mark - Support Methods
 - (void)showUpBannerWithTitle:(NSString *)title message:(NSString *)message andBannerType:(KNVUNDBaseVCBannerMessageType)bannerType
 {
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-                                             title:title subtitle:message
+                                             title:title
+                                          subtitle:message
                                          iconImage:nil
                                               type:(RMessageType)bannerType
                                     customTypeName:@""
