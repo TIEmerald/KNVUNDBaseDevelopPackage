@@ -23,8 +23,9 @@
 #pragma mark - Calculation Operator
 - (NSDecimalNumber *)decimalNumberBySafelyAdding:(NSDecimalNumber *)decimalNumber
 {
-    return [self decimalNumberBySafelyAdding:decimalNumber
-                                withBehavior:nil];
+    NSDecimalNumber *leftOperand = [self couldPassToOperator] ? self : [NSDecimalNumber zero];
+    NSDecimalNumber *rightOperand = [decimalNumber couldPassToOperator] ? decimalNumber : [NSDecimalNumber zero];
+    return [leftOperand decimalNumberByAdding:rightOperand];
 }
 
 - (NSDecimalNumber * _Nonnull)decimalNumberBySafelyAdding:(NSDecimalNumber *_Nullable)decimalNumber withBehavior:(nullable id <NSDecimalNumberBehaviors>)behavior
@@ -36,8 +37,9 @@
 
 - (NSDecimalNumber *)decimalNumberBySafelySubtracting:(NSDecimalNumber *)decimalNumber
 {
-    return [self decimalNumberBySafelySubtracting:decimalNumber
-                         withBehavior:nil];
+    NSDecimalNumber *leftOperand = [self couldPassToOperator] ? self : [NSDecimalNumber zero];
+    NSDecimalNumber *rightOperand = [decimalNumber couldPassToOperator] ? decimalNumber : [NSDecimalNumber zero];
+    return [leftOperand decimalNumberBySubtracting:rightOperand];
 }
 
 - (NSDecimalNumber *_Nonnull)decimalNumberBySafelySubtracting:(NSDecimalNumber *_Nullable)decimalNumber withBehavior:(nullable id <NSDecimalNumberBehaviors>)behavior
@@ -49,8 +51,9 @@
 
 - (NSDecimalNumber *)decimalNumberBySafelyMultiplyingBy:(NSDecimalNumber *)decimalNumber
 {
-    return [self decimalNumberBySafelyMultiplyingBy:decimalNumber
-                                withBehavior:nil];
+    NSDecimalNumber *leftOperand = [self couldPassToOperator] ? self : [NSDecimalNumber zero];
+    NSDecimalNumber *rightOperand = [decimalNumber couldPassToOperator] ? decimalNumber : [NSDecimalNumber zero];
+    return [leftOperand decimalNumberByMultiplyingBy:rightOperand];
 }
 
 - (NSDecimalNumber *_Nonnull)decimalNumberBySafelyMultiplyingBy:(NSDecimalNumber *_Nullable)decimalNumber withBehavior:(nullable id <NSDecimalNumberBehaviors>)behavior
@@ -62,8 +65,9 @@
 
 - (NSDecimalNumber *)decimalNumberBySafelyDividingBy:(NSDecimalNumber *)decimalNumber
 {
-    return [self decimalNumberBySafelyDividingBy:decimalNumber
-                             withBehavior:nil];
+    NSDecimalNumber *leftOperand = [self couldPassToOperator] ? self : [NSDecimalNumber zero];
+    NSDecimalNumber *rightOperand = [decimalNumber couldPassToOperator] ? decimalNumber : [NSDecimalNumber zero];
+    return [rightOperand isEqualToNumber:[NSDecimalNumber zero]] ? [NSDecimalNumber zero] : [leftOperand decimalNumberByDividingBy:rightOperand];
 }
 
 - (NSDecimalNumber *_Nonnull)decimalNumberBySafelyDividingBy:(NSDecimalNumber *_Nullable)decimalNumber withBehavior:(nullable id <NSDecimalNumberBehaviors>)behavior
