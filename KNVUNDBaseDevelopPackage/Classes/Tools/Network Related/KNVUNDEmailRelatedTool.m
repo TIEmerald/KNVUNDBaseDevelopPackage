@@ -42,6 +42,7 @@
     returnMesaage.bccEmail = self.bccEmails.firstObject;
     returnMesaage.login = self.fromEmailLogin;
     returnMesaage.pass = self.fromEmailPassword;
+    returnMesaage.subject = self.subject;
     returnMesaage.requiresAuth = YES;
     returnMesaage.wantsSecure = YES;
     returnMesaage.delegate = self;
