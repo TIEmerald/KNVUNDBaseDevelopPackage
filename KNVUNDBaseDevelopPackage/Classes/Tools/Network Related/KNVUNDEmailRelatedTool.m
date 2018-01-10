@@ -45,7 +45,7 @@
     returnMesaage.subject = self.subject;
     returnMesaage.requiresAuth = YES;
     returnMesaage.wantsSecure = YES;
-    returnMesaage.delegate = self;
+//    returnMesaage.delegate = self; No... We cannot set self to delegate... because when delegate be called, self have already released.....
     
     NSMutableArray *passingParts = [NSMutableArray new];
     // Now creating plain text email message
@@ -71,7 +71,7 @@
 
 -(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
 {
-    [self performConsoleLogWithLogStringFormat:@"Failed Sent Email to %@ -- %@. Error: %@",
+    [self performConsoleLogWithLogStringFormat:@"Failed to Send Email to %@ -- %@. Error: %@",
      self.toEmail,
      self.subject,
      error.description];
