@@ -96,6 +96,7 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
  */
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController;
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController;
+- (void)removeAllChildrenViewControllers;
 
 /*!
  * @brief This method will remove currrent view controller from parent view controller and dismiss view
@@ -114,7 +115,7 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
  * @brief This method will display the formsheetVC you passed in upon current view controller. How will it show up will based on the setting Model you passed in.
  */
 - (void)presentFormSheetViewController:(UIViewController *)formsheetVC withSettingModel:(KNVUNDFormSheetSettingModel *)settingModel;
-- (void)presentFormSheetViewController:(UIViewController *)formsheetVC withSettingModel:(KNVUNDFormSheetSettingModel *)settingModel andPresentedCompletionBlock:(void(^)())completionBlock;
+- (void)presentFormSheetViewController:(UIViewController *)formsheetVC withSettingModel:(KNVUNDFormSheetSettingModel *)settingModel andPresentedCompletionBlock:(void(^)(void))completionBlock;
 
 #pragma mark Popover Related Methods
 /*!
@@ -128,7 +129,7 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
  * @brief This method will dismiss current Form Sheet View if it existed.
  */
 - (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation;
-- (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)())completionBlock;
+- (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)(void))completionBlock;
 
 @end
 

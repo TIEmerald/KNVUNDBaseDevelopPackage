@@ -131,11 +131,14 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController
 {
     if ([self.childViewControllers containsObject:childViewController]) {
-        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-            [childViewController willMoveToParentViewController:nil];
-            [childViewController.view removeFromSuperview];
-            [childViewController removeFromParentViewController];
-        }];
+        [self removeChildViewController:childViewController];
+    }
+}
+
+- (void)removeAllChildrenViewControllers
+{
+    for (UIViewController *childViewController in self.childViewControllers) {
+        [self removeChildViewController:childViewController];
     }
 }
 
@@ -145,6 +148,16 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
         [self willMoveToParentViewController:nil];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
+    }];
+}
+
+#pragma mark Support Methods
+- (void)removeChildViewController:(UIViewController *)childViewController
+{
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [childViewController willMoveToParentViewController:nil];
+        [childViewController.view removeFromSuperview];
+        [childViewController removeFromParentViewController];
     }];
 }
 
@@ -165,7 +178,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
              andPresentedCompletionBlock:nil];
 }
 
-- (void)presentFormSheetViewController:(UIViewController *)formsheetVC withSettingModel:(KNVUNDFormSheetSettingModel *)settingModel andPresentedCompletionBlock:(void(^)())completionBlock
+- (void)presentFormSheetViewController:(UIViewController *)formsheetVC withSettingModel:(KNVUNDFormSheetSettingModel *)settingModel andPresentedCompletionBlock:(void(^)(void))completionBlock
 {
     [self presentPresentViewWithAnimated:settingModel.shouldShowUpWithAnimation
                    contentViewController:formsheetVC
@@ -216,7 +229,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                    andCompletionBlock:nil];
 }
 
-- (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)())completionBlock
+- (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)(void))completionBlock
 {
     
     if (_currentPresentingViewController) {
