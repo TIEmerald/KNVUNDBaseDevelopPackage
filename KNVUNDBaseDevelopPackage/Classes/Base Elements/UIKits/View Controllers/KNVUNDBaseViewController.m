@@ -131,14 +131,14 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController
 {
     if ([self.childViewControllers containsObject:childViewController]) {
-        [self removeChildViewController:childViewController];
+        [self removeChildViewControllerInMainBlock:childViewController];
     }
 }
 
 - (void)removeAllChildrenViewControllers
 {
     for (UIViewController *childViewController in self.childViewControllers) {
-        [self removeChildViewController:childViewController];
+        [self removeChildViewControllerInMainBlock:childViewController];
     }
 }
 
@@ -152,7 +152,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 }
 
 #pragma mark Support Methods
-- (void)removeChildViewController:(UIViewController *)childViewController
+- (void)removeChildViewControllerInMainBlock:(UIViewController *)childViewController
 {
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         [childViewController willMoveToParentViewController:nil];
