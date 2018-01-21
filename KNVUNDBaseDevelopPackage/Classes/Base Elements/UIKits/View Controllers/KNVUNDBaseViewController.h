@@ -12,6 +12,7 @@
 #import "MZFormSheetPresentationViewController.h"
 
 #pragma mark -
+#pragma mark -
 // This model is used passing setting's information while you want to show up FormSheet
 @interface KNVUNDFormSheetSettingModel : NSObject
 
@@ -35,6 +36,40 @@
 
 @end
 
+#pragma mark -
+#pragma mark -
+typedef void(^KNVUNDAlertActionSettingBlock)(UIAlertAction *relatedAction);
+
+// These models is used to show up alert view --- We are using UIAlertController as the showing up logic
+@interface KNVUNDAlertActionSettingModel : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic) UIAlertActionStyle actionStyle;
+
+#pragma mark - Generator
++ (instancetype)generateActionModelWithTitle:(NSString *)title style:(UIAlertActionStyle)style andHandler:(KNVUNDAlertActionSettingBlock)handler;
+
+@end
+
+typedef void(^KNVUNDAlertControllerSettingCompleteBlock)(void);
+
+@interface KNVUNDAlertControllerSettingModel : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *message;
+
+@property (nonatomic) UIAlertControllerStyle alertStyle;
+@property (nonatomic) BOOL shouldShowUpWithAnimation;
+@property (nonatomic) KNVUNDAlertControllerSettingCompleteBlock didShowUpBlock;
+
+#pragma mark - Generator
+/// Default Alert Style from this method is UIAlertControllerStyleAlert
++ (instancetype)generateAlertStyleControllerModelWithTitle:(NSString *)title message:(NSString *)message andActions:(NSArray *)actions;
+
+@end
+
+#pragma mark -
+#pragma mark -
 typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
     KNVUNDBaseVCBannerMessageType_Success = RMessageTypeSuccess,
     KNVUNDBaseVCBannerMessageType_Notify = RMessageTypeWarning,
@@ -108,6 +143,12 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
  * @brief Combine with bannerMessageDisplayingVC property... This method will display the related message in the target view controller.... If you didn't set and banner Message Displaying VC.. It will display the banner in current VC...
  */
 - (void)displayBannerMessageWithBannerType:(KNVUNDBaseVCBannerMessageType)type title:(NSString *)title andMessage:(NSString *)message;
+
+#pragma mark - Alert Related
+/*!
+ * @brief This method will show up Alert View with UIAlertController
+ */
+- (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel;
 
 #pragma mark - Present View Related
 #pragma mark Form Sheet View Related

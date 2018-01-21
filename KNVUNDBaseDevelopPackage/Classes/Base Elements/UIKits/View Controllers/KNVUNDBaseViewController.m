@@ -12,10 +12,90 @@
 #import "KNVUNDThreadRelatedTool.h"
 
 #pragma mark -
+#pragma mark -
 @implementation KNVUNDFormSheetSettingModel
 
 @end
 
+#pragma mark -
+#pragma mark -
+// These models is used to show up alert view --- We are using UIAlertController as the showing up logic
+@implementation KNVUNDAlertActionSettingModel{
+    KNVUNDAlertActionSettingBlock _storedSettingBlock;
+}
+
+#pragma mark - Initial
+- (instancetype)initWithTitle:(NSString *)title style:(UIAlertActionStyle)style andHandler:(KNVUNDAlertActionSettingBlock)handler
+{
+    if (self = [self init]) {
+        self.title = title;
+        self.actionStyle = style;
+        _storedSettingBlock = handler;
+    }
+    return self;
+}
+
+#pragma mark - Generator
++ (instancetype)generateActionModelWithTitle:(NSString *)title style:(UIAlertActionStyle)style andHandler:(KNVUNDAlertActionSettingBlock)handler
+{
+    return [[self alloc] initWithTitle:title
+                                 style:style
+                            andHandler:handler];
+}
+
+#pragma mark - Support Methods
+- (UIAlertAction *)retrieveAlertActionFromSelf
+{
+    UIAlertAction *returnAction = [UIAlertAction actionWithTitle:self.title
+                                                           style:self.actionStyle
+                                                         handler:_storedSettingBlock];
+    return returnAction;
+}
+
+@end
+
+@implementation KNVUNDAlertControllerSettingModel {
+    NSArray *_storedActions;
+}
+
+#pragma mark - Initial
+- (instancetype)initWithTitle:(NSString *)title style:(UIAlertControllerStyle)controllerStyle message:(NSString *)message andActions:(NSArray *)actions
+{
+    if (self = [self init]) {
+        self.title = title;
+        self.alertStyle = controllerStyle;
+        self.message = message;
+        _storedActions = actions;
+    }
+    return self;
+}
+
+#pragma mark - Generator
+/// Default Alert Style from this method is UIAlertControllerStyleAlert
++ (instancetype)generateAlertStyleControllerModelWithTitle:(NSString *)title message:(NSString *)message andActions:(NSArray *)actions
+{
+    return [[self alloc] initWithTitle:title
+                                 style:UIAlertControllerStyleAlert
+                               message:message
+                            andActions:actions];
+}
+
+#pragma mark - Support Methods
+- (UIAlertController *)retrieveAlertControllerFromSelf
+{
+    UIAlertController *returnController = [UIAlertController alertControllerWithTitle:self.title
+                                                                              message:self.message
+                                                                       preferredStyle:self.alertStyle];
+    for (KNVUNDAlertActionSettingModel *actionModel in _storedActions) {
+        UIAlertAction *alertAction = [actionModel retrieveAlertActionFromSelf];
+        [returnController addAction:alertAction];
+    }
+    return returnController;
+}
+
+@end
+
+#pragma mark -
 #pragma mark -
 @interface KNVUNDBaseViewController () <RMessageProtocol>
 
@@ -167,6 +247,15 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     [self showUpBannerWithTitle:title
                         message:message
                   andBannerType:type];
+}
+
+#pragma mark - Alert Related
+- (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel
+{
+    UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelf];
+    [self presentViewController:alertControlelr
+                       animated:alertSettingModel.shouldShowUpWithAnimation
+                     completion:alertSettingModel.didShowUpBlock];
 }
 
 #pragma mark - Present View Related
