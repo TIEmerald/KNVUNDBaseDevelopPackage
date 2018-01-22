@@ -107,6 +107,8 @@
 		1DE955EAE109F101C5E4F062F610973D /* ZXDataMatrixDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729B40B8322F87815AA8378045B0710 /* ZXDataMatrixDecoder.m */; };
 		1E3F8D7F8DBD590F0A2DA9BB01229923 /* ZXEmailDoCoMoResultParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 62B494A79D1D3493952383EF7A3D29C6 /* ZXEmailDoCoMoResultParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F96C12E53AE7ABDE9BFEB19D9B7FC97 /* ZXAddressBookParsedResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 9043139F43C5242C8A8D9C6012393658 /* ZXAddressBookParsedResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		204E5E28201575A6009E57BF /* KNVUNDScannerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 204E5E26201575A6009E57BF /* KNVUNDScannerHelper.h */; };
+		204E5E29201575A6009E57BF /* KNVUNDScannerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 204E5E27201575A6009E57BF /* KNVUNDScannerHelper.m */; };
 		205BEC95B6F17C8A99366812D124A70F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = B25D7AF86CFA51F0A13707748A140850 /* NSObject+KNVUNDPropertyModifyRelated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20963B2620070C000051AF30 /* KNVUNDLogRelatedHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 20963B2420070C000051AF30 /* KNVUNDLogRelatedHelper.h */; };
 		20963B2720070C000051AF30 /* KNVUNDLogRelatedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 20963B2520070C000051AF30 /* KNVUNDLogRelatedHelper.m */; };
@@ -1109,6 +1111,8 @@
 		1F31BBDC0CB738F4D31B31E35A25273F /* ZXResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXResult.m; path = ZXingObjC/core/ZXResult.m; sourceTree = "<group>"; };
 		1F77A363F251CA8EB51F0A6A14322AEF /* ZXQRCodeFinderPatternFinder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeFinderPatternFinder.m; path = ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternFinder.m; sourceTree = "<group>"; };
 		20202471193A2E2C68C80374BE088A50 /* ZXPDF417Codeword.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Codeword.h; path = ZXingObjC/pdf417/decoder/ZXPDF417Codeword.h; sourceTree = "<group>"; };
+		204E5E26201575A6009E57BF /* KNVUNDScannerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDScannerHelper.h; sourceTree = "<group>"; };
+		204E5E27201575A6009E57BF /* KNVUNDScannerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDScannerHelper.m; sourceTree = "<group>"; };
 		20963B2420070C000051AF30 /* KNVUNDLogRelatedHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDLogRelatedHelper.h; sourceTree = "<group>"; };
 		20963B2520070C000051AF30 /* KNVUNDLogRelatedHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDLogRelatedHelper.m; sourceTree = "<group>"; };
 		20AEE18020057C370088C381 /* KNVUNDEmailRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDEmailRelatedTool.h; sourceTree = "<group>"; };
@@ -2142,6 +2146,15 @@
 			path = "../Target Support Files/MZFormSheetPresentationController";
 			sourceTree = "<group>";
 		};
+		204E5E2520157582009E57BF /* Scanning Related */ = {
+			isa = PBXGroup;
+			children = (
+				204E5E26201575A6009E57BF /* KNVUNDScannerHelper.h */,
+				204E5E27201575A6009E57BF /* KNVUNDScannerHelper.m */,
+			);
+			path = "Scanning Related";
+			sourceTree = "<group>";
+		};
 		20832A7E9A07A6C2B16F19AFCAAAD428 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -3129,6 +3142,7 @@
 		C1F7781E4D8F7232658A16D2D462C69F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				204E5E2520157582009E57BF /* Scanning Related */,
 				20963B2320070BE60051AF30 /* Log Related */,
 				21DBA4AD6D962573810930751CC09A4C /* Buttons Related */,
 			);
@@ -3722,6 +3736,7 @@
 				ED92FE867F49BC6B1C60E6712644F9E2 /* KNVUNDRuntimeRelatedTool.h in Headers */,
 				20AEE18220057C370088C381 /* KNVUNDEmailRelatedTool.h in Headers */,
 				5DAEA9D6C131EBDEBEBF5AF433180C9E /* KNVUNDThreadRelatedTool.h in Headers */,
+				204E5E28201575A6009E57BF /* KNVUNDScannerHelper.h in Headers */,
 				08A4D4C4EFF7115B4F6BEBE26B3D0443 /* NSDecimalNumber+KNVUNDBasic.h in Headers */,
 				205BEC95B6F17C8A99366812D124A70F /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
 				A51C8C8F47DADD1696DAF7C4E5044128 /* NSString+KNVUNDBasic.h in Headers */,
@@ -4196,6 +4211,7 @@
 				20AEE18320057C370088C381 /* KNVUNDEmailRelatedTool.m in Sources */,
 				AB91F6CF41AB530A979F4C318341E4F6 /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
 				339ECB3584C88AE421D2DF3265F9052C /* KNVUNDBaseModel.m in Sources */,
+				204E5E29201575A6009E57BF /* KNVUNDScannerHelper.m in Sources */,
 				0738FE535A953CFF0F5918BF164837C6 /* KNVUNDBaseViewController.m in Sources */,
 				EE2D4A1C510583A568D69D0D7914F593 /* KNVUNDButtonsSelectionHelper.m in Sources */,
 				3DD96CFCC4658A85731861B5AA1074B9 /* KNVUNDDebugTool.m in Sources */,
