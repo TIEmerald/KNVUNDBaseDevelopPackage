@@ -20,7 +20,8 @@
 + (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle;
 
 #pragma mark SVPorgressHUD
-+ (void)showWithStatus:(NSString *_Nonnull)status maskType:(SVProgressHUDMaskType)maskType;
-+ (void)showWithStatus:(NSString *_Nonnull)status;
++ (void)showProgressWithStatus:(NSString *_Nonnull)status maskType:(SVProgressHUDMaskType)maskType;
++ (void)showProgressWithStatus:(NSString *_Nonnull)status;
++ (void)dismissProgress;
 
 @end
