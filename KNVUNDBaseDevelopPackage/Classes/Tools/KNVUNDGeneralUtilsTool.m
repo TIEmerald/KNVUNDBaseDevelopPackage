@@ -27,16 +27,23 @@
 }
 
 #pragma mark SVPorgressHUD
-+ (void)showWithStatus:(NSString *_Nonnull)status maskType:(SVProgressHUDMaskType)maskType
++ (void)showProgressWithStatus:(NSString *_Nonnull)status maskType:(SVProgressHUDMaskType)maskType
 {
     [SVProgressHUD setDefaultMaskType:maskType];
-    [self showWithStatus:status];
+    [self showProgressWithStatus:status];
 }
 
-+ (void)showWithStatus:(NSString *_Nonnull)status
++ (void)showProgressWithStatus:(NSString *_Nonnull)status
 {
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         [SVProgressHUD showWithStatus:status];
+    }];
+}
+
++ (void)dismissProgress
+{
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [SVProgressHUD dismiss];
     }];
 }
 
