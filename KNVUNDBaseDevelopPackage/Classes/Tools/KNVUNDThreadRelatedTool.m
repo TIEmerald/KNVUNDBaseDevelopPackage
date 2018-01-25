@@ -17,6 +17,12 @@
 #pragma mark - Queue Related
 + (void)performBlockInMainQueue:(void(^)(void))block
 {
+    [self performBlockSynchronise:YES
+                      inMainQueue:block];
+}
+
++ (void)performBlockSynchronise:(BOOL)isSync inMainQueue:(void(^)(void))block
+{
     if (!block) {
         return;
     }
@@ -26,12 +32,25 @@
         return; // If current Tread is main tread, there is no need to do something like dispatch_sync()
     }
     
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        block();
-    });
+    if (isSync) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            block();
+        });
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block();
+        });
+    }
 }
 
 + (void)performBlockNotInMainQueue:(void(^)(void))block
+{
+    [self performBlockSynchronise:NO
+                   notInMainQueue:block];
+}
+
+
++ (void)performBlockSynchronise:(BOOL)isSync notInMainQueue:(void(^)(void))block
 {
     if (![NSThread isMainThread]) {
         block();
@@ -46,8 +65,13 @@
                                               nil);
     }
     
-    dispatch_async(myCustomQueue,
-                   block);
+    if (isSync) {
+        dispatch_sync(myCustomQueue,
+                       block);
+    } else {
+        dispatch_async(myCustomQueue,
+                       block);
+    }
 }
 
 @end
