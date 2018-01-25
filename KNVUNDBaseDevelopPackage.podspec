@@ -43,4 +43,5 @@ TODO: Add long description of the pod here.
     s.dependency 'RMessage'
     s.dependency 'LinqToObjectiveC'
     s.dependency 'skpsmtpmessage'
+    s.dependency 'SVProgressHUD'
 end

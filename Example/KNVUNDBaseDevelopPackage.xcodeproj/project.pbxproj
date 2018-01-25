@@ -346,6 +346,7 @@
 				"${BUILT_PRODUCTS_DIR}/MZFormSheetPresentationController/MZFormSheetPresentationController.framework",
 				"${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework",
 				"${BUILT_PRODUCTS_DIR}/RMessage/RMessage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ZXingObjC/ZXingObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/skpsmtpmessage/skpsmtpmessage.framework",
 			);
@@ -358,6 +359,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MZFormSheetPresentationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPTopMostController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMessage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXingObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/skpsmtpmessage.framework",
 			);
@@ -416,6 +418,7 @@
 				"${BUILT_PRODUCTS_DIR}/MZFormSheetPresentationController/MZFormSheetPresentationController.framework",
 				"${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework",
 				"${BUILT_PRODUCTS_DIR}/RMessage/RMessage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ZXingObjC/ZXingObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/skpsmtpmessage/skpsmtpmessage.framework",
 				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
@@ -432,6 +435,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MZFormSheetPresentationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPTopMostController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMessage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZXingObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/skpsmtpmessage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",

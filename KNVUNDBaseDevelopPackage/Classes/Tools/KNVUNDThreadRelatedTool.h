@@ -14,8 +14,8 @@
  * @brief This method will perform the block you passed by in main queue --- for something like UI updating.
  * @param block The block you want to perform in main queue
  */
-+ (void)performBlockInMainQueue:(void(^ _Nullable )())block;
++ (void)performBlockInMainQueue:(void(^ _Nullable )(void))block;
 
-+ (void)performBlockNotInMainQueue:(void(^_Nullable)())block;
++ (void)performBlockNotInMainQueue:(void(^_Nullable)(void))block;
 
 @end

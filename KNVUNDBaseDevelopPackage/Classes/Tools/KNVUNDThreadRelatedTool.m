@@ -11,11 +11,11 @@
 
 + (NSString *)usingCustomQueueName
 {
-    return @"com.abacuspos.undaniel.ThreadRelatedTool";
+    return @"";
 }
 
 #pragma mark - Queue Related
-+ (void)performBlockInMainQueue:(void(^)())block
++ (void)performBlockInMainQueue:(void(^)(void))block
 {
     if (!block) {
         return;
@@ -31,7 +31,7 @@
     });
 }
 
-+ (void)performBlockNotInMainQueue:(void(^)())block
++ (void)performBlockNotInMainQueue:(void(^)(void))block
 {
     if (![NSThread isMainThread]) {
         block();
@@ -39,8 +39,12 @@
     }
     
     dispatch_queue_t myCustomQueue;
-    myCustomQueue = dispatch_queue_create([[self usingCustomQueueName] cStringUsingEncoding:NSASCIIStringEncoding],
-                                          nil);
+    if ([self usingCustomQueueName ].length == 0) {
+        myCustomQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    } else {
+        myCustomQueue = dispatch_queue_create([[self usingCustomQueueName] cStringUsingEncoding:NSASCIIStringEncoding],
+                                              nil);
+    }
     
     dispatch_async(myCustomQueue,
                    block);
