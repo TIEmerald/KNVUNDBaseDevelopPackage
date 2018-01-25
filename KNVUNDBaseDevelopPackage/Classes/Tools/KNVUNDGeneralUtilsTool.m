@@ -16,14 +16,15 @@
 #pragma mark Alert View
 + (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:cancelButtonTitle
-                                          otherButtonTitles:nil];
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [alert show];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                                                             message:message
+                                                                                            delegate:nil
+                                                                                   cancelButtonTitle:cancelButtonTitle
+                                                                                   otherButtonTitles:nil];
+                                             [alert show];
+                                         }];
 }
 
 #pragma mark SVPorgressHUD
@@ -35,16 +36,18 @@
 
 + (void)showProgressWithStatus:(NSString *_Nonnull)status
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [SVProgressHUD showWithStatus:status];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [SVProgressHUD showWithStatus:status];
+                                         }];
 }
 
 + (void)dismissProgress
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [SVProgressHUD dismiss];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [SVProgressHUD dismiss];
+                                         }];
 }
 
 
