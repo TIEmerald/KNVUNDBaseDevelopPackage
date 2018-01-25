@@ -198,14 +198,15 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - Navigation Related
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self addChildViewController:childViewController];
-        UIView* destView = childViewController.view;
-        destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:destView];
-        [childViewController didMoveToParentViewController:self];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [self addChildViewController:childViewController];
+                                             UIView* destView = childViewController.view;
+                                             destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+                                             destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                                             [self.view addSubview:destView];
+                                             [childViewController didMoveToParentViewController:self];
+                                         }];
 }
 
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController
@@ -224,21 +225,23 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 
 - (void)removeSelfFromParentViewController
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self willMoveToParentViewController:nil];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [self willMoveToParentViewController:nil];
+                                             [self.view removeFromSuperview];
+                                             [self removeFromParentViewController];
+                                         }];
 }
 
 #pragma mark Support Methods
 - (void)removeChildViewControllerInMainBlock:(UIViewController *)childViewController
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [childViewController willMoveToParentViewController:nil];
-        [childViewController.view removeFromSuperview];
-        [childViewController removeFromParentViewController];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [childViewController willMoveToParentViewController:nil];
+                                             [childViewController.view removeFromSuperview];
+                                             [childViewController removeFromParentViewController];
+                                         }];
 }
 
 #pragma mark - Banner Message Related
@@ -334,13 +337,13 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 }
 
 // Content VC in here is used to checking to see if we need to present a new ViewController or not.
-- (void)presentPresentViewWithAnimated:(BOOL)animated contentViewController:(UIViewController *)contentVC viewControllerGeneratingBlock:(UIViewController *(^_Nonnull)())viewControllerGeneratingBlock andPresentCompleteBlock:(void(^_Nullable)())completeBlock
+- (void)presentPresentViewWithAnimated:(BOOL)animated contentViewController:(UIViewController *)contentVC viewControllerGeneratingBlock:(UIViewController *(^_Nonnull)(void))viewControllerGeneratingBlock andPresentCompleteBlock:(void(^_Nullable)(void))completeBlock
 {
     if ([_currentPresentingViewController isKindOfClass:[contentVC class]]) {
         return; // we will never present same view controller twice... otherwise, the UI animation will be very wired...
     }
     
-    void(^formSheetShowUpBlock)() = ^() {
+    void(^formSheetShowUpBlock)(void) = ^() {
         UIViewController *presentingViewController = viewControllerGeneratingBlock();
         [self presentViewController:presentingViewController
                            animated:animated
@@ -386,20 +389,21 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - Support Methods
 - (void)showUpBannerWithTitle:(NSString *)title message:(NSString *)message andBannerType:(KNVUNDBaseVCBannerMessageType)bannerType
 {
-    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-                                             title:title
-                                          subtitle:message
-                                         iconImage:nil
-                                              type:(RMessageType)bannerType
-                                    customTypeName:@""
-                                          duration:self.bannerShowingTime
-                                          callback:nil
-                                       buttonTitle:nil
-                                    buttonCallback:nil
-                                        atPosition:RMessagePositionBottom
-                              canBeDismissedByUser:YES];
-    }];
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
+                                                                                  title:title
+                                                                               subtitle:message
+                                                                              iconImage:nil
+                                                                                   type:(RMessageType)bannerType
+                                                                         customTypeName:@""
+                                                                               duration:self.bannerShowingTime
+                                                                               callback:nil
+                                                                            buttonTitle:nil
+                                                                         buttonCallback:nil
+                                                                             atPosition:RMessagePositionBottom
+                                                                   canBeDismissedByUser:YES];
+                                         }];
 }
 
 @end
