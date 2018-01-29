@@ -10,6 +10,7 @@
 @interface KNVUNDBaseModel : NSObject
 
 @property (nonatomic) BOOL shouldShowRelatedLog;
+@property (nonatomic, strong, nonnull) NSString *debugDescriptionIndentString;
 
 #pragma mark - Class Methods
 // You have to override this method if you want to show any log inside Class Method.
@@ -30,5 +31,8 @@
 - (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString;
 - (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
+
+#pragma mark - Equality
+- (BOOL)isEqual:(id _Nonnull)object exceptPropertyNames:(NSArray * _Nullable)propertyNames exceptPropertyShouldNotBeSame:(BOOL)exceptValueShouldNotBeSame;
 
 @end

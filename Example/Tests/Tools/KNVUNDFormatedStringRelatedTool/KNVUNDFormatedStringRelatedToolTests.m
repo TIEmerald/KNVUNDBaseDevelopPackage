@@ -24,7 +24,7 @@ describe(@"FormatedStringRelatedTool", ^{
             
             NSString *checkingPropertyName = @"test";
             
-            void(^normalParameterReadFunctionTesting)(NSString *, NSString *, NSArray *) = ^(NSString *checkingFormat, NSString *expectResultString, NSArray *expectResultResultArray){
+            void(^normalParameterReadFunctionBaseTesting)(NSString *, NSString *, NSArray *, NSArray *) = ^(NSString *checkingFormat, NSString *expectResultString, NSArray *expectResultResultArray, NSArray *exceptPropertys){
                 
                 NSString *usingString = [checkingFormat stringByReplacingOccurrencesOfString:@"%@"
                                                                                   withString:checkingPropertyName];
@@ -40,8 +40,12 @@ describe(@"FormatedStringRelatedTool", ^{
                 for(int index = 0; index < [readedResult count]; index += 1) {
                     KNVUNDFSRToolHTMLLikeStringModel *getResultModel = readedResult[index];
                     KNVUNDFSRToolHTMLLikeStringModel *expectedResultModel = expectResultResultArray[index];
-                    expect([getResultModel isEqual:expectedResultModel]).to.beTruthy();
+                    expect([getResultModel isEqual:expectedResultModel exceptPropertyNames:exceptPropertys exceptPropertyShouldNotBeSame:YES]).to.beTruthy();
                 }
+            };
+            
+            void(^normalParameterReadFunctionTesting)(NSString *, NSString *, NSArray *) = ^(NSString *checkingFormat, NSString *expectResultString, NSArray *expectResultResultArray){
+                normalParameterReadFunctionBaseTesting(checkingFormat, expectResultString, expectResultResultArray, nil);
             };
             
             NSString *checkingFormatedStringPurePropertyFormat1 = [NSMutableString stringWithString:@"<%@></%@>"];
@@ -57,28 +61,42 @@ describe(@"FormatedStringRelatedTool", ^{
                                                    checkingFormatedStringPurePropertyExpectResult1);
             });
             
-            NSString *checkingFormatedStringPurePropertyFormat2 = [NSMutableString stringWithString:@"<%@>1<%@>2</%@></%@>"];
-            NSString *checkingFormatedStringPurePropertyResult2 = [NSMutableString stringWithString:@"12"];
+            NSString *checkingFormatedStringPurePropertyFormat2 = [NSMutableString stringWithString:@"<%@ ></%@>"];
+            NSString *checkingFormatedStringPurePropertyResult2 = [NSMutableString stringWithString:@""];
             NSArray *checkingFormatedStringPurePropertyExpectResult2 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
-                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
-                                                                                                                                location:0
-                                                                                                                    attributesDictionary:nil
-                                                                                                                         andContentValue:@"12"],
-                                                                          [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
-                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
-                                                                                                                                location:1
-                                                                                                                    attributesDictionary:nil
-                                                                                                                         andContentValue:@"2"]];
-            
+                                                                                                                                   type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                               location:0
+                                                                                                                   attributesDictionary:nil
+                                                                                                                        andContentValue:@""]];
             it(@"Pure Property Format 2", ^{
-                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat2,
-                                                   checkingFormatedStringPurePropertyResult2,
-                                                   checkingFormatedStringPurePropertyExpectResult2);
+                normalParameterReadFunctionBaseTesting(checkingFormatedStringPurePropertyFormat2,
+                                                       checkingFormatedStringPurePropertyResult2,
+                                                       checkingFormatedStringPurePropertyExpectResult2,
+                                                       @[@"fullLength"]);
             });
             
-            NSString *checkingFormatedStringPurePropertyFormat3 = [NSMutableString stringWithString:@"<%@>1<%@>2</%@></%@> 3 <%@>4</%@>"];
-            NSString *checkingFormatedStringPurePropertyResult3 = [NSMutableString stringWithString:@"12 3 4"];
+            NSString *checkingFormatedStringPurePropertyFormat3 = [NSMutableString stringWithString:@"<%@>1<%@>2</%@></%@>"];
+            NSString *checkingFormatedStringPurePropertyResult3 = [NSMutableString stringWithString:@"12"];
             NSArray *checkingFormatedStringPurePropertyExpectResult3 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
+                                                                                                                                   type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                               location:0
+                                                                                                                   attributesDictionary:nil
+                                                                                                                        andContentValue:@"12"],
+                                                                         [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
+                                                                                                                                   type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                               location:1
+                                                                                                                   attributesDictionary:nil
+                                                                                                                        andContentValue:@"2"]];
+            
+            it(@"Pure Property Format 3", ^{
+                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat3,
+                                                   checkingFormatedStringPurePropertyResult3,
+                                                   checkingFormatedStringPurePropertyExpectResult3);
+            });
+            
+            NSString *checkingFormatedStringPurePropertyFormat4 = [NSMutableString stringWithString:@"<%@>1<%@>2</%@></%@> 3 <%@>4</%@>"];
+            NSString *checkingFormatedStringPurePropertyResult4 = [NSMutableString stringWithString:@"12 3 4"];
+            NSArray *checkingFormatedStringPurePropertyExpectResult4 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
                                                                                                                                location:0
                                                                                                                    attributesDictionary:nil
@@ -94,10 +112,10 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                    attributesDictionary:nil
                                                                                                                         andContentValue:@"4"]];
             
-            it(@"Pure Property Format 3", ^{
-                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat3,
-                                                   checkingFormatedStringPurePropertyResult3,
-                                                   checkingFormatedStringPurePropertyExpectResult3);
+            it(@"Pure Property Format 4", ^{
+                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat4,
+                                                   checkingFormatedStringPurePropertyResult4,
+                                                   checkingFormatedStringPurePropertyExpectResult4);
             });
             
             

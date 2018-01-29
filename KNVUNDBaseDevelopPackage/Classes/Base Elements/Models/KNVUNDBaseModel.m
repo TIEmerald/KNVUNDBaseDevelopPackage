@@ -84,6 +84,41 @@
             fromString];
 }
 
+#pragma mark - Getters && Setters
+#pragma mark - Getters
+- (NSString *)debugDescriptionIndentString
+{
+    if (_debugDescriptionIndentString == nil) {
+        _debugDescriptionIndentString = @"";
+    }
+    return _debugDescriptionIndentString;
+}
+
+#pragma mark - NSObject
+- (NSString *)debugDescription
+{
+    NSMutableString *returnString = [NSMutableString new];
+    NSString *currentIndentString = self.debugDescriptionIndentString;
+    NSString *nextLevelIndentString = [currentIndentString stringByAppendingString:@"    "];
+    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:self
+                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
+                                                     [returnString appendString:[NSString stringWithFormat:@"%@%@ (%@):\n",
+                                                                                 currentIndentString,
+                                                                                 detailsModel.propertyName,
+                                                                                 detailsModel.typeName?: @""]];
+                                                     if ([detailsModel.value isKindOfClass:[KNVUNDBaseModel class]]) {
+                                                         KNVUNDBaseModel *valueModel = (KNVUNDBaseModel *)detailsModel.value;
+                                                         valueModel.debugDescriptionIndentString = nextLevelIndentString;
+                                                         [returnString appendString:valueModel.debugDescription];
+                                                     } else {
+                                                         [returnString appendString:[NSString stringWithFormat:@"%@%@\n",
+                                                                                     nextLevelIndentString,
+                                                                                     detailsModel.value]];
+                                                     }
+                                                 }];
+    return returnString;
+}
+
 #pragma mark - Log Related
 - (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
 {
@@ -122,6 +157,13 @@
 #pragma mark - Equality
 - (BOOL)isEqual:(id)object
 {
+    return [self isEqual:object
+     exceptPropertyNames:nil
+exceptPropertyShouldNotBeSame:NO];
+}
+
+- (BOOL)isEqual:(id)object exceptPropertyNames:(NSArray *)propertyNames exceptPropertyShouldNotBeSame:(BOOL)exceptValueShouldNotBeSame
+{
     // Step One, Check if the object you passed in is same Class or not.
     if ([object class] != [self class]) {
         return NO;
@@ -136,24 +178,42 @@
                                                      BOOL isObject = (propertyType == KNVUNDRuntimeRelatedTool_PropertyType_Object);
                                                      id selfPropertyValue = [self valueForKey:propertyName];
                                                      id objectPropertyValue = detailsModel.value;
+                                                     BOOL isExceptedProperty = [propertyNames containsObject:propertyName];
                                                      
-                                                     if (!isObject && selfPropertyValue == objectPropertyValue) {
-                                                         return;
-                                                     } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && [selfPropertyValue isEqual:objectPropertyValue]){
-                                                         return;
+                                                     if (!isExceptedProperty) {
+                                                         if (!isObject && selfPropertyValue == objectPropertyValue) {
+                                                             return;
+                                                         } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && [selfPropertyValue isEqual:objectPropertyValue]){
+                                                             return;
+                                                         }
+                                                         
+                                                         //                                                     id selfPropertyValueDescription = [self getDescriptionObjectOfValue:selfPropertyValue
+                                                         //                                                                                                        fromPropertyType:propertyType];
+                                                         //                                                     id objectPropertyValueDescription = [self getDescriptionObjectOfValue:objectPropertyValue
+                                                         //                                                                                                        fromPropertyType:propertyType];
+                                                         [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed.....\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
+                                                          propertyName,
+                                                          selfPropertyValue,
+                                                          objectPropertyValue];
+                                                         
+                                                         returnValue = NO;
+                                                         *stopLoop = YES;
+                                                     } else {
+                                                         if (exceptValueShouldNotBeSame) {
+                                                             if (!isObject && selfPropertyValue != objectPropertyValue) {
+                                                                 return;
+                                                             } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && ![selfPropertyValue isEqual:objectPropertyValue]){
+                                                                 return;
+                                                             }
+                                                             [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed..... This Property shouldn't be same\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
+                                                              propertyName,
+                                                              selfPropertyValue,
+                                                              objectPropertyValue];
+                                                             
+                                                             returnValue = NO;
+                                                             *stopLoop = YES;
+                                                         }
                                                      }
-                                                     
-//                                                     id selfPropertyValueDescription = [self getDescriptionObjectOfValue:selfPropertyValue
-//                                                                                                        fromPropertyType:propertyType];
-//                                                     id objectPropertyValueDescription = [self getDescriptionObjectOfValue:objectPropertyValue
-//                                                                                                        fromPropertyType:propertyType];
-                                                     [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed.....\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
-                                                      propertyName,
-                                                      selfPropertyValue,
-                                                      objectPropertyValue];
-                                                     
-                                                     returnValue = NO;
-                                                     *stopLoop = YES;
                                                  }];
     
     return returnValue;

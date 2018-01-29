@@ -18,12 +18,14 @@ typedef enum : NSUInteger {
 @property (nonatomic) KNVUNDFSRToolHTMLLikeStringModel_Type type;
 @property (nonatomic, strong, nullable) NSDictionary *additionalAttribute; //// Only Support <String, NSString or NSNumber>,
 @property (nonatomic) NSUInteger location; /// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 4.
+                                           /// If the formated String is "abac<propertyName>123456</propertyName><propertyName>123456</propertyName>" the frist location will be 4 and the second location will be 10
                                            /// If the formated String is "12345675[propertyName]123456" the location will be 8.
 
 @property (readonly, nonnull) NSString *fullAttributesString;
 @property (readonly, nonnull) NSString *fullFormatedString;
-@property (readonly) NSUInteger fullLength;/// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 35.
-                                           /// If the formated String is "12345675[propertyName]123456" the location will be 14.
+@property (readonly) NSUInteger fullLength;/// If the formated String is "abac<propertyName>123456</propertyName>" the fullLength will be 35.
+                                           /// If the formated String is "abac<propertyName >123456</propertyName>" the fullLength you read from Formated String will be 36.
+                                           /// If the formated String is "12345675[propertyName]123456" the fullLength will be 14.
 
 //// This value only useful when you
 @property (nonatomic, strong, nullable) NSString *contentValue; /// If this value is not nil, the formated string will be <propertyName additionalAttributeKey=additionalAttributeValue>contentValue</propertyName>
