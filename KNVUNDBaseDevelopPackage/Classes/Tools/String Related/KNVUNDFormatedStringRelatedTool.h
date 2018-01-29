@@ -20,6 +20,11 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSUInteger location; /// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 4.
                                            /// If the formated String is "12345675[propertyName]123456" the location will be 8.
 
+@property (readonly, nonnull) NSString *fullAttributesString;
+@property (readonly, nonnull) NSString *fullFormatedString;
+@property (readonly) NSUInteger fullLength;/// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 35.
+                                           /// If the formated String is "12345675[propertyName]123456" the location will be 14.
+
 //// This value only useful when you
 @property (nonatomic, strong, nullable) NSString *contentValue; /// If this value is not nil, the formated string will be <propertyName additionalAttributeKey=additionalAttributeValue>contentValue</propertyName>
 

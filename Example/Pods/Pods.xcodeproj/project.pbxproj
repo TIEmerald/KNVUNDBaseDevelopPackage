@@ -1094,23 +1094,23 @@
 		06604F35EE0472F3DD0EBF9E80E03BF6 /* NotificationButtonBackground@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NotificationButtonBackground@2x.png"; path = "RMessage/Assets/NotificationButtonBackground@2x.png"; sourceTree = "<group>"; };
 		0684B6600D57E035B1D7422FD38DD2DA /* KNVUNDDebugTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDDebugTool.m; sourceTree = "<group>"; };
 		0759B12DB9C6CDDC9502A3D42A95DE54 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		076410F876D7E2D762837EE3F91CAF5F /* PPTopMostController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PPTopMostController.modulemap; sourceTree = "<group>"; };
+		076410F876D7E2D762837EE3F91CAF5F /* PPTopMostController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PPTopMostController.modulemap; sourceTree = "<group>"; };
 		076B86E3F5E13E75E58B62B38E1B20BB /* EXPFloatTuple.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPFloatTuple.m; path = Expecta/EXPFloatTuple.m; sourceTree = "<group>"; };
 		0793B7CDDC44DCA1220CF4BF6204364E /* ZXRGBLuminanceSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRGBLuminanceSource.m; path = ZXingObjC/core/ZXRGBLuminanceSource.m; sourceTree = "<group>"; };
 		07ACAC8E54DAC55E1D17BE6EDCB539D9 /* ZXAztecWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecWriter.h; path = ZXingObjC/aztec/ZXAztecWriter.h; sourceTree = "<group>"; };
-		07B0CED7C77C1D0AD00BA4D114D05538 /* skpsmtpmessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = skpsmtpmessage.modulemap; sourceTree = "<group>"; };
+		07B0CED7C77C1D0AD00BA4D114D05538 /* skpsmtpmessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = skpsmtpmessage.modulemap; sourceTree = "<group>"; };
 		07BAA57141A9EE11948119577DE7F68B /* ZXUPCAReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXUPCAReader.m; path = ZXingObjC/oned/ZXUPCAReader.m; sourceTree = "<group>"; };
 		07E3640E7B11A2545C06B9234423FB09 /* ZXDecoderResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDecoderResult.h; path = ZXingObjC/common/ZXDecoderResult.h; sourceTree = "<group>"; };
 		08288C07B4C692B71EAC4FA4A0CB3C37 /* MZFormSheetPresentationViewControllerSegue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZFormSheetPresentationViewControllerSegue.m; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerSegue.m; sourceTree = "<group>"; };
 		0828B70D4FEFA3CC4D26A7C4C1566A00 /* ZXPDF417Dimensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Dimensions.h; path = ZXingObjC/pdf417/encoder/ZXPDF417Dimensions.h; sourceTree = "<group>"; };
 		08A1E9CF7BD6D2A90DC9823465650048 /* KNVUNDRuntimeRelatedTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDRuntimeRelatedTool.h; sourceTree = "<group>"; };
-		08C61A14CE10D36911093EDE0BA29F90 /* LinqToObjectiveC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = LinqToObjectiveC.modulemap; sourceTree = "<group>"; };
+		08C61A14CE10D36911093EDE0BA29F90 /* LinqToObjectiveC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LinqToObjectiveC.modulemap; sourceTree = "<group>"; };
 		08CCD879866D42B4318098D20BB3A0DC /* ZXEncodeHints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEncodeHints.m; path = ZXingObjC/core/ZXEncodeHints.m; sourceTree = "<group>"; };
 		090F804F9FCD53AB02BAE90EBB496C2A /* EXPBlockDefinedMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPBlockDefinedMatcher.m; path = Expecta/EXPBlockDefinedMatcher.m; sourceTree = "<group>"; };
 		095F3FEE1345C54E7D3D516C117848BF /* ZXGlobalHistogramBinarizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXGlobalHistogramBinarizer.h; path = ZXingObjC/common/ZXGlobalHistogramBinarizer.h; sourceTree = "<group>"; };
 		096951CAF349BDFAD63A41594D23ED1E /* ZXAI013x0xDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAI013x0xDecoder.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI013x0xDecoder.m; sourceTree = "<group>"; };
 		098EB50999E1782922609AF2F129F597 /* ZXDataMatrixDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixDecoder.h; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixDecoder.h; sourceTree = "<group>"; };
-		09FC986499B4B0DF71DEF3B893D7F26C /* KNVUNDBaseDevelopPackage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KNVUNDBaseDevelopPackage.framework; path = KNVUNDBaseDevelopPackage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FC986499B4B0DF71DEF3B893D7F26C /* KNVUNDBaseDevelopPackage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KNVUNDBaseDevelopPackage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4D6612980EF90DF534E45DACBD5E00 /* MZTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZTransition.m; path = MZFormSheetPresentationController/MZTransition.m; sourceTree = "<group>"; };
 		0A7BFC4D6D9F4D6FD57520803B12F648 /* KNVUNDBaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDBaseModel.m; sourceTree = "<group>"; };
 		0AF6E965B2250C3F56E7B504FA13C3E4 /* NSDecimalNumber+KNVUNDBasic.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+KNVUNDBasic.m"; sourceTree = "<group>"; };
@@ -1121,8 +1121,8 @@
 		0C21ADC39C36EC22603F01E56A3BAA1D /* ZXGenericGFPoly.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXGenericGFPoly.m; path = ZXingObjC/common/reedsolomon/ZXGenericGFPoly.m; sourceTree = "<group>"; };
 		0C85D46FFF0A7DC18CD2AD5DCF0111B6 /* ZXEmailAddressResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEmailAddressResultParser.h; path = ZXingObjC/client/result/ZXEmailAddressResultParser.h; sourceTree = "<group>"; };
 		0CA7B94447167BB27D7AE448E795CF68 /* UIViewController+TargetViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+TargetViewController.m"; path = "MZFormSheetPresentationController/UIViewController+TargetViewController.m"; sourceTree = "<group>"; };
-		0CBFF7FA43C4925E4868AAED9A41B4A1 /* skpsmtpmessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = skpsmtpmessage.framework; path = skpsmtpmessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D26C7A15BF72C4A08EBB5B36E76502A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KNVUNDBaseDevelopPackage_Tests.framework; path = "Pods-KNVUNDBaseDevelopPackage_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CBFF7FA43C4925E4868AAED9A41B4A1 /* skpsmtpmessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = skpsmtpmessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D26C7A15BF72C4A08EBB5B36E76502A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KNVUNDBaseDevelopPackage_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D285D2067F31BBC22F3684813859681 /* HexColors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HexColors.h; path = Classes/HexColors.h; sourceTree = "<group>"; };
 		0D7601B99CB11383E6960925EBBBAA8D /* ZXMultiFinderPatternFinder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMultiFinderPatternFinder.m; path = ZXingObjC/qrcode/multi/detector/ZXMultiFinderPatternFinder.m; sourceTree = "<group>"; };
 		0D9841B99276ABB5C1451B186517292B /* MZFormSheetPresentationController-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MZFormSheetPresentationController-Bridging-Header.h"; path = "MZFormSheetPresentationController/MZFormSheetPresentationController-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1186,7 +1186,7 @@
 		1D3A58DC1DD064E97A79D4C045AA7B95 /* UITabBarController+PPTopMostController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+PPTopMostController.m"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.m"; sourceTree = "<group>"; };
 		1D4E1470A3D9527D7CD29991860CF0FE /* ZXRSSPair.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSPair.m; path = ZXingObjC/oned/rss/ZXRSSPair.m; sourceTree = "<group>"; };
 		1D6073E42762637D6A1B85D57BD4E2BF /* ZXEANManufacturerOrgSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEANManufacturerOrgSupport.m; path = ZXingObjC/oned/ZXEANManufacturerOrgSupport.m; sourceTree = "<group>"; };
-		1D89EBBD8B41DB42BD671E4A4EEC0CC6 /* MZFormSheetPresentationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MZFormSheetPresentationController.framework; path = MZFormSheetPresentationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D89EBBD8B41DB42BD671E4A4EEC0CC6 /* MZFormSheetPresentationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZFormSheetPresentationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAE7BC7EDC06EFEEB60E14A01E11DD1 /* NSArray+LinqExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+LinqExtensions.h"; sourceTree = "<group>"; };
 		1EC93F8060DD2B72122570D8CA3D139D /* KNVUNDScannerHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDScannerHelper.m; sourceTree = "<group>"; };
 		1F87494AC84722F5AB6446FCFB7536A0 /* ZXRSSUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSUtils.m; path = ZXingObjC/oned/rss/ZXRSSUtils.m; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 		243E1BD118EE007572C84817A43D5373 /* ZXByteArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXByteArray.h; path = ZXingObjC/common/ZXByteArray.h; sourceTree = "<group>"; };
 		247A5CD9820FE1C6B1414C7F0C54E201 /* ZXITFWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXITFWriter.m; path = ZXingObjC/oned/ZXITFWriter.m; sourceTree = "<group>"; };
 		251356500BE20EB41B311D2AB1366A39 /* Pods-KNVUNDBaseDevelopPackage_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KNVUNDBaseDevelopPackage_Tests-umbrella.h"; sourceTree = "<group>"; };
-		251FAE50E112CB05B4859242B9834AD9 /* Specta.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Specta.modulemap; sourceTree = "<group>"; };
+		251FAE50E112CB05B4859242B9834AD9 /* Specta.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Specta.modulemap; sourceTree = "<group>"; };
 		25CEE7A091615321E8792BB3A43FD06E /* ZXAztecEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecEncoder.h; path = ZXingObjC/aztec/encoder/ZXAztecEncoder.h; sourceTree = "<group>"; };
 		25DEB223AF1011CFBE877D820FD41416 /* LinqToObjectiveC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LinqToObjectiveC.h; sourceTree = "<group>"; };
 		260C88A41581F7BD5575955CF00A2332 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -1256,7 +1256,7 @@
 		3607E0E7C8A1A9CBAAA380365BEA9EC3 /* Pods-KNVUNDBaseDevelopPackage_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KNVUNDBaseDevelopPackage_Tests-resources.sh"; sourceTree = "<group>"; };
 		361058B3B56B79AEDDD3E0297FF28051 /* PPTopMostControllerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PPTopMostControllerProtocol.h; path = "PPTopMostController-Files/PPTopMostControllerProtocol.h"; sourceTree = "<group>"; };
 		36B576C554B2D2AB8F4D36226F25E2F1 /* MZFormSheetPresentationViewControllerInteractiveAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZFormSheetPresentationViewControllerInteractiveAnimator.h; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerInteractiveAnimator.h; sourceTree = "<group>"; };
-		36B8AE5131D0657C7076A78104C4888A /* Expecta_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Expecta_Snapshots.framework; path = "Expecta+Snapshots.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36B8AE5131D0657C7076A78104C4888A /* Expecta_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta_Snapshots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373262D739606B2A2120DD55CD84E3FE /* ZXResultMetadataType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXResultMetadataType.h; path = ZXingObjC/core/ZXResultMetadataType.h; sourceTree = "<group>"; };
 		37CB9D903F4E6BDE1690A0C71B0F7FA5 /* Pods-KNVUNDBaseDevelopPackage_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KNVUNDBaseDevelopPackage_Example-dummy.m"; sourceTree = "<group>"; };
 		37CD12C3C7734F9F8138A4CA00536723 /* ZXProductResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXProductResultParser.h; path = ZXingObjC/client/result/ZXProductResultParser.h; sourceTree = "<group>"; };
@@ -1284,7 +1284,7 @@
 		3E7965D1F986EDC856EC5ED0C2FE6193 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7CFC52A6DED98E1D45C642318A36FF /* EXPMatchers+beCloseTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beCloseTo.m"; path = "Expecta/Matchers/EXPMatchers+beCloseTo.m"; sourceTree = "<group>"; };
 		3EF3D4D58854C78B7692CF36D9934482 /* ZXAztecCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecCode.h; path = ZXingObjC/aztec/encoder/ZXAztecCode.h; sourceTree = "<group>"; };
-		3F4925C29989FFA98B4C7F0CF4A13C41 /* HexColors.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HexColors.modulemap; sourceTree = "<group>"; };
+		3F4925C29989FFA98B4C7F0CF4A13C41 /* HexColors.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = HexColors.modulemap; sourceTree = "<group>"; };
 		3F750E6F98CD50488F9A20ADDAB13141 /* skpsmtpmessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "skpsmtpmessage-prefix.pch"; sourceTree = "<group>"; };
 		40450A93679072D3ED8FB262DD348CD4 /* Expecta+Snapshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Expecta+Snapshots.xcconfig"; sourceTree = "<group>"; };
 		404828E712D7D948F296494866986E83 /* ZXQRCodeMode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeMode.m; path = ZXingObjC/qrcode/decoder/ZXQRCodeMode.m; sourceTree = "<group>"; };
@@ -1301,7 +1301,7 @@
 		4335980ADDA87DC25F52EAFE67A0352E /* EXPMatchers+conformTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+conformTo.m"; path = "Expecta/Matchers/EXPMatchers+conformTo.m"; sourceTree = "<group>"; };
 		43523A7A59D839E66567CEDC50308BC4 /* skpsmtpmessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = skpsmtpmessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E77921273F4D80204E15CC1A799F4 /* ZXWifiParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXWifiParsedResult.h; path = ZXingObjC/client/result/ZXWifiParsedResult.h; sourceTree = "<group>"; };
-		4391E6D93BF534B4106CAFEA759B0599 /* Pods-KNVUNDBaseDevelopPackage_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-KNVUNDBaseDevelopPackage_Example.modulemap"; sourceTree = "<group>"; };
+		4391E6D93BF534B4106CAFEA759B0599 /* Pods-KNVUNDBaseDevelopPackage_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-KNVUNDBaseDevelopPackage_Example.modulemap"; sourceTree = "<group>"; };
 		4394A47D587FB270F0610794E1F2C222 /* KNVUNDBaseDevelopPackage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KNVUNDBaseDevelopPackage-prefix.pch"; sourceTree = "<group>"; };
 		43B887CCEF812843B504DF80D645416C /* ZXRSSExpandedBlockParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSExpandedBlockParsedResult.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedBlockParsedResult.m; sourceTree = "<group>"; };
 		43E06C8E30FCBEDBCE761689A3C99C02 /* ZXingObjC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXingObjC.h; path = ZXingObjC/ZXingObjC.h; sourceTree = "<group>"; };
@@ -1327,11 +1327,11 @@
 		49F90AFE36EDAA0F182A31CA44EFB968 /* ZXPDF417ScanningDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417ScanningDecoder.h; path = ZXingObjC/pdf417/decoder/ZXPDF417ScanningDecoder.h; sourceTree = "<group>"; };
 		4A370FCBCC7F51BAC02F0AC2A8E55A4F /* ZXReedSolomonDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXReedSolomonDecoder.h; path = ZXingObjC/common/reedsolomon/ZXReedSolomonDecoder.h; sourceTree = "<group>"; };
 		4A4ACAD1AB5808B140B850F30EDD9CEC /* ZXParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXParsedResult.m; path = ZXingObjC/client/result/ZXParsedResult.m; sourceTree = "<group>"; };
-		4A9D32685EEF3FB56E780A4B78E820A6 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Specta.framework; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A9D32685EEF3FB56E780A4B78E820A6 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEEA4F1C9B42196685990594A548051 /* ZXRSSExpandedFieldParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSExpandedFieldParser.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedFieldParser.m; sourceTree = "<group>"; };
 		4BEDFD1C40E45DED647CEC2870D7C7C4 /* ZXParsedResultType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXParsedResultType.h; path = ZXingObjC/client/result/ZXParsedResultType.h; sourceTree = "<group>"; };
 		4C1668946B77DE205E90A4304B39361C /* ExpectaObject+FBSnapshotTest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExpectaObject+FBSnapshotTest.h"; sourceTree = "<group>"; };
-		4D4603F67415083FA111DC94951B9858 /* MZAppearance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MZAppearance.framework; path = MZAppearance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D4603F67415083FA111DC94951B9858 /* MZAppearance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZAppearance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5E6F3D47AEB98FA7C96E5A1D1DC4A1 /* ZXDecodeHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDecodeHints.h; path = ZXingObjC/core/ZXDecodeHints.h; sourceTree = "<group>"; };
 		4D827AC7EC81B023D27CF2A3B3F59298 /* ZXEmailDoCoMoResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEmailDoCoMoResultParser.h; path = ZXingObjC/client/result/ZXEmailDoCoMoResultParser.h; sourceTree = "<group>"; };
 		4E74DEC08CAECE9FA537F174FA616938 /* ZXRSSDataCharacter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSDataCharacter.m; path = ZXingObjC/oned/rss/ZXRSSDataCharacter.m; sourceTree = "<group>"; };
@@ -1341,7 +1341,7 @@
 		4F5B3E2AF45EC81F9D56E6623A683034 /* ZXQRCodeMultiReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeMultiReader.m; path = ZXingObjC/qrcode/multi/ZXQRCodeMultiReader.m; sourceTree = "<group>"; };
 		4F9B418300400847D4CE27AB43E18462 /* ZXDataMatrixErrorCorrection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixErrorCorrection.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixErrorCorrection.h; sourceTree = "<group>"; };
 		50A427BA526CF45453F66CC825A6C275 /* ZXISBNParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXISBNParsedResult.m; path = ZXingObjC/client/result/ZXISBNParsedResult.m; sourceTree = "<group>"; };
-		50BB197486D47B9708FB1139F3D6A210 /* RMessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RMessage.modulemap; sourceTree = "<group>"; };
+		50BB197486D47B9708FB1139F3D6A210 /* RMessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RMessage.modulemap; sourceTree = "<group>"; };
 		510984E8A68920EF4CF0D96DAE29EF87 /* MZFormSheetPresentationController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZFormSheetPresentationController.h; path = MZFormSheetPresentationController/MZFormSheetPresentationController.h; sourceTree = "<group>"; };
 		5128BA9B5D95A1CF2E00FA486CB5D73D /* SPTTestSuite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTTestSuite.h; path = Specta/Specta/SPTTestSuite.h; sourceTree = "<group>"; };
 		51337A982AD7209458A5AEF095DAC7F4 /* EXPMatchers+beSupersetOf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beSupersetOf.h"; path = "Expecta/Matchers/EXPMatchers+beSupersetOf.h"; sourceTree = "<group>"; };
@@ -1376,10 +1376,10 @@
 		57ED716F18DF816AAF1936AE8B3A76DC /* SPTCallSite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SPTCallSite.m; path = Specta/Specta/SPTCallSite.m; sourceTree = "<group>"; };
 		591BD7B90FD8474B6230637B89BAB976 /* ZXWifiParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXWifiParsedResult.m; path = ZXingObjC/client/result/ZXWifiParsedResult.m; sourceTree = "<group>"; };
 		59E47CB70EAB2F084AAED84EE01ABF40 /* XCTestCase+Specta.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestCase+Specta.m"; path = "Specta/Specta/XCTestCase+Specta.m"; sourceTree = "<group>"; };
-		59F433E541FECB015BF5CF4603F1883C /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59F433E541FECB015BF5CF4603F1883C /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A42FF8E596ED8BB983DF354D37AF2E5 /* Expecta-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Expecta-umbrella.h"; sourceTree = "<group>"; };
-		5A9EEB707919CF09AA9A787F4ED449C7 /* Pods_KNVUNDBaseDevelopPackage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KNVUNDBaseDevelopPackage_Example.framework; path = "Pods-KNVUNDBaseDevelopPackage_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B31368EE860FD5F29A463C9A1B07F52 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
+		5A9EEB707919CF09AA9A787F4ED449C7 /* Pods_KNVUNDBaseDevelopPackage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KNVUNDBaseDevelopPackage_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B31368EE860FD5F29A463C9A1B07F52 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 		5B70557E261EB744B34170517B3CC701 /* EXPMatchers+equal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+equal.m"; path = "Expecta/Matchers/EXPMatchers+equal.m"; sourceTree = "<group>"; };
 		5B8E49AF821C95734AB4A5B09FF65AA3 /* ZXPDF417Writer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXPDF417Writer.m; path = ZXingObjC/pdf417/ZXPDF417Writer.m; sourceTree = "<group>"; };
 		5BE86D0F8AAF2B5DABC4227D4EE36422 /* EXPMatchers+beKindOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beKindOf.m"; path = "Expecta/Matchers/EXPMatchers+beKindOf.m"; sourceTree = "<group>"; };
@@ -1395,14 +1395,14 @@
 		5F3B09C9BB09626B07B5D54FF61B914D /* ExpectaSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ExpectaSupport.m; path = Expecta/ExpectaSupport.m; sourceTree = "<group>"; };
 		5F647C08DB715A2930F80CF184412E04 /* SPTExcludeGlobalBeforeAfterEach.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTExcludeGlobalBeforeAfterEach.h; path = Specta/Specta/SPTExcludeGlobalBeforeAfterEach.h; sourceTree = "<group>"; };
 		5FCDF86E1056B28BC0AEE1AB38AD712C /* ZXReedSolomonDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXReedSolomonDecoder.m; path = ZXingObjC/common/reedsolomon/ZXReedSolomonDecoder.m; sourceTree = "<group>"; };
-		605B3E7C95B4F2F1EFF0142A6610F3C2 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		605B3E7C95B4F2F1EFF0142A6610F3C2 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		60913C55BB76CF4702025E7F743EA63A /* EXPMatchers+beLessThan.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beLessThan.m"; path = "Expecta/Matchers/EXPMatchers+beLessThan.m"; sourceTree = "<group>"; };
 		60A404DCAAFC63C26F9A7DD23B36642B /* skpsmtpmessage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "skpsmtpmessage-umbrella.h"; sourceTree = "<group>"; };
 		61001EB7B8B999A78D0E7D98AAF9AC27 /* SpectaDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SpectaDSL.m; path = Specta/Specta/SpectaDSL.m; sourceTree = "<group>"; };
 		612AF7FA53D9EAE3726584BD3C7A011A /* ZXingObjC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZXingObjC-prefix.pch"; sourceTree = "<group>"; };
-		6164D785BAAE0107D9AF90A4304498B9 /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PPTopMostController.framework; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6164D785BAAE0107D9AF90A4304498B9 /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61F8940DE5F6464D9CB5B9A0F1CCD12F /* ZXPDF417CodewordDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXPDF417CodewordDecoder.m; path = ZXingObjC/pdf417/decoder/ZXPDF417CodewordDecoder.m; sourceTree = "<group>"; };
-		626415636E73B92BDCE097E83888C8ED /* ZXingObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ZXingObjC.modulemap; sourceTree = "<group>"; };
+		626415636E73B92BDCE097E83888C8ED /* ZXingObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ZXingObjC.modulemap; sourceTree = "<group>"; };
 		6278DB1F25199B0EEB9DA1CCC5E951FD /* ZXQRCodeVersion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeVersion.m; path = ZXingObjC/qrcode/decoder/ZXQRCodeVersion.m; sourceTree = "<group>"; };
 		6288B95D9BB7CEAC978DF428D7F7DF47 /* EXPBlockDefinedMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPBlockDefinedMatcher.h; path = Expecta/EXPBlockDefinedMatcher.h; sourceTree = "<group>"; };
 		62902EFDD76DB51D1340152D49545A1D /* ZXOneDimensionalCodeWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXOneDimensionalCodeWriter.m; path = ZXingObjC/oned/ZXOneDimensionalCodeWriter.m; sourceTree = "<group>"; };
@@ -1433,7 +1433,7 @@
 		691BB2E0F77CA6C970673E27493093DF /* SPTSharedExampleGroups.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTSharedExampleGroups.h; path = Specta/Specta/SPTSharedExampleGroups.h; sourceTree = "<group>"; };
 		6B901A179F34D2700C730AF2E33014FB /* ZXRSSExpandedDecodedChar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRSSExpandedDecodedChar.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedDecodedChar.h; sourceTree = "<group>"; };
 		6BEFAEB3285EEDEBB21413EE48FB6EDD /* KNVUNDLogRelatedHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDLogRelatedHelper.h; sourceTree = "<group>"; };
-		6C841B5984C872000BD5F1E5ACF1D729 /* Pods-KNVUNDBaseDevelopPackage_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-KNVUNDBaseDevelopPackage_Tests.modulemap"; sourceTree = "<group>"; };
+		6C841B5984C872000BD5F1E5ACF1D729 /* Pods-KNVUNDBaseDevelopPackage_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-KNVUNDBaseDevelopPackage_Tests.modulemap"; sourceTree = "<group>"; };
 		6D4F391F85869F42B1FE4F7370C3C005 /* ZXDataMatrixASCIIEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixASCIIEncoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixASCIIEncoder.h; sourceTree = "<group>"; };
 		6D7B874A71940EACBF35E59273E05201 /* ZXAbstractDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAbstractDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXAbstractDoCoMoResultParser.m; sourceTree = "<group>"; };
 		6E5D43ED08D32E62777F637B243D2230 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -1486,7 +1486,7 @@
 		7C91EFF989719357B451F3A4127CA8AC /* ZXISBNParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXISBNParsedResult.h; path = ZXingObjC/client/result/ZXISBNParsedResult.h; sourceTree = "<group>"; };
 		7CAB4D89B63550FE83353F740A87BB53 /* ZXByteArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXByteArray.m; path = ZXingObjC/common/ZXByteArray.m; sourceTree = "<group>"; };
 		7DF531FD99194BF94239951C858F3CA9 /* ZXTelResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXTelResultParser.m; path = ZXingObjC/client/result/ZXTelResultParser.m; sourceTree = "<group>"; };
-		7E6C969B7427C3E186AAC7FD4A2A214F /* Expecta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Expecta.framework; path = Expecta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6C969B7427C3E186AAC7FD4A2A214F /* Expecta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E89399EEEEDA597ABEE7A67BB79E4DF /* ZXCalendarParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXCalendarParsedResult.m; path = ZXingObjC/client/result/ZXCalendarParsedResult.m; sourceTree = "<group>"; };
 		7EAA04939893558A4E92ADA77142C160 /* ZXMathUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMathUtils.m; path = ZXingObjC/common/detector/ZXMathUtils.m; sourceTree = "<group>"; };
 		7F210253B05DCE56A350666233917ACA /* MZFormSheetPresentationViewControllerAnimatedTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZFormSheetPresentationViewControllerAnimatedTransitioning.h; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerAnimatedTransitioning.h; sourceTree = "<group>"; };
@@ -1515,13 +1515,13 @@
 		876EF684B41627B4A0A755495B934435 /* EXPMatchers+beIdenticalTo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beIdenticalTo.h"; path = "Expecta/Matchers/EXPMatchers+beIdenticalTo.h"; sourceTree = "<group>"; };
 		87ACFB3401C5A0B37E93AD0F85786CC3 /* ZXBizcardResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXBizcardResultParser.h; path = ZXingObjC/client/result/ZXBizcardResultParser.h; sourceTree = "<group>"; };
 		87C2D88BACE519F6A491269A5FD09DDA /* RMessageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessageView.h; path = RMessage/RMessageView.h; sourceTree = "<group>"; };
-		87FAEAAC1B485102DE1DFB80FB1A347E /* MZFormSheetPresentationController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MZFormSheetPresentationController.modulemap; sourceTree = "<group>"; };
+		87FAEAAC1B485102DE1DFB80FB1A347E /* MZFormSheetPresentationController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MZFormSheetPresentationController.modulemap; sourceTree = "<group>"; };
 		884A191FE6AC77CB3D88043A75B930B6 /* ZXVINResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXVINResultParser.h; path = ZXingObjC/client/result/ZXVINResultParser.h; sourceTree = "<group>"; };
 		8887FBFDFA8D03B1CD5E175E97AF6DE5 /* HSK_CFUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HSK_CFUtilities.m; path = SMTPLibrary/HSK_CFUtilities.m; sourceTree = "<group>"; };
 		8893B76F7A5295E5432941B1303E2019 /* KNVUNDButtonsSelectionHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDButtonsSelectionHelper.m; sourceTree = "<group>"; };
 		8A29B2E7BB9DC3DA0DC437788856B198 /* ZXAI013x0x1xDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAI013x0x1xDecoder.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI013x0x1xDecoder.h; sourceTree = "<group>"; };
 		8A53A257D04F09EB689594ED87C8D2BE /* ZXDataMatrixBitMatrixParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDataMatrixBitMatrixParser.m; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixBitMatrixParser.m; sourceTree = "<group>"; };
-		8AAFFF567A015EA8581718854C02ECC3 /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
+		8AAFFF567A015EA8581718854C02ECC3 /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
 		8B24B0AE3F79848DE4359BEDDB3F58CE /* ZXCode128Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXCode128Reader.h; path = ZXingObjC/oned/ZXCode128Reader.h; sourceTree = "<group>"; };
 		8B4EE72D5DCAC52E7E96361BF6AD1ABF /* ZXQRCodeDataBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeDataBlock.h; path = ZXingObjC/qrcode/decoder/ZXQRCodeDataBlock.h; sourceTree = "<group>"; };
 		8BD140CAEAC7C7E94B1F59AA8852E8E6 /* NSInvocation+Copy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+Copy.m"; path = "MZAppearance/NSInvocation+Copy.m"; sourceTree = "<group>"; };
@@ -1553,7 +1553,7 @@
 		929F77B3CB38446D4F2C9C9AD4E69D0F /* MZFormSheetPresentationViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZFormSheetPresentationViewController.m; path = MZFormSheetPresentationController/MZFormSheetPresentationViewController.m; sourceTree = "<group>"; };
 		93178AA59D1E332B999AC8FBF6171454 /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		937B06A1A0DB06A5C9D6DD0710A5B2AC /* ZXAbstractRSSReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAbstractRSSReader.m; path = ZXingObjC/oned/rss/ZXAbstractRSSReader.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		943FFA5FF757D1D60CF324083C604D18 /* ZXPDF417DecodedBitStreamParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417DecodedBitStreamParser.h; path = ZXingObjC/pdf417/decoder/ZXPDF417DecodedBitStreamParser.h; sourceTree = "<group>"; };
 		944834C99F98C2E5B53246D3B589758F /* ZXAI01weightDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAI01weightDecoder.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI01weightDecoder.m; sourceTree = "<group>"; };
 		9494D9ED34372CE77ED84C5714379EC1 /* Pods-KNVUNDBaseDevelopPackage_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KNVUNDBaseDevelopPackage_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -1575,7 +1575,7 @@
 		9A90FCE2BDB6BC8AE6AA0BC8B216B180 /* EXPMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPMatcher.h; path = Expecta/EXPMatcher.h; sourceTree = "<group>"; };
 		9B22CE4C45218DF58EB52AC1CF797172 /* ZXMathUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXMathUtils.h; path = ZXingObjC/common/detector/ZXMathUtils.h; sourceTree = "<group>"; };
 		9BF90770BB2E0C01F4561618B890C663 /* SpectaDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SpectaDSL.h; path = Specta/Specta/SpectaDSL.h; sourceTree = "<group>"; };
-		9BFA6DC005298C447BB685D12981BE4C /* Expecta+Snapshots.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Expecta+Snapshots.modulemap"; sourceTree = "<group>"; };
+		9BFA6DC005298C447BB685D12981BE4C /* Expecta+Snapshots.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Expecta+Snapshots.modulemap"; sourceTree = "<group>"; };
 		9C408CDE392316B82DE33B1363F6714A /* ZXEmailAddressResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEmailAddressResultParser.m; path = ZXingObjC/client/result/ZXEmailAddressResultParser.m; sourceTree = "<group>"; };
 		9CD5FC9428A690F2AF9F3EA88AE258A2 /* ZXQRCodeWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeWriter.h; path = ZXingObjC/qrcode/ZXQRCodeWriter.h; sourceTree = "<group>"; };
 		9CDE404F8712DA137E4C0EFB4E87689A /* ZXURIParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXURIParsedResult.h; path = ZXingObjC/client/result/ZXURIParsedResult.h; sourceTree = "<group>"; };
@@ -1593,7 +1593,7 @@
 		A20C15DCF95BCF7C5EFB17A08B9B5A2C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A254EBBAFB76DB814DB66520535BBA3D /* ZXAztecHighLevelEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecHighLevelEncoder.h; path = ZXingObjC/aztec/encoder/ZXAztecHighLevelEncoder.h; sourceTree = "<group>"; };
 		A27D0E4B03B5307317BF3BD3BE3A05BC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2BC91BF6BDB9B8FDCD1B89E73FC018F /* ZXingObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZXingObjC.framework; path = ZXingObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2BC91BF6BDB9B8FDCD1B89E73FC018F /* ZXingObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZXingObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A3C40271D3FF6C46576EA90223BB61 /* ZXBinarizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXBinarizer.m; path = ZXingObjC/core/ZXBinarizer.m; sourceTree = "<group>"; };
 		A3D5C95CDB630C15DE2D87CF139824F5 /* ZXLuminanceSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXLuminanceSource.h; path = ZXingObjC/core/ZXLuminanceSource.h; sourceTree = "<group>"; };
 		A41B712E80C6479DD4164B1A19A2E736 /* KNVUNDBaseDevelopPackage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDBaseDevelopPackage-dummy.m"; sourceTree = "<group>"; };
@@ -1620,7 +1620,7 @@
 		AAAA6A8B468B13F8875D41DF2237273B /* ZXRSSExpandedGeneralAppIdDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRSSExpandedGeneralAppIdDecoder.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedGeneralAppIdDecoder.h; sourceTree = "<group>"; };
 		AAD08E2AAAF21A0DC546019D0965B484 /* Expecta-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Expecta-dummy.m"; sourceTree = "<group>"; };
 		AB0684F091E81763D5942747A77F55A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABC3977DAFAA03FAAFD2BB577AC2129B /* MZAppearance.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MZAppearance.modulemap; sourceTree = "<group>"; };
+		ABC3977DAFAA03FAAFD2BB577AC2129B /* MZAppearance.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MZAppearance.modulemap; sourceTree = "<group>"; };
 		AC24A519017277BC3439A8421917DC39 /* ZXingObjCAztec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXingObjCAztec.h; path = ZXingObjC/aztec/ZXingObjCAztec.h; sourceTree = "<group>"; };
 		ADA48763AD338529D04CB8E838E4698A /* ZXQRCodeFinderPatternFinder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeFinderPatternFinder.m; path = ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternFinder.m; sourceTree = "<group>"; };
 		ADC3B0D64E8EC6A39A9D977E89E61973 /* ZXTelParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXTelParsedResult.m; path = ZXingObjC/client/result/ZXTelParsedResult.m; sourceTree = "<group>"; };
@@ -1663,13 +1663,13 @@
 		B824CBE7E7053343A069165BA05A438F /* ZXMultiFormatOneDReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMultiFormatOneDReader.m; path = ZXingObjC/oned/ZXMultiFormatOneDReader.m; sourceTree = "<group>"; };
 		B83961CC8DF9545CAFC479CA41BEC588 /* ZXExpandedProductParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXExpandedProductParsedResult.m; path = ZXingObjC/client/result/ZXExpandedProductParsedResult.m; sourceTree = "<group>"; };
 		B8635FE5E0F707AD8CB0952B6D17C0E1 /* MZFormSheetPresentationController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MZFormSheetPresentationController-prefix.pch"; sourceTree = "<group>"; };
-		B87422141AFC692FCAF59CD8F05B9FED /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HexColors.framework; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87422141AFC692FCAF59CD8F05B9FED /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B921323C7AB88B3F4FC3641716B770E0 /* ZXWifiResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXWifiResultParser.h; path = ZXingObjC/client/result/ZXWifiResultParser.h; sourceTree = "<group>"; };
 		B9ABF57F833CE68F7965CE28E55B96E2 /* ZXQRCodeEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeEncoder.h; path = ZXingObjC/qrcode/encoder/ZXQRCodeEncoder.h; sourceTree = "<group>"; };
 		BA2AD56E43A4A816FA0DF665D1CA0669 /* Pods-KNVUNDBaseDevelopPackage_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KNVUNDBaseDevelopPackage_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		BA49150D8B927B4334C5121A70B843E9 /* ZXPDF417Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Reader.h; path = ZXingObjC/pdf417/ZXPDF417Reader.h; sourceTree = "<group>"; };
 		BA4A72C284E7547DEE949E0E1048AE35 /* NSValue+Expecta.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSValue+Expecta.h"; path = "Expecta/NSValue+Expecta.h"; sourceTree = "<group>"; };
-		BA59F14551336C27469DB1469E82304F /* KNVUNDBaseDevelopPackage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KNVUNDBaseDevelopPackage.modulemap; sourceTree = "<group>"; };
+		BA59F14551336C27469DB1469E82304F /* KNVUNDBaseDevelopPackage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = KNVUNDBaseDevelopPackage.modulemap; sourceTree = "<group>"; };
 		BB5F0BFCA01F42E764A82FDCA9E3FA5A /* ZXHybridBinarizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXHybridBinarizer.m; path = ZXingObjC/common/ZXHybridBinarizer.m; sourceTree = "<group>"; };
 		BB9CC899DC48386A9C2C64D6187000FD /* ZXRSSFinderPattern.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRSSFinderPattern.h; path = ZXingObjC/oned/rss/ZXRSSFinderPattern.h; sourceTree = "<group>"; };
 		BBA4491E5D52B92037538B79978B2D9B /* ZXDataMatrixVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixVersion.h; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixVersion.h; sourceTree = "<group>"; };
@@ -1688,7 +1688,7 @@
 		BF585FAE86092D9CC32CAB3D2B8D116C /* ZXImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXImage.m; path = ZXingObjC/client/ZXImage.m; sourceTree = "<group>"; };
 		C005DBF4683FC9A4D1987C43C3CEBD8C /* skpsmtpmessage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "skpsmtpmessage-dummy.m"; sourceTree = "<group>"; };
 		C014672D539200F6028E2591863D9405 /* ZXMultiDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMultiDetector.m; path = ZXingObjC/qrcode/multi/detector/ZXMultiDetector.m; sourceTree = "<group>"; };
-		C049DE66822EBD4E2990756890BDC3F3 /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LinqToObjectiveC.framework; path = LinqToObjectiveC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C049DE66822EBD4E2990756890BDC3F3 /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinqToObjectiveC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0509F3E8BB3E42AD1849778425F293F /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
 		C06F2A1DCAEB8C641DC03E4780D19FFF /* Specta-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Specta-prefix.pch"; sourceTree = "<group>"; };
 		C0977CC8664E00B231939565CF344355 /* ZXAztecState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAztecState.m; path = ZXingObjC/aztec/encoder/ZXAztecState.m; sourceTree = "<group>"; };
@@ -1707,7 +1707,7 @@
 		C3F5A23C77616C5CD5A88D69679DFA84 /* ZXAddressBookDoCoMoResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAddressBookDoCoMoResultParser.h; path = ZXingObjC/client/result/ZXAddressBookDoCoMoResultParser.h; sourceTree = "<group>"; };
 		C400E156A48DE93F7BFA56300E5950C9 /* ZXDimension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDimension.h; path = ZXingObjC/core/ZXDimension.h; sourceTree = "<group>"; };
 		C4B86FF1D09D13444249D723F0EF8A22 /* ZXingObjCPDF417.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXingObjCPDF417.h; path = ZXingObjC/pdf417/ZXingObjCPDF417.h; sourceTree = "<group>"; };
-		C4FF8936473071396A70DBDC729BA108 /* Expecta.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Expecta.modulemap; sourceTree = "<group>"; };
+		C4FF8936473071396A70DBDC729BA108 /* Expecta.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Expecta.modulemap; sourceTree = "<group>"; };
 		C5292B64C585A28523555461E96EAD7E /* ZXAztecState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecState.h; path = ZXingObjC/aztec/encoder/ZXAztecState.h; sourceTree = "<group>"; };
 		C5832CB6D73E64D164BFFE264579764E /* ZXEAN8Writer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEAN8Writer.m; path = ZXingObjC/oned/ZXEAN8Writer.m; sourceTree = "<group>"; };
 		C67ADAB26BBC5DB02524EBF41E9BE2BC /* KNVUNDBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDBaseViewController.h; sourceTree = "<group>"; };
@@ -1778,7 +1778,7 @@
 		DE388C1FB1406232A1C35EE55FD45500 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SKPSMTPMessage.m; path = SMTPLibrary/SKPSMTPMessage.m; sourceTree = "<group>"; };
 		DE3A27B5DD869C2F81549124248F4131 /* ZXTelParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXTelParsedResult.h; path = ZXingObjC/client/result/ZXTelParsedResult.h; sourceTree = "<group>"; };
 		DE951B5B7CC733E09F8ED8011C51DC5C /* ZXDataMatrixDecodedBitStreamParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDataMatrixDecodedBitStreamParser.m; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixDecodedBitStreamParser.m; sourceTree = "<group>"; };
-		DEA81D29CB1649466A98DBECC67C0B48 /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RMessage.framework; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEA81D29CB1649466A98DBECC67C0B48 /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE7A5D6AEFFB46206450656FA80B74D /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		DF6C636D6C0144CF8D665939FA87E911 /* Expecta+Snapshots-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Expecta+Snapshots-dummy.m"; sourceTree = "<group>"; };
 		DFE1AC51B3F1EFD85559538366D5A757 /* ZXWhiteRectangleDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXWhiteRectangleDetector.m; path = ZXingObjC/common/detector/ZXWhiteRectangleDetector.m; sourceTree = "<group>"; };
@@ -1819,7 +1819,7 @@
 		EB09A4B1A17AB049A80BC3BF3A5F9352 /* ZXDataMatrixWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDataMatrixWriter.m; path = ZXingObjC/datamatrix/ZXDataMatrixWriter.m; sourceTree = "<group>"; };
 		EB1471BB40C8D16A17124ED42C53E0BA /* EXPExpect.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPExpect.h; path = Expecta/EXPExpect.h; sourceTree = "<group>"; };
 		EB2CD99534CAE4D0D47ACB8D70B55FAA /* EXPMatchers+FBSnapshotTest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+FBSnapshotTest.h"; sourceTree = "<group>"; };
-		EB4EFE382A9AD307664890B058506D81 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4EFE382A9AD307664890B058506D81 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC098F286A0344FD6666604246EA182F /* ZXDataMatrixX12Encoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixX12Encoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixX12Encoder.h; sourceTree = "<group>"; };
 		EC4C8B7E882BFB0CB5F764152DCE836C /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		ECA807BF543B182AF025F54A6D09D481 /* Expecta+Snapshots-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Expecta+Snapshots-umbrella.h"; sourceTree = "<group>"; };
@@ -2071,7 +2071,6 @@
 				461F01306A9B12BE05F5DC7B984D51A6 /* KNVUNDButtonsSelectionHelper.h */,
 				8893B76F7A5295E5432941B1303E2019 /* KNVUNDButtonsSelectionHelper.m */,
 			);
-			name = "Buttons Related";
 			path = "Buttons Related";
 			sourceTree = "<group>";
 		};
@@ -2113,7 +2112,6 @@
 				59E47CB70EAB2F084AAED84EE01ABF40 /* XCTestCase+Specta.m */,
 				7D5C8A412E4EABCADD3E936D0AE5827B /* Support Files */,
 			);
-			name = Specta;
 			path = Specta;
 			sourceTree = "<group>";
 		};
@@ -2124,7 +2122,6 @@
 				6DACC378A5808328F6DD131EEDBC0BE2 /* Support Files */,
 				EB3DA1203E33EE8CD300391699F075BA /* SwiftSupport */,
 			);
-			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -2152,7 +2149,6 @@
 				7AA61051370E44779CC974A9B1A2F7F4 /* NSDictionary+LinqExtensions.m */,
 				BA717DFAA9AA6CCE01B220529D703B71 /* Support Files */,
 			);
-			name = LinqToObjectiveC;
 			path = LinqToObjectiveC;
 			sourceTree = "<group>";
 		};
@@ -2168,7 +2164,6 @@
 				0E743D4ED5A4B6D14E98CA7F2C0C57B1 /* UIViewController+PPTopMostController.m */,
 				0386620E8CE10D7A8D3A1AE032697611 /* Support Files */,
 			);
-			name = PPTopMostController;
 			path = PPTopMostController;
 			sourceTree = "<group>";
 		};
@@ -2200,7 +2195,6 @@
 				EED8E5C8D3266C2A6D104CAB3B3DD92E /* NSObject */,
 				6BDED06C8ABBEA040D2F85F52D779710 /* NSString */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -2676,7 +2670,6 @@
 				4211C2080C8D27C61C0F5663096A4C4F /* KNVUNDFormatedStringRelatedTool.h */,
 				D68F04CA73C06B6351C1DEE710EE757E /* KNVUNDFormatedStringRelatedTool.m */,
 			);
-			name = "String Related";
 			path = "String Related";
 			sourceTree = "<group>";
 		};
@@ -2690,7 +2683,6 @@
 				47C84002CA36B191B497DABA0C628A0C /* Resources */,
 				1E0BEBB6119862F8A229292CC0F563C4 /* Support Files */,
 			);
-			name = RMessage;
 			path = RMessage;
 			sourceTree = "<group>";
 		};
@@ -2709,7 +2701,6 @@
 				DE388C1FB1406232A1C35EE55FD45500 /* SKPSMTPMessage.m */,
 				5DBC288976D71F8A1C3D28DC1484B2E7 /* Support Files */,
 			);
-			name = skpsmtpmessage;
 			path = skpsmtpmessage;
 			sourceTree = "<group>";
 		};
@@ -2796,7 +2787,6 @@
 				5C3BE3A78E540A22CD87CF416E590A52 /* NSString+KNVUNDBasic.h */,
 				7C647D8699A76877A5E33ACE9C06A293 /* NSString+KNVUNDBasic.m */,
 			);
-			name = NSString;
 			path = NSString;
 			sourceTree = "<group>";
 		};
@@ -2853,7 +2843,6 @@
 				0CA7B94447167BB27D7AE448E795CF68 /* UIViewController+TargetViewController.m */,
 				F962FFFEE03D82A8D6852B87DBF1B880 /* Support Files */,
 			);
-			name = MZFormSheetPresentationController;
 			path = MZFormSheetPresentationController;
 			sourceTree = "<group>";
 		};
@@ -2906,7 +2895,6 @@
 				1AD2BDB73B02D704A51794D9DAEEC07E /* EXPMatchers+FBSnapshotTest.m */,
 				D28691B65442A69C1EBCB76CD9445073 /* Support Files */,
 			);
-			name = "Expecta+Snapshots";
 			path = "Expecta+Snapshots";
 			sourceTree = "<group>";
 		};
@@ -2919,7 +2907,6 @@
 				8BD140CAEAC7C7E94B1F59AA8852E8E6 /* NSInvocation+Copy.m */,
 				40BABC5A8AB2A127FBFF36689F3F62FD /* Support Files */,
 			);
-			name = MZAppearance;
 			path = MZAppearance;
 			sourceTree = "<group>";
 		};
@@ -2929,7 +2916,6 @@
 				C67ADAB26BBC5DB02524EBF41E9BE2BC /* KNVUNDBaseViewController.h */,
 				D24B9778743982E9361858C45803A0D1 /* KNVUNDBaseViewController.m */,
 			);
-			name = "View Controllers";
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
@@ -2967,7 +2953,6 @@
 				6BE8A95BE549F6450235773F07420AF6 /* Resources */,
 				F30B75E1B300AC867677BACF49142320 /* Support Files */,
 			);
-			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -3061,7 +3046,6 @@
 				6FF1EC0702B60A83427F81D20E6F9507 /* NSValue+Expecta.m */,
 				7D0D8A2A3A3CC512470A86A0C94CF7BE /* Support Files */,
 			);
-			name = Expecta;
 			path = Expecta;
 			sourceTree = "<group>";
 		};
@@ -3071,7 +3055,6 @@
 				DB03FEC57F70FA9BCB8F2E3280A0DF53 /* KNVUNDBaseModel.h */,
 				0A7BFC4D6D9F4D6FD57520803B12F648 /* KNVUNDBaseModel.m */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -3092,7 +3075,6 @@
 				C0FC43CDFF82F3907F772DB9A11167AB /* KNVUNDEmailRelatedTool.h */,
 				9D45BA0AF1C7489AFE97151815A441C3 /* KNVUNDEmailRelatedTool.m */,
 			);
-			name = "Network Related";
 			path = "Network Related";
 			sourceTree = "<group>";
 		};
@@ -3117,7 +3099,6 @@
 				C3A541E0363C2821E311CFD85AFD1E2D /* HexColors.m */,
 				B1A38897AD783490CCFFEA7B55D30DF4 /* Support Files */,
 			);
-			name = HexColors;
 			path = HexColors;
 			sourceTree = "<group>";
 		};
@@ -3161,7 +3142,6 @@
 				6F734EF3B1BA29A162F04663EE8139DA /* KNVUNDImageRelatedTool+ImageModifyRelated.h */,
 				F2273F3AA98BED9EE3CF7AC70FDECEC5 /* KNVUNDImageRelatedTool+ImageModifyRelated.m */,
 			);
-			name = "Theme Related";
 			path = "Theme Related";
 			sourceTree = "<group>";
 		};
@@ -3171,7 +3151,6 @@
 				170A9559E355C609ACF40519DE30868C /* NSDecimalNumber+KNVUNDBasic.h */,
 				0AF6E965B2250C3F56E7B504FA13C3E4 /* NSDecimalNumber+KNVUNDBasic.m */,
 			);
-			name = NSDecimalNumber;
 			path = NSDecimalNumber;
 			sourceTree = "<group>";
 		};
@@ -3180,7 +3159,6 @@
 			children = (
 				864663D0CA05B5960E0C1C5AF58FA923 /* View Controllers */,
 			);
-			name = UIKits;
 			path = UIKits;
 			sourceTree = "<group>";
 		};
@@ -3247,7 +3225,6 @@
 				08A1E9CF7BD6D2A90DC9823465650048 /* KNVUNDRuntimeRelatedTool.h */,
 				457C9946A7E3683BE3B6344707FCC7D3 /* KNVUNDRuntimeRelatedTool.m */,
 			);
-			name = "Runtime Related";
 			path = "Runtime Related";
 			sourceTree = "<group>";
 		};
@@ -3257,7 +3234,6 @@
 				D11CD6B5E01C183712A83C9C96596880 /* KNVUNDScannerHelper.h */,
 				1EC93F8060DD2B72122570D8CA3D139D /* KNVUNDScannerHelper.m */,
 			);
-			name = "Scanning Related";
 			path = "Scanning Related";
 			sourceTree = "<group>";
 		};
@@ -3267,7 +3243,6 @@
 				3107A30F8FD350B7B034A263DD6698DF /* KNVUNDRootErrorCodeTool.h */,
 				46F778BFBDFAC39D2674AB55C0AA5C39 /* KNVUNDRootErrorCodeTool.m */,
 			);
-			name = "Error Code Related";
 			path = "Error Code Related";
 			sourceTree = "<group>";
 		};
@@ -3312,7 +3287,6 @@
 				7015A36CCB69FB4E246942F0C400E710 /* NSObject+KNVUNDPropertyModifyRelated.h */,
 				CCF61875837D10D7C13EC1DA3B640FAF /* NSObject+KNVUNDPropertyModifyRelated.m */,
 			);
-			name = NSObject;
 			path = NSObject;
 			sourceTree = "<group>";
 		};
@@ -3381,7 +3355,6 @@
 				382AC16CBC0EB2A7B960951618773AD5 /* All */,
 				FD5F0826BF7A9668F0C47C8BE9F81578 /* Support Files */,
 			);
-			name = ZXingObjC;
 			path = ZXingObjC;
 			sourceTree = "<group>";
 		};
@@ -3391,7 +3364,6 @@
 				6BEFAEB3285EEDEBB21413EE48FB6EDD /* KNVUNDLogRelatedHelper.h */,
 				632B4E1A8F8A618A93BFB8C8BFDDE096 /* KNVUNDLogRelatedHelper.m */,
 			);
-			name = "Log Related";
 			path = "Log Related";
 			sourceTree = "<group>";
 		};
@@ -4972,9 +4944,9 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07CAEE1A5528228BD9E09B27254FDED4 /* Debug */ = {
+		14120AA42BCDD42A58254E1C10C2C409 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF386406C8A476324120102A4865AC6E /* KNVUNDBaseDevelopPackage.xcconfig */;
+			baseConfigurationReference = C30A9D905EC5FE537CDFBEFDBA08E54B /* MZAppearance.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4985,74 +4957,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MZAppearance/MZAppearance-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MZAppearance/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.modulemap";
-				PRODUCT_NAME = KNVUNDBaseDevelopPackage;
+				MODULEMAP_FILE = "Target Support Files/MZAppearance/MZAppearance.modulemap";
+				PRODUCT_NAME = MZAppearance;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0EC06FB17D365A0B0A52CEF41BB9450A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97EE96563E592CA8DF3BF0DA96153FDA /* ZXingObjC.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ZXingObjC/ZXingObjC-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ZXingObjC/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ZXingObjC/ZXingObjC.modulemap";
-				PRODUCT_NAME = ZXingObjC;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		1620D91A67D317F8EDCE388CBEA0E052 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52D42A68400FDD7C5BB9EDF89D4D80AE /* skpsmtpmessage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/skpsmtpmessage/skpsmtpmessage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/skpsmtpmessage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/skpsmtpmessage/skpsmtpmessage.modulemap";
-				PRODUCT_NAME = skpsmtpmessage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5115,36 +5030,6 @@
 				PRODUCT_NAME = Pods_KNVUNDBaseDevelopPackage_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		2A55D009CC9BD785834D0684F2E78BE7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72310027BEA8D2CAB15EA78A4A6DB958 /* MZFormSheetPresentationController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MZFormSheetPresentationController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController.modulemap";
-				PRODUCT_NAME = MZFormSheetPresentationController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5239,9 +5124,101 @@
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
+		};
+		40BD87281904A7347B875D62E0878CCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75CEF6C21A660148CC0E87C2AB9BCD77 /* PPTopMostController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
+				PRODUCT_NAME = PPTopMostController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4107935417A65160C14ABF0D8F03D86F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF386406C8A476324120102A4865AC6E /* KNVUNDBaseDevelopPackage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.modulemap";
+				PRODUCT_NAME = KNVUNDBaseDevelopPackage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		466FF6893D23114BBEE53879739D1B16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6874DC536A8FD22839B1558156D092BC /* LinqToObjectiveC.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LinqToObjectiveC/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC.modulemap";
+				PRODUCT_NAME = LinqToObjectiveC;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		4B996AFF58BEE13E836DFEEC4955E6FE /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -5273,7 +5250,37 @@
 			};
 			name = Release;
 		};
-		50D1C9BB384F94B950FD4473C1F2D1C5 /* Debug */ = {
+		59E898664A656857F0048A446513DAE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52D42A68400FDD7C5BB9EDF89D4D80AE /* skpsmtpmessage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/skpsmtpmessage/skpsmtpmessage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/skpsmtpmessage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/skpsmtpmessage/skpsmtpmessage.modulemap";
+				PRODUCT_NAME = skpsmtpmessage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6A1AB9A1171CDF090A6563B07444D7DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C30A9D905EC5FE537CDFBEFDBA08E54B /* MZAppearance.xcconfig */;
 			buildSettings = {
@@ -5296,15 +5303,16 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		67EAAB85D5472411E3DD8BB4D75A3C09 /* Release */ = {
+		72DB4DCE43B4C8AF4FC5D48D23712D29 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04F1A7F5E225DB0149F2BA0D28105D2F /* RMessage.xcconfig */;
+			baseConfigurationReference = 72310027BEA8D2CAB15EA78A4A6DB958 /* MZFormSheetPresentationController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5315,76 +5323,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MZFormSheetPresentationController/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
-				PRODUCT_NAME = RMessage;
+				MODULEMAP_FILE = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController.modulemap";
+				PRODUCT_NAME = MZFormSheetPresentationController;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		69CF5642CF1FEEB2F0704B244A4E889E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8FA1026A059A962D2B075861D8237A0 /* HexColors.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
-				PRODUCT_NAME = HexColors;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		6BC45949DA99873693893F8E2FE35936 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E07843CF1701F992C67C1136DE9FCAAF /* SVProgressHUD.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
-				PRODUCT_NAME = SVProgressHUD;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5443,11 +5392,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_VERSION = 3.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		7C6772E1218D86891AE37535E0850717 /* Release */ = {
+		802541B67324F6426C5C1D41AB9AA2DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 97EE96563E592CA8DF3BF0DA96153FDA /* ZXingObjC.xcconfig */;
 			buildSettings = {
@@ -5470,41 +5420,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		8142DB0C000AC1B4148E52426C2C6F01 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8FA1026A059A962D2B075861D8237A0 /* HexColors.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
-				PRODUCT_NAME = HexColors;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		82B3496240DCA857104A71FC50562B5C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -5530,6 +5452,36 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		88AD3E65D4D2EAA64F5E36203CFDCF4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97EE96563E592CA8DF3BF0DA96153FDA /* ZXingObjC.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ZXingObjC/ZXingObjC-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZXingObjC/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ZXingObjC/ZXingObjC.modulemap";
+				PRODUCT_NAME = ZXingObjC;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5565,9 +5517,9 @@
 			};
 			name = Debug;
 		};
-		9D72A011A3E8DA3936CAC13187ED68E7 /* Debug */ = {
+		9867FA206015AD6A94DECB515CD683C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72310027BEA8D2CAB15EA78A4A6DB958 /* MZFormSheetPresentationController.xcconfig */;
+			baseConfigurationReference = E07843CF1701F992C67C1136DE9FCAAF /* SVProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5578,25 +5530,26 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MZFormSheetPresentationController/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController.modulemap";
-				PRODUCT_NAME = MZFormSheetPresentationController;
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				PRODUCT_NAME = SVProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		A510E3FD2715ADD6C261D4805824846A /* Debug */ = {
+		99A0C5DBC063121E0891F0E00DBCAD1A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6874DC536A8FD22839B1558156D092BC /* LinqToObjectiveC.xcconfig */;
+			baseConfigurationReference = E8FA1026A059A962D2B075861D8237A0 /* HexColors.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5607,21 +5560,83 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LinqToObjectiveC/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC.modulemap";
-				PRODUCT_NAME = LinqToObjectiveC;
+				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
+				PRODUCT_NAME = HexColors;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		99FB15C94DA266E3ECF5D8D6E07E81E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04F1A7F5E225DB0149F2BA0D28105D2F /* RMessage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RMessage/RMessage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RMessage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RMessage/RMessage.modulemap";
+				PRODUCT_NAME = RMessage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A34B50A9AB2CE7019C15AB9C8A10F772 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75CEF6C21A660148CC0E87C2AB9BCD77 /* PPTopMostController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
+				PRODUCT_NAME = PPTopMostController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		A571FA661AA6D03A96E0AFE12D0AA1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -5657,9 +5672,9 @@
 			};
 			name = Debug;
 		};
-		BCDA3DB522509326FF5FFF6C30F773BC /* Release */ = {
+		BB77233D7E9BBCC1AC3DBD6623CFF292 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6874DC536A8FD22839B1558156D092BC /* LinqToObjectiveC.xcconfig */;
+			baseConfigurationReference = BF386406C8A476324120102A4865AC6E /* KNVUNDBaseDevelopPackage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5670,16 +5685,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LinqToObjectiveC/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC.modulemap";
-				PRODUCT_NAME = LinqToObjectiveC;
+				MODULEMAP_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.modulemap";
+				PRODUCT_NAME = KNVUNDBaseDevelopPackage;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5721,6 +5737,37 @@
 			};
 			name = Release;
 		};
+		C1409525DEF82B8C810CE4FFE2BDB4DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52D42A68400FDD7C5BB9EDF89D4D80AE /* skpsmtpmessage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/skpsmtpmessage/skpsmtpmessage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/skpsmtpmessage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/skpsmtpmessage/skpsmtpmessage.modulemap";
+				PRODUCT_NAME = skpsmtpmessage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C32A2B860FAB4960C7E591A3A8F31465 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F25A53F2987C7B6E8141BD029B3E160B /* Expecta.xcconfig */;
@@ -5751,37 +5798,7 @@
 			};
 			name = Release;
 		};
-		C3EAD1055B152142C64CE9B7EFC8E8E6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C30A9D905EC5FE537CDFBEFDBA08E54B /* MZAppearance.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MZAppearance/MZAppearance-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MZAppearance/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MZAppearance/MZAppearance.modulemap";
-				PRODUCT_NAME = MZAppearance;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CF08DF4F54D78BC802429A287A8D64DE /* Debug */ = {
+		D44EC1B4F97E3FFD0D5A7F699C24A81F /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04F1A7F5E225DB0149F2BA0D28105D2F /* RMessage.xcconfig */;
 			buildSettings = {
@@ -5804,99 +5821,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D47E2753680DFD16A30C0C9C222C4A26 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF386406C8A476324120102A4865AC6E /* KNVUNDBaseDevelopPackage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage.modulemap";
-				PRODUCT_NAME = KNVUNDBaseDevelopPackage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		D670DDF695DAA140A300283B82C95AED /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75CEF6C21A660148CC0E87C2AB9BCD77 /* PPTopMostController.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
-				PRODUCT_NAME = PPTopMostController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		DC6C949FCF5E55E410D2C13CC359B946 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52D42A68400FDD7C5BB9EDF89D4D80AE /* skpsmtpmessage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/skpsmtpmessage/skpsmtpmessage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/skpsmtpmessage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/skpsmtpmessage/skpsmtpmessage.modulemap";
-				PRODUCT_NAME = skpsmtpmessage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		E66F6D77767DD45A75DC3442ED1A406E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -5930,9 +5861,9 @@
 			};
 			name = Debug;
 		};
-		F22813F7B8679236548B63B31C848E31 /* Debug */ = {
+		EEF7FA4421854F6A7BE4713FB7911FDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E07843CF1701F992C67C1136DE9FCAAF /* SVProgressHUD.xcconfig */;
+			baseConfigurationReference = E8FA1026A059A962D2B075861D8237A0 /* HexColors.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5943,16 +5874,48 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/HexColors/HexColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HexColors/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
-				PRODUCT_NAME = SVProgressHUD;
+				MODULEMAP_FILE = "Target Support Files/HexColors/HexColors.modulemap";
+				PRODUCT_NAME = HexColors;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F1AC31A3B6401D46835EBADF0C5CA5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6874DC536A8FD22839B1558156D092BC /* LinqToObjectiveC.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LinqToObjectiveC/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LinqToObjectiveC/LinqToObjectiveC.modulemap";
+				PRODUCT_NAME = LinqToObjectiveC;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5989,6 +5952,36 @@
 			};
 			name = Release;
 		};
+		FCB7DA5DB9E74C0B20910B63AE2BCA0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72310027BEA8D2CAB15EA78A4A6DB958 /* MZFormSheetPresentationController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MZFormSheetPresentationController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MZFormSheetPresentationController/MZFormSheetPresentationController.modulemap";
+				PRODUCT_NAME = MZFormSheetPresentationController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		FD88F8B1E5A792FF8C0BC3B33047A1D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F25A53F2987C7B6E8141BD029B3E160B /* Expecta.xcconfig */;
@@ -6018,9 +6011,9 @@
 			};
 			name = Debug;
 		};
-		FE4D3E2143CABAA2CFFB1F7135248F85 /* Release */ = {
+		FE61BC8CB4369D180BEF718503F08F29 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75CEF6C21A660148CC0E87C2AB9BCD77 /* PPTopMostController.xcconfig */;
+			baseConfigurationReference = E07843CF1701F992C67C1136DE9FCAAF /* SVProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -6031,16 +6024,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PPTopMostController/PPTopMostController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PPTopMostController/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PPTopMostController/PPTopMostController.modulemap";
-				PRODUCT_NAME = PPTopMostController;
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				PRODUCT_NAME = SVProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -6063,8 +6057,8 @@
 		1C731A7F2FFB4467926788F685D09055 /* Build configuration list for PBXNativeTarget "PPTopMostController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D670DDF695DAA140A300283B82C95AED /* Debug */,
-				FE4D3E2143CABAA2CFFB1F7135248F85 /* Release */,
+				40BD87281904A7347B875D62E0878CCF /* Debug */,
+				A34B50A9AB2CE7019C15AB9C8A10F772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6081,8 +6075,8 @@
 		260218B7F83BB00FA514C90308826BC8 /* Build configuration list for PBXNativeTarget "LinqToObjectiveC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A510E3FD2715ADD6C261D4805824846A /* Debug */,
-				BCDA3DB522509326FF5FFF6C30F773BC /* Release */,
+				F1AC31A3B6401D46835EBADF0C5CA5E8 /* Debug */,
+				466FF6893D23114BBEE53879739D1B16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6099,8 +6093,8 @@
 		2F087D7F1E553720130B94C19F23F561 /* Build configuration list for PBXNativeTarget "SVProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F22813F7B8679236548B63B31C848E31 /* Debug */,
-				6BC45949DA99873693893F8E2FE35936 /* Release */,
+				9867FA206015AD6A94DECB515CD683C1 /* Debug */,
+				FE61BC8CB4369D180BEF718503F08F29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6126,8 +6120,8 @@
 		6D4EFCCB7B17044F4337738D60FE8F8F /* Build configuration list for PBXNativeTarget "HexColors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8142DB0C000AC1B4148E52426C2C6F01 /* Debug */,
-				69CF5642CF1FEEB2F0704B244A4E889E /* Release */,
+				99A0C5DBC063121E0891F0E00DBCAD1A /* Debug */,
+				EEF7FA4421854F6A7BE4713FB7911FDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6144,8 +6138,8 @@
 		76C6685823C4897605936B41AC05280A /* Build configuration list for PBXNativeTarget "MZFormSheetPresentationController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9D72A011A3E8DA3936CAC13187ED68E7 /* Debug */,
-				2A55D009CC9BD785834D0684F2E78BE7 /* Release */,
+				FCB7DA5DB9E74C0B20910B63AE2BCA0D /* Debug */,
+				72DB4DCE43B4C8AF4FC5D48D23712D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6153,8 +6147,8 @@
 		B66425C0DFFB7E9C8DF5E448290CEAC0 /* Build configuration list for PBXNativeTarget "skpsmtpmessage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC6C949FCF5E55E410D2C13CC359B946 /* Debug */,
-				1620D91A67D317F8EDCE388CBEA0E052 /* Release */,
+				59E898664A656857F0048A446513DAE6 /* Debug */,
+				C1409525DEF82B8C810CE4FFE2BDB4DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6171,8 +6165,8 @@
 		DF10C3C0F53EC168573EE2CAC0C0B18D /* Build configuration list for PBXNativeTarget "MZAppearance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				50D1C9BB384F94B950FD4473C1F2D1C5 /* Debug */,
-				C3EAD1055B152142C64CE9B7EFC8E8E6 /* Release */,
+				6A1AB9A1171CDF090A6563B07444D7DA /* Debug */,
+				14120AA42BCDD42A58254E1C10C2C409 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6180,8 +6174,8 @@
 		E683BC2BD348165B9D28717A33107E98 /* Build configuration list for PBXNativeTarget "ZXingObjC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0EC06FB17D365A0B0A52CEF41BB9450A /* Debug */,
-				7C6772E1218D86891AE37535E0850717 /* Release */,
+				88AD3E65D4D2EAA64F5E36203CFDCF4B /* Debug */,
+				802541B67324F6426C5C1D41AB9AA2DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6189,8 +6183,8 @@
 		E74DB188632067FA2BB6C391043169D2 /* Build configuration list for PBXNativeTarget "RMessage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF08DF4F54D78BC802429A287A8D64DE /* Debug */,
-				67EAAB85D5472411E3DD8BB4D75A3C09 /* Release */,
+				99FB15C94DA266E3ECF5D8D6E07E81E3 /* Debug */,
+				D44EC1B4F97E3FFD0D5A7F699C24A81F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6198,8 +6192,8 @@
 		F52726D7043920BADAFABA459890BDBB /* Build configuration list for PBXNativeTarget "KNVUNDBaseDevelopPackage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				07CAEE1A5528228BD9E09B27254FDED4 /* Debug */,
-				D47E2753680DFD16A30C0C9C222C4A26 /* Release */,
+				4107935417A65160C14ABF0D8F03D86F /* Debug */,
+				BB77233D7E9BBCC1AC3DBD6623CFF292 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

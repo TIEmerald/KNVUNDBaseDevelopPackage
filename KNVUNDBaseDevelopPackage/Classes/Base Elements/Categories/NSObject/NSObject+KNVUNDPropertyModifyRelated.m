@@ -174,7 +174,7 @@
 }
 
 #pragma mark - Suppor Methods
-- (BOOL)containsPropertyName:(NSString *)checkintPropertyName withProertyDetailsModel:(KNVUNDRRTPropertyDetailsModel **)checkingDetailsModel
+- (BOOL)containsPropertyName:(NSString *)checkintPropertyName withProertyDetailsModel:(KNVUNDRRTPropertyDetailsModel * __autoreleasing *)checkingDetailsModel
 {
     if (checkintPropertyName.length == 0) {
         return NO;
