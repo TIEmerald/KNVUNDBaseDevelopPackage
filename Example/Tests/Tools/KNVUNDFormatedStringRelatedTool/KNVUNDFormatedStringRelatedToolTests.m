@@ -99,6 +99,27 @@ describe(@"FormatedStringRelatedTool", ^{
                                                    checkingFormatedStringPurePropertyResult3,
                                                    checkingFormatedStringPurePropertyExpectResult3);
             });
+            
+            
+            NSString *attributeKeyName1 = @"attribute1";
+            NSString *attributeValue1 = @"attributeValue1";
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat1 = [NSMutableString stringWithString:[NSString stringWithFormat:@"<%%@ %@=\"%@\"></%%@>",
+                                                                                                               attributeKeyName1,
+                                                                                                               attributeValue1]];
+            NSString *checkingFormatedStringPropertyWithAttributesResult1 = [NSMutableString stringWithString:@""];
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult1 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:checkingPropertyName
+                                                                                                                                             type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                         location:0
+                                                                                                                             attributesDictionary:@{attributeKeyName1:attributeValue1}
+                                                                                                                                  andContentValue:@""]];
+            
+            it(@"Property with Attributes Format 1", ^{
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat1,
+                                                   checkingFormatedStringPropertyWithAttributesResult1,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult1);
+            });
+            
         });
     });
 });

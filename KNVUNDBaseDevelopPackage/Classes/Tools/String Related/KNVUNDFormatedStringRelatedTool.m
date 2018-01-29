@@ -30,7 +30,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier = '/';
 char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start = '[';
 char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End = ']';
 
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal = @"=";
+char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal = '=';
 
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
@@ -64,7 +64,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         }
         
         /// Step Two, Adding Attribute to return string.
-        NSString *appendingString = [NSString stringWithFormat:@" %@%@%@",
+        NSString *appendingString = [NSString stringWithFormat:@" %@%c%@",
                                      key,
                                      KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal,
                                      valueString];
@@ -353,9 +353,9 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             if (isPreviousCharEmpty) {
                 continue;
             }
+        } else {
+            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
         }
-        
-        currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
         
         // Part One: Check the Property Starting Identifiers.
         BOOL foundFormatTypeFirstPartBeginString = [self findMatchedString:formatTypeFirstPartBeginString
@@ -459,15 +459,22 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             }
             
             
-            BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End;
+            BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal;
             if (findEqualSign) {
                 // 1. Remove the equal Sign from the current reading String
                 currentReadingString = [currentReadingString substringToIndex:currentReadingString.length - 1];
                 completeCurrentReadingFunction();
                 storedAttributeKeyValue = lastReadingCompleteString;
+                [self performConsoleLogWithLogStringFormat:@"Setting Stored Attribtue Key Value --- %@",
+                 storedAttributeKeyValue];
             }
             
-            if (isCurrentCharacterEmpty && storedAttributeKeyValue.length > 0) {
+            
+            BOOL hasFinishedAttributeValueChecking = isCurrentCharacterEmpty || foundTheEndPartOfTheProperty;
+            if (hasFinishedAttributeValueChecking && storedAttributeKeyValue.length > 0) {
+                [self performConsoleLogWithLogStringFormat:@"Adding Attribut Key - Value --- %@ - %@",
+                 storedAttributeKeyValue,
+                 lastReadingCompleteString];
                 [foundModel updateAddictionalAttributeKey:storedAttributeKeyValue
                                                 withValue:lastReadingCompleteString];
             }
