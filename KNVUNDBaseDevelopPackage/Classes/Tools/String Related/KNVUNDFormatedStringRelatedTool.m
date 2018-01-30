@@ -156,6 +156,12 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
     [parentLevelModel.storedChildrenArray addObject:self];
 }
 
+#pragma mark - NSObject
+- (NSString *)description
+{
+    return self.fullFormatedString;
+}
+
 #pragma mark - Initial
 - (instancetype)init
 {
@@ -563,6 +569,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         
         if (confirmedModel) {
             confirmedModel.location -= outsideLength; // We need to modify the Location... because we will remove some code in out side of current method call
+            [self performConsoleLogWithLogStringFormat:@"Found Model:\n%@",
+             confirmedModel.description];
             [returnArray insertObject:confirmedModel
                               atIndex:insertingModelInsertLocation];
             insertingModelInsertLocation = [returnArray count];

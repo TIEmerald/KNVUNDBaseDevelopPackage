@@ -22,7 +22,7 @@ describe(@"FormatedStringRelatedTool", ^{
         describe(@"Normal Parameter", ^{
             // start lcation = 0, checking times = KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes(0) should remove content value = NO
             __block BOOL shouldRemoveContentValue = NO;
-            NSString *checkingPropertyName = @"test";
+            __block NSString *checkingPropertyName = @"test";
             NSUInteger startCheckingLocation = 0;
             NSUInteger checkingTimes = KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes;
             
@@ -33,6 +33,7 @@ describe(@"FormatedStringRelatedTool", ^{
             beforeEach(^{
                 // This is run before each example.
                 shouldRemoveContentValue = NO;
+                checkingPropertyName = @"test";
                 
                 ignoreingPropertyNames = nil;
             });
@@ -52,6 +53,9 @@ describe(@"FormatedStringRelatedTool", ^{
                 for(int index = 0; index < [readedResult count]; index += 1) {
                     KNVUNDFSRToolHTMLLikeStringModel *getResultModel = readedResult[index];
                     KNVUNDFSRToolHTMLLikeStringModel *expectedResultModel = expectResultResultArray[index];
+                    NSLog(@"\nSelf Model    :%@\nExpected Model:%@",
+                          getResultModel.description,
+                          expectedResultModel.description);
                     expect([getResultModel isEqual:expectedResultModel exceptPropertyNames:ignoreingPropertyNames exceptPropertyShouldNotBeSame:exceptPropertyShouldNotBeSame]).to.beTruthy();
                 }
             };
@@ -63,10 +67,26 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                                location:0
                                                                                                                    attributesDictionary:nil
                                                                                                                         andContentValue:@""]];
+            
+            NSString *specialTestPropertyName1_1 = @"knvdiv";
+            NSString *checkingFormatedStringPurePropertyFormat1_1 = [NSMutableString stringWithString:@"<%@>[logo]</%@>"];
+            NSString *checkingFormatedStringPurePropertyResult1_1 = [NSMutableString stringWithString:@""];
+            NSArray *checkingFormatedStringPurePropertyExpectResult1_1 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                     type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                 location:0
+                                                                                                                     attributesDictionary:nil
+                                                                                                                          andContentValue:@"[logo]"]];
             it(@"Pure Property Format 1", ^{
                 normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat1,
                                                    checkingFormatedStringPurePropertyResult1,
                                                    checkingFormatedStringPurePropertyExpectResult1);
+                
+                shouldRemoveContentValue = YES;
+                checkingPropertyName = specialTestPropertyName1_1;
+                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat1_1,
+                                                   checkingFormatedStringPurePropertyResult1_1,
+                                                   checkingFormatedStringPurePropertyExpectResult1_1);
+                
             });
             
             NSString *checkingFormatedStringPurePropertyFormat2 = [NSMutableString stringWithString:@"<%@ ></%@>"];

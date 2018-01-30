@@ -10,6 +10,9 @@
 // Tools
 #import "KNVUNDRuntimeRelatedTool.h"
 
+// Categories
+#import "NSObject+KNVUNDLogRelated.h"
+
 @implementation NSObject (KNVUNDEqualityChecking)
 
 #pragma mark - Equality
@@ -43,10 +46,10 @@ withHaveCheckedObjectSet:nil];
                                                      
                                                      for (NSArray *checkedPair in usingCheckedObjectSet.allObjects) {
                                                          if (checkedPair[0] == selfPropertyValue && checkedPair[1] == objectPropertyValue) {
-//                                                             [self performConsoleLogWithLogStringFormat:@"Equally Checking Passing..... We have already started or finished the equality checking for these value pair\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
-//                                                              propertyName,
-//                                                              selfPropertyValue,
-//                                                              objectPropertyValue];
+                                                             [self performConsoleLogWithLogStringFormat:@"Equally Checking Passing..... We have already started or finished the equality checking for these value pair\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
+                                                              propertyName,
+                                                              selfPropertyValue,
+                                                              objectPropertyValue];
                                                              return;
                                                          }
                                                      }
@@ -63,10 +66,10 @@ withHaveCheckedObjectSet:nil];
                                                                  return;
                                                              }
                                                          }
-//                                                         [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed.....\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
-//                                                          propertyName,
-//                                                          selfPropertyValue,
-//                                                          objectPropertyValue];
+                                                         [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed.....\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
+                                                          propertyName,
+                                                          selfPropertyValue,
+                                                          objectPropertyValue];
                                                          
                                                          returnValue = NO;
                                                          *stopLoop = YES;
@@ -83,10 +86,10 @@ withHaveCheckedObjectSet:nil];
                                                                      return;
                                                                  }
                                                              }
-//                                                             [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed..... This Property shouldn't be same\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
-//                                                              propertyName,
-//                                                              selfPropertyValue,
-//                                                              objectPropertyValue];
+                                                             [self performConsoleLogWithLogStringFormat:@"Equally Checking Failed..... This Property shouldn't be same\nProperty Name: %@ \nThe value in self is: %@ \nBut the value in object is: %@",
+                                                              propertyName,
+                                                              selfPropertyValue,
+                                                              objectPropertyValue];
                                                              
                                                              returnValue = NO;
                                                              *stopLoop = YES;
