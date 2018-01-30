@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Categories
+#import "NSObject+KNVUNDEqualityChecking.h"
+
 @interface KNVUNDBaseModel : NSObject
 
 @property (nonatomic) BOOL shouldShowRelatedLog;
@@ -32,7 +35,5 @@
 - (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString;
 - (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
 
-#pragma mark - Equality
-- (BOOL)isEqual:(id _Nonnull)object exceptPropertyNames:(NSArray * _Nullable)propertyNames exceptPropertyShouldNotBeSame:(BOOL)exceptValueShouldNotBeSame;
 
 @end

@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic, readwrite) NSUInteger fullLength;
+@property (nonatomic, strong) NSMutableArray *storedChildrenArray;
 
 @end
 
@@ -35,7 +36,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - Getters && Setters
@@ -43,6 +44,11 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 - (NSDictionary *)additionalAttribute
 {
     return _storingAttringbutesDic;
+}
+
+- (NSArray *)relatdChildrenModels
+{
+    return self.storedChildrenArray;
 }
 
 - (NSString *)fullAttributesString
@@ -93,9 +99,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
     return _fullLength;
 }
 
-#pragma mark Support Methods
-
-#pragma mark Support Method
+#pragma mark Support Methodss
 - (NSString *_Nonnull)generateFormatTypeFormatedStringFromSelf
 {
     NSString *endingWrapper = [NSString stringWithFormat:@"%c%c%@%c",
@@ -143,11 +147,21 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
     }
 }
 
+- (void)setParentLevelModel:(KNVUNDFSRToolHTMLLikeStringModel *)parentLevelModel
+{
+    if (_parentLevelModel) {
+        [_parentLevelModel.storedChildrenArray removeObject:self];
+    }
+    _parentLevelModel = parentLevelModel;
+    [parentLevelModel.storedChildrenArray addObject:self];
+}
+
 #pragma mark - Initial
 - (instancetype)init
 {
     if (self = [super init]) {
         _storingAttringbutesDic = [NSMutableDictionary new];
+        self.storedChildrenArray = [NSMutableArray new];
     }
     return self;
 }
@@ -189,7 +203,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - HTML-like Strings
@@ -383,6 +397,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                                           shouldRemoveContentValue:shouldRemoveContentValue
                                             newHTMLLikeStringModel:newModel
                                        outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
+                newModel.location = newModel.location - foundModel.location; /// Location only trackes the the location in parent's content string.
+                newModel.parentLevelModel = foundModel;
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }
@@ -407,6 +423,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                                           shouldRemoveContentValue:shouldRemoveContentValue
                                             newHTMLLikeStringModel:newModel
                                        outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
+                newModel.location = newModel.location - foundModel.location; /// Location only trackes the the location in parent's content string.
+                newModel.parentLevelModel = foundModel;
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }

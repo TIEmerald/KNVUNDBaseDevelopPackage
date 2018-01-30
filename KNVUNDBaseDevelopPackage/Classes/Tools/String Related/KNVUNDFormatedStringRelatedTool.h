@@ -17,9 +17,15 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong, nonnull) NSString *propertyName;
 @property (nonatomic) KNVUNDFSRToolHTMLLikeStringModel_Type type;
 @property (nonatomic, strong, nullable) NSDictionary *additionalAttribute; //// Only Support <String, NSString or NSNumber>,
+
+/// Remember... This value normally only related to it's parent content string index..... if it don't have parent, it will be the outCome 
 @property (nonatomic) NSUInteger location; /// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 4.
                                            /// If the formated String is "abac<propertyName>123456</propertyName><propertyName>123456</propertyName>" the frist location will be 4 and the second location will be 10
                                            /// If the formated String is "12345675[propertyName]123456" the location will be 8.
+
+/// These two properties are used to identify the hiearchy of the String Content's Level...
+@property (nonatomic, strong, nullable) KNVUNDFSRToolHTMLLikeStringModel *parentLevelModel;
+@property (readonly) NSArray *relatdChildrenModels;
 
 @property (readonly, nonnull) NSString *fullAttributesString;
 @property (readonly, nonnull) NSString *fullFormatedString;
@@ -27,7 +33,7 @@ typedef enum : NSUInteger {
                                            /// If the formated String is "abac<propertyName >123456</propertyName>" the fullLength you read from Formated String will be 36.
                                            /// If the formated String is "12345675[propertyName]123456" the fullLength will be 14.
 
-//// This value only useful when you
+//// This value only useful for KNVUNDFSRToolHTMLLikeStringModel_Type_Format..
 @property (nonatomic, strong, nullable) NSString *contentValue; /// If this value is not nil, the formated string will be <propertyName additionalAttributeKey=additionalAttributeValue>contentValue</propertyName>
 
 #pragma mark - Initial
@@ -55,5 +61,9 @@ extern NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes
  * @return NSArray An array of KNVUNDFSRToolHTMLLikeStringModel
  */
 + (NSArray *_Nonnull)readFormatedString:(NSMutableString *_Nonnull)formatedString withPropertyName:(NSString *_Nonnull)propertyName fromStartCheckingLocation:(NSUInteger)startCheckingLocation checkingTimes:(NSUInteger)checkingTimes shouldRemoveContentValue:(BOOL)shouldRemoveContentValue;
+
+///// if this property be set to yes, we won't check into the content, which means... some formate like <aaa><aaa></aaa></aaa> will only return one Model with contentValue = @"<aaa></aaa>"
+/////// NOTICE that This method is not finished yet....
+//+ (NSArray *_Nonnull)readFormatedString:(NSMutableString *_Nonnull)formatedString withPropertyName:(NSString *_Nonnull)propertyName fromStartCheckingLocation:(NSUInteger)startCheckingLocation checkingTimes:(NSUInteger)checkingTimes shouldRemoveContentValue:(BOOL)shouldRemoveContentValue andShouldDeepChecking:(BOOL)shouldDeepChecking;
 
 @end

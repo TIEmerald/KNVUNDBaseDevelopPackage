@@ -106,6 +106,10 @@
 		203E5AF8E7FFBAC37093C6CF3A802FFC /* ZXDimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFB0848909811BF21A1DDC95AC686 /* ZXDimension.m */; };
 		209D01BFAA3459C29372BCD574E5AAC9 /* ZXAztecHighLevelEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1702F7A928AE9B8B09B990A7066B /* ZXAztecHighLevelEncoder.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8007C2D2D8CF500D40CD4883F351D4A2 /* SPTTestSuite.m */; };
+		20C957B32020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C957B12020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C957B42020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C957B22020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m */; };
+		20C957B7202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C957B5202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C957B8202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C957B6202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m */; };
 		20DC8D46A2278D25B5E27A288A8FD9AD /* ZXPDF417BarcodeMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = FE51348DF0704FBD0463933ACB5965F3 /* ZXPDF417BarcodeMetadata.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6288B95D9BB7CEAC978DF428D7F7DF47 /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21B3DAADDCABBFDD03478CCBF5DE49D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260E2DD2BEF852F80CDFE2FD5BBECEB2 /* Foundation.framework */; };
@@ -1194,6 +1198,10 @@
 		20076122231E5BF53478A87803C0298B /* ZXAztecSimpleToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecSimpleToken.h; path = ZXingObjC/aztec/encoder/ZXAztecSimpleToken.h; sourceTree = "<group>"; };
 		208718F5C27D4F28B5A36FFFB8DED8C0 /* ZXQRCodeAlignmentPattern.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeAlignmentPattern.h; path = ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPattern.h; sourceTree = "<group>"; };
 		20C13221B25157EF0DEAB623EB6DF512 /* ZXURIResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXURIResultParser.h; path = ZXingObjC/client/result/ZXURIResultParser.h; sourceTree = "<group>"; };
+		20C957B12020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KNVUNDEqualityChecking.h"; sourceTree = "<group>"; };
+		20C957B22020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KNVUNDEqualityChecking.m"; sourceTree = "<group>"; };
+		20C957B5202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KNVUNDLogRelated.h"; sourceTree = "<group>"; };
+		20C957B6202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KNVUNDLogRelated.m"; sourceTree = "<group>"; };
 		217368091034FECB39D28E7FDF1D7466 /* ZXQRCodeFinderPatternFinder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeFinderPatternFinder.h; path = ZXingObjC/qrcode/detector/ZXQRCodeFinderPatternFinder.h; sourceTree = "<group>"; };
 		2193F4D704F95E9E7CB8C91FF4B69DFC /* ZXCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXCapture.m; path = ZXingObjC/client/ZXCapture.m; sourceTree = "<group>"; };
 		21D8C0DD24077A9CB9D10DBED027DF28 /* ZXMaxiCodeBitMatrixParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMaxiCodeBitMatrixParser.m; path = ZXingObjC/maxicode/decoder/ZXMaxiCodeBitMatrixParser.m; sourceTree = "<group>"; };
@@ -3286,6 +3294,10 @@
 			children = (
 				7015A36CCB69FB4E246942F0C400E710 /* NSObject+KNVUNDPropertyModifyRelated.h */,
 				CCF61875837D10D7C13EC1DA3B640FAF /* NSObject+KNVUNDPropertyModifyRelated.m */,
+				20C957B12020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h */,
+				20C957B22020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m */,
+				20C957B5202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h */,
+				20C957B6202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -3802,6 +3814,8 @@
 				44462496B2C6CFAB7592F9584F4D8F78 /* KNVUNDButtonsSelectionHelper.h in Headers */,
 				19723BDA932576DB4608E1E78F7D9BD8 /* KNVUNDDebugTool.h in Headers */,
 				95C0CEA7B41C97194F352BD8E2C70903 /* KNVUNDEmailRelatedTool.h in Headers */,
+				20C957B32020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h in Headers */,
+				20C957B7202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h in Headers */,
 				8947F32AA32698D8FABC69623BA86CFC /* KNVUNDFormatedStringRelatedTool.h in Headers */,
 				F2C79E9D701133F6AE30EADD5FAE97BB /* KNVUNDGeneralUtilsTool.h in Headers */,
 				4827144D4E6A0DE0418F29E74102BA79 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */,
@@ -4258,6 +4272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				758A809B13362C49BE596826B61D5E95 /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
+				20C957B42020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m in Sources */,
 				13D6783B0027D51CC35EF166902931D6 /* KNVUNDBaseModel.m in Sources */,
 				92A576E767F6027B8AB407EDD4143E1D /* KNVUNDBaseViewController.m in Sources */,
 				56437002FB9D62394EC94F1B73E2DB01 /* KNVUNDButtonsSelectionHelper.m in Sources */,
@@ -4266,6 +4281,7 @@
 				276C598749E9CEDCE70FECB756F1F044 /* KNVUNDFormatedStringRelatedTool.m in Sources */,
 				0C67944A245ADFFED03B595781AED560 /* KNVUNDGeneralUtilsTool.m in Sources */,
 				F8C4C010FF6F067648B89118C3E28C10 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
+				20C957B8202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m in Sources */,
 				F172EB92319DF081D4AB346D4164C47D /* KNVUNDImageRelatedTool.m in Sources */,
 				1E9C305B9ED5DA5A5E3378373591282A /* KNVUNDLocalRelatedTool.m in Sources */,
 				A66584C55CFD791C749482DA9D28920B /* KNVUNDLogRelatedHelper.m in Sources */,
