@@ -196,6 +196,12 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
     return self.type == KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder;
 }
 
+#pragma mark - Getter Methods
+- (id _Nullable)getAttributeValueFromAttributeKey:(NSString *_Nonnull)attributKey
+{
+    return [_storingAttringbutesDic valueForKey:attributKey];
+}
+
 @end
 
 @implementation KNVUNDFormatedStringRelatedTool

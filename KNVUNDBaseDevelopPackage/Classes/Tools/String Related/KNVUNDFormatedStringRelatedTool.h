@@ -16,7 +16,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong, nonnull) NSString *propertyName;
 @property (nonatomic) KNVUNDFSRToolHTMLLikeStringModel_Type type;
-@property (nonatomic, strong, nullable) NSDictionary *additionalAttribute; //// Only Support <String, NSString or NSNumber>,
+@property (nonatomic, strong, nullable) NSDictionary *additionalAttribute; //// Only Support <String: NSString or NSNumber>, //// Curently, from Reading Method, we will only return <String: String>
 
 /// Remember... This value normally only related to it's parent content string index..... if it don't have parent, it will be the outCome 
 @property (nonatomic) NSUInteger location; /// If the formated String is "abac<propertyName>123456</propertyName>" the location will be 4.
@@ -39,6 +39,9 @@ typedef enum : NSUInteger {
 #pragma mark - Initial
 - (instancetype _Nonnull)initWithPropertyName:(NSString *_Nonnull)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type andLocation:(NSUInteger)location;
 - (instancetype _Nonnull)initWithPropertyName:(NSString *_Nonnull)propertyName type:(KNVUNDFSRToolHTMLLikeStringModel_Type)type location:(NSUInteger)location attributesDictionary:(NSDictionary *_Nullable)attributes andContentValue:(NSString *_Nullable)contentValue;
+
+#pragma mark - Getter Methods
+- (id _Nullable)getAttributeValueFromAttributeKey:(NSString *_Nonnull)attributKey;
 
 @end
 
