@@ -36,7 +36,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - Getters && Setters
@@ -209,7 +209,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - HTML-like Strings
