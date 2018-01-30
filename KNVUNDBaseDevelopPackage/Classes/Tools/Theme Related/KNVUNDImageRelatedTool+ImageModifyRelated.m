@@ -10,6 +10,7 @@
 @implementation KNVUNDImageRelatedTool (ImageModifyRelated)
 
 #pragma mark - Modify Images
+#pragma mark - Cropping
 struct PixelColors
 {
     CGFloat red; // 0.0 - 255.0
@@ -133,7 +134,6 @@ struct PixelColors
 }
 
 #pragma mark Support Methods
-
 // By Default we assuem that rawData contains the image data in the RGBA8888 pixel format.
 + (struct PixelColors)getPixelColorFromRawData:(unsigned char *)rawData atPixelY:(NSUInteger)pixelY andPixelX:(NSUInteger)pixelX withBytesPerPixel:(NSUInteger)bytesPerPixel andBytesPerRow:(NSUInteger)bytesPerRow
 {
@@ -200,6 +200,57 @@ struct PixelColors
     }
     
     return ((checkingColor.red >= redRange[0]) && (checkingColor.red <= redRange[1])) && ((checkingColor.green >= greenRange[0]) && (checkingColor.green <= greenRange[1])) && ((checkingColor.blue >= blueRange[0]) && (checkingColor.blue <= blueRange[1]));
+}
+
+#pragma mark - Rotation
+// Reference: https://stackoverflow.com/questions/14857728/how-to-rotate-uiimage
++ (UIImage *_Nullable)getImageFromImage:(UIImage *_Nonnull)sourceImage withOrientation:(UIImageOrientation)orientation
+{
+    CGSize originalSize = sourceImage.size;
+    CGSize usingSize;
+    switch (orientation) {
+            case UIImageOrientationLeft:
+            case UIImageOrientationRight:
+            case UIImageOrientationLeftMirrored:
+            case UIImageOrientationRightMirrored:
+            usingSize = CGSizeMake(originalSize.height, originalSize.width);
+            break;
+        default:
+            usingSize = originalSize;
+            break;
+    }
+    UIGraphicsBeginImageContext(usingSize);
+    [[UIImage imageWithCGImage:[sourceImage CGImage] scale:1.0 orientation:orientation] drawInRect:CGRectMake(0,0,usingSize.width ,usingSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#define DEGREES_TO_RADIANS(degrees)((M_PI * degrees)/180)
+
++ (UIImage *_Nullable)getImageFromImage:(UIImage *_Nonnull)sourceImage withRotatedDegree:(CGFloat)degrees
+{
+    CGFloat radians = DEGREES_TO_RADIANS(degrees);
+    
+    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0, sourceImage.size.width, sourceImage.size.height)];
+    CGAffineTransform t = CGAffineTransformMakeRotation(radians);
+    rotatedViewBox.transform = t;
+    CGSize rotatedSize = rotatedViewBox.frame.size;
+    
+    UIGraphicsBeginImageContextWithOptions(rotatedSize, NO, [[UIScreen mainScreen] scale]);
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(bitmap, rotatedSize.width / 2, rotatedSize.height / 2);
+    
+    CGContextRotateCTM(bitmap, radians);
+    
+    CGContextScaleCTM(bitmap, 1.0, -1.0);
+    CGContextDrawImage(bitmap, CGRectMake(-sourceImage.size.width / 2, -sourceImage.size.height / 2 , sourceImage.size.width, sourceImage.size.height), sourceImage.CGImage );
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

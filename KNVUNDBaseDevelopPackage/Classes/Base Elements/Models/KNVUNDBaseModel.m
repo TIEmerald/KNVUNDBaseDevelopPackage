@@ -84,6 +84,42 @@
             fromString];
 }
 
+#pragma mark - Getters && Setters
+#pragma mark - Getters
+- (NSString *)debugDescriptionIndentString
+{
+    if (_debugDescriptionIndentString == nil) {
+        _debugDescriptionIndentString = @"";
+    }
+    return _debugDescriptionIndentString;
+}
+
+#pragma mark - NSObject
+///// We need to pass a Mutable array to record all checked objects..... in case loop...
+//- (NSString *)debugDescription
+//{
+//    NSMutableString *returnString = [NSMutableString new];
+//    NSString *currentIndentString = self.debugDescriptionIndentString;
+//    NSString *nextLevelIndentString = [currentIndentString stringByAppendingString:@"    "];
+//    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:self
+//                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
+//                                                     [returnString appendString:[NSString stringWithFormat:@"%@%@ (%@):\n",
+//                                                                                 currentIndentString,
+//                                                                                 detailsModel.propertyName,
+//                                                                                 detailsModel.typeName?: @""]];
+//                                                     if ([detailsModel.value isKindOfClass:[KNVUNDBaseModel class]]) {
+//                                                         KNVUNDBaseModel *valueModel = (KNVUNDBaseModel *)detailsModel.value;
+//                                                         valueModel.debugDescriptionIndentString = nextLevelIndentString;
+//                                                         [returnString appendString:valueModel.debugDescription];
+//                                                     } else {
+//                                                         [returnString appendString:[NSString stringWithFormat:@"%@%@\n",
+//                                                                                     nextLevelIndentString,
+//                                                                                     detailsModel.value]];
+//                                                     }
+//                                                 }];
+//    return returnString;
+//}
+
 #pragma mark - Log Related
 - (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
 {
@@ -122,29 +158,9 @@
 #pragma mark - Equality
 - (BOOL)isEqual:(id)object
 {
-    // Step One, Check if the object you passed in is same Class or not.
-    if ([object class] != [self class]) {
-        return NO;
-    }
-    
-    __block BOOL returnValue = YES;
-    
-    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:object
-                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
-                                                     BOOL isObject = detailsModel.propertyType == KNVUNDRuntimeRelatedTool_PropertyType_Object;
-                                                     id selfPropertyValue = [self valueForKey:(NSString *)detailsModel.propertyName];
-                                                     id objectPropertyValue = detailsModel.value;
-                                                     
-                                                     if (!isObject && selfPropertyValue == objectPropertyValue) {
-                                                         return;
-                                                     } else if (isObject && [selfPropertyValue respondsToSelector:@selector(isEqual:)] && [selfPropertyValue isEqual:objectPropertyValue]){
-                                                         return;
-                                                     }
-                                                     returnValue = NO;
-                                                     *stopLoop = YES;
-                                                 }];
-    
-    return returnValue;
+    return [self isEqual:object
+     exceptPropertyNames:nil
+exceptPropertyShouldNotBeSame:NO];
 }
 
 @end

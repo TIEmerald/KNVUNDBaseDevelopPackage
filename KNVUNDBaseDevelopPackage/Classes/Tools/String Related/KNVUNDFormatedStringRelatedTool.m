@@ -17,6 +17,9 @@
     NSMutableDictionary *_storingAttringbutesDic;
 }
 
+@property (nonatomic, readwrite) NSUInteger fullLength;
+@property (nonatomic, strong) NSMutableArray *storedChildrenArray;
+
 @end
 
 @implementation KNVUNDFSRToolHTMLLikeStringModel
@@ -28,13 +31,99 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier = '/';
 char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start = '[';
 char const KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End = ']';
 
-NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal = @"=";
+char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal = '=';
+
+#pragma mark - KNVUNDBaseModel
+- (BOOL)shouldShowRelatedLog
+{
+    return YES;
+}
 
 #pragma mark - Getters && Setters
 #pragma mark - Getters
 - (NSDictionary *)additionalAttribute
 {
     return _storingAttringbutesDic;
+}
+
+- (NSArray *)relatdChildrenModels
+{
+    return self.storedChildrenArray;
+}
+
+- (NSString *)fullAttributesString
+{
+    NSMutableString *returnString = [NSMutableString stringWithString:@""];
+    for (NSString *key in self.additionalAttribute.allKeys) {
+        
+        /// Step One, Get the Value String for current key.
+        NSString *valueString = @"";
+        id value = self.additionalAttribute[key];
+        if ([value isKindOfClass:[NSString class]]) {
+            valueString = [NSString stringWithFormat:@"\"%@\"",
+                           value];
+        } else if ([value isKindOfClass:[NSNumber class]]) {
+            valueString = [NSString stringWithFormat:@"%@",
+                           value];
+        } else {
+            continue; /// We only support NSString or NSNumber
+        }
+        
+        /// Step Two, Adding Attribute to return string.
+        NSString *appendingString = [NSString stringWithFormat:@" %@%c%@",
+                                     key,
+                                     KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal,
+                                     valueString];
+        
+        [returnString appendString:appendingString];
+    }
+    return returnString;
+}
+
+- (NSString *)fullFormatedString
+{
+    switch (self.type) {
+            case KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder:
+            return [self generatePlaceholderTypeFormatedStringFromSelf];
+        default:
+            return [self generateFormatTypeFormatedStringFromSelf];
+    }
+}
+
+- (NSUInteger)fullLength
+{
+    if (_fullLength == 0){
+        /// Which means this model is not generated from read method, and it's a method we want to generate the formated string... Therefore the length should be consistent with fullFormatedString.
+        _fullLength = self.fullFormatedString.length;
+    }
+    return _fullLength;
+}
+
+#pragma mark Support Methodss
+- (NSString *_Nonnull)generateFormatTypeFormatedStringFromSelf
+{
+    NSString *endingWrapper = [NSString stringWithFormat:@"%c%c%@%c",
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier,
+                               self.propertyName,
+                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
+    
+    return [NSString stringWithFormat:@"%c%@%@%c%@%@",
+            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
+            self.propertyName,
+            self.fullAttributesString,
+            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End,
+            self.contentValue ?: @"",
+            endingWrapper];
+}
+
+- (NSString *_Nonnull)generatePlaceholderTypeFormatedStringFromSelf
+{
+    return [NSString stringWithFormat:@"%c%@%@%c",
+            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start,
+            self.propertyName,
+            self.fullAttributesString,
+            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
 }
 
 #pragma mark - Setters
@@ -58,11 +147,21 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
     }
 }
 
+- (void)setParentLevelModel:(KNVUNDFSRToolHTMLLikeStringModel *)parentLevelModel
+{
+    if (_parentLevelModel) {
+        [_parentLevelModel.storedChildrenArray removeObject:self];
+    }
+    _parentLevelModel = parentLevelModel;
+    [parentLevelModel.storedChildrenArray addObject:self];
+}
+
 #pragma mark - Initial
 - (instancetype)init
 {
     if (self = [super init]) {
         _storingAttringbutesDic = [NSMutableDictionary new];
+        self.storedChildrenArray = [NSMutableArray new];
     }
     return self;
 }
@@ -97,6 +196,12 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
     return self.type == KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder;
 }
 
+#pragma mark - Getter Methods
+- (id _Nullable)getAttributeValueFromAttributeKey:(NSString *_Nonnull)attributKey
+{
+    return [_storingAttringbutesDic valueForKey:attributKey];
+}
+
 @end
 
 @implementation KNVUNDFormatedStringRelatedTool
@@ -104,7 +209,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - HTML-like Strings
@@ -116,70 +221,7 @@ NSString *const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_
         return nil;
     }
     
-    switch (fromModel.type) {
-        case KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder:
-            return [self generatePlaceholderTypeFormatedStringFromModel:fromModel
-                                                              withError:error];
-        default:
-            return [self generateFormatTypeFormatedStringFromModel:fromModel
-                                                         withError:error];
-    }
-}
-
-#pragma mark Support Method
-+ (NSString *_Nonnull)generateFormatTypeFormatedStringFromModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nonnull)fromModel withError:(NSError ** _Nullable)error
-{
-    NSString *endingWrapper = [NSString stringWithFormat:@"%c%c%@%c",
-                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
-                               KNVUNDFSRToolHTMLLikeStringModel_Format_Ending_Identifier,
-                               fromModel.propertyName,
-                               KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End];
-    
-    return [NSString stringWithFormat:@"%c%@%@%c%@%@",
-            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_Start,
-            fromModel.propertyName,
-            [self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute],
-            KNVUNDFSRToolHTMLLikeStringModel_Format_Wrapper_End,
-            fromModel.contentValue ?: @"",
-            endingWrapper];
-}
-
-+ (NSString *_Nonnull)generatePlaceholderTypeFormatedStringFromModel:(KNVUNDFSRToolHTMLLikeStringModel *_Nonnull)fromModel withError:(NSError ** _Nullable)error
-{
-    return [NSString stringWithFormat:@"%c%@%@%c",
-            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_Start,
-            fromModel.propertyName,
-            [self generateFomatedStringFromAdditionalAttributes:fromModel.additionalAttribute],
-            KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End];
-}
-
-+ (NSString *_Nonnull)generateFomatedStringFromAdditionalAttributes:(NSDictionary *_Nonnull)additionalAttributes
-{
-    NSMutableString *returnString = [NSMutableString stringWithString:@""];
-    for (NSString *key in additionalAttributes.allKeys) {
-        
-        /// Step One, Get the Value String for current key.
-        NSString *valueString = @"";
-        id value = additionalAttributes[key];
-        if ([value isKindOfClass:[NSString class]]) {
-            valueString = [NSString stringWithFormat:@"\"%@\"",
-                           value];
-        } else if ([value isKindOfClass:[NSNumber class]]) {
-            valueString = [NSString stringWithFormat:@"%@",
-                           value];
-        } else {
-            continue; /// We only support NSString or NSNumber
-        }
-        
-        /// Step Two, Adding Attribute to return string.
-        NSString *appendingString = [NSString stringWithFormat:@" %@%@%@",
-                                     key,
-                                     KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal,
-                                     valueString];
-        
-        [returnString appendString:appendingString];
-    }
-    return returnString;
+    return fromModel.fullFormatedString;
 }
 
 #pragma mark - Reading
@@ -255,7 +297,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
     __block NSString *currentReadingString = @"";
     __block NSString *lastReadingCompleteString = @"";
     
-    void(^resetIdentifierStringChecking)() = ^(){
+    void(^resetIdentifierStringChecking)(void) = ^(){
         checkingIndexInFormatTypeFirstWrapperStart = 0;
         checkingIndexInPlaceholderTypeWrapperStart = 0;
         checkingIndexInFormatTypeFirstWrapperEnd = 0;
@@ -264,7 +306,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         checkingIndexForEqualSignInAttributes = 0;
     };
     
-    void(^completeCurrentReadingFunction)() = ^(){
+    void(^completeCurrentReadingFunction)(void) = ^(){
         if (!hasStartSingleQuotationMark && !hasStartDoubleQuotationMark) {
             lastReadingCompleteString = currentReadingString;
             currentReadingString = @"";
@@ -331,9 +373,9 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             if (isPreviousCharEmpty) {
                 continue;
             }
+        } else {
+            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
         }
-        
-        currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
         
         // Part One: Check the Property Starting Identifiers.
         BOOL foundFormatTypeFirstPartBeginString = [self findMatchedString:formatTypeFirstPartBeginString
@@ -361,6 +403,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                                           shouldRemoveContentValue:shouldRemoveContentValue
                                             newHTMLLikeStringModel:newModel
                                        outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
+                newModel.location = newModel.location - foundModel.location; /// Location only trackes the the location in parent's content string.
+                newModel.parentLevelModel = foundModel;
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }
@@ -385,6 +429,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                                           shouldRemoveContentValue:shouldRemoveContentValue
                                             newHTMLLikeStringModel:newModel
                                        outsideFirstPartTotalLength:outsideLength + formatTypeFirstPartRange.length];
+                newModel.location = newModel.location - foundModel.location; /// Location only trackes the the location in parent's content string.
+                newModel.parentLevelModel = foundModel;
                 if (remainingCheckingTimes != 0) {
                     remainingCheckingTimes -= [newFoundModels count];
                 }
@@ -418,6 +464,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                     
                     [formatedString deleteCharactersInRange:propertyPartRange];
                     *checkingIndex = *checkingIndex - propertyPartRange.length;
+                    foundModel.fullLength = propertyPartRange.length;
                     
                     [self performConsoleLogWithLogStringFormat:@"Confirm Placeholder Type Property at Range: %@  ----  %@ \nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
                      NSStringFromRange(propertyPartRange),
@@ -436,15 +483,22 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             }
             
             
-            BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Placeholder_Wrapper_End;
+            BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal;
             if (findEqualSign) {
                 // 1. Remove the equal Sign from the current reading String
                 currentReadingString = [currentReadingString substringToIndex:currentReadingString.length - 1];
                 completeCurrentReadingFunction();
                 storedAttributeKeyValue = lastReadingCompleteString;
+                [self performConsoleLogWithLogStringFormat:@"Setting Stored Attribtue Key Value --- %@",
+                 storedAttributeKeyValue];
             }
             
-            if (isCurrentCharacterEmpty && storedAttributeKeyValue.length > 0) {
+            
+            BOOL hasFinishedAttributeValueChecking = isCurrentCharacterEmpty || foundTheEndPartOfTheProperty;
+            if (hasFinishedAttributeValueChecking && storedAttributeKeyValue.length > 0) {
+                [self performConsoleLogWithLogStringFormat:@"Adding Attribut Key - Value --- %@ - %@",
+                 storedAttributeKeyValue,
+                 lastReadingCompleteString];
                 [foundModel updateAddictionalAttributeKey:storedAttributeKeyValue
                                                 withValue:lastReadingCompleteString];
             }
@@ -464,6 +518,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                 NSRange fullRange = NSMakeRange(formatTypeFirstPartRange.location, contentRange.length + formatTypeFirstPartRange.length + secondPartRange.length);
                 
                 foundModel.contentValue = [formatedString substringWithRange:contentRange];
+                foundModel.fullLength = fullRange.length;
                 NSString *fullString = [formatedString substringWithRange:fullRange];
                 
                 if (shouldRemoveContentValue) {

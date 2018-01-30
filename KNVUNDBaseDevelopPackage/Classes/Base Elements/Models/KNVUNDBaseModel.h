@@ -7,9 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
+// Categories
+#import "NSObject+KNVUNDEqualityChecking.h"
+
 @interface KNVUNDBaseModel : NSObject
 
 @property (nonatomic) BOOL shouldShowRelatedLog;
+@property (nonatomic, strong, nonnull) NSString *debugDescriptionIndentString;
 
 #pragma mark - Class Methods
 // You have to override this method if you want to show any log inside Class Method.
@@ -30,5 +34,6 @@
 - (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
 - (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString;
 - (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);
+
 
 @end
