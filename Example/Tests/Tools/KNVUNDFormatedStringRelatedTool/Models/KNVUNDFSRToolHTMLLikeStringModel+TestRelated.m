@@ -10,4 +10,18 @@
 
 @implementation KNVUNDFSRToolHTMLLikeStringModel (TestRelated)
 
+- (BOOL)isEqual:(id)object
+{
+    NSString *selfDescriptionString = self.description;
+    NSString *objectDescriptionString = ((KNVUNDFSRToolHTMLLikeStringModel *)object).description;
+    
+    if (![selfDescriptionString isEqual:objectDescriptionString]) {
+        [self performConsoleLogWithLogStringFormat:@"Description is not Match:\nSelf Model    :%@\nExpected Model:%@",
+         selfDescriptionString,
+         objectDescriptionString];
+        return NO;
+    }
+    return YES;
+}
+
 @end

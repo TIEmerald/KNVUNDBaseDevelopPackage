@@ -60,12 +60,4 @@
 //    return returnString;
 //}
 
-#pragma mark - Equality
-- (BOOL)isEqual:(id)object
-{
-    return [self isEqual:object
-     exceptPropertyNames:nil
-exceptPropertyShouldNotBeSame:NO];
-}
-
 @end

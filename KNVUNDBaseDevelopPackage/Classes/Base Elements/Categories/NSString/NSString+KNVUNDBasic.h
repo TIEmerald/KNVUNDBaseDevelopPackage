@@ -12,6 +12,7 @@
 #pragma mark - Modify
 #pragma mark Trimming
 - (NSString *)stringByTrimmingWhiteSpaces;
+- (NSString *)stringByTrimmingWhiteSpacesAndNewlineCharacter;
 
 #pragma mark Character Related
 - (NSString *)stringByAppendACharacter:(char)aChar;

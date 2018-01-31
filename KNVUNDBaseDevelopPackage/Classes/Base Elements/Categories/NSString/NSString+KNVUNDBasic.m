@@ -16,6 +16,11 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
+- (NSString *)stringByTrimmingWhiteSpacesAndNewlineCharacter
+{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 #pragma mark Character Related
 - (NSString *)stringByAppendACharacter:(char)aChar
 {

@@ -36,7 +36,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - Getters && Setters
@@ -215,7 +215,7 @@ char const KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - HTML-like Strings
@@ -312,14 +312,26 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         checkingIndexForEqualSignInAttributes = 0;
     };
     
-    void(^completeCurrentReadingFunction)(void) = ^(){
+    void(^completeCurrentReadingFunction)(BOOL removeLastChar) = ^(BOOL removeLastChar){
         if (!hasStartSingleQuotationMark && !hasStartDoubleQuotationMark) {
+            if (removeLastChar) {
+                currentReadingString = [currentReadingString substringToIndex:currentReadingString.length - 1];
+            }
             lastReadingCompleteString = currentReadingString;
             currentReadingString = @"";
             [self performConsoleLogWithLogStringFormat:@"Stop Previous Reading Scope --- Last Reading Scope Content: %@",
              lastReadingCompleteString];
         }
         resetIdentifierStringChecking();
+    };
+    
+    void(^readOneCharacter)(char aChar) = ^(char aChar){
+        if (haveCheckedAttributes || foundModel != nil) { /// This method is only used for attribute checking... if we have already found attributes... they should be fine
+            return;
+        }
+        currentReadingString = [currentReadingString stringByAppendACharacter:aChar];
+        [self performConsoleLogWithLogStringFormat:@"Current Attributes Checking Reading Content is: %@",
+         currentReadingString];
     };
     
     while (*checkingIndex < formatedString.length && !shouldStop) {
@@ -335,7 +347,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         
         if (shouldIgnoreNextFunctionChar) {
             shouldIgnoreNextFunctionChar = NO;
-            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+            readOneCharacter(currentCheckingChar);
             resetIdentifierStringChecking();
             continue;
         }
@@ -347,7 +359,7 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         
         if (currentCheckingChar == '\'') {
             hasStartSingleQuotationMark = !hasStartSingleQuotationMark;
-            completeCurrentReadingFunction();
+            completeCurrentReadingFunction(NO);
             continue;
         }
         
@@ -356,13 +368,13 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             if (!hasStartDoubleQuotationMark) {
                 hasStartSingleQuotationMark = NO;
             }
-            completeCurrentReadingFunction();
+            completeCurrentReadingFunction(NO);
             continue;
         }
         
         BOOL inQuotation = hasStartSingleQuotationMark || hasStartDoubleQuotationMark;
         if (inQuotation) {
-            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+            readOneCharacter(currentCheckingChar);
             continue;
         }
         
@@ -374,13 +386,13 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         
         if (isCurrentCharacterEmpty) {
             if (currentReadingString.length > 0) {
-                completeCurrentReadingFunction();
+                completeCurrentReadingFunction(NO);
             }
             if (isPreviousCharEmpty) {
                 continue;
             }
         } else {
-            currentReadingString = [currentReadingString stringByAppendACharacter:currentCheckingChar];
+            readOneCharacter(currentCheckingChar);
         }
         
         // Part One: Check the Property Starting Identifiers.
@@ -457,6 +469,9 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
             // Logic of found the end part
             if (foundTheEndPartOfTheProperty) {
                 // 1. Mark we have found the Attribute.
+                if (currentReadingString.length > 1) {
+                    completeCurrentReadingFunction(YES);
+                }
                 haveCheckedAttributes = YES;
                 
                 NSRange propertyPartRange = NSMakeRange(foundModel.location, currentCheckingIndex - foundModel.location + 1);
@@ -488,12 +503,10 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
                 }
             }
             
-            
             BOOL findEqualSign = currentCheckingChar == KNVUNDFSRToolHTMLLikeStringModel_Additional_Attributes_Property_Equal;
             if (findEqualSign) {
                 // 1. Remove the equal Sign from the current reading String
-                currentReadingString = [currentReadingString substringToIndex:currentReadingString.length - 1];
-                completeCurrentReadingFunction();
+                completeCurrentReadingFunction(YES);
                 storedAttributeKeyValue = lastReadingCompleteString;
                 [self performConsoleLogWithLogStringFormat:@"Setting Stored Attribtue Key Value --- %@",
                  storedAttributeKeyValue];
