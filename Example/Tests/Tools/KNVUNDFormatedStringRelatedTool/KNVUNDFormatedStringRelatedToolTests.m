@@ -263,6 +263,41 @@ describe(@"FormatedStringRelatedTool", ^{
                                                    checkingFormatedStringPropertyWithAttributesExpectResult1_1_plus);
             });
             
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat2 = @"<%@ orientation_direction=\"TOP_DOWN\"><%@ orientation_direction=\"TOP_RIGHT\" width=75>[logo]</%@><%@ orientation_direction=\"TOP_LEFT\" width=150>[logo]</%@></%@>";
+            NSString *checkingFormatedStringPropertyWithAttributesResult2 = [NSMutableString stringWithString:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel1 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_DOWN"}
+                                                                                                                         andContentValue:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel2 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_RIGHT",
+                                                                                                                                           @"width" : @"75"
+                                                                                                                                           }
+                                                                                                                         andContentValue:@"[logo]"];
+            attributTest2ResultModel2.parentLevelModel = attributTest2ResultModel1;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel3 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_LEFT",
+                                                                                                                                           @"width" : @"150"}
+                                                                                                                         andContentValue:@"[logo]"];
+            attributTest2ResultModel3.parentLevelModel = attributTest2ResultModel1;
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult3 = @[attributTest2ResultModel1,
+                                                                                   attributTest2ResultModel2,
+                                                                                   attributTest2ResultModel3];
+            
+            it(@"Property with Attributes Format 2", ^{
+                shouldRemoveContentValue = YES;
+                checkingPropertyName = specialTestPropertyName1_1;
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat2,
+                                                   checkingFormatedStringPropertyWithAttributesResult2,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult3);
+            });
+            
         });
     });
 });
