@@ -22,19 +22,14 @@ describe(@"FormatedStringRelatedTool", ^{
         describe(@"Normal Parameter", ^{
             // start lcation = 0, checking times = KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes(0) should remove content value = NO
             __block BOOL shouldRemoveContentValue = NO;
-            NSString *checkingPropertyName = @"test";
+            __block NSString *checkingPropertyName = @"test";
             NSUInteger startCheckingLocation = 0;
             NSUInteger checkingTimes = KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes;
-            
-            // Equally Related
-            __block NSArray *ignoreingPropertyNames = nil;
-            BOOL exceptPropertyShouldNotBeSame = YES;
             
             beforeEach(^{
                 // This is run before each example.
                 shouldRemoveContentValue = NO;
-                
-                ignoreingPropertyNames = nil;
+                checkingPropertyName = @"test";
             });
             
             void(^normalParameterReadFunctionTesting)(NSString *, NSString *, NSArray *) = ^(NSString *checkingFormat, NSString *expectResultString, NSArray *expectResultResultArray){
@@ -52,7 +47,7 @@ describe(@"FormatedStringRelatedTool", ^{
                 for(int index = 0; index < [readedResult count]; index += 1) {
                     KNVUNDFSRToolHTMLLikeStringModel *getResultModel = readedResult[index];
                     KNVUNDFSRToolHTMLLikeStringModel *expectedResultModel = expectResultResultArray[index];
-                    expect([getResultModel isEqual:expectedResultModel exceptPropertyNames:ignoreingPropertyNames exceptPropertyShouldNotBeSame:exceptPropertyShouldNotBeSame]).to.beTruthy();
+                    expect([getResultModel isEqual:expectedResultModel]).to.beTruthy();
                 }
             };
             
@@ -63,10 +58,26 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                                location:0
                                                                                                                    attributesDictionary:nil
                                                                                                                         andContentValue:@""]];
+            
+            NSString *specialTestPropertyName1_1 = @"knvdiv";
+            NSString *checkingFormatedStringPurePropertyFormat1_1 = [NSMutableString stringWithString:@"<%@>[logo]</%@>"];
+            NSString *checkingFormatedStringPurePropertyResult1_1 = [NSMutableString stringWithString:@""];
+            NSArray *checkingFormatedStringPurePropertyExpectResult1_1 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                     type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                 location:0
+                                                                                                                     attributesDictionary:nil
+                                                                                                                          andContentValue:@"[logo]"]];
             it(@"Pure Property Format 1", ^{
                 normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat1,
                                                    checkingFormatedStringPurePropertyResult1,
                                                    checkingFormatedStringPurePropertyExpectResult1);
+                
+                shouldRemoveContentValue = YES;
+                checkingPropertyName = specialTestPropertyName1_1;
+                normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat1_1,
+                                                   checkingFormatedStringPurePropertyResult1_1,
+                                                   checkingFormatedStringPurePropertyExpectResult1_1);
+                
             });
             
             NSString *checkingFormatedStringPurePropertyFormat2 = [NSMutableString stringWithString:@"<%@ ></%@>"];
@@ -77,7 +88,6 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                    attributesDictionary:nil
                                                                                                                         andContentValue:@""]];
             it(@"Pure Property Format 2", ^{
-                ignoreingPropertyNames = @[@"fullLength"];
                 normalParameterReadFunctionTesting(checkingFormatedStringPurePropertyFormat2,
                                                    checkingFormatedStringPurePropertyResult2,
                                                    checkingFormatedStringPurePropertyExpectResult2);
@@ -204,10 +214,88 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                              attributesDictionary:@{attributeKeyName1:attributeValue1}
                                                                                                                                   andContentValue:@""]];
             
+            NSString *attributeKeyName1_1_1 = @"orientation_direction";
+            NSString *attributeValue1_1_1 = @"TOP_RIGHT";
+            NSString *attributeKeyName1_1_2 = @"width";
+            NSString *attributeValue1_1_2 = @"75";
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat1_1 = [NSMutableString stringWithString:[NSString stringWithFormat:@"<%%@ %@=\"%@\" %@=\"%@\">[logo]</%%@>",
+                                                                                                               attributeKeyName1_1_1,
+                                                                                                               attributeValue1_1_1,
+                                                                                                               attributeKeyName1_1_2,
+                                                                                                               attributeValue1_1_2]];
+            NSString *checkingFormatedStringPropertyWithAttributesResult1_1 = [NSMutableString stringWithString:@""];
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult1_1 = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                             type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                         location:0
+                                                                                                                             attributesDictionary:@{attributeKeyName1_1_1 : attributeValue1_1_1,
+                                                                                                                                                    attributeKeyName1_1_2 : attributeValue1_1_2
+                                                                                                                                                    }
+                                                                                                                                  andContentValue:@"[logo]"]];
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat1_1_plus = [NSMutableString stringWithString:[NSString stringWithFormat:@"<%%@ %@=\"%@\" %@=%@>[logo]</%%@>",
+                                                                                                                 attributeKeyName1_1_1,
+                                                                                                                 attributeValue1_1_1,
+                                                                                                                 attributeKeyName1_1_2,
+                                                                                                                 attributeValue1_1_2]];
+            NSString *checkingFormatedStringPropertyWithAttributesResult1_1_plus = [NSMutableString stringWithString:@""];
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult1_1_plus = @[[[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                               type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                           location:0
+                                                                                                                               attributesDictionary:@{attributeKeyName1_1_1 : attributeValue1_1_1,
+                                                                                                                                                      attributeKeyName1_1_2 : attributeValue1_1_2
+                                                                                                                                                      }
+                                                                                                                                    andContentValue:@"[logo]"]];
+            
             it(@"Property with Attributes Format 1", ^{
                 normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat1,
                                                    checkingFormatedStringPropertyWithAttributesResult1,
                                                    checkingFormatedStringPropertyWithAttributesExpectResult1);
+                
+                shouldRemoveContentValue = YES;
+                checkingPropertyName = specialTestPropertyName1_1;
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat1_1,
+                                                   checkingFormatedStringPropertyWithAttributesResult1_1,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult1_1);
+                
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat1_1_plus,
+                                                   checkingFormatedStringPropertyWithAttributesResult1_1_plus,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult1_1_plus);
+            });
+            
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat2 = @"<%@ orientation_direction=\"TOP_DOWN\"><%@ orientation_direction=\"TOP_RIGHT\" width=75>[logo]</%@><%@ orientation_direction=\"TOP_LEFT\" width=150>[logo]</%@></%@>";
+            NSString *checkingFormatedStringPropertyWithAttributesResult2 = [NSMutableString stringWithString:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel1 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_DOWN"}
+                                                                                                                         andContentValue:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel2 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_RIGHT",
+                                                                                                                                           @"width" : @"75"
+                                                                                                                                           }
+                                                                                                                         andContentValue:@"[logo]"];
+            attributTest2ResultModel2.parentLevelModel = attributTest2ResultModel1;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2ResultModel3 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                location:0
+                                                                                                                    attributesDictionary:@{@"orientation_direction" : @"TOP_LEFT",
+                                                                                                                                           @"width" : @"150"}
+                                                                                                                         andContentValue:@"[logo]"];
+            attributTest2ResultModel3.parentLevelModel = attributTest2ResultModel1;
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult3 = @[attributTest2ResultModel1,
+                                                                                   attributTest2ResultModel2,
+                                                                                   attributTest2ResultModel3];
+            
+            it(@"Property with Attributes Format 2", ^{
+                shouldRemoveContentValue = YES;
+                checkingPropertyName = specialTestPropertyName1_1;
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat2,
+                                                   checkingFormatedStringPropertyWithAttributesResult2,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult3);
             });
             
         });

@@ -253,4 +253,54 @@ struct PixelColors
     return newImage;
 }
 
+#pragma mark - Combining
++ (UIImage *_Nullable)getImageFromCombiningImages:(NSArray *_Nonnull)fromImages withOrientation:(KNVUNDImageRelatedTool_CombiningOrientation)orientation
+{
+    return [self getImageFromCombiningImages:fromImages
+                             withOrientation:orientation
+                         withBackGroundColor:nil];
+}
+
++ (UIImage *_Nullable)getImageFromCombiningImages:(NSArray *_Nonnull)fromImages withOrientation:(KNVUNDImageRelatedTool_CombiningOrientation)orientation withBackGroundColor:(UIColor *_Nullable)defaultBackgroundColor
+{
+    CGFloat maximumWidth = 0.0;
+    CGFloat maximumHeight = 0.0;
+    CGFloat totalWidth = 0.0;
+    CGFloat totalHeight = 0.0;
+    BOOL isHorizontalOrder = orientation == KNVUNDImageRelatedTool_CombiningOrientation_Horizontal;
+    UIColor *usingBackgroundColor = defaultBackgroundColor ?: [UIColor whiteColor];
+    
+    for (UIImage *image in fromImages) {
+        CGFloat currentWidth = image.size.width;
+        CGFloat currentHeight = image.size.height;
+        totalWidth += currentWidth;
+        totalHeight += currentHeight;
+        maximumWidth = MAX(maximumWidth, totalWidth);
+        maximumHeight = MAX(maximumHeight, currentHeight);
+    }
+    
+    UIImage *returnImage = nil;
+    CGSize newImageSize = isHorizontalOrder ? CGSizeMake(totalWidth, maximumHeight) : CGSizeMake(maximumWidth, totalHeight);
+    UIGraphicsBeginImageContextWithOptions(newImageSize, NO, [[UIScreen mainScreen] scale]);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [usingBackgroundColor CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, newImageSize.width, newImageSize.height));
+    
+    CGFloat nextInsertPosition = 0.0;
+    for (UIImage *image in fromImages) {
+        CGFloat currentWidth = image.size.width;
+        CGFloat currentHeight = image.size.height;
+        CGPoint originPoint = isHorizontalOrder ? CGPointMake(nextInsertPosition, 0.0) : CGPointMake(0.0, nextInsertPosition);
+        CGRect drawingRect = CGRectMake(originPoint.x, originPoint.y, currentWidth, currentHeight);
+        [image drawInRect:drawingRect];
+        
+        nextInsertPosition = isHorizontalOrder ? (nextInsertPosition + currentWidth) : (nextInsertPosition + currentHeight);
+    }
+    returnImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return returnImage;
+}
+
 @end

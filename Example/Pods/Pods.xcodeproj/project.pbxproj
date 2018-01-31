@@ -103,6 +103,12 @@
 		1F2354F94921B681FB4B1852F8AC5332 /* MZAppearance-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C701DE7F2FD15F17476AD3A34B6732 /* MZAppearance-dummy.m */; };
 		1F7B063C6AF3FC259C3ECD47EC7F0340 /* ZXCode128Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9241A4AE8A3D8A03FF697E8F42B4785D /* ZXCode128Writer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB9A69AFEAA9CD3B543AC92AAEE1BD8 /* ZXUPCAReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BAA57141A9EE11948119577DE7F68B /* ZXUPCAReader.m */; };
+		202CC24420216E7000215148 /* KNVUNDFormatedStringReadingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 202CC24220216E7000215148 /* KNVUNDFormatedStringReadingHelper.h */; };
+		202CC24520216E7000215148 /* KNVUNDFormatedStringReadingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 202CC24320216E7000215148 /* KNVUNDFormatedStringReadingHelper.m */; };
+		202CC2492021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 202CC2472021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		202CC24A2021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 202CC2482021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.m */; };
+		202CC25120217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 202CC24F20217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h */; };
+		202CC25220217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 202CC25020217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m */; };
 		203E5AF8E7FFBAC37093C6CF3A802FFC /* ZXDimension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFB0848909811BF21A1DDC95AC686 /* ZXDimension.m */; };
 		209D01BFAA3459C29372BCD574E5AAC9 /* ZXAztecHighLevelEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC1702F7A928AE9B8B09B990A7066B /* ZXAztecHighLevelEncoder.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8007C2D2D8CF500D40CD4883F351D4A2 /* SPTTestSuite.m */; };
@@ -1196,6 +1202,12 @@
 		1F87494AC84722F5AB6446FCFB7536A0 /* ZXRSSUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSUtils.m; path = ZXingObjC/oned/rss/ZXRSSUtils.m; sourceTree = "<group>"; };
 		1FD25A268521F4696ED34901EAEC25B7 /* EXPMatchers+contain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+contain.m"; path = "Expecta/Matchers/EXPMatchers+contain.m"; sourceTree = "<group>"; };
 		20076122231E5BF53478A87803C0298B /* ZXAztecSimpleToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecSimpleToken.h; path = ZXingObjC/aztec/encoder/ZXAztecSimpleToken.h; sourceTree = "<group>"; };
+		202CC24220216E7000215148 /* KNVUNDFormatedStringReadingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDFormatedStringReadingHelper.h; sourceTree = "<group>"; };
+		202CC24320216E7000215148 /* KNVUNDFormatedStringReadingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFormatedStringReadingHelper.m; sourceTree = "<group>"; };
+		202CC2472021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDFSRToolHTMLLikeStringModel.h; sourceTree = "<group>"; };
+		202CC2482021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFSRToolHTMLLikeStringModel.m; sourceTree = "<group>"; };
+		202CC24F20217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h"; sourceTree = "<group>"; };
+		202CC25020217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m"; sourceTree = "<group>"; };
 		208718F5C27D4F28B5A36FFFB8DED8C0 /* ZXQRCodeAlignmentPattern.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeAlignmentPattern.h; path = ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPattern.h; sourceTree = "<group>"; };
 		20C13221B25157EF0DEAB623EB6DF512 /* ZXURIResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXURIResultParser.h; path = ZXingObjC/client/result/ZXURIResultParser.h; sourceTree = "<group>"; };
 		20C957B12020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KNVUNDEqualityChecking.h"; sourceTree = "<group>"; };
@@ -2160,6 +2172,26 @@
 			path = LinqToObjectiveC;
 			sourceTree = "<group>";
 		};
+		202CC24120216E4600215148 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				202CC24220216E7000215148 /* KNVUNDFormatedStringReadingHelper.h */,
+				202CC24320216E7000215148 /* KNVUNDFormatedStringReadingHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		202CC246202173BD00215148 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				202CC2472021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h */,
+				202CC2482021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.m */,
+				202CC24F20217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h */,
+				202CC25020217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		24FC3C6BE0CC502270D7F9E8FFCB086C /* PPTopMostController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2675,6 +2707,8 @@
 		39D894041C8017BD58DE57405E92C83E /* String Related */ = {
 			isa = PBXGroup;
 			children = (
+				202CC246202173BD00215148 /* Model */,
+				202CC24120216E4600215148 /* Helper */,
 				4211C2080C8D27C61C0F5663096A4C4F /* KNVUNDFormatedStringRelatedTool.h */,
 				D68F04CA73C06B6351C1DEE710EE757E /* KNVUNDFormatedStringRelatedTool.m */,
 			);
@@ -3811,6 +3845,7 @@
 				BB3DB6FF97CDCE6AA67156861D3980B1 /* KNVUNDBaseDevelopPackage-umbrella.h in Headers */,
 				C8D0B0A747512BBE9FDF1FBD976E1400 /* KNVUNDBaseModel.h in Headers */,
 				A8CC17985FFE5BC8E6C64242CB953568 /* KNVUNDBaseViewController.h in Headers */,
+				202CC25120217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h in Headers */,
 				44462496B2C6CFAB7592F9584F4D8F78 /* KNVUNDButtonsSelectionHelper.h in Headers */,
 				19723BDA932576DB4608E1E78F7D9BD8 /* KNVUNDDebugTool.h in Headers */,
 				95C0CEA7B41C97194F352BD8E2C70903 /* KNVUNDEmailRelatedTool.h in Headers */,
@@ -3820,6 +3855,8 @@
 				F2C79E9D701133F6AE30EADD5FAE97BB /* KNVUNDGeneralUtilsTool.h in Headers */,
 				4827144D4E6A0DE0418F29E74102BA79 /* KNVUNDImageRelatedTool+ImageModifyRelated.h in Headers */,
 				9ADDB48696264F4A69D7500E5E567461 /* KNVUNDImageRelatedTool.h in Headers */,
+				202CC24420216E7000215148 /* KNVUNDFormatedStringReadingHelper.h in Headers */,
+				202CC2492021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h in Headers */,
 				EB34EEE4B91FFC90F0204BFC4FA29064 /* KNVUNDLocalRelatedTool.h in Headers */,
 				48184A60324405ECA3EC8A90B27BA6B4 /* KNVUNDLogRelatedHelper.h in Headers */,
 				F27D2A0D3861E8AE9E722F78DCBB710D /* KNVUNDRootErrorCodeTool.h in Headers */,
@@ -4273,6 +4310,7 @@
 			files = (
 				758A809B13362C49BE596826B61D5E95 /* KNVUNDBaseDevelopPackage-dummy.m in Sources */,
 				20C957B42020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.m in Sources */,
+				202CC25220217A1E00215148 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m in Sources */,
 				13D6783B0027D51CC35EF166902931D6 /* KNVUNDBaseModel.m in Sources */,
 				92A576E767F6027B8AB407EDD4143E1D /* KNVUNDBaseViewController.m in Sources */,
 				56437002FB9D62394EC94F1B73E2DB01 /* KNVUNDButtonsSelectionHelper.m in Sources */,
@@ -4284,7 +4322,9 @@
 				20C957B8202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.m in Sources */,
 				F172EB92319DF081D4AB346D4164C47D /* KNVUNDImageRelatedTool.m in Sources */,
 				1E9C305B9ED5DA5A5E3378373591282A /* KNVUNDLocalRelatedTool.m in Sources */,
+				202CC24520216E7000215148 /* KNVUNDFormatedStringReadingHelper.m in Sources */,
 				A66584C55CFD791C749482DA9D28920B /* KNVUNDLogRelatedHelper.m in Sources */,
+				202CC24A2021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.m in Sources */,
 				4D996FD36C94BDE4CE2BFBD260D6A6B7 /* KNVUNDRootErrorCodeTool.m in Sources */,
 				71DDA03AF61EAC2F36D4690F04E9392A /* KNVUNDRuntimeRelatedTool.m in Sources */,
 				64049BFD366B1F69881AB2E6F73BD851 /* KNVUNDScannerHelper.m in Sources */,
