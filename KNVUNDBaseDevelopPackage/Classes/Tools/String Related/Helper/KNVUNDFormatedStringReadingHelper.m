@@ -86,7 +86,7 @@ typedef enum : NSUInteger {
 - (KNVUNDFSReadingHelperSingleReadingModel *)copySelfToANewSingleReadingModel
 {
     KNVUNDFSReadingHelperSingleReadingModel *returnModel = [KNVUNDFSReadingHelperSingleReadingModel new];
-    returnModel.formatTypeFirstPartBeginString = self.formatTypeSecondPartString;
+    returnModel.formatTypeFirstPartBeginString = self.formatTypeFirstPartBeginString;
     returnModel.formatTypeSecondPartString = self.formatTypeSecondPartString;
     returnModel.placeholderTypeBeginString = self.placeholderTypeBeginString;
     returnModel.shouldRemoveContentValue = self.shouldRemoveContentValue;
@@ -352,6 +352,11 @@ typedef enum : NSUInteger {
     NSMutableArray *returnArray = [NSMutableArray array];
     NSUInteger insertingModelInsertLocation = 0;
     BOOL shouldBackToLastLevelWhenFinished = singleReadingModel.relatedStringModel != nil; /// If we have passed newModel which means this method is called in nested... we need to back to privious level when this level checking is finished
+    if (shouldBackToLastLevelWhenFinished) {
+        [self performConsoleLogWithLogString:@"Enter Next Level Retrieving Loop Method --- Reason: Find another String Reading Model inside anther Reading Model."];
+    } else {
+        [self performConsoleLogWithLogString:@"Enter Initial Retrieving Loop Method."];
+    }
     BOOL shouldStop = NO;
     NSRange formatTypeFirstPartRange;
     
@@ -571,6 +576,11 @@ typedef enum : NSUInteger {
             insertingModelInsertLocation = [returnArray count];
         
             if (singleReadingModel.remainingCheckingTimes == 1 || shouldBackToLastLevelWhenFinished) {
+                if (shouldBackToLastLevelWhenFinished) {
+                    [self performConsoleLogWithLogString:@"Stop Retrieving Loop Method --- Reason: Going To Previous Level Retrieving Loop."];
+                } else {
+                    [self performConsoleLogWithLogString:@"Stop Retrieving Loop Method --- Reason: Reached the highest checking limit."];
+                }
                 shouldStop = YES;
             }
         }
