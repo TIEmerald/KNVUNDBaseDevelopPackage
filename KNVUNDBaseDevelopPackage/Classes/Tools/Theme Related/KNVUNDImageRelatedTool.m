@@ -12,7 +12,7 @@
 #pragma mark - KNVUNDBaseModel
 + (BOOL)shouldShowClassMethodLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - Image Generating Related

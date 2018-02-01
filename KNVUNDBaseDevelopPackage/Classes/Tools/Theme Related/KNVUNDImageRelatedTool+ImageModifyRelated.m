@@ -87,14 +87,22 @@ struct PixelColors
         BOOL didReachTheMaximumImageHeightInPixel = (checkingPixelY - lastYCutPointInPixel >= maximumSubImageHeightInPixel);
         BOOL didReachTheEndLineOfOriginImage = checkingPixelY == height - 1;
         if (didReachTheMaximumImageHeightInPixel) {
-            BOOL hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY = lastPixelYThatCouldCut == NSNotFound;
-            NSUInteger newYCutPointInPixel = hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? checkingPixelY : lastPixelYThatCouldCut;
-            BOOL imageHasContent = hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? (hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY || hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut) : hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut;
+            BOOL hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY = lastPixelYThatCouldCut > lastYCutPointInPixel;
+            NSUInteger newYCutPointInPixel = !hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? checkingPixelY : lastPixelYThatCouldCut;
+            BOOL imageHasContent = !hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? (hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY || hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut) : hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut;
             
             CGRect cuttingSize = CGRectMake(0,
                                             lastYCutPointInPixel / scale,
                                             originImage.size.width,
                                             (newYCutPointInPixel - lastYCutPointInPixel) / scale);
+            [self performConsoleLogWithLogStringFormat:@"Corping Image From Original Image:\nCorping Rect: %@\nCurrent Checking Pixel Y: %@\nLast Cutting Pixel Y: %@\nMaximum Sub-Image Height: %@\nNew Cutting Pixel Y: %@\nHas Content: %@\nFrom Origin Image Size: %@",
+             NSStringFromCGRect(cuttingSize),
+             @(checkingPixelY),
+             @(lastYCutPointInPixel),
+             @(maximumSubImageHeightInPixel),
+             @(newYCutPointInPixel),
+             @(imageHasContent),
+             NSStringFromCGSize(originImage.size)];
             UIImage *newImage = [self cropImage:originImage
                                        withRect:cuttingSize];
             if (newImage != nil && (acceptImageWithoutContent || imageHasContent)) {
@@ -114,6 +122,13 @@ struct PixelColors
                                             lastYCutPointInPixel / scale,
                                             originImage.size.width,
                                             (height - lastYCutPointInPixel) / scale);
+            [self performConsoleLogWithLogStringFormat:@"Reached the Ending Of Original Image Corping Image From Original Image:\nCorping Rect: %@\nCurrent Checking Pixel Y: %@\nLast Cutting Pixel Y: %@\nMaximum Sub-Image Height: %@\nHas Content: %@\nFrom Origin Image Size: %@",
+             NSStringFromCGRect(cuttingSize),
+             @(checkingPixelY),
+             @(lastYCutPointInPixel),
+             @(maximumSubImageHeightInPixel),
+             @(imageHasContent),
+             NSStringFromCGSize(originImage.size)];
             UIImage *newImage = [self cropImage:originImage
                                        withRect:cuttingSize];
             if (newImage != nil && (acceptImageWithoutContent || imageHasContent)) {
@@ -275,7 +290,7 @@ struct PixelColors
         CGFloat currentHeight = image.size.height;
         totalWidth += currentWidth;
         totalHeight += currentHeight;
-        maximumWidth = MAX(maximumWidth, totalWidth);
+        maximumWidth = MAX(maximumWidth, currentWidth);
         maximumHeight = MAX(maximumHeight, currentHeight);
     }
     
