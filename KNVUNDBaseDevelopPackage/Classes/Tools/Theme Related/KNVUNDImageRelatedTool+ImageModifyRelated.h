@@ -8,6 +8,12 @@
 #import "KNVUNDImageRelatedTool.h"
 
 typedef enum : NSUInteger {
+    KNVUNDImageRelatedTool_ResizeLogic_SameAsNewSize,
+    KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeWidth,
+    KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeHeigt
+} KNVUNDImageRelatedTool_ResizeLogic;
+
+typedef enum : NSUInteger {
     KNVUNDImageRelatedTool_CombiningOrientation_Horizontal,
     KNVUNDImageRelatedTool_CombiningOrientation_Vertical
 } KNVUNDImageRelatedTool_CombiningOrientation;
@@ -18,6 +24,9 @@ typedef enum : NSUInteger {
 #pragma mark - Cropping
 + (NSArray *_Nonnull)getImageArrayByCropImageHorizentally:(UIImage *_Nonnull)originImage withMaximumSubImageHeightInPixel:(CGFloat)maximumSubImageHeightInPixel backgroundColor:(UIColor *_Nullable)backgroundColor andShouldAcceptSubImageWithoutContent:(BOOL)acceptImageWithoutContent;
 + (UIImage *_Nullable)cropImage:(UIImage *_Nonnull)originImage withRect:(CGRect)rect;
+
+#pragma mark - Resize
++ (UIImage *_Nullable)getImageFromImage:(UIImage *_Nonnull)image withNewSize:(CGSize)newSize andResizeLogic:(KNVUNDImageRelatedTool_ResizeLogic)logic;
 
 #pragma mark - Rotation
 // Reference: https://stackoverflow.com/questions/14857728/how-to-rotate-uiimage

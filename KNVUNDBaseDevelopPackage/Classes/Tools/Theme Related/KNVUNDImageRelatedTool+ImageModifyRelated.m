@@ -217,6 +217,34 @@ struct PixelColors
     return ((checkingColor.red >= redRange[0]) && (checkingColor.red <= redRange[1])) && ((checkingColor.green >= greenRange[0]) && (checkingColor.green <= greenRange[1])) && ((checkingColor.blue >= blueRange[0]) && (checkingColor.blue <= blueRange[1]));
 }
 
+#pragma mark - Resize
++ (UIImage *_Nullable)getImageFromImage:(UIImage *_Nonnull)image withNewSize:(CGSize)newSize andResizeLogic:(KNVUNDImageRelatedTool_ResizeLogic)logic
+{
+    CGSize originalImageSize = image.size;
+    CGSize usingSize = newSize;
+    
+    BOOL shouldUsingNewSize = (originalImageSize.width == 0.0 && logic == KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeWidth) || (originalImageSize.height == 0.0 && logic == KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeHeigt);
+    if (!shouldUsingNewSize) {
+        switch (logic) {
+            case KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeWidth:
+                usingSize = CGSizeMake(usingSize.width, usingSize.width * originalImageSize.height / originalImageSize.width);
+                break;
+            case KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeHeigt:
+                usingSize = CGSizeMake(usingSize.height * originalImageSize.width / originalImageSize.height, usingSize.height);
+                break;
+            case KNVUNDImageRelatedTool_ResizeLogic_SameAsNewSize:
+            default:
+                break;
+        }
+    }
+    
+    UIGraphicsBeginImageContext(usingSize);
+    [image drawInRect:CGRectMake(0, 0, usingSize.width, usingSize.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
+
 #pragma mark - Rotation
 // Reference: https://stackoverflow.com/questions/14857728/how-to-rotate-uiimage
 + (UIImage *_Nullable)getImageFromImage:(UIImage *_Nonnull)sourceImage withOrientation:(UIImageOrientation)orientation
