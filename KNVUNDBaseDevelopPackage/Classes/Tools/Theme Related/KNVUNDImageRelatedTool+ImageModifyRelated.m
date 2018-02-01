@@ -87,7 +87,7 @@ struct PixelColors
         BOOL didReachTheMaximumImageHeightInPixel = (checkingPixelY - lastYCutPointInPixel >= maximumSubImageHeightInPixel);
         BOOL didReachTheEndLineOfOriginImage = checkingPixelY == height - 1;
         if (didReachTheMaximumImageHeightInPixel) {
-            BOOL hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY = lastPixelYThatCouldCut > lastYCutPointInPixel;
+            BOOL hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY = lastPixelYThatCouldCut != NSNotFound && lastPixelYThatCouldCut > lastYCutPointInPixel;
             NSUInteger newYCutPointInPixel = !hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? checkingPixelY : lastPixelYThatCouldCut;
             BOOL imageHasContent = !hasCouldCutPixelYBetweenLastCutPixelYAndCurrentCheckingPixelY ? (hasContentBetweenLastPixelYThatCouldCutAndCurrentCheckingPixelY || hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut) : hasContentBetweenLastPixelYCutAndLastPixelYThatCouldCut;
             
