@@ -286,16 +286,77 @@ describe(@"FormatedStringRelatedTool", ^{
                                                                                                                                            @"width" : @"150"}
                                                                                                                          andContentValue:@"[logo]"];
             attributTest2ResultModel3.parentLevelModel = attributTest2ResultModel1;
-            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult3 = @[attributTest2ResultModel1,
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult2 = @[attributTest2ResultModel1,
                                                                                    attributTest2ResultModel2,
                                                                                    attributTest2ResultModel3];
+            
+            NSString *checkingFormatedStringPropertyWithAttributesFormat2_1 = @"<%@ orientation_direction=\"TOP_RIGHT\"><%@ width=150>[logo]</%@><%@ children_order_direction=\"VERTICAL\"><%@ width=1350><font-large>ADULT PASS 07/10</font-large></%@><%@ children_order_direction=\"HORIZONTAL\"><%@ width=300><font-large>WARNING</font-large></%@><%@ width=450><font-small>WARNING</font-small></%@><%@ width=600><font-large>WARNING</font-large></%@></%@></%@></%@>";
+            NSString *checkingFormatedStringPropertyWithAttributesResult2_1 = [NSMutableString stringWithString:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel1 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"orientation_direction" : @"TOP_RIGHT"}
+                                                                                                                           andContentValue:@""];
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel2 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"width" : @"150"}
+                                                                                                                           andContentValue:@"[logo]"];
+            attributTest2_1ResultModel2.parentLevelModel = attributTest2_1ResultModel1;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel3 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"children_order_direction" : @"VERTICAL"}
+                                                                                                                           andContentValue:@""];
+            attributTest2_1ResultModel3.parentLevelModel = attributTest2_1ResultModel1;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel4 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"width" : @"1350"}
+                                                                                                                           andContentValue:@"<font-large>ADULT PASS 07/10</font-large>"];
+            attributTest2_1ResultModel4.parentLevelModel = attributTest2_1ResultModel3;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel5 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"children_order_direction" : @"HORIZONTAL"}
+                                                                                                                           andContentValue:@""];
+            attributTest2_1ResultModel5.parentLevelModel = attributTest2_1ResultModel3;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel6 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"width" : @"300"}
+                                                                                                                           andContentValue:@"<font-large>WARNING</font-large>"];
+            attributTest2_1ResultModel6.parentLevelModel = attributTest2_1ResultModel5;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel7 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"width" : @"450"}
+                                                                                                                           andContentValue:@"<font-small>WARNING</font-small>"];
+            attributTest2_1ResultModel7.parentLevelModel = attributTest2_1ResultModel5;
+            KNVUNDFSRToolHTMLLikeStringModel *attributTest2_1ResultModel8 = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:specialTestPropertyName1_1
+                                                                                                                                      type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
+                                                                                                                                  location:0
+                                                                                                                      attributesDictionary:@{@"width" : @"600"}
+                                                                                                                           andContentValue:@"<font-large>WARNING</font-large>"];
+            attributTest2_1ResultModel8.parentLevelModel = attributTest2_1ResultModel5;
+            NSArray *checkingFormatedStringPropertyWithAttributesExpectResult2_1 = @[attributTest2_1ResultModel1,
+                                                                                     attributTest2_1ResultModel2,
+                                                                                     attributTest2_1ResultModel3,
+                                                                                     attributTest2_1ResultModel4,
+                                                                                     attributTest2_1ResultModel5,
+                                                                                     attributTest2_1ResultModel6,
+                                                                                     attributTest2_1ResultModel7,
+                                                                                     attributTest2_1ResultModel8];
             
             it(@"Property with Attributes Format 2", ^{
                 shouldRemoveContentValue = YES;
                 checkingPropertyName = specialTestPropertyName1_1;
                 normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat2,
                                                    checkingFormatedStringPropertyWithAttributesResult2,
-                                                   checkingFormatedStringPropertyWithAttributesExpectResult3);
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult2);
+                normalParameterReadFunctionTesting(checkingFormatedStringPropertyWithAttributesFormat2_1,
+                                                   checkingFormatedStringPropertyWithAttributesResult2_1,
+                                                   checkingFormatedStringPropertyWithAttributesExpectResult2_1);
             });
             
         });

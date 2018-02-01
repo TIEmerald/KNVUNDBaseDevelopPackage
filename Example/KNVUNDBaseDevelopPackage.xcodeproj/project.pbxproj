@@ -105,10 +105,18 @@
 		20125CBF1FE219730006A70C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				20C9FB0820229375001293D3 /* KNVUNDImageRelatedTool */,
 				20D66BB41FFDF67A00AB8E99 /* KNVUNDFormatedStringRelatedTool */,
-				20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		20C9FB0820229375001293D3 /* KNVUNDImageRelatedTool */ = {
+			isa = PBXGroup;
+			children = (
+				20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */,
+			);
+			path = KNVUNDImageRelatedTool;
 			sourceTree = "<group>";
 		};
 		20D66BB41FFDF67A00AB8E99 /* KNVUNDFormatedStringRelatedTool */ = {
