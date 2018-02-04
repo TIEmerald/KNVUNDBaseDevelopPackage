@@ -31,6 +31,7 @@
 + (NSString *_Nonnull)getDefaultCurrencyStringFromValue:(NSNumber * _Nullable)value;
 
 + (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString;
++ (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString containingCurrencySymbol:(BOOL)isContainingCurrencySymbol;
 
 #pragma mark Support Methods
 /*!
