@@ -196,6 +196,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 }
 
 #pragma mark - Navigation Related
+/// Dirctly Modify Views
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
@@ -230,6 +231,19 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                              [self willMoveToParentViewController:nil];
                                              [self.view removeFromSuperview];
                                              [self removeFromParentViewController];
+                                         }];
+}
+
+/// Perform Sugure Related .... Override.... Make sure all segue is called in main thread... in case some error
+// Details:
+// This crash has non-main threads that appear to use UIKit classes or functions. Generally speaking, it is only safe to use UIKit from the main thread. Calling into UIKit from background threads can cause unpredictable behavior (like crashes!).. Please double check that all of your code (that is not on the main thread) has been explicitly marked as safe to use in the background by Apple.
+// Resources:
+// UIKit Framework Reference (https://developer.apple.com/documentation/uikit)
+- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    [KNVUNDThreadRelatedTool performBlockSynchronise:NO
+                                         inMainQueue:^{
+                                             [super performSegueWithIdentifier:identifier sender:sender];
                                          }];
 }
 

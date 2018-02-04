@@ -83,7 +83,12 @@
 
 + (BOOL)sendEmailWithModel:(KNVUNDERTModel *_Nonnull)emailSendingModel
 {
-    return [[emailSendingModel generateSMTPMessageFromSelf] send];
+    @try {
+        return [[emailSendingModel generateSMTPMessageFromSelf] send];
+    }
+    @catch (NSException *exception) {
+        return NO;
+    }
 }
 
 @end
