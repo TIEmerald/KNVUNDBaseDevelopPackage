@@ -7,6 +7,8 @@
 
 #import "KNVUNDBaseModel.h"
 
+////********* Notice... Currently, This Class is not stable enough, please don't use this method if could.....
+
 @interface KNVUNDERTModel : KNVUNDBaseModel
 
 /// If you want to send email from the from Email, Purhaps you will need to enable some secure setting in your email account.
