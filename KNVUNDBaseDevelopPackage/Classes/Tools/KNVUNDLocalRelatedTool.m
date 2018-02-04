@@ -70,8 +70,17 @@
 
 + (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString
 {
+    return [self getCurrencyValueFromDefaultCurrencyString:defaultCurrencyString
+                                  containingCurrencySymbol:YES];
+}
+
++ (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString containingCurrencySymbol:(BOOL)isContainingCurrencySymbol
+{
     NSNumber *returnNumber = nil;
     NSNumberFormatter *currencyFormatter = [self getCurrentCurrencyNumberFormatter];
+    if (!isContainingCurrencySymbol) {
+        currencyFormatter.currencySymbol = @"";
+    }
     if (defaultCurrencyString != nil) {
         returnNumber = [currencyFormatter numberFromString:defaultCurrencyString];
     }
