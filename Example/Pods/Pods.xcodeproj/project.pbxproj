@@ -107,7 +107,7 @@
 		20260290202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2026028E202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.m */; };
 		20260294202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 20260292202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20260295202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 20260293202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.m */; };
-		20260298202BF1C200CE3453 /* KNVUNDButtonVCTVHelperTagVCProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 20260297202BF1C200CE3453 /* KNVUNDButtonVCTVHelperTagVCProtocol.h */; };
+		20260298202BF1C200CE3453 /* KNVUNDButtonVCTVHelperTagVCProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 20260297202BF1C200CE3453 /* KNVUNDButtonVCTVHelperTagVCProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		202CC24420216E7000215148 /* KNVUNDFormatedStringReadingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 202CC24220216E7000215148 /* KNVUNDFormatedStringReadingHelper.h */; };
 		202CC24520216E7000215148 /* KNVUNDFormatedStringReadingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 202CC24320216E7000215148 /* KNVUNDFormatedStringReadingHelper.m */; };
 		202CC2492021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 202CC2472021764400215148 /* KNVUNDFSRToolHTMLLikeStringModel.h */; settings = {ATTRIBUTES = (Public, ); }; };

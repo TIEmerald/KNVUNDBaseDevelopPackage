@@ -17,9 +17,13 @@
 
 @implementation KNVUNDButtonsSelectionHelper
 
-#pragma mark - Getters & Setters
-#pragma mark - Getters
+#pragma mark - KNVUNDBaseModel
+- (BOOL)shouldShowRelatedLog
+{
+    return NO;
+}
 
+#pragma mark - Getters & Setters
 #pragma mark - Setters
 - (void)setIsForceSelection:(BOOL)isForceSelection
 {
@@ -91,6 +95,8 @@
 
 - (void)selectKNVUNDBSButton:(UIButton *)button
 {
+    NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
+    [self performConsoleLogWithLogStringFormat:@"Will Select Button with Index: %@",@(buttonIndex)];
     button.selected = YES;
     if (button.selectedFunctionBlock) {
         button.selectedFunctionBlock(button);
@@ -103,10 +109,13 @@
             }
         }
     }
+    [self performConsoleLogWithLogStringFormat:@"Did Select Button with Index: %@",@(buttonIndex)];
 }
 
 - (void)deSelectKNVUNDBSButton:(UIButton *)button
 {
+    NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
+    [self performConsoleLogWithLogStringFormat:@"Will De-Select Button with Index: %@",@(buttonIndex)];
     if (self.isForceSelection && [[self currentSelectedButtons] count] == 1) {
         // If it is force selection, we won't process it.
         return;
@@ -116,6 +125,7 @@
     if (button.deSelectedFunctionBlock) {
         button.deSelectedFunctionBlock(button);
     }
+    [self performConsoleLogWithLogStringFormat:@"Did De-Select Button with Index: %@",@(buttonIndex)];
 }
 
 - (NSArray *)currentSelectedButtons

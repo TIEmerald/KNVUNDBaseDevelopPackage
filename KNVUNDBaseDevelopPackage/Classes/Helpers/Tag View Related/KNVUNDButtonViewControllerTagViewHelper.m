@@ -120,7 +120,7 @@
         return;
     }
     
-    [self didSelectHelperModel:_currentSelectedHelperModel];
+    [self didDeSelectHelperModel:_currentSelectedHelperModel];
     
     _currentSelectedHelperModel = selectedModel;
     
