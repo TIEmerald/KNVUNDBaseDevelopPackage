@@ -9,19 +9,8 @@
 
 #import <LinqToObjectiveC/LinqToObjectiveC.h>
 
-@implementation KNVUNDButtonsSelectionButton
-
-#pragma mark - Initial
-- (void)setUpWithSelectedFunction:(KNVUNDBSButtonFunctionBlock _Nonnull)selectedFunction andDeSelectedFunction:(KNVUNDBSButtonFunctionBlock _Nullable)deselectedFunction;
-{
-    self.selectedFunctionBlock = selectedFunction;
-    self.deSelectedFunctionBlock = deselectedFunction;
-}
-
-@end
-
 @interface KNVUNDButtonsSelectionHelper(){
-    NSArray<KNVUNDButtonsSelectionButton *> *_currentAssociatedButtons;
+    NSArray<UIButton *> *_currentAssociatedButtons;
 }
 
 @end
@@ -44,7 +33,7 @@
 {
     _isSingleSelection = isSingleSelection;
     BOOL hasSelectedButton = NO;
-    for (KNVUNDButtonsSelectionButton *selectedButton in [self currentSelectedButtons]) {
+    for (UIButton *selectedButton in [self currentSelectedButtons]) {
         if (hasSelectedButton) {
             [self deSelectKNVUNDBSButton:selectedButton];
         }
@@ -53,17 +42,17 @@
 }
 
 #pragma mark - Set Up Method
-- (void)setupWithHelperButtonsArray:(NSArray<KNVUNDButtonsSelectionButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<KNVUNDButtonsSelectionButton *> *_Nullable)selectedButtons
+- (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons
 {
     _currentAssociatedButtons = buttons;
-    for (KNVUNDButtonsSelectionButton *selectionButton in buttons) {
+    for (UIButton *selectionButton in buttons) {
         [selectionButton addTarget:self
                             action:@selector(didTapBSButton:)
                   forControlEvents:UIControlEventTouchUpInside];
     }
     
     NSArray *preSelectingArray = selectedButtons ?: (self.isForceSelection) ? @[buttons.firstObject] : @[];
-    for (KNVUNDButtonsSelectionButton *selectingButton in preSelectingArray) {
+    for (UIButton *selectingButton in preSelectingArray) {
         if (self.isSingleSelection && [[self currentSelectedButtons] count] > 0) {
             break;
         }
@@ -72,7 +61,7 @@
 }
 
 #pragma mark Event Handlers
-- (void)didTapBSButton:(KNVUNDButtonsSelectionButton *)tapedButton
+- (void)didTapBSButton:(UIButton *)tapedButton
 {
     if (tapedButton.isSelected) {
         [self deSelectKNVUNDBSButton:tapedButton];
@@ -82,7 +71,7 @@
 }
 
 #pragma mark - Support Methods
-- (void)selectKNVUNDBSButton:(KNVUNDButtonsSelectionButton *)button
+- (void)selectKNVUNDBSButton:(UIButton *)button
 {
     button.selected = YES;
     if (button.selectedFunctionBlock) {
@@ -90,7 +79,7 @@
     }
     
     if (self.isSingleSelection) {
-        for (KNVUNDButtonsSelectionButton *selectedButton in [self currentSelectedButtons]) {
+        for (UIButton *selectedButton in [self currentSelectedButtons]) {
             if (selectedButton != button) {
                 [self deSelectKNVUNDBSButton:selectedButton];
             }
@@ -98,7 +87,7 @@
     }
 }
 
-- (void)deSelectKNVUNDBSButton:(KNVUNDButtonsSelectionButton *)button
+- (void)deSelectKNVUNDBSButton:(UIButton *)button
 {
     if (self.isForceSelection && [[self currentSelectedButtons] count] == 1) {
         // If it is force selection, we won't process it.
