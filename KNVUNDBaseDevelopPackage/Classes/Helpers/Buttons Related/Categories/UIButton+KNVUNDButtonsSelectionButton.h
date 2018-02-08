@@ -11,6 +11,7 @@ typedef void(^KNVUNDBSButtonFunctionBlock)(UIButton *_Nonnull relatedButton);
 
 @interface UIButton (KNVUNDButtonsSelectionButton)
 
+@property (nonatomic, nullable) id associatedModel;
 @property (nonatomic, nonnull) KNVUNDBSButtonFunctionBlock selectedFunctionBlock;
 @property (nonatomic, nonnull) KNVUNDBSButtonFunctionBlock deSelectedFunctionBlock;
 

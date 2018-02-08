@@ -60,7 +60,26 @@
     }
 }
 
-#pragma mark Event Handlers
+#pragma mark - InterAction Methods
+- (void)tapAButton:(UIButton *_Nonnull)tappingButton
+{
+    if ([_currentAssociatedButtons containsObject:tappingButton]) {
+        [self didTapBSButton:tappingButton];
+    }
+}
+
+#pragma mark - Reset Methods
+- (void)resetCurrentHelper
+{
+    for (UIButton *selectionButton in _currentAssociatedButtons) {
+        [selectionButton removeTarget:self
+                               action:@selector(didTapBSButton:)
+                     forControlEvents:UIControlEventTouchUpInside];
+    }
+    _currentAssociatedButtons = nil;
+}
+
+#pragma mark - Support Methods
 - (void)didTapBSButton:(UIButton *)tapedButton
 {
     if (tapedButton.isSelected) {
@@ -70,7 +89,6 @@
     }
 }
 
-#pragma mark - Support Methods
 - (void)selectKNVUNDBSButton:(UIButton *)button
 {
     button.selected = YES;
