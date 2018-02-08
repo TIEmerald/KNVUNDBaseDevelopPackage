@@ -25,7 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    KNVUNDButtonsSelectionButton *buttonOne = [self generateSelectionButton];
+    UIButton *buttonOne = [self generateSelectionButton];
     [buttonOne setTitle:@"Button One"
                forState:UIControlStateNormal];
     [buttonOne setUpWithSelectedFunction:^(UIButton * _Nonnull relatedButton) {
@@ -38,13 +38,13 @@
     buttonOne.frame = CGRectMake(20, 20, 100, 40);
     [self.view addSubview:buttonOne];
     
-    KNVUNDButtonsSelectionButton *buttonTwo = [self generateSelectionButton];
+    UIButton *buttonTwo = [self generateSelectionButton];
     [buttonTwo setTitle:@"Button Two"
                forState:UIControlStateNormal];
     buttonTwo.frame = CGRectMake(140, 20, 100, 40);
     [self.view addSubview:buttonTwo];
     
-    KNVUNDButtonsSelectionButton *buttonThree = [self generateSelectionButton];
+    UIButton *buttonThree = [self generateSelectionButton];
     [buttonThree setTitle:@"Button Three"
                forState:UIControlStateNormal];
     buttonThree.frame = CGRectMake(260, 20, 100, 40);
@@ -64,9 +64,9 @@
 }
 
 #pragma mark - Support Methods
-- (KNVUNDButtonsSelectionButton *)generateSelectionButton
+- (UIButton *)generateSelectionButton
 {
-    KNVUNDButtonsSelectionButton *returnButton = [KNVUNDButtonsSelectionButton new];
+    UIButton *returnButton = [UIButton new];
     
     [returnButton setTitleColor:[UIColor blackColor]
                        forState:UIControlStateNormal];

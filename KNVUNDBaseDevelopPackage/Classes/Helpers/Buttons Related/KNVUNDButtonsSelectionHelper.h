@@ -7,17 +7,8 @@
 
 #import "KNVUNDBaseModel.h"
 
-typedef void(^KNVUNDBSButtonFunctionBlock)(UIButton *_Nonnull relatedButton);
-
-@interface KNVUNDButtonsSelectionButton : UIButton
-
-@property (nonatomic, nonnull) KNVUNDBSButtonFunctionBlock selectedFunctionBlock;
-@property (nonatomic, nonnull) KNVUNDBSButtonFunctionBlock deSelectedFunctionBlock;
-
-#pragma mark - Initial
-- (void)setUpWithSelectedFunction:(KNVUNDBSButtonFunctionBlock _Nonnull)selectedFunction andDeSelectedFunction:(KNVUNDBSButtonFunctionBlock _Nullable)deselectedFunction;
-
-@end
+// Categories
+#import "UIButton+KNVUNDButtonsSelectionButton.h"
 
 @interface KNVUNDButtonsSelectionHelper : KNVUNDBaseModel
 
@@ -26,6 +17,12 @@ typedef void(^KNVUNDBSButtonFunctionBlock)(UIButton *_Nonnull relatedButton);
 @property (nonatomic) BOOL isForceSelection; // If you have set isForceSelection and didn't set the pre-selectedButton in setupMethod... We will by default select the first one.
 
 #pragma mark - Set Up Method
-- (void)setupWithHelperButtonsArray:(NSArray<KNVUNDButtonsSelectionButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<KNVUNDButtonsSelectionButton *> *_Nullable)selectedButtons;
+- (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons;
+
+#pragma mark - InterAction Methods
+- (void)tapAButton:(UIButton *_Nonnull)tappingButton;
+
+#pragma mark - Reset Methods
+- (void)resetCurrentHelper;
 
 @end
