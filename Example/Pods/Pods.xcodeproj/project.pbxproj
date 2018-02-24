@@ -105,6 +105,8 @@
 		1FB9A69AFEAA9CD3B543AC92AAEE1BD8 /* ZXUPCAReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BAA57141A9EE11948119577DE7F68B /* ZXUPCAReader.m */; };
 		201E0E1F203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 201E0E1D203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201E0E20203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E0E1E203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.m */; };
+		201E0E24203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 201E0E22203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		201E0E25203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E0E23203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.m */; };
 		2026028F202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 2026028D202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20260290202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2026028E202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.m */; };
 		20260294202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 20260292202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1213,6 +1215,8 @@
 		20076122231E5BF53478A87803C0298B /* ZXAztecSimpleToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecSimpleToken.h; path = ZXingObjC/aztec/encoder/ZXAztecSimpleToken.h; sourceTree = "<group>"; };
 		201E0E1D203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+KNVUNDBasic.h"; sourceTree = "<group>"; };
 		201E0E1E203FBC49008D9689 /* NSMutableAttributedString+KNVUNDBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+KNVUNDBasic.m"; sourceTree = "<group>"; };
+		201E0E22203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDExpendingTableViewRelatedModel.h; sourceTree = "<group>"; };
+		201E0E23203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDExpendingTableViewRelatedModel.m; sourceTree = "<group>"; };
 		2026028D202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+KNVUNDButtonsSelectionButton.h"; sourceTree = "<group>"; };
 		2026028E202BD53C00CE3453 /* UIButton+KNVUNDButtonsSelectionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KNVUNDButtonsSelectionButton.m"; sourceTree = "<group>"; };
 		20260292202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDButtonViewControllerTagViewHelper.h; sourceTree = "<group>"; };
@@ -2200,6 +2204,15 @@
 			path = NSMutableAttributeString;
 			sourceTree = "<group>";
 		};
+		201E0E21203FEA1A008D9689 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				201E0E22203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.h */,
+				201E0E23203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2026028C202BD3FB00CE3453 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -2238,6 +2251,7 @@
 		202602A2202C232900CE3453 /* Expending Table View Related */ = {
 			isa = PBXGroup;
 			children = (
+				201E0E21203FEA1A008D9689 /* Models */,
 				202602A3202C237C00CE3453 /* KNVUNDExpendingTableViewRelatedHelper.h */,
 				202602A4202C237C00CE3453 /* KNVUNDExpendingTableViewRelatedHelper.m */,
 			);
@@ -3926,6 +3940,7 @@
 				20260294202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.h in Headers */,
 				19723BDA932576DB4608E1E78F7D9BD8 /* KNVUNDDebugTool.h in Headers */,
 				95C0CEA7B41C97194F352BD8E2C70903 /* KNVUNDEmailRelatedTool.h in Headers */,
+				201E0E24203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.h in Headers */,
 				20C957B32020313B007CF6B6 /* NSObject+KNVUNDEqualityChecking.h in Headers */,
 				20C957B7202032AC007CF6B6 /* NSObject+KNVUNDLogRelated.h in Headers */,
 				8947F32AA32698D8FABC69623BA86CFC /* KNVUNDFormatedStringRelatedTool.h in Headers */,
@@ -4413,6 +4428,7 @@
 				64049BFD366B1F69881AB2E6F73BD851 /* KNVUNDScannerHelper.m in Sources */,
 				57E21BABD0B02448A2A1D69B23EB3B69 /* KNVUNDThreadRelatedTool.m in Sources */,
 				20260295202BD99F00CE3453 /* KNVUNDButtonViewControllerTagViewHelper.m in Sources */,
+				201E0E25203FEA83008D9689 /* KNVUNDExpendingTableViewRelatedModel.m in Sources */,
 				341485413F647FF244AA5E5B3101E7B6 /* NSDecimalNumber+KNVUNDBasic.m in Sources */,
 				A8618D781CE00A02F59A77BADF36CA3B /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */,
 				F82D028B4CBE295E51D895522AC861A4 /* NSString+KNVUNDBasic.m in Sources */,
