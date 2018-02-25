@@ -50,12 +50,14 @@
 {
     for (KNVUNDExpendingTableViewRelatedModel *child in _mutableChildrenArray) {
         child.parent = nil;
+        child.delegate = nil;
         child.modelDepthLevel = 0;
     }
     _mutableChildrenArray = [NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:children];
     for (KNVUNDExpendingTableViewRelatedModel *child in _mutableChildrenArray) {
         if (child.parent != self) {
             child.parent = self;
+            child.delegate = self.delegate;
             child.modelDepthLevel = self.modelDepthLevel + 1;
         }
     }
@@ -65,10 +67,12 @@
 {
     [_parent removeOneChild:self];
     self.modelDepthLevel = 0;
+    self.delegate = nil;
     _parent = parent;
     if (_parent != nil) {
         [_parent addOneChild:self];
         self.modelDepthLevel = _parent.modelDepthLevel + 1;
+        self.delegate = _parent.delegate;
     }
 }
 
@@ -135,33 +139,62 @@
     }
     
     if (shouldUpdateCells) {
-        NSMutableArray *updatedIndexArray = [NSMutableArray new];
-        for (KNVUNDExpendingTableViewRelatedModel *updatedModel in updatedModels) {
-            NSIndexPath *relatedIndexPath = [updatedModel getCurrentIndexPath];
-            if (relatedIndexPath != nil) {
-                [updatedIndexArray addObject:relatedIndexPath];
-            }
-        }
         if ([self.delegate respondsToSelector:@selector(reloadCellsAtIndexPaths:)]) {
-            [self.delegate reloadCellsAtIndexPaths:updatedIndexArray];
+            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:updatedModels.allObjects]];
         }
     }
     
     return updatedModels;
 }
 
-//#pragme mark - Expending Status Related
-//#pragma mark Getters
-//- (BOOL)isExpended
-//{
-//
-//}
-//
-//#pragma mark Setters
-//- (void)toggleExpendedStatus
-//{
-//
-//}
+#pragma mark - Expending Status Related
+#pragma mark Getters
+- (BOOL)isExpended
+{
+    return _isCurrentModelExpended;
+}
+
+#pragma mark Setters
+- (void)toggleExpendedStatus
+{
+    NSArray *displayingDescendants = [self getDisplayingDescendants];
+    if (self.isExpended) {
+        // Which means current displaying models contains all displaying descendant
+        NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingDescendants];
+        [self.relatedModelArray removeObjectsInArray:displayingDescendants];
+        if ([self.delegate respondsToSelector:@selector(deleteCellsAtIndexPaths:)]) {
+            [self.delegate deleteCellsAtIndexPaths:updatedIndexPaths];
+        }
+    } else {
+        if ([self.relatedModelArray containsObject:self]) {
+            NSInteger selfIndex = [self.relatedModelArray indexOfObject:self];
+            NSInteger insertingIndex = selfIndex + 1;
+            for (KNVUNDExpendingTableViewRelatedModel *descendant in displayingDescendants) {
+                [self.relatedModelArray insertObject:descendant
+                                             atIndex:insertingIndex];
+                insertingIndex = insertingIndex + 1;
+            }
+            NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingDescendants];
+            if ([self.delegate respondsToSelector:@selector(insertCellsAtIndexPaths:)]) {
+                [self.delegate insertCellsAtIndexPaths:updatedIndexPaths];
+            }
+        }
+    }
+}
+
+#pragma mark Support Methods
+- (NSArray *)getDisplayingDescendants
+{
+    NSMutableArray *returnArray = [NSMutableArray new];
+    for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
+        [returnArray addObject:child];
+        if (child.isExpended) {
+            NSArray *childDisplayingDescendants = [child getDisplayingDescendants];
+            [returnArray addObjectsFromArray:childDisplayingDescendants];
+        }
+    }
+    return returnArray;
+}
 
 #pragma mark - Support Methods
 #pragma mark Table View Related
@@ -174,6 +207,18 @@
     } else {
         return nil;
     }
+}
+
+- (NSArray *)getIndexPathsFromModels:(NSArray *)models
+{
+    NSMutableArray *returnIndexPaths = [NSMutableArray new];
+    for (KNVUNDExpendingTableViewRelatedModel *model in models) {
+        NSIndexPath *relatedIndexPath = [model getCurrentIndexPath];
+        if (relatedIndexPath != nil) {
+            [returnIndexPaths addObject:relatedIndexPath];
+        }
+    }
+    return returnIndexPaths;
 }
 
 #pragma mark Ancestors and Descendants

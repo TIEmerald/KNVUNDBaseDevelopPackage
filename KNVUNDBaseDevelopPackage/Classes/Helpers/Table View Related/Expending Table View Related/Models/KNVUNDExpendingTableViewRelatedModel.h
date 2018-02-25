@@ -15,6 +15,8 @@
 
 /// Table View Updating Related
 - (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
 
 @end
 
@@ -35,6 +37,7 @@
 
 //// Expending Status Related
 @property (nonatomic, readonly) BOOL isExpended;
+@property (nonatomic) BOOL isExpendable; // You could overrride thie getter if you want a certain model will never be expended
 - (void)toggleExpendedStatus;
 
 @end
