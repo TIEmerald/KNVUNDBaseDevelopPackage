@@ -19,6 +19,8 @@
     BOOL _isCurrentModelExpended;
 }
 
+@property (readonly) NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
+
 //// Hirearchy Related properties
 @property (nonatomic, readwrite) NSUInteger modelDepthLevel;
 
@@ -27,6 +29,12 @@
 @implementation KNVUNDExpendingTableViewRelatedModel
 
 #pragma mark - Getters && Setters
+#pragma mark Delegate Related
+- (NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
+{
+    return self.delegate.displayingModels;
+}
+
 #pragma mark - Hirearchy Related Properties
 #pragma mark Getters
 - (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)children
@@ -96,17 +104,52 @@
     return NO;
 }
 
-//#pragma mark Setters
-//- (void)toggleSelectionStatus
-//{
-//    if (self.isSelectable) {
-//        /// Step One, if it's not selected, we will select current Model
-//        /// Step Two, if it's Selected..
-//        /// Step Two One, if current Model is selected, we will set current model to selected.
-//        /// Step Two Two, and toggle all selected children....
-//    }
-//}
-//
+#pragma mark Setters
+- (void)toggleSelectionStatus
+{
+    [self toggleSelectionStatusAndShouldUpdateRelatedCells:YES];
+}
+
+/// This method will return a Set of KNVUNDExpendingTableViewRelatedModel which selection status will be affected.
+- (NSSet *)toggleSelectionStatusAndShouldUpdateRelatedCells:(BOOL)shouldUpdateCells
+{
+    NSMutableSet *updatedModels = [NSMutableSet new];
+    if (self.isSelectable) {
+        /// Step One, if it's not selected, we will select current Model
+        if (!self.isSelected) {
+            _isCurrentModelSelected = YES;
+        } else {
+            if (_isCurrentModelSelected) {
+                _isCurrentModelSelected = NO;
+            } else {
+                for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
+                    if (child.isSelected) {
+                        NSSet *updatedModelsFromChild = [child toggleSelectionStatusAndShouldUpdateRelatedCells:NO];
+                        [updatedModels addObjectsFromArray:updatedModelsFromChild.allObjects];
+                    }
+                }
+            }
+        }
+        [updatedModels addObject:self];
+        [updatedModels addObjectsFromArray:[self getAllAncestor].allObjects];
+    }
+    
+    if (shouldUpdateCells) {
+        NSMutableArray *updatedIndexArray = [NSMutableArray new];
+        for (KNVUNDExpendingTableViewRelatedModel *updatedModel in updatedModels) {
+            NSIndexPath *relatedIndexPath = [updatedModel getCurrentIndexPath];
+            if (relatedIndexPath != nil) {
+                [updatedIndexArray addObject:relatedIndexPath];
+            }
+        }
+        if ([self.delegate respondsToSelector:@selector(reloadCellsAtIndexPaths:)]) {
+            [self.delegate reloadCellsAtIndexPaths:updatedIndexArray];
+        }
+    }
+    
+    return updatedModels;
+}
+
 //#pragme mark - Expending Status Related
 //#pragma mark Getters
 //- (BOOL)isExpended
@@ -119,5 +162,30 @@
 //{
 //
 //}
+
+#pragma mark - Support Methods
+#pragma mark Table View Related
+- (NSIndexPath *_Nullable)getCurrentIndexPath
+{
+    if ([self.relatedModelArray containsObject:self]) {
+        NSUInteger row = [self.relatedModelArray indexOfObject:self];
+        return [NSIndexPath indexPathForRow:row
+                                  inSection:0];
+    } else {
+        return nil;
+    }
+}
+
+#pragma mark Ancestors and Descendants
+- (NSSet *)getAllAncestor
+{
+    NSMutableSet *returnSet = [NSMutableSet new];
+    KNVUNDExpendingTableViewRelatedModel *checkingModel = self;
+    while (checkingModel.parent != nil && ![returnSet containsObject:checkingModel.parent]) {
+        [returnSet addObject:checkingModel.parent];
+        checkingModel = checkingModel.parent;
+    }
+    return returnSet;
+}
 
 @end

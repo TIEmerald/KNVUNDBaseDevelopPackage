@@ -7,13 +7,21 @@
 
 #import "KNVUNDBaseModel.h"
 
+@class KNVUNDExpendingTableViewRelatedModel;
+
 @protocol KNVUNDETVRelatedModelDelegate <NSObject>
+
+@property (nonatomic, strong, nonnull) NSMutableArray <KNVUNDExpendingTableViewRelatedModel *> *displayingModels;
+
+/// Table View Updating Related
+- (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
 
 @end
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
 @property (nonatomic, strong, nonnull) id associatedItem;
+@property (nonatomic, weak, nullable) id<KNVUNDETVRelatedModelDelegate> delegate;
 
 //// Hirearchy Related properties
 @property (nonatomic, readonly) NSUInteger modelDepthLevel; /// This value is set from parent
