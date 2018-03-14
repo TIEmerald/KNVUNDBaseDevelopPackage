@@ -30,6 +30,7 @@
 
 #pragma mark - General Methods
 #pragma mark - Appending
+- (void)appendLogStringWithObjectArray:(NSArray<id<KNVUNDLogRelatedModelProtocol>> *)objectArray andObjectName:(NSString *_Nonnull)objectName;
 - (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString andCurrentIndentLevel:(NSUInteger)currentIndentLevel;
 - (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString contentModelArrays:(NSArray *_Nonnull)contentArray andCurrentIndentLevel:(NSUInteger)currentIndentLevel;
 
