@@ -67,6 +67,7 @@
                                                                                                          @(indexValue),
                                                                                                          objectCounts]
                                                                                         andContentValue:object]];
+            indexValue += 1;
         }
         [self appendLogStringWithTitle:[NSString stringWithFormat:@"Has %@ %@s",
                                         objectCounts,
