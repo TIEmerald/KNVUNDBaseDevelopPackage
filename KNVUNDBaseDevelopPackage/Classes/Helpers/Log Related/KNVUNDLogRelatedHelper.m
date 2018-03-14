@@ -50,6 +50,32 @@
 
 #pragma mark - General Methods
 #pragma mark - Appending
+- (void)appendLogStringWithObjectArray:(NSArray<id<KNVUNDLogRelatedModelProtocol>> *)objectArray andObjectName:(NSString *_Nonnull)objectName
+{
+    [self appendLogStringWithTitle:[NSString stringWithFormat:@"\n\n%@ Details:", objectName]
+             andCurrentIndentLevel:0];
+    NSNumber *objectCounts = @(objectArray.count);
+    if (objectCounts.integerValue == 0) {
+        [self appendLogStringWithTitle:[NSString stringWithFormat:@"No %@.", objectName]
+                 andCurrentIndentLevel:1];
+    } else {
+        NSMutableArray *usingArray = [NSMutableArray new];
+        int indexValue = 1;
+        for (id<KNVUNDLogRelatedModelProtocol> object in objectArray) {
+            [usingArray addObject:[[KNVUNDLogRelatedHelperContentModel alloc] initWithDescriptionString:[NSString stringWithFormat:@"-- %@ (%@ / %@)",
+                                                                                                         objectName,
+                                                                                                         @(indexValue),
+                                                                                                         objectCounts]
+                                                                                        andContentValue:object]];
+        }
+        [self appendLogStringWithTitle:[NSString stringWithFormat:@"Has %@ %@s",
+                                        objectCounts,
+                                        objectName]
+                                contentModelArrays:usingArray
+                             andCurrentIndentLevel:1];
+    }
+}
+
 - (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString andCurrentIndentLevel:(NSUInteger)currentIndentLevel
 {
     [self appendLogStringWithTitle:titleString
