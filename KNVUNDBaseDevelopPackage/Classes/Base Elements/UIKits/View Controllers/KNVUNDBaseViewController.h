@@ -9,6 +9,7 @@
 
 // Third Party Packages
 #import "RMessage.h"
+#import "TSMessage.h"
 #import "MZFormSheetPresentationViewController.h"
 
 #pragma mark -
