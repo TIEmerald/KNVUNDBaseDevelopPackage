@@ -154,6 +154,11 @@
     return _isCurrentModelExpended;
 }
 
+- (BOOL)isExpendable
+{
+    return _isExpendable && [self.children count] > 0;
+}
+
 #pragma mark Setters
 - (void)toggleExpendedStatus
 {

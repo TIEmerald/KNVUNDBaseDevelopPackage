@@ -7,6 +7,8 @@
 
 #import "KNVUNDBaseModel.h"
 
+//#import "KNVUNDETVRelatedBasicTableViewCell.h"
+
 @class KNVUNDExpendingTableViewRelatedModel;
 
 @protocol KNVUNDETVRelatedModelDelegate <NSObject>
