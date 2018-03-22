@@ -8,13 +8,22 @@
 
 #import "KNVUNDViewController.h"
 
+/// Models
+#import "KNVUNDExpendingTableViewRelatedModel.h"
+
 // Helpers
 #import "KNVUNDButtonsSelectionHelper.h"
+#import "KNVUNDExpendingTableViewRelatedHelper.h"
+
+// Tools
 #import "KNVUNDImageRelatedTool.h"
 
 @interface KNVUNDViewController () {
     KNVUNDButtonsSelectionHelper *_buttonsSelectionHelper;
+    KNVUNDExpendingTableViewRelatedHelper *_expendingTableViewHelper;
 }
+
+@property (weak, nonatomic) IBOutlet UITableView *testingTableView;
 
 @end
 
@@ -24,7 +33,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    [self setupTagButtons];
+    [self setUpExpendableTable];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Support Methods
+- (void)setupTagButtons
+{
     UIButton *buttonOne = [self generateSelectionButton];
     [buttonOne setTitle:@"Button One"
                forState:UIControlStateNormal];
@@ -46,7 +67,7 @@
     
     UIButton *buttonThree = [self generateSelectionButton];
     [buttonThree setTitle:@"Button Three"
-               forState:UIControlStateNormal];
+                 forState:UIControlStateNormal];
     buttonThree.frame = CGRectMake(260, 20, 100, 40);
     [self.view addSubview:buttonThree];
     
@@ -57,10 +78,23 @@
     _buttonsSelectionHelper.isForceSelection = YES;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)setUpExpendableTable
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    KNVUNDExpendingTableViewRelatedModel *parentOne =  [KNVUNDExpendingTableViewRelatedModel new];
+    parentOne.associatedItem = @"Parent One";
+    KNVUNDExpendingTableViewRelatedModel *childOneForParentOne =  [KNVUNDExpendingTableViewRelatedModel new];
+    childOneForParentOne.associatedItem = @"Child One for Parent One";
+    KNVUNDExpendingTableViewRelatedModel *childTwoForParentOne =  [KNVUNDExpendingTableViewRelatedModel new];
+    childTwoForParentOne.associatedItem = @"Child Two for Parent One";
+    parentOne.children = @[childOneForParentOne, childTwoForParentOne];
+    
+    KNVUNDExpendingTableViewRelatedModel *parentTwo =  [KNVUNDExpendingTableViewRelatedModel new];
+    parentTwo.associatedItem = @"Parent Two";
+    
+    _expendingTableViewHelper = [KNVUNDExpendingTableViewRelatedHelper new];
+    [_expendingTableViewHelper setUpWithRootModelArray:@[parentOne, parentTwo]
+                                 supportedModelClasses:@[[KNVUNDExpendingTableViewRelatedModel class]]
+                                   andRelatedTableView:self.testingTableView];
 }
 
 #pragma mark - Support Methods

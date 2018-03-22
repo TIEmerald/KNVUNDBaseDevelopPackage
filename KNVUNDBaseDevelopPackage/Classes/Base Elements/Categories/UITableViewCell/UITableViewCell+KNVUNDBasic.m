@@ -30,8 +30,9 @@ NSString *const KNVUNDBasicTableViewCell_BaseModel_Key = @"KNVUNDBasicTableViewC
 
 + (void)registerSelfIntoTableView:(UITableView *)targetTableView
 {
+    NSBundle *usingBundle = [NSBundle bundleForClass:[self classForCoder]];
     [targetTableView registerNib:[UINib nibWithNibName:[self nibName]
-                                                bundle:nil]
+                                                bundle:usingBundle]
           forCellReuseIdentifier:[self cellIdentifierName]];
 }
 

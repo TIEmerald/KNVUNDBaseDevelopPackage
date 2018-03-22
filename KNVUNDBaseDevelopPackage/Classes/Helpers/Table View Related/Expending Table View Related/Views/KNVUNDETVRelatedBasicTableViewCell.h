@@ -8,6 +8,12 @@
 // Categories
 #import "UITableViewCell+KNVUNDBasic.h"
 
+// Models
+#import "KNVUNDExpendingTableViewRelatedModel.h"
+
 @interface KNVUNDETVRelatedBasicTableViewCell : UITableViewCell
+
+#pragma mark - Set up
+- (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel;
 
 @end

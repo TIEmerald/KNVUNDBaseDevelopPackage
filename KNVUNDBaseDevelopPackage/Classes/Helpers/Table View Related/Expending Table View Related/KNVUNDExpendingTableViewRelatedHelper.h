@@ -9,4 +9,7 @@
 
 @interface KNVUNDExpendingTableViewRelatedHelper : KNVUNDBaseModel
 
+#pragma mark - Set Up
+- (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView;
+
 @end

@@ -20,12 +20,27 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KRG-yU-IKJ">
+                                <rect key="frame" x="20" y="315" width="984" height="976"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.21960784310000001" green="0.38431372549999998" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KRG-yU-IKJ" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="295" id="fN6-ia-JHB"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="KRG-yU-IKJ" secondAttribute="bottom" constant="75" id="kCW-fx-3Bg"/>
+                            <constraint firstItem="KRG-yU-IKJ" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="kcs-2L-Ii7"/>
+                            <constraint firstItem="KRG-yU-IKJ" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="yck-XL-0XK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testingTableView" destination="KRG-yU-IKJ" id="ZEv-7x-UQd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="304.6875" y="432.65007320644213"/>
         </scene>
     </scenes>
 </document>

@@ -7,6 +7,9 @@
 
 #import "KNVUNDExpendingTableViewRelatedModel.h"
 
+/// Views
+#import "KNVUNDETVRelatedBasicTableViewCell.h"
+
 @interface KNVUNDExpendingTableViewRelatedModel(){
     
     /// Hirearchy Related Properties
@@ -27,6 +30,12 @@
 @end
 
 @implementation KNVUNDExpendingTableViewRelatedModel
+
+#pragma mark - Class Methods
++ (Class _Nonnull)relatedTableViewCell
+{
+    return [KNVUNDETVRelatedBasicTableViewCell class];
+}
 
 #pragma mark - Getters && Setters
 #pragma mark Delegate Related

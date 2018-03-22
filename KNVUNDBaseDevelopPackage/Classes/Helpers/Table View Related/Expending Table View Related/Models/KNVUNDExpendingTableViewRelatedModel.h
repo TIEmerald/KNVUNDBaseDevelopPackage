@@ -24,6 +24,11 @@
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
+/// Classe Level
+//// Table View Related
++ (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
+
+/// Object Level
 @property (nonatomic, strong, nonnull) id associatedItem;
 @property (nonatomic, weak, nullable) id<KNVUNDETVRelatedModelDelegate> delegate;
 
@@ -41,5 +46,7 @@
 @property (nonatomic, readonly) BOOL isExpended;
 @property (nonatomic) BOOL isExpendable; // You could overrride thie getter if you want a certain model will never be expended
 - (void)toggleExpendedStatus;
+/////// Support Methods
+- (NSArray *)getDisplayingDescendants;
 
 @end

@@ -23,7 +23,7 @@ PODS:
   - MZFormSheetPresentationController (2.4.3):
     - MZAppearance
   - PPTopMostController (0.0.1)
-  - RMessage (2.2.1):
+  - RMessage (2.2.2):
     - HexColors (~> 4.0)
     - PPTopMostController
   - skpsmtpmessage (0.0.1)
@@ -50,12 +50,12 @@ SPEC CHECKSUMS:
   Expecta+Snapshots: dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
-  KNVUNDBaseDevelopPackage: 4bb515f5477027f404bb9241b012e8ce9a8ccf9a
+  KNVUNDBaseDevelopPackage: d856fb7f4060898ca4d6e578bf634a6ea463d1ed
   LinqToObjectiveC: f0e40c137a458b6b9725c4c7b6a575c0c72e3aec
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: fbfdbad31884f16fac17fbe3c44c168306cc1095
   PPTopMostController: 4e6f1e5f8c645bdcc74cd837a20f607ff262c048
-  RMessage: 37b1ab9d92ec1ffbafbbbdfc6f10c9524829c4e6
+  RMessage: 801eaaf88cc0e962c50eb3d7f86ac5e15979ba6d
   skpsmtpmessage: f6e913380c784dd8d4a9f83c8790a302445a5e05
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6

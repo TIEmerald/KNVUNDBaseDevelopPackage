@@ -7,9 +7,6 @@
 
 #import "KNVUNDETVRelatedBasicTableViewCell.h"
 
-// Models
-#import "KNVUNDExpendingTableViewRelatedModel.h"
-
 // Tools
 #import "KNVUNDColourRelatedTool.h"
 
@@ -21,6 +18,7 @@
 @property (nonatomic, weak) KNVUNDExpendingTableViewRelatedModel *currentStoredETVModel;
 
 // IBOutlets
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIButton *expendingButton;
 
 @end
@@ -53,8 +51,10 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 - (void)updateCellUI
 {
     [super updateCellUI];
+    [self setupGeneralUIBasedOnModel];
     [self setupExpendedStatusUI];
     [self setupSelectedStatusUI];
+    
 }
 
 #pragma mark UITableViewDelegate Related
@@ -80,15 +80,6 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 }
 
 #pragma mark - Methods for Override
-- (void)setupSelectedStatusUI
-{
-    if (_currentStoredETVModel.isSelected) {
-        self.backgroundColor = [KNVUNDColourRelatedTool colorWithHexString:KNVUNDETVRelatedBasicTableViewCell_SelectedBackendColour];
-    } else {
-        self.backgroundColor = [KNVUNDColourRelatedTool colorWithHexString:KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour];;
-    }
-}
-
 - (void)setupExpendedStatusUI
 {
     if (!_hasUIInitialised) {
@@ -97,6 +88,20 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
         [self.expendingButton setTitle:@"-" forState:UIControlStateSelected];
     }
     self.expendingButton.selected = _currentStoredETVModel.isExpended;
+}
+
+- (void)setupGeneralUIBasedOnModel
+{
+    self.titleLabel.text = _currentStoredETVModel.associatedItem;
+}
+
+- (void)setupSelectedStatusUI
+{
+    if (_currentStoredETVModel.isSelected) {
+        self.backgroundColor = [KNVUNDColourRelatedTool colorWithHexString:KNVUNDETVRelatedBasicTableViewCell_SelectedBackendColour];
+    } else {
+        self.backgroundColor = [KNVUNDColourRelatedTool colorWithHexString:KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour];;
+    }
 }
 
 #pragma mark - Gettes && Setters
@@ -111,6 +116,7 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel
 {
     self.currentStoredETVModel = associatdModel;
+    [self updateCellUI];
 }
 
 #pragma mark - IBActions
