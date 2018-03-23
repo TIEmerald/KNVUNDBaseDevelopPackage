@@ -13,6 +13,8 @@
 
 @interface KNVUNDETVRelatedBasicTableViewCell : UITableViewCell
 
+@property (readonly) KNVUNDExpendingTableViewRelatedModel *relatedModel;
+
 #pragma mark - Set up
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel;
 

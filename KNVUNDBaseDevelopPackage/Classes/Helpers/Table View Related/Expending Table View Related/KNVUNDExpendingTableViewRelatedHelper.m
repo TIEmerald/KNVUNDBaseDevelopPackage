@@ -23,6 +23,12 @@
 
 @synthesize displayingModels;
 
+#pragma mark - KNVUNDBasic
+- (BOOL)shouldShowRelatedLog
+{
+    return NO;
+}
+
 #pragma mark - Set Up
 - (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView
 {
@@ -38,8 +44,12 @@
     NSMutableArray *usingDisplayingArray = [NSMutableArray new];
     for (id model in rootModelArray) {
         if ([model isKindOfClass:[KNVUNDExpendingTableViewRelatedModel class]]) {
-            [usingDisplayingArray addObject:model];
-            [usingDisplayingArray addObjectsFromArray:[model getDisplayingDescendants]];
+            KNVUNDExpendingTableViewRelatedModel *convertedModel = (KNVUNDExpendingTableViewRelatedModel *)model;
+            [usingDisplayingArray addObject:convertedModel];
+            convertedModel.delegate = self;
+            if (convertedModel.isExpended) {
+                [usingDisplayingArray addObjectsFromArray:[convertedModel getDisplayingDescendants]];
+            }
         }
     }
     self.displayingModels = usingDisplayingArray;
@@ -52,18 +62,24 @@
 #pragma mark Table View Updating Related
 - (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
+    [self performConsoleLogWithLogStringFormat:@"Reloading Cell At Indexs: %@",
+     indexPaths];
     [_associatedTableView reloadRowsAtIndexPaths:indexPaths
                                 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
+    [self performConsoleLogWithLogStringFormat:@"Inserting Cell At Indexs: %@",
+     indexPaths];
     [_associatedTableView insertRowsAtIndexPaths:indexPaths
                                 withRowAnimation:UITableViewRowAnimationTop];
 }
 
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
+    [self performConsoleLogWithLogStringFormat:@"Deleting Cell At Indexs: %@",
+     indexPaths];
     [_associatedTableView deleteRowsAtIndexPaths:indexPaths
                                 withRowAnimation:UITableViewRowAnimationTop];
 }
@@ -92,6 +108,10 @@
 }
 
 #pragma mark - UITableViewDelegate
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    KNVUNDETVRelatedBasicTableViewCell *usingCell = [tableView cellForRowAtIndexPath:indexPath];
+    [usingCell.relatedModel toggleSelectionStatus];
+}
 
 @end

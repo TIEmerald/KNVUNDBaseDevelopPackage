@@ -37,6 +37,16 @@
     return [KNVUNDETVRelatedBasicTableViewCell class];
 }
 
+#pragma mark - Initial
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.isExpendable = YES;
+        self.isSelectable = YES;
+    }
+    return self;
+}
+
 #pragma mark - Getters && Setters
 #pragma mark Delegate Related
 - (NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
@@ -52,6 +62,14 @@
         _mutableChildrenArray = [NSMutableArray new];
     }
     return _mutableChildrenArray;
+}
+
+- (id<KNVUNDETVRelatedModelDelegate>)delegate
+{
+    if (_delegate == nil) {
+        return self.parent.delegate;
+    }
+    return _delegate;
 }
 
 #pragma mark Setters
@@ -194,6 +212,7 @@
             }
         }
     }
+    _isCurrentModelExpended = !_isCurrentModelExpended;
 }
 
 #pragma mark Support Methods
@@ -208,6 +227,16 @@
         }
     }
     return returnArray;
+}
+
+#pragma mark - Log Related
+- (NSString *_Nonnull)logDescription
+{
+    return [NSString stringWithFormat:@"Model Item: %@ (Depth Level %@, Is Expended %@, Is Selected %@",
+            [self.associatedItem description],
+            @(self.modelDepthLevel),
+            @(self.isExpended),
+            @(self.isSelected)];
 }
 
 #pragma mark - Support Methods

@@ -83,7 +83,7 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 - (void)setupExpendedStatusUI
 {
     if (!_hasUIInitialised) {
-        self.expendingButton.hidden = _currentStoredETVModel.isExpendable;
+        self.expendingButton.hidden = !_currentStoredETVModel.isExpendable;
         [self.expendingButton setTitle:@"+" forState:UIControlStateNormal];
         [self.expendingButton setTitle:@"-" forState:UIControlStateSelected];
     }
@@ -105,18 +105,25 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 }
 
 #pragma mark - Gettes && Setters
+#pragma mark - Getters
+- (KNVUNDExpendingTableViewRelatedModel *)relatedModel
+{
+    return _currentStoredETVModel;
+}
+
 #pragma mark - Setters
 - (void)setCurrentStoredETVModel:(KNVUNDExpendingTableViewRelatedModel *)currentStoredETVModel
 {
+    _hasUIInitialised = NO;
     _currentStoredETVModel = currentStoredETVModel;
-    [self setupExpendedStatusUI];
+    [self updateCellUI];
+    _hasUIInitialised = YES;
 }
 
 #pragma mark - Set up
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel
 {
     self.currentStoredETVModel = associatdModel;
-    [self updateCellUI];
 }
 
 #pragma mark - IBActions

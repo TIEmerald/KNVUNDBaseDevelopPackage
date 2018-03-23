@@ -47,6 +47,9 @@
 @property (nonatomic) BOOL isExpendable; // You could overrride thie getter if you want a certain model will never be expended
 - (void)toggleExpendedStatus;
 /////// Support Methods
-- (NSArray *)getDisplayingDescendants;
+- (NSArray *_Nonnull)getDisplayingDescendants;
+
+//// Log Related
+- (NSString *_Nonnull)logDescription;
 
 @end
