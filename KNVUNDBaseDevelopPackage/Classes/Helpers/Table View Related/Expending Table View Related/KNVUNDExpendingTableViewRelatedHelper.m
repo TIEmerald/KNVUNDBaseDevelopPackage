@@ -86,7 +86,7 @@
     [self performConsoleLogWithLogStringFormat:@"Inserting Cell At Indexs: %@",
      indexPaths];
     [_associatedTableView insertRowsAtIndexPaths:indexPaths
-                                withRowAnimation:UITableViewRowAnimationTop];
+                                withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
@@ -94,7 +94,7 @@
     [self performConsoleLogWithLogStringFormat:@"Deleting Cell At Indexs: %@",
      indexPaths];
     [_associatedTableView deleteRowsAtIndexPaths:indexPaths
-                                withRowAnimation:UITableViewRowAnimationTop];
+                                withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 #pragma mark - UITableViewDataSource
