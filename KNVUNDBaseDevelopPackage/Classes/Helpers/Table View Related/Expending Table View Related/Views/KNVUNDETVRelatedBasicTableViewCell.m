@@ -82,7 +82,12 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 #pragma mark - Methods for Override
 - (void)setupExpendedStatusUI
 {
-    if (!_hasUIInitialised) {
+    [self setupExpendedStatusUIWithFirstTimeCheck:!_hasUIInitialised];
+}
+
+- (void)setupExpendedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime
+{
+    if (isFirstTime) {
         self.expendingButton.hidden = !_currentStoredETVModel.isExpendable;
         [self.expendingButton setTitle:@"+" forState:UIControlStateNormal];
         [self.expendingButton setTitle:@"-" forState:UIControlStateSelected];
@@ -92,10 +97,23 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 
 - (void)setupGeneralUIBasedOnModel
 {
+    [self setupGeneralUIBasedOnModelWithFirstTimeCheck:!_hasUIInitialised];
+}
+
+- (void)setupGeneralUIBasedOnModelWithFirstTimeCheck:(BOOL)isFirstTime
+{
     self.titleLabel.text = _currentStoredETVModel.associatedItem;
+    if (isFirstTime) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
 }
 
 - (void)setupSelectedStatusUI
+{
+    [self setupSelectedStatusUIWithFirstTimeCheck:!_hasUIInitialised];
+}
+
+- (void)setupSelectedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime
 {
     if (_currentStoredETVModel.isSelected) {
         self.backgroundColor = [KNVUNDColourRelatedTool colorWithHexString:KNVUNDETVRelatedBasicTableViewCell_SelectedBackendColour];
@@ -123,7 +141,9 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 #pragma mark - Set up
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel
 {
-    self.currentStoredETVModel = associatdModel;
+    if (_currentStoredETVModel != associatdModel) {
+        self.currentStoredETVModel = associatdModel;
+    }
 }
 
 #pragma mark - IBActions

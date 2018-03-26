@@ -59,13 +59,26 @@
 
 #pragma mark - Delegates
 #pragma mark - KNVUNDETVRelatedModelDelegate
+#pragma mark Setting Related
+- (BOOL)isSettingSingleSelection
+{
+    return self.isSingleSelection;
+}
+
 #pragma mark Table View Updating Related
-- (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
+- (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell
 {
     [self performConsoleLogWithLogStringFormat:@"Reloading Cell At Indexs: %@",
      indexPaths];
-    [_associatedTableView reloadRowsAtIndexPaths:indexPaths
-                                withRowAnimation:UITableViewRowAnimationNone];
+    if (shouldReloadCell) {
+        [_associatedTableView reloadRowsAtIndexPaths:indexPaths
+                                    withRowAnimation:UITableViewRowAnimationNone];
+    } else {
+        for (NSIndexPath *indexPath in indexPaths) {
+            UITableViewCell *relatedTableViewCell = [_associatedTableView cellForRowAtIndexPath:indexPath];
+            [relatedTableViewCell updateCellUI];
+        }
+    }
 }
 
 - (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths

@@ -8,8 +8,11 @@
 
 #import "KNVUNDViewController.h"
 
-/// Models
-#import "KNVUNDExpendingTableViewRelatedModel.h"
+// Models
+#import "KNVUNDETVRelatedTagButtonModel.h"
+
+// Views
+#import "KNVUNDETVRelatedTagButtonCell.h"
 
 // Helpers
 #import "KNVUNDButtonsSelectionHelper.h"
@@ -18,9 +21,11 @@
 // Tools
 #import "KNVUNDImageRelatedTool.h"
 
-@interface KNVUNDViewController () {
+@interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate> {
     KNVUNDButtonsSelectionHelper *_buttonsSelectionHelper;
+    
     KNVUNDExpendingTableViewRelatedHelper *_expendingTableViewHelper;
+    KNVUNDButtonsSelectionHelper *_etvButtonsSelectionHelper;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *testingTableView;
@@ -82,19 +87,43 @@
 {
     KNVUNDExpendingTableViewRelatedModel *parentOne =  [KNVUNDExpendingTableViewRelatedModel new];
     parentOne.associatedItem = @"Parent One";
-    KNVUNDExpendingTableViewRelatedModel *childOneForParentOne =  [KNVUNDExpendingTableViewRelatedModel new];
+    KNVUNDETVRelatedTagButtonModel *childOneForParentOne =  [KNVUNDETVRelatedTagButtonModel new];
     childOneForParentOne.associatedItem = @"Child One for Parent One";
-    KNVUNDExpendingTableViewRelatedModel *childTwoForParentOne =  [KNVUNDExpendingTableViewRelatedModel new];
+    childOneForParentOne.tagButtonDelegate = self;
+    KNVUNDETVRelatedTagButtonModel *childTwoForParentOne =  [KNVUNDETVRelatedTagButtonModel new];
     childTwoForParentOne.associatedItem = @"Child Two for Parent One";
+    childTwoForParentOne.tagButtonDelegate = self;
     parentOne.children = @[childOneForParentOne, childTwoForParentOne];
     
     KNVUNDExpendingTableViewRelatedModel *parentTwo =  [KNVUNDExpendingTableViewRelatedModel new];
     parentTwo.associatedItem = @"Parent Two";
     
     _expendingTableViewHelper = [KNVUNDExpendingTableViewRelatedHelper new];
+    _expendingTableViewHelper.isSingleSelection = YES;
     [_expendingTableViewHelper setUpWithRootModelArray:@[parentOne, parentTwo]
-                                 supportedModelClasses:@[[KNVUNDExpendingTableViewRelatedModel class]]
+                                 supportedModelClasses:@[[KNVUNDExpendingTableViewRelatedModel class],
+                                                         [KNVUNDETVRelatedTagButtonModel class]]
                                    andRelatedTableView:self.testingTableView];
+    
+    _etvButtonsSelectionHelper = [KNVUNDButtonsSelectionHelper new];
+    [_etvButtonsSelectionHelper setupWithHelperButtonsArray:@[childOneForParentOne.associatedTagButton, childTwoForParentOne.associatedTagButton]
+                                        withSelectedButtons:nil];
+    _etvButtonsSelectionHelper.isSingleSelection = YES;
+    _etvButtonsSelectionHelper.isForceSelection = YES;
+}
+
+#pragma mark - Delegates
+#pragma mark - KNVUNDETVRelatedTagButtonModelDelegate
+- (void)selectTagButton:(UIButton *)tagButton
+{
+    [_etvButtonsSelectionHelper tapAButton:tagButton];
+}
+
+- (void)tagButtonTriggeredWithAssociatedItem:(id)associatedItem
+{
+    [self displayBannerMessageWithBannerType:KNVUNDBaseVCBannerMessageType_Notify
+                                       title:[NSString stringWithFormat:@"Tag Button %@ Tapped", associatedItem]
+                                  andMessage:@"Banner Message"];
 }
 
 #pragma mark - Support Methods

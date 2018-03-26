@@ -17,9 +17,11 @@
     
     /// Selection Related
     BOOL _isCurrentModelSelected;
+    KNVUNDETVRelatedModelBooleanStatusChangedBlock _selectionStatusOnChange;
     
     /// Expending Status Related
     BOOL _isCurrentModelExpended;
+    KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusOnChange;
 }
 
 @property (readonly) NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
@@ -52,6 +54,11 @@
 - (NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
 {
     return self.delegate.displayingModels;
+}
+
+- (BOOL)isSingleSelection
+{
+    return [self.delegate isSettingSingleSelection];
 }
 
 #pragma mark - Hirearchy Related Properties
@@ -135,7 +142,17 @@
     return NO;
 }
 
+- (BOOL)isCurrentModelSelected
+{
+    return _isCurrentModelSelected;
+}
+
 #pragma mark Setters
+- (void)setSelectionStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)selectionStatusOnChangeBlock
+{
+    _selectionStatusOnChange = selectionStatusOnChangeBlock;
+}
+
 - (void)toggleSelectionStatus
 {
     [self toggleSelectionStatusAndShouldUpdateRelatedCells:YES];
@@ -144,6 +161,14 @@
 /// This method will return a Set of KNVUNDExpendingTableViewRelatedModel which selection status will be affected.
 - (NSSet *)toggleSelectionStatusAndShouldUpdateRelatedCells:(BOOL)shouldUpdateCells
 {
+    if ([self isSingleSelection] && ![self isCurrentModelSelected]) {
+        for (KNVUNDExpendingTableViewRelatedModel *tableModel in self.relatedModelArray) {
+            if ([tableModel isCurrentModelSelected]) {
+                [tableModel toggleSelectionStatus];
+            }
+        }
+    }
+    
     NSMutableSet *updatedModels = [NSMutableSet new];
     if (self.isSelectable) {
         /// Step One, if it's not selected, we will select current Model
@@ -166,9 +191,23 @@
     }
     
     if (shouldUpdateCells) {
-        if ([self.delegate respondsToSelector:@selector(reloadCellsAtIndexPaths:)]) {
-            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:updatedModels.allObjects]];
+        if ([self.delegate respondsToSelector:@selector(reloadCellsAtIndexPaths:shouldReloadCell:)]) {
+            NSMutableArray *shouldReloadCellModels = [NSMutableArray new];
+            NSMutableArray *shouldNotReloadCellModels = [NSMutableArray new];
+            for (KNVUNDExpendingTableViewRelatedModel *model in updatedModels.allObjects) {
+                if (model.shouldReloadCellWhenSelectionStatusChanged) {
+                    [shouldReloadCellModels addObject:model];
+                } else {
+                    [shouldNotReloadCellModels addObject:model];
+                }
+            }
+            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:shouldReloadCellModels] shouldReloadCell:YES];
+            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:shouldNotReloadCellModels] shouldReloadCell:NO];
         }
+    }
+    
+    if (_selectionStatusOnChange) {
+        _selectionStatusOnChange(self.isSelected);
     }
     
     return updatedModels;
@@ -187,6 +226,19 @@
 }
 
 #pragma mark Setters
+- (void)setCurrentExpendedStatus:(BOOL)currentExpendedStatus
+{
+    _isCurrentModelExpended = currentExpendedStatus;
+    if (_expendingStatusOnChange) {
+        _expendingStatusOnChange(_isCurrentModelExpended);
+    }
+}
+
+- (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusOnChangeBlock
+{
+    _expendingStatusOnChange = expendingStatusOnChangeBlock;
+}
+
 - (void)toggleExpendedStatus
 {
     NSArray *displayingDescendants = [self getDisplayingDescendants];
@@ -213,6 +265,9 @@
         }
     }
     _isCurrentModelExpended = !_isCurrentModelExpended;
+    if (_expendingStatusOnChange) {
+        _expendingStatusOnChange(self.isExpended);
+    }
 }
 
 #pragma mark Support Methods
