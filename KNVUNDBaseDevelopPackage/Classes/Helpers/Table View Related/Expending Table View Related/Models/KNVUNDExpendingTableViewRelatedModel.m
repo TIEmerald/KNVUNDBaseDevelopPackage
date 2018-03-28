@@ -319,6 +319,14 @@
     return returnIndexPaths;
 }
 
+- (void)reloadTheCellForSelf
+{
+    NSIndexPath *currentIndexForSelf = [self getCurrentIndexPath];
+    if (currentIndexForSelf != nil) {
+        [self.delegate reloadCellsAtIndexPaths:@[currentIndexForSelf] shouldReloadCell:NO];
+    }
+}
+
 #pragma mark Ancestors and Descendants
 - (NSSet *)getAllAncestor
 {

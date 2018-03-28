@@ -6,27 +6,10 @@
 //  Copyright © 2018 niyejunze.j@gmail.com. All rights reserved.
 //
 
-#import "KNVUNDExpendingTableViewRelatedModel.h"
+#import "KNVUNDETVTagButtonRelatedBaseModel.h"
 
-@protocol KNVUNDETVRelatedTagButtonModelDelegate <NSObject>
+@interface KNVUNDETVRelatedTagButtonModel : KNVUNDETVTagButtonRelatedBaseModel
 
-- (void)selectTagButton:(UIButton *)tagButton;
-- (void)tagButtonTriggeredWithAssociatedItem:(id)associatedItem;
-
-@end
-
-@interface KNVUNDETVRelatedTagButtonModel : KNVUNDExpendingTableViewRelatedModel
-
-@property (nonatomic, weak) id<KNVUNDETVRelatedTagButtonModelDelegate> tagButtonDelegate;
-
-//// Related Associated String
 - (NSString *)associatedString;
-
-//// Tag Button Releated
-@property (readonly) UIButton *associatedTagButton;
-
-//// General Methods
-- (void)setupTagButton;
-- (void)tapTagButton;
 
 @end

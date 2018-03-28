@@ -69,17 +69,12 @@
 - (void)setupSelectedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime
 {
     [super setupSelectedStatusUIWithFirstTimeCheck:isFirstTime];
-    self.tagButton.selected = self.covertedAssociatedModel.isSelected;
-    if (self.covertedAssociatedModel.isSelected) {
-        [self.covertedAssociatedModel tapTagButton];
-    }
+    self.tagButton.selected = self.covertedAssociatedModel.associatedTagButton.isSelected;
 }
 
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel
 {
-    if ([associatdModel isKindOfClass:[KNVUNDETVRelatedTagButtonModel class]]) {
-        [super setupCellWitKNVUNDWithModel:associatdModel];
-    }
+    [super setupCellWitKNVUNDWithModel:associatdModel];
 }
 
 #pragma mark - Getters & Setters

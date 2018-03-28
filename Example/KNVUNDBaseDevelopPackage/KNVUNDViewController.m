@@ -106,24 +106,24 @@
                                    andRelatedTableView:self.testingTableView];
     
     _etvButtonsSelectionHelper = [KNVUNDButtonsSelectionHelper new];
-    [_etvButtonsSelectionHelper setupWithHelperButtonsArray:@[childOneForParentOne.associatedTagButton, childTwoForParentOne.associatedTagButton]
-                                        withSelectedButtons:nil];
+    childOneForParentOne.relatedButtonSelectionHelper = _etvButtonsSelectionHelper;
+    childTwoForParentOne.relatedButtonSelectionHelper = _etvButtonsSelectionHelper;
     _etvButtonsSelectionHelper.isSingleSelection = YES;
     _etvButtonsSelectionHelper.isForceSelection = YES;
 }
 
 #pragma mark - Delegates
 #pragma mark - KNVUNDETVRelatedTagButtonModelDelegate
-- (void)selectTagButton:(UIButton *)tagButton
-{
-    [_etvButtonsSelectionHelper tapAButton:tagButton];
-}
-
-- (void)tagButtonTriggeredWithAssociatedItem:(id)associatedItem
+- (void)tagButtonSelectedWithModel:(KNVUNDETVTagButtonRelatedBaseModel *)relatedModel
 {
     [self displayBannerMessageWithBannerType:KNVUNDBaseVCBannerMessageType_Notify
-                                       title:[NSString stringWithFormat:@"Tag Button %@ Tapped", associatedItem]
+                                       title:[NSString stringWithFormat:@"Tag Button %@ Tapped", [(KNVUNDETVRelatedTagButtonModel *)relatedModel associatedString]]
                                   andMessage:@"Banner Message"];
+}
+
+- (void)tagButtonDeSelectedWithModel:(KNVUNDETVTagButtonRelatedBaseModel *)relatedModel
+{
+    
 }
 
 #pragma mark - Support Methods

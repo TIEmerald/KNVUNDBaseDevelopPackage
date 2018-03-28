@@ -66,4 +66,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
 //// Log Related
 - (NSString *_Nonnull)logDescription;
 
+//// Support Methods
+- (void)reloadTheCellForSelf;
+
 @end

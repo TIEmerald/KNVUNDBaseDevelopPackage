@@ -6,8 +6,8 @@
 //  Copyright © 2018 niyejunze.j@gmail.com. All rights reserved.
 //
 
-#import "KNVUNDETVRelatedBasicTableViewCell.h"
+#import "KNVUNDETVTagButtonReleatedBaseTableViewCell.h"
 
-@interface KNVUNDETVRelatedTagButtonCell : KNVUNDETVRelatedBasicTableViewCell
+@interface KNVUNDETVRelatedTagButtonCell : KNVUNDETVTagButtonReleatedBaseTableViewCell
 
 @end

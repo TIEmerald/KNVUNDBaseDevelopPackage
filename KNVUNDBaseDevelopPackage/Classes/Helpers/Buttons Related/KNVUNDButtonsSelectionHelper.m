@@ -20,7 +20,7 @@
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - Getters & Setters
@@ -64,10 +64,37 @@
     }
 }
 
+- (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton
+{
+    if (appendingButton != nil) {
+        if ([_currentAssociatedButtons count] == 0) {
+            [self setupWithHelperButtonsArray:@[appendingButton] withSelectedButtons:nil];
+        } else {
+            NSMutableArray *tempArray = [NSMutableArray<UIButton *> arrayWithArray:_currentAssociatedButtons];
+            [tempArray addObject:appendingButton];
+            _currentAssociatedButtons = [NSArray<UIButton *> arrayWithArray:tempArray];
+        }
+    }
+}
+
 #pragma mark - InterAction Methods
 - (void)tapAButton:(UIButton *_Nonnull)tappingButton
 {
     if ([_currentAssociatedButtons containsObject:tappingButton]) {
+        [self didTapBSButton:tappingButton];
+    }
+}
+
+- (void)setAButtonStatusToSelected:(UIButton *_Nonnull)tappingButton
+{
+    if ([_currentAssociatedButtons containsObject:tappingButton] && !tappingButton.isSelected) {
+        [self didTapBSButton:tappingButton];
+    }
+}
+
+- (void)setAButtonStatusToUnSelected:(UIButton *_Nonnull)tappingButton
+{
+    if ([_currentAssociatedButtons containsObject:tappingButton] && tappingButton.isSelected) {
         [self didTapBSButton:tappingButton];
     }
 }
@@ -86,11 +113,16 @@
 #pragma mark - Support Methods
 - (void)didTapBSButton:(UIButton *)tapedButton
 {
+    [self performConsoleLogWithLogStringFormat:@"Performing Tap with Button: %@", tapedButton];
+    [self performConsoleLogWithLogString:@"Before Tap Status: "];
+    [self logAllButtonsStatus];
     if (tapedButton.isSelected) {
         [self deSelectKNVUNDBSButton:tapedButton];
     } else {
         [self selectKNVUNDBSButton:tapedButton];
     }
+    [self performConsoleLogWithLogString:@"After Tap Status: "];
+    [self logAllButtonsStatus];
 }
 
 - (void)selectKNVUNDBSButton:(UIButton *)button
@@ -133,6 +165,16 @@
     return [_currentAssociatedButtons linq_where:^BOOL(UIButton *item) {
         return item.isSelected;
     }];
+}
+
+#pragma mark Log Related
+- (void)logAllButtonsStatus
+{
+    for (UIButton *aButton in _currentAssociatedButtons) {
+        [self performConsoleLogWithLogStringFormat:@"Button: %@\nSelection Status: %@",
+         aButton,
+         @(aButton.isSelected)];
+    }
 }
 
 @end
