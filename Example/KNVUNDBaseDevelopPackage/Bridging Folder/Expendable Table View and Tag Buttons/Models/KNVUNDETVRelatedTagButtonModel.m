@@ -14,9 +14,6 @@
 // Categories
 #import "UIButton+KNVUNDButtonsSelectionButton.h"
 
-// Tools
-#import "KNVUNDImageRelatedTool.h"
-
 @interface KNVUNDETVRelatedTagButtonModel(){
     UIButton *_associatedTagButton;
 }
@@ -36,8 +33,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        _associatedTagButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-        _associatedTagButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self setupTagButton];
     }
     return self;
 }
@@ -62,16 +58,7 @@
 - (void)setupTagButton
 {
     __weak typeof(self) weakSelf = self;
-    [_associatedTagButton setTitle:[self associatedString]
-                          forState:UIControlStateNormal];
-    [_associatedTagButton setTitleColor:[UIColor blackColor]
-                               forState:UIControlStateNormal];
-    [_associatedTagButton setTitleColor:[UIColor whiteColor]
-                               forState:UIControlStateSelected];
-    [_associatedTagButton setBackgroundImage:[KNVUNDImageRelatedTool generateImageWithColor:[UIColor clearColor]]
-                                    forState:UIControlStateNormal];
-    [_associatedTagButton setBackgroundImage:[KNVUNDImageRelatedTool generateImageWithColor:[UIColor blueColor]]
-                                    forState:UIControlStateSelected];
+    _associatedTagButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_associatedTagButton setUpWithSelectedFunction:^(UIButton * _Nonnull relatedButton) {
         [weakSelf triggerTagButtonFunction];
     } andDeSelectedFunction:^(UIButton * _Nonnull relatedButton) {
