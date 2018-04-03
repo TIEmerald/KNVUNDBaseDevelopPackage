@@ -405,30 +405,37 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             /// This is a temporary fix for Abacus POS, this method will cause the issue that Example App will crash, but it works fine in Abacus POS.
-                                             [TSMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-                                                                               withTitle:title
-                                                                             withMessage:message
-                                                                                withType:(TSMessageNotificationType)bannerType
-                                                                            withDuration:self.bannerShowingTime
-                                                                            withCallback:nil
-                                                                         withButtonTitle:@""
-                                                                      withButtonCallback:nil
-                                                                              atPosition:TSMessageNotificationPositionBottom
-                                                                     canBeDismisedByUser:YES];
-//                                             [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-//                                                                                  title:title
-//                                                                               subtitle:message
-//                                                                              iconImage:nil
-//                                                                                   type:(RMessageType)bannerType
-//                                                                         customTypeName:@""
-//                                                                               duration:self.bannerShowingTime
-//                                                                               callback:nil
-//                                                                            buttonTitle:nil
-//                                                                         buttonCallback:nil
-//                                                                             atPosition:RMessagePositionBottom
-//                                                                   canBeDismissedByUser:YES];
-                                         }];
+                                             switch (self.bannerToolType) {
+                                                 case KNVUNDBaseVCBannerTool_TMessage:
+                                                     /// This is a temporary fix for Abacus POS, this method will cause the issue that Example App will crash, but it works fine in Abacus POS.
+                                                     [TSMessage showNotificationInViewController:self.bannerMessageDisplayingVC
+                                                                                       withTitle:title
+                                                                                     withMessage:message
+                                                                                        withType:(TSMessageNotificationType)bannerType
+                                                                                    withDuration:self.bannerShowingTime
+                                                                                    withCallback:nil
+                                                                                 withButtonTitle:@""
+                                                                              withButtonCallback:nil
+                                                                                      atPosition:TSMessageNotificationPositionBottom
+                                                                             canBeDismisedByUser:YES];
+
+                                                     break;
+                                                 case KNVUNDBaseVCBannerTool_RMessage:
+                                                 default:
+                                                     [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
+                                                                                          title:title
+                                                                                       subtitle:message
+                                                                                      iconImage:nil
+                                                                                           type:(RMessageType)bannerType
+                                                                                 customTypeName:@""
+                                                                                       duration:self.bannerShowingTime
+                                                                                       callback:nil
+                                                                                    buttonTitle:nil
+                                                                                 buttonCallback:nil
+                                                                                     atPosition:RMessagePositionBottom
+                                                                           canBeDismissedByUser:YES];
+                                                     break;
+                                             }                                         }];
 }
 
 @end

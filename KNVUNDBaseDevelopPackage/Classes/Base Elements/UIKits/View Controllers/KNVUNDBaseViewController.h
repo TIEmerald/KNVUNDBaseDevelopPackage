@@ -77,6 +77,11 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
     KNVUNDBaseVCBannerMessageType_Failure = RMessageTypeError
 }KNVUNDBaseVCBannerMessageType;
 
+typedef enum : NSUInteger {
+    KNVUNDBaseVCBannerTool_RMessage,
+    KNVUNDBaseVCBannerTool_TMessage
+} KNVUNDBaseVCBannerTool;
+
 @interface KNVUNDBaseViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
 /////****************************************************************
@@ -86,6 +91,7 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
  */
 @property (weak, nonatomic) UIViewController *bannerMessageDisplayingVC;
 @property (nonatomic) NSTimeInterval bannerShowingTime; /// Default 3.0s
+@property (readonly) KNVUNDBaseVCBannerTool bannerToolType; /// Decide which third party package we will using for bannoer.
 
 
 /////****************************************************************

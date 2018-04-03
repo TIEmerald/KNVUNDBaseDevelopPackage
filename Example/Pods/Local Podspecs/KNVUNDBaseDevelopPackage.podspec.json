@@ -9,7 +9,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "niyejunze.j@gmail.com": "daniel@abacus.co"
+    "UNDaniel": "daniel@abacus.co"
   },
   "source": {
     "git": "https://github.com/niyejunze.j@gmail.com/KNVUNDBaseDevelopPackage.git",
@@ -18,7 +18,11 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "KNVUNDBaseDevelopPackage/Classes/**/*",
+  "source_files": "KNVUNDBaseDevelopPackage/Classes/**/*.{h,m}",
+  "resources": [
+    "KNVUNDBaseDevelopPackage/Classes/**/*.xib",
+    "KNVUNDBaseDevelopPackage/Classes/**/*.{png,jpg,json}"
+  ],
   "dependencies": {
     "ZXingObjC": [
 

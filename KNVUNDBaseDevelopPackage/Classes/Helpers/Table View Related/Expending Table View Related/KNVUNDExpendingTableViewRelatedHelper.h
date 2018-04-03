@@ -9,4 +9,9 @@
 
 @interface KNVUNDExpendingTableViewRelatedHelper : KNVUNDBaseModel
 
+@property (nonatomic) BOOL isSingleSelection;
+
+#pragma mark - Set Up
+- (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView;
+
 @end

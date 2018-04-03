@@ -18,9 +18,12 @@
 
 #pragma mark - Set Up Method
 - (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons;
+- (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton;
 
 #pragma mark - InterAction Methods
 - (void)tapAButton:(UIButton *_Nonnull)tappingButton;
+- (void)setAButtonStatusToSelected:(UIButton *_Nonnull)tappingButton;
+- (void)setAButtonStatusToUnSelected:(UIButton *_Nonnull)tappingButton;
 
 #pragma mark - Reset Methods
 - (void)resetCurrentHelper;
