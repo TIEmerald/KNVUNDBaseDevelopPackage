@@ -7,15 +7,15 @@
 
 #import "KNVUNDBaseModel.h"
 
-@interface KNVUNDRegexReleatedTool : KNVUNDBaseModel
+@interface KNVUNDRegexRelatedTool : KNVUNDBaseModel
 
 #pragma mark - Constants
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_Alphabets;
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_Numbers;
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_Email;
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_Name;
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_IPv4Address;
-extern NSString * const KNVUNDRegexReleatedTool_Pattern_VoucherCode;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_Alphabets;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_Numbers;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_Email;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_Name;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_IPv4Address;
+extern NSString * const KNVUNDRegexRelatedTool_Pattern_VoucherCode;
 
 #pragma mark - Checks Registration
 /*!

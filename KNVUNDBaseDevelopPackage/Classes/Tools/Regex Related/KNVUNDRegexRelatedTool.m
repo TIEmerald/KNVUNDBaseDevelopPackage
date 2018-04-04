@@ -7,15 +7,15 @@
 
 #import "KNVUNDRegexReleatedTool.h"
 
-@implementation KNVUNDRegexReleatedTool
+@implementation KNVUNDRegexRelatedTool
 
 #pragma mark - Constants
-NSString * const KNVUNDRegexReleatedTool_Pattern_Alphabets = @"[A-z]*";
-NSString * const KNVUNDRegexReleatedTool_Pattern_Numbers = @"[0-9]*";
-NSString * const KNVUNDRegexReleatedTool_Pattern_Email = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-NSString * const KNVUNDRegexReleatedTool_Pattern_Name = @"^[a-z]+$";
-NSString * const KNVUNDRegexReleatedTool_Pattern_IPv4Address = @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
-NSString * const KNVUNDRegexReleatedTool_Pattern_VoucherCode = @"^[A-Z0-9a-z]*$";
+NSString * const KNVUNDRegexRelatedTool_Pattern_Alphabets = @"[A-z]*";
+NSString * const KNVUNDRegexRelatedTool_Pattern_Numbers = @"[0-9]*";
+NSString * const KNVUNDRegexRelatedTool_Pattern_Email = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+NSString * const KNVUNDRegexRelatedTool_Pattern_Name = @"^[a-z]+$";
+NSString * const KNVUNDRegexRelatedTool_Pattern_IPv4Address = @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+NSString * const KNVUNDRegexRelatedTool_Pattern_VoucherCode = @"^[A-Z0-9a-z]*$";
 
 #pragma mark - Checks Registration
 + (BOOL)checkYear:(NSString *)yearStr
