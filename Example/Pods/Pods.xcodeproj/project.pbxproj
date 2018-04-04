@@ -105,6 +105,8 @@
 		20208AE5206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20208AE6206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */; };
 		2066EE2E97ABA4A07CC95AB429962526 /* NotificationBackgroundWarningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF2BBD9C06F98EACE15DC893587CD8F /* NotificationBackgroundWarningIcon@2x.png */; };
+		2078D418207476D40023526D /* KNVUNDRegexReleatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2078D416207476D40023526D /* KNVUNDRegexReleatedTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2078D419207476D40023526D /* KNVUNDRegexReleatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2078D417207476D40023526D /* KNVUNDRegexReleatedTool.m */; };
 		209C8BE275E5AC506A3FB9D87B7ED356 /* ZXDataMatrixX12Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E83BB9A7350BDF53830168D45B633 /* ZXDataMatrixX12Encoder.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6A1AD0799A9B2C01F86CCF2B72FF2F /* SPTTestSuite.m */; };
 		20AA620525D7EA6AF9263F42509BC33A /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D93540CFC9F1909E25653C962D2DEC /* ZXMaxiCodeDecodedBitStreamParser.m */; };
@@ -1244,6 +1246,8 @@
 		20208ADF206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonRelatedBaseModel.m; sourceTree = "<group>"; };
 		20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.h; sourceTree = "<group>"; };
 		20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.m; sourceTree = "<group>"; };
+		2078D416207476D40023526D /* KNVUNDRegexReleatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDRegexReleatedTool.h; sourceTree = "<group>"; };
+		2078D417207476D40023526D /* KNVUNDRegexReleatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDRegexReleatedTool.m; sourceTree = "<group>"; };
 		208E485B1489662B3F1B2A213594EE80 /* ZXBitArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXBitArray.h; path = ZXingObjC/common/ZXBitArray.h; sourceTree = "<group>"; };
 		20C23A613AE6246991E32DB6FC21A33D /* RMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessage.h; path = RMessage/RMessage.h; sourceTree = "<group>"; };
 		20EBFC62E75B17652CD3698783E6AFC8 /* ZXPDF417Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Reader.h; path = ZXingObjC/pdf417/ZXPDF417Reader.h; sourceTree = "<group>"; };
@@ -2278,6 +2282,15 @@
 			path = "Tag Button Related";
 			sourceTree = "<group>";
 		};
+		2078D415207476910023526D /* Regex Related */ = {
+			isa = PBXGroup;
+			children = (
+				2078D416207476D40023526D /* KNVUNDRegexReleatedTool.h */,
+				2078D417207476D40023526D /* KNVUNDRegexReleatedTool.m */,
+			);
+			path = "Regex Related";
+			sourceTree = "<group>";
+		};
 		21864F26C1E25D9E96B829A8A32C6D7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2560,7 +2573,7 @@
 			path = "../Target Support Files/skpsmtpmessage";
 			sourceTree = "<group>";
 		};
-		559CEBFFE234F3AC2A51E19BE4E7AA1C /* String Related */ = {
+		559CEBFFE234F3AC2A51E19BE4E7AA1C /* Formated String Related */ = {
 			isa = PBXGroup;
 			children = (
 				09FD73A00C0A25EB2641881E7A1564F8 /* KNVUNDFormatedStringRelatedTool.h */,
@@ -2568,7 +2581,7 @@
 				992FB07D931DD25357335776C2C75CC6 /* Helper */,
 				CFB56D2686721E50B030A87AFCA374CF /* Model */,
 			);
-			path = "String Related";
+			path = "Formated String Related";
 			sourceTree = "<group>";
 		};
 		58C3EA9CFB57912B1A564D82DD016FA9 /* Log Related */ = {
@@ -2591,10 +2604,11 @@
 				C1968FFE4C44613D0E9379EB72AB3BCA /* KNVUNDLocalRelatedTool.m */,
 				100A0BBF3854906B323B065B93AB0879 /* KNVUNDThreadRelatedTool.h */,
 				F7510415D921FB276169A6CD16A053F6 /* KNVUNDThreadRelatedTool.m */,
+				2078D415207476910023526D /* Regex Related */,
 				CC40CB69AC2C327E57B68199AE597A5C /* Error Code Related */,
 				B3E24C94478FAB0E105CFC9F64C90FE1 /* Network Related */,
 				9E5F5E25C1031A8938CCB8FD52D74DEE /* Runtime Related */,
-				559CEBFFE234F3AC2A51E19BE4E7AA1C /* String Related */,
+				559CEBFFE234F3AC2A51E19BE4E7AA1C /* Formated String Related */,
 				69DA5FDF61ACCA5ADCCAFE54DE4959EE /* Theme Related */,
 			);
 			name = Tools;
@@ -4043,6 +4057,7 @@
 				C42B845EC22591C164964DBC77F89793 /* KNVUNDFormatedStringReadingHelper.h in Headers */,
 				20208AE5206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h in Headers */,
 				7FF7757E4856829B137CF231A40B85FD /* KNVUNDFormatedStringRelatedTool.h in Headers */,
+				2078D418207476D40023526D /* KNVUNDRegexReleatedTool.h in Headers */,
 				CCBBC67DE6926F8B0F741D50D7568AC6 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h in Headers */,
 				CADF1EDB788781A8970969F45F163C87 /* KNVUNDFSRToolHTMLLikeStringModel.h in Headers */,
 				CA36B6E922709EE720503E262591B770 /* KNVUNDGeneralUtilsTool.h in Headers */,
@@ -4794,6 +4809,7 @@
 				FE783DBA82B91B02C632AADD6E01725E /* KNVUNDRootErrorCodeTool.m in Sources */,
 				A3C8EB9758FCC2C5B10194D6AF7C522D /* KNVUNDRuntimeRelatedTool.m in Sources */,
 				DA954EDAF55472554D51C111D4AB29D9 /* KNVUNDScannerHelper.m in Sources */,
+				2078D419207476D40023526D /* KNVUNDRegexReleatedTool.m in Sources */,
 				18674AE55602DA0517FB577986CF852F /* KNVUNDThreadRelatedTool.m in Sources */,
 				714E4B4DC47ABD852E78DE6B77B42BE6 /* NSDecimalNumber+KNVUNDBasic.m in Sources */,
 				58FCA4C0642234CD4F5314A2D4F3CAF5 /* NSMutableAttributedString+KNVUNDBasic.m in Sources */,
