@@ -5,7 +5,7 @@
 //  Created by Erjian Ni on 4/4/18.
 //
 
-#import "KNVUNDRegexReleatedTool.h"
+#import "KNVUNDRegexRelatedTool.h"
 
 @implementation KNVUNDRegexRelatedTool
 
