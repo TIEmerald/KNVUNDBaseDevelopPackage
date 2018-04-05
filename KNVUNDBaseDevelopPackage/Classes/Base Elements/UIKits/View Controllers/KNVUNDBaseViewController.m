@@ -187,6 +187,11 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     return _currentPresentingViewController != nil;
 }
 
+- (KNVUNDBaseVCBannerPosition)bannerPosition
+{
+    return KNVUNDBaseVCBannerPosition_Bottom;
+}
+
 #pragma mark Support Methods
 - (void)setupExclusiveTouchViews
 {
@@ -416,7 +421,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                                                                     withCallback:nil
                                                                                  withButtonTitle:@""
                                                                               withButtonCallback:nil
-                                                                                      atPosition:TSMessageNotificationPositionBottom
+                                                                                      atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? TSMessageNotificationPositionBottom : TSMessageNotificationPositionTop
                                                                              canBeDismisedByUser:YES];
 
                                                      break;
@@ -432,7 +437,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                                                                        callback:nil
                                                                                     buttonTitle:nil
                                                                                  buttonCallback:nil
-                                                                                     atPosition:RMessagePositionBottom
+                                                                                     atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? RMessagePositionBottom : RMessagePositionNavBarOverlay
                                                                            canBeDismissedByUser:YES];
                                                      break;
                                              }                                         }];

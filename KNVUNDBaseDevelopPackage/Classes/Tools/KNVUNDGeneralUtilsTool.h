@@ -24,4 +24,8 @@
 + (void)showProgressWithStatus:(NSString *_Nonnull)status;
 + (void)dismissProgress;
 
+#pragma mark - Storage Related
++ (id)getDataFromUserDefaults:(NSString *)key;
++ (void)setDataToUserDefaults:(NSString *)key value:(id)object;
+
 @end

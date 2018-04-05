@@ -50,5 +50,18 @@
                                          }];
 }
 
+#pragma mark - Storage Related
++ (id)getDataFromUserDefaults:(NSString *)key
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:key];
+}
+
++ (void)setDataToUserDefaults:(NSString *)key value:(id)object
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:object forKey:key];
+    [defaults synchronize];
+}
 
 @end

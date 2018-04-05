@@ -82,6 +82,11 @@ typedef enum : NSUInteger {
     KNVUNDBaseVCBannerTool_TMessage
 } KNVUNDBaseVCBannerTool;
 
+typedef enum : NSUInteger {
+    KNVUNDBaseVCBannerPosition_Top,
+    KNVUNDBaseVCBannerPosition_Bottom
+} KNVUNDBaseVCBannerPosition;
+
 @interface KNVUNDBaseViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
 /////****************************************************************
@@ -92,6 +97,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) UIViewController *bannerMessageDisplayingVC;
 @property (nonatomic) NSTimeInterval bannerShowingTime; /// Default 3.0s
 @property (readonly) KNVUNDBaseVCBannerTool bannerToolType; /// Decide which third party package we will using for bannoer.
+@property (readonly) KNVUNDBaseVCBannerPosition bannerPosition; /// By default it will show up in the bottom.
 
 
 /////****************************************************************
