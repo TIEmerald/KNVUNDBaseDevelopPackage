@@ -18,6 +18,7 @@
  * @brief This method is used to show an alert view for displaying purpose only.... If you want to handle any delegate callback, please use - (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel; from KNVUNDBaseViewController
  */
 + (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle;
++ (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message delegate:(id<UIAlertViewDelegate>)delegate andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle;
 
 #pragma mark SVPorgressHUD
 + (void)showProgressWithStatus:(NSString *_Nonnull)status maskType:(SVProgressHUDMaskType)maskType;

@@ -16,11 +16,19 @@
 #pragma mark Alert View
 + (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle
 {
+    [self showUpAlertViewWithTitle:title
+                           message:message
+                          delegate:nil
+              andCancelButtonTitle:cancelButtonTitle];
+}
+
++ (void)showUpAlertViewWithTitle:(NSString *_Nonnull)title message:(NSString *_Nonnull)message delegate:(id<UIAlertViewDelegate>)delegate andCancelButtonTitle:(NSString *_Nonnull)cancelButtonTitle
+{
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                                                              message:message
-                                                                                            delegate:nil
+                                                                                            delegate:delegate
                                                                                    cancelButtonTitle:cancelButtonTitle
                                                                                    otherButtonTitles:nil];
                                              [alert show];

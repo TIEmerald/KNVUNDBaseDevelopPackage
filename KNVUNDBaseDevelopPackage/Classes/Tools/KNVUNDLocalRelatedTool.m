@@ -55,6 +55,60 @@
     return @[NSLocaleIdentifier, NSLocaleLanguageCode, NSLocaleCountryCode, NSLocaleScriptCode, NSLocaleVariantCode, NSLocaleExemplarCharacterSet, NSLocaleCalendar, NSLocaleCollationIdentifier, NSLocaleUsesMetricSystem, NSLocaleMeasurementSystem, NSLocaleDecimalSeparator, NSLocaleGroupingSeparator, NSLocaleCurrencySymbol, NSLocaleCurrencyCode, NSLocaleCollatorIdentifier, NSLocaleQuotationBeginDelimiterKey, NSLocaleQuotationEndDelimiterKey, NSLocaleAlternateQuotationBeginDelimiterKey, NSLocaleAlternateQuotationEndDelimiterKey];
 }
 
+#pragma mark - Date Parsing Related
+#pragma mark General
++ (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:formatStr];
+    return [formatter stringFromDate:inputDate];
+}
+
++ (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:formatStr];
+    return [formatter dateFromString:dateStr];
+}
+
+#pragma mark Locale Related
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern
+{
+    NSLocale *locale = [self getCurrentLocal];
+    return [self formatDate:inputDate withFormatTemplate:pattern andLocale:locale];
+}
+
+// I guess it will display date based on the locale I copy it from the method above because it seems like this is what code actually does.
+// The template is just tell format how many componants should be displayed in this format. and locale decide how is the format look like
++ (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
+{
+    if (!inputDate) {
+        return @"";
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
+    [formatter setLocale:locale];
+    return [formatter stringFromDate:inputDate];
+}
+
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withPattern:(NSString *)pattern
+{
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_AU"];
+    return [self parseDateFromLocaleFormatedString:localFormatedString withFormatTemplate:pattern andLocale:locale];
+}
+
+// This is the anti-method for + (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
+// I hope it works..... it will only convert locale formated String.
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
+    [formatter setLocale:locale];
+    return [formatter dateFromString:localFormatedString];
+}
+
 #pragma mark - Currency Related
 #pragma mark Display
 + (NSString *_Nonnull)getCurrencySymbolFromLocal:(NSLocale *_Nonnull)checkingLocale
