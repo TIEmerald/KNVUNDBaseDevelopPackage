@@ -72,4 +72,19 @@
     [defaults synchronize];
 }
 
+
+#pragma mark - Version and Build Number Related
+/// Call this method to retrieve the Version and Build Description String.
++ (NSString *)getVersionAndBuildDescriptionString
+{
+    NSDictionary *appInfoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *buildNumber = appInfoDictionary[(NSString *)kCFBundleVersionKey];
+    NSString *versionNumber = appInfoDictionary[@"CFBundleShortVersionString"];
+    ///// Format:  @"Version: VersionNumber(BuildNumber)"
+    NSString *versionString = [NSString stringWithFormat:@"Version: %@(%@)",
+                               versionNumber,
+                               buildNumber];
+    return versionString;
+}
+
 @end

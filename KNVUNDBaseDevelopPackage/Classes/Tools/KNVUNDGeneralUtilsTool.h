@@ -29,4 +29,7 @@
 + (id)getDataFromUserDefaults:(NSString *)key;
 + (void)setDataToUserDefaults:(NSString *)key value:(id)object;
 
+#pragma mark - Version and Build Number Related
++ (NSString *)getVersionAndBuildDescriptionString;
+
 @end
