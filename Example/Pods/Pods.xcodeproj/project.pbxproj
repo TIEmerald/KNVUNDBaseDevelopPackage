@@ -110,6 +110,8 @@
 		209C8BE275E5AC506A3FB9D87B7ED356 /* ZXDataMatrixX12Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E83BB9A7350BDF53830168D45B633 /* ZXDataMatrixX12Encoder.m */; };
 		20A2A483CDC911D6DB2EAD12444D1406 /* SPTTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6A1AD0799A9B2C01F86CCF2B72FF2F /* SPTTestSuite.m */; };
 		20AA620525D7EA6AF9263F42509BC33A /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D93540CFC9F1909E25653C962D2DEC /* ZXMaxiCodeDecodedBitStreamParser.m */; };
+		20CBBD4620773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 20CBBD4420773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.h */; };
+		20CBBD4720773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CBBD4520773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.m */; };
 		214F8D721940BD9AA4BAB0E5AE2E8A1C /* EXPBlockDefinedMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EAD340ABF906CB0726FC06373DAA06A /* EXPBlockDefinedMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21618C4AABB3B14A28B7E726ECC3A8C9 /* KNVUNDExpendingTableViewRelatedModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A3D09F79BE22F5BCDFD33055C6F5158 /* KNVUNDExpendingTableViewRelatedModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2179C6D10CD8564BAF279666EF67074D /* ZXPDF417ScanningDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FAB71791BB62DDB56F0438BE8B4E83 /* ZXPDF417ScanningDecoder.m */; };
@@ -1250,6 +1252,8 @@
 		2078D417207476D40023526D /* KNVUNDRegexRelatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDRegexRelatedTool.m; sourceTree = "<group>"; };
 		208E485B1489662B3F1B2A213594EE80 /* ZXBitArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXBitArray.h; path = ZXingObjC/common/ZXBitArray.h; sourceTree = "<group>"; };
 		20C23A613AE6246991E32DB6FC21A33D /* RMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMessage.h; path = RMessage/RMessage.h; sourceTree = "<group>"; };
+		20CBBD4420773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+KNVUNDBasic.h"; sourceTree = "<group>"; };
+		20CBBD4520773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewCell+KNVUNDBasic.m"; sourceTree = "<group>"; };
 		20EBFC62E75B17652CD3698783E6AFC8 /* ZXPDF417Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Reader.h; path = ZXingObjC/pdf417/ZXPDF417Reader.h; sourceTree = "<group>"; };
 		219EF85BA169E911B69545CF6FEF7A88 /* ZXRGBLuminanceSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRGBLuminanceSource.m; path = ZXingObjC/core/ZXRGBLuminanceSource.m; sourceTree = "<group>"; };
 		21C784D667E4B1AFD9B0B0450008F333 /* ZXDataMatrixErrorCorrection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixErrorCorrection.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixErrorCorrection.h; sourceTree = "<group>"; };
@@ -2291,6 +2295,15 @@
 			path = "Regex Related";
 			sourceTree = "<group>";
 		};
+		20CBBD4320773A8200CD28AF /* UICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				20CBBD4420773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.h */,
+				20CBBD4520773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.m */,
+			);
+			path = UICollectionViewCell;
+			sourceTree = "<group>";
+		};
 		21864F26C1E25D9E96B829A8A32C6D7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -3267,6 +3280,7 @@
 		848B042DF3EC0C75B4224FEDBD554578 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				20CBBD4320773A8200CD28AF /* UICollectionViewCell */,
 				EDE6DC3DA2FD31AEA6AC8BE37F5E452D /* NSDecimalNumber */,
 				1ED0804FA2D5889034E44DF8396CC2DA /* NSMutableAttributeString */,
 				63379A42CBBE9155BAB560BE8A6FBB0A /* NSObject */,
@@ -4071,6 +4085,7 @@
 				2FD77500D3E0791791531E00FD8F5B75 /* KNVUNDThreadRelatedTool.h in Headers */,
 				6652325D5B4582095F6DB1EC761916B5 /* NSDecimalNumber+KNVUNDBasic.h in Headers */,
 				48AE26DB3A7762888CCB344D6E492D8F /* NSMutableAttributedString+KNVUNDBasic.h in Headers */,
+				20CBBD4620773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.h in Headers */,
 				0C97636A4E3CA19084502C68B7A9D5BD /* NSObject+KNVUNDEqualityChecking.h in Headers */,
 				5C0D96BA7ACD49E65C79110EC1749C66 /* NSObject+KNVUNDLogRelated.h in Headers */,
 				D273B9926BFE9A6E86011EADAB5D2EC8 /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
@@ -4805,6 +4820,7 @@
 				9C05F2DB178B91F8D209A7EE367756D9 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
 				BC2424CF750FCA167E78AFC9316CA15E /* KNVUNDImageRelatedTool.m in Sources */,
 				AFB4DCAB5E0CB6EF702839FEA75F9145 /* KNVUNDLocalRelatedTool.m in Sources */,
+				20CBBD4720773AA400CD28AF /* UICollectionViewCell+KNVUNDBasic.m in Sources */,
 				2343D062930AA45FC0133685FB0F9EA6 /* KNVUNDLogRelatedHelper.m in Sources */,
 				FE783DBA82B91B02C632AADD6E01725E /* KNVUNDRootErrorCodeTool.m in Sources */,
 				A3C8EB9758FCC2C5B10194D6AF7C522D /* KNVUNDRuntimeRelatedTool.m in Sources */,
