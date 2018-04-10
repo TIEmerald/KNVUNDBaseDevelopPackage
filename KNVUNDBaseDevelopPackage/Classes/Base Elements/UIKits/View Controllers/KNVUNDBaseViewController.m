@@ -187,6 +187,11 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     return _currentPresentingViewController != nil;
 }
 
+- (KNVUNDBaseVCBannerPosition)bannerPosition
+{
+    return KNVUNDBaseVCBannerPosition_Bottom;
+}
+
 #pragma mark Support Methods
 - (void)setupExclusiveTouchViews
 {
@@ -270,9 +275,11 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 - (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel
 {
     UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelf];
-    [self presentViewController:alertControlelr
-                       animated:alertSettingModel.shouldShowUpWithAnimation
-                     completion:alertSettingModel.didShowUpBlock];
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [self presentViewController:alertControlelr
+                           animated:alertSettingModel.shouldShowUpWithAnimation
+                         completion:alertSettingModel.didShowUpBlock];
+    }];
 }
 
 #pragma mark - Present View Related
@@ -340,13 +347,15 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     
     if (_currentPresentingViewController) {
         _currentPresentingViewController = nil; // We put this out of completion because we don't want you call dismiss Current FormSheet PresentationView methods multiple times before it completed.
-        [self dismissViewControllerAnimated:animation
-                                 completion:^{
-                                     [self presentViewControllerDidDisappear];
-                                     if (completionBlock) {
-                                         completionBlock();
-                                     }
-                                 }];
+        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+            [self dismissViewControllerAnimated:animation
+                                     completion:^{
+                                         [self presentViewControllerDidDisappear];
+                                         if (completionBlock) {
+                                             completionBlock();
+                                         }
+                                     }];
+        }];
     }
 }
 
@@ -359,24 +368,28 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     
     void(^formSheetShowUpBlock)(void) = ^() {
         UIViewController *presentingViewController = viewControllerGeneratingBlock();
-        [self presentViewController:presentingViewController
-                           animated:animated
-                         completion:^{
-                             _currentPresentingViewController = contentVC;
-                             
-                             [self presentViewControllerDidAppear];
-                             
-                             if (completeBlock) {
-                                 completeBlock();
-                             }
-                         }];
+        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+            [self presentViewController:presentingViewController
+                               animated:animated
+                             completion:^{
+                                 _currentPresentingViewController = contentVC;
+                                 
+                                 [self presentViewControllerDidAppear];
+                                 
+                                 if (completeBlock) {
+                                     completeBlock();
+                                 }
+                             }];
+        }];
     };
     
     if (_currentPresentingViewController != nil && _currentPresentingViewController != contentVC) {
-        [self dismissCurrentPresentationViewWithAnimation:NO
-                                       andCompletionBlock:^{
-                                           formSheetShowUpBlock();
-                                       }];
+        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+            [self dismissCurrentPresentationViewWithAnimation:NO
+                                           andCompletionBlock:^{
+                                               formSheetShowUpBlock();
+                                           }];
+        }];
     } else if(_currentPresentingViewController == nil) {
         formSheetShowUpBlock();
     } else {
@@ -416,7 +429,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                                                                     withCallback:nil
                                                                                  withButtonTitle:@""
                                                                               withButtonCallback:nil
-                                                                                      atPosition:TSMessageNotificationPositionBottom
+                                                                                      atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? TSMessageNotificationPositionBottom : TSMessageNotificationPositionTop
                                                                              canBeDismisedByUser:YES];
 
                                                      break;
@@ -432,7 +445,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
                                                                                        callback:nil
                                                                                     buttonTitle:nil
                                                                                  buttonCallback:nil
-                                                                                     atPosition:RMessagePositionBottom
+                                                                                     atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? RMessagePositionBottom : RMessagePositionNavBarOverlay
                                                                            canBeDismissedByUser:YES];
                                                      break;
                                              }                                         }];

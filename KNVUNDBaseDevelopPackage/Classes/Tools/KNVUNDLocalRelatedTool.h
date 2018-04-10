@@ -19,6 +19,17 @@
 + (NSLocale *)getCurrentLocal;
 + (void)logLocaleDetailsFromLocale:(NSLocale *)checkingLocale;
 
+#pragma mark - Date Parsing Related
+#pragma mark General
++ (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr;
++ (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr;
+
+#pragma mark Locale Related
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern;
++ (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale;
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withPattern:(NSString *)pattern;
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale;
+
 #pragma mark - Currency Related
 #pragma mark Display
 + (NSString *_Nonnull)getCurrencySymbolFromLocal:(NSLocale *_Nonnull)checkingLocale;
