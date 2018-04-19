@@ -28,7 +28,9 @@
                                       height:height
                                        error:&error];
         if (result) {
-            CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
+            /// https://stackoverflow.com/questions/12756295/uiimage-from-cgimageref
+            //// The CGImageRef returned from CGImage is almost certainly an ivar of the UIImage and will be released when the UIImage is deallocted.
+            CGImageRef image = CGImageRetain([[ZXImage imageWithMatrix:result] cgimage]);
             return [UIImage imageWithCGImage:image];
         }
         else {
