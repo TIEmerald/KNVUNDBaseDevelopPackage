@@ -9,4 +9,7 @@
 
 @interface KNVUNDETVTagButtonReleatedBaseTableViewCell : KNVUNDETVRelatedBasicTableViewCell
 
+#pragma mark - Methods for Override
+- (void)setUpTagSelectionStatusRelatedUIWithStatus:(BOOL)tagViewSelectionStatus;
+
 @end

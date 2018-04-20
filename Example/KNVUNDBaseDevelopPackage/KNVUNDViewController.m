@@ -8,6 +8,9 @@
 
 #import "KNVUNDViewController.h"
 
+// Pods
+#import <LinqToObjectiveC/LinqToObjectiveC.h>
+
 // Models
 #import "KNVUNDETVRelatedTagButtonModel.h"
 
@@ -105,9 +108,12 @@
                                                          [KNVUNDETVRelatedTagButtonModel class]]
                                    andRelatedTableView:self.testingTableView];
     
+    NSArray *usingButtons = [parentOne.children linq_select:^UIButton *(KNVUNDETVRelatedTagButtonModel *item) {
+        return item.associatedTagButton;
+    }];
     _etvButtonsSelectionHelper = [KNVUNDButtonsSelectionHelper new];
-    childOneForParentOne.relatedButtonSelectionHelper = _etvButtonsSelectionHelper;
-    childTwoForParentOne.relatedButtonSelectionHelper = _etvButtonsSelectionHelper;
+    [_etvButtonsSelectionHelper setupWithHelperButtonsArray:usingButtons
+                                        withSelectedButtons:nil];
     _etvButtonsSelectionHelper.isSingleSelection = YES;
     _etvButtonsSelectionHelper.isForceSelection = YES;
 }

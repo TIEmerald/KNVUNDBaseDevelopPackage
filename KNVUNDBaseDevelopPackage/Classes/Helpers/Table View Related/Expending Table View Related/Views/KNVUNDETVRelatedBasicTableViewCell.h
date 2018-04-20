@@ -16,6 +16,7 @@
 @property (readonly) KNVUNDExpendingTableViewRelatedModel *relatedModel;
 
 #pragma mark - Methods for Override
+/// Actions
 - (void)setupExpendedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime;
 - (void)setupGeneralUIBasedOnModelWithFirstTimeCheck:(BOOL)isFirstTime;
 - (void)setupSelectedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime;

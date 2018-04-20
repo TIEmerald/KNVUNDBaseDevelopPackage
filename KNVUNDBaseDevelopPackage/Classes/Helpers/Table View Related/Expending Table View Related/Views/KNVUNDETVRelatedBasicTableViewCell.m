@@ -10,7 +10,7 @@
 // Tools
 #import "KNVUNDColourRelatedTool.h"
 
-@interface KNVUNDETVRelatedBasicTableViewCell(){
+@interface KNVUNDETVRelatedBasicTableViewCell() <KNVUNDExpendingTableViewRelatedModelCellDelegate>{
     BOOL _hasUIInitialised; // This property will tell use that if the Cell's UI has initialised or not.... If the UI has Initialised.... there are several UI updating Method won't be called anymore.
 }
 
@@ -134,6 +134,7 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 {
     _hasUIInitialised = NO;
     _currentStoredETVModel = currentStoredETVModel;
+    _currentStoredETVModel.relatedCellDelegate = self;
     [self updateCellUI];
     _hasUIInitialised = YES;
 }
