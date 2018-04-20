@@ -33,18 +33,37 @@
 
 @implementation KNVUNDExpendingTableViewRelatedModel
 
+#pragma mark - Overrided Methods
 #pragma mark - Class Methods
 + (Class _Nonnull)relatedTableViewCell
 {
     return [KNVUNDETVRelatedBasicTableViewCell class];
 }
 
+#pragma mark - Instance Methods
+- (void)isSelectedSatatusChangedTo:(BOOL)isSelected
+{
+    
+}
+
+- (void)isExpendedSatatusChangedTo:(BOOL)isExpended
+{
+    
+}
+
 #pragma mark - Initial
 - (instancetype)init
 {
     if (self = [super init]) {
+        __weak typeof(self) weakSelf = self;
         self.isExpendable = YES;
         self.isSelectable = YES;
+        [self setSelectionStatusOnChangeBlock:^(BOOL newStatusBoolean) {
+            [weakSelf isSelectedSatatusChangedTo:newStatusBoolean];
+        }];
+        [self setExpendingStatusOnChangeBlock:^(BOOL newStatusBoolean) {
+            [weakSelf isExpendedSatatusChangedTo:newStatusBoolean];
+        }];
     }
     return self;
 }
@@ -59,6 +78,13 @@
 - (BOOL)isSingleSelection
 {
     return [self.delegate isSettingSingleSelection];
+}
+
+#pragma mark - General Methods
+- (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended
+{
+    _isCurrentModelSelected = isSelected;
+    _isCurrentModelExpended = isExpended;
 }
 
 #pragma mark - Hirearchy Related Properties

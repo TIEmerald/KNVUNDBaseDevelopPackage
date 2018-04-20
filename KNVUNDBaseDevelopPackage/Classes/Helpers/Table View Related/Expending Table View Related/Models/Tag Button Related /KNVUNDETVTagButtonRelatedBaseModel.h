@@ -19,15 +19,22 @@
 
 @end
 
+@protocol KNVUNDETVTagButtonRelatedBaseModelCellDelegate <KNVUNDExpendingTableViewRelatedModelCellDelegate>
+
+- (void)setUpTagSelectionStatusRelatedUI;
+
+@end
+
 @interface KNVUNDETVTagButtonRelatedBaseModel : KNVUNDExpendingTableViewRelatedModel
 
 @property (nonatomic, weak) id<KNVUNDETVRelatedTagButtonModelDelegate> tagButtonDelegate;
-@property (nonatomic, weak) KNVUNDButtonsSelectionHelper *relatedButtonSelectionHelper;
+@property (weak) id<KNVUNDETVTagButtonRelatedBaseModelCellDelegate> relatedCellDelegate;
 
 //// Tag Button Releated
 @property (readonly) UIButton *associatedTagButton;
 
 //// General Methods
 - (void)markTagButtonAsSelected;
+- (void)markTagButtonAsUnSelected;
 
 @end

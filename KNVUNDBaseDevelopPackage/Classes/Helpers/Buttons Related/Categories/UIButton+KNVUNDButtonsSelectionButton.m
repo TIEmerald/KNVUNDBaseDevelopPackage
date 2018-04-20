@@ -8,10 +8,13 @@
 #import "UIButton+KNVUNDButtonsSelectionButton.h"
 #import <objc/runtime.h>
 
+#import "KNVUNDButtonsSelectionHelper.h"
+
 @implementation UIButton (KNVUNDButtonsSelectionButton)
 
 #pragma mark - Getters & Setters
 static void * UIButton_AssociatedModel = &UIButton_AssociatedModel;
+static void * UIButton_RelatedSelectionHelper = &UIButton_RelatedSelectionHelper;
 static void * UIButton_SelectedFunctionBlockKey = &UIButton_SelectedFunctionBlockKey;
 static void * UIButton_DeSelectedFunctionBlockKey = &UIButton_DeSelectedFunctionBlockKey;
 
@@ -19,6 +22,11 @@ static void * UIButton_DeSelectedFunctionBlockKey = &UIButton_DeSelectedFunction
 - (id)associatedModel
 {
     return objc_getAssociatedObject(self, UIButton_AssociatedModel);
+}
+
+- (KNVUNDButtonsSelectionHelper *)relatedSelectionHelper
+{
+    return objc_getAssociatedObject(self, UIButton_RelatedSelectionHelper);
 }
 
 - (KNVUNDBSButtonFunctionBlock)selectedFunctionBlock
@@ -39,6 +47,11 @@ static void * UIButton_DeSelectedFunctionBlockKey = &UIButton_DeSelectedFunction
     objc_setAssociatedObject(self, UIButton_AssociatedModel, associatedModel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)setRelatedSelectionHelper:(KNVUNDButtonsSelectionHelper *)relatedSelectionHelper
+{
+    objc_setAssociatedObject(self, UIButton_RelatedSelectionHelper, relatedSelectionHelper, OBJC_ASSOCIATION_ASSIGN);
+}
+
 - (void)setSelectedFunctionBlock:(KNVUNDBSButtonFunctionBlock)selectedFunctionBlock
 {
     objc_setAssociatedObject(self, UIButton_SelectedFunctionBlockKey, selectedFunctionBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -54,6 +67,22 @@ static void * UIButton_DeSelectedFunctionBlockKey = &UIButton_DeSelectedFunction
 {
     self.selectedFunctionBlock = selectedFunction;
     self.deSelectedFunctionBlock = deselectedFunction;
+}
+
+#pragma mark - Helper Related
+- (void)triggerSelfInRelatedSelectionHelper
+{
+    [self.relatedSelectionHelper tapAButton:self];
+}
+
+- (void)triggerSelfToSelectedInRelatedSelectionHelper
+{
+    [self.relatedSelectionHelper setAButtonStatusToSelected:self];
+}
+
+- (void)triggerSelfToUnSelectedInRelatedSelectionHelper
+{
+    [self.relatedSelectionHelper setAButtonStatusToUnSelected:self];
 }
 
 @end

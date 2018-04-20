@@ -53,9 +53,27 @@
         [selectionButton addTarget:self
                             action:@selector(didTapBSButton:)
                   forControlEvents:UIControlEventTouchUpInside];
+        selectionButton.relatedSelectionHelper = self;
     }
     
-    NSArray *preSelectingArray = selectedButtons ?: (self.isForceSelection) ? @[buttons.firstObject] : @[];
+    NSMutableArray *preSelectingArray = [NSMutableArray new];
+    for (UIButton *button in _currentAssociatedButtons) {
+        if (button.isSelected) {
+            [preSelectingArray addObject:button];
+            button.selected = NO;
+        }
+    }
+    
+    for (UIButton *button in selectedButtons) {
+        if (![preSelectingArray containsObject:button]) {
+            [preSelectingArray addObject:button];
+        }
+    }
+    
+    if (self.isForceSelection && [preSelectingArray count] == 0) {
+        [preSelectingArray addObject:_currentAssociatedButtons.firstObject];
+    }
+    
     for (UIButton *selectingButton in preSelectingArray) {
         if (self.isSingleSelection && [[self currentSelectedButtons] count] > 0) {
             break;
@@ -72,6 +90,7 @@
         } else {
             NSMutableArray *tempArray = [NSMutableArray<UIButton *> arrayWithArray:_currentAssociatedButtons];
             [tempArray addObject:appendingButton];
+            appendingButton.relatedSelectionHelper = self;
             _currentAssociatedButtons = [NSArray<UIButton *> arrayWithArray:tempArray];
         }
     }
@@ -96,6 +115,17 @@
 {
     if ([_currentAssociatedButtons containsObject:tappingButton] && tappingButton.isSelected) {
         [self didTapBSButton:tappingButton];
+    }
+}
+
+- (void)clearSelections
+{
+    if (self.isForceSelection) {
+        return;
+    }
+    
+    for (UIButton *selectedButton in [self currentSelectedButtons]) {
+        [self didTapBSButton:selectedButton];
     }
 }
 

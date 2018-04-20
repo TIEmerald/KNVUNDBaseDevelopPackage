@@ -18,6 +18,19 @@
 
 @implementation KNVUNDETVTagButtonRelatedBaseModel
 
+@dynamic relatedCellDelegate;
+
+#pragma mark - KNVUNDExpendingTableViewRelatedModel
+#pragma mark - Overrided Methods
+#pragma mark Instance Methods
+- (void)isSelectedSatatusChangedTo:(BOOL)isSelected
+{
+    [super isSelectedSatatusChangedTo:isSelected];
+    if (isSelected) {
+        [self markTagButtonAsSelected];
+    }
+}
+
 #pragma mark - Initial
 - (instancetype)init
 {
@@ -34,13 +47,6 @@
     return _associatedTagButton;
 }
 
-#pragma mark - Setters
-- (void)setRelatedButtonSelectionHelper:(KNVUNDButtonsSelectionHelper *)relatedButtonSelectionHelper
-{
-    _relatedButtonSelectionHelper = relatedButtonSelectionHelper;
-    [_relatedButtonSelectionHelper appendOneMoreButton:_associatedTagButton];
-}
-
 #pragma mark - General Methods
 - (void)setupTagButton
 {
@@ -55,7 +61,12 @@
 
 - (void)markTagButtonAsSelected
 {
-    [self.relatedButtonSelectionHelper setAButtonStatusToSelected:_associatedTagButton];
+    [_associatedTagButton triggerSelfToSelectedInRelatedSelectionHelper];
+}
+
+- (void)markTagButtonAsUnSelected
+{
+    [_associatedTagButton triggerSelfToUnSelectedInRelatedSelectionHelper];
 }
 
 #pragma mark Support Methods
@@ -64,6 +75,7 @@
     [self reloadTheCellForSelf];
     if ([self.tagButtonDelegate respondsToSelector:@selector(tagButtonSelectedWithModel:)]) {
         [self.tagButtonDelegate tagButtonSelectedWithModel:self];
+        [self.relatedCellDelegate setUpTagSelectionStatusRelatedUI];
     }
 }
 
@@ -72,6 +84,7 @@
     [self reloadTheCellForSelf];
     if ([self.tagButtonDelegate respondsToSelector:@selector(tagButtonDeSelectedWithModel:)]) {
         [self.tagButtonDelegate tagButtonDeSelectedWithModel:self];
+        [self.relatedCellDelegate setUpTagSelectionStatusRelatedUI];
     }
 }
 

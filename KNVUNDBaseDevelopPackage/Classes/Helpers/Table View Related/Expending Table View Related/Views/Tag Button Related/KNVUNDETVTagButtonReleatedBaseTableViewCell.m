@@ -7,17 +7,29 @@
 
 #import "KNVUNDETVTagButtonReleatedBaseTableViewCell.h"
 
-// Models
-#import "KNVUNDETVTagButtonRelatedBaseModel.h"
+// Tools
+#import "KNVUNDThreadRelatedTool.h"
+
+@interface KNVUNDETVTagButtonReleatedBaseTableViewCell()
+
+@property (readonly) KNVUNDETVTagButtonRelatedBaseModel *etvtbBaseModel;
+
+@end
 
 @implementation KNVUNDETVTagButtonReleatedBaseTableViewCell
 
-#pragma mark Methods for Override
+#pragma mark - Getters && Setters
+#pragma mark - Getters
+- (KNVUNDETVTagButtonRelatedBaseModel *)etvtbBaseModel
+{
+    return (KNVUNDETVTagButtonRelatedBaseModel *)self.relatedModel;
+}
+
+#pragma mark - Methods for Override
 - (void)setupSelectedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime
 {
-    [super setupSelectedStatusUIWithFirstTimeCheck:isFirstTime];
-    if (self.relatedModel.isSelected) {
-        [(KNVUNDETVTagButtonRelatedBaseModel *)self.relatedModel markTagButtonAsSelected];
+    if (isFirstTime) {
+        [self setUpTagSelectionStatusRelatedUIWithStatus:self.etvtbBaseModel.associatedTagButton.isSelected];
     }
 }
 
@@ -26,6 +38,20 @@
     if ([associatdModel isKindOfClass:[KNVUNDETVTagButtonRelatedBaseModel class]]) {
         [super setupCellWitKNVUNDWithModel:associatdModel];
     }
+}
+
+- (void)setUpTagSelectionStatusRelatedUIWithStatus:(BOOL)tagViewSelectionStatus
+{
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        self.backgroundColor = tagViewSelectionStatus ? [UIColor yellowColor] : [UIColor whiteColor];
+    }];
+}
+
+#pragma mark - Delegates
+#pragma mark - KNVUNDETVTagButtonRelatedBaseModelCellDelegate
+- (void)setUpTagSelectionStatusRelatedUI
+{
+    [self setUpTagSelectionStatusRelatedUIWithStatus:self.etvtbBaseModel.associatedTagButton.isSelected];
 }
 
 @end

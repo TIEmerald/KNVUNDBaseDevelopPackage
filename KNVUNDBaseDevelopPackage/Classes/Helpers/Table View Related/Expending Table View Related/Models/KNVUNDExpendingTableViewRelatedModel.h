@@ -25,22 +25,34 @@
 
 @end
 
+@protocol KNVUNDExpendingTableViewRelatedModelCellDelegate <NSObject>
+
+@end
+
 typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBoolean);
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
-/// Classe Level
-//// Table View Related
+#pragma mark - Overrided Methods
+#pragma mark - Class Methods
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
+#pragma mark - Instance Methods
+- (void)isSelectedSatatusChangedTo:(BOOL)isSelected NS_REQUIRES_SUPER;
+- (void)isExpendedSatatusChangedTo:(BOOL)isExpended NS_REQUIRES_SUPER;
 
+#pragma mark - General Methods
 /// Object Level
 @property (nonatomic, strong, nonnull) id associatedItem;
-@property (nonatomic, weak, nullable) id<KNVUNDETVRelatedModelDelegate> delegate;
+@property (weak) id<KNVUNDETVRelatedModelDelegate> delegate;
+@property (weak) id<KNVUNDExpendingTableViewRelatedModelCellDelegate> relatedCellDelegate;/// This delegate always link to the associated cell object.
+
+- (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended;
 
 //// Hirearchy Related properties
 @property (nonatomic, readonly) NSUInteger modelDepthLevel; /// This value is set from parent
 @property (nonatomic, strong, nullable) NSArray<KNVUNDExpendingTableViewRelatedModel *> *children;
 @property (nonatomic, weak, nullable) KNVUNDExpendingTableViewRelatedModel *parent;
+
 
 //// Selection Related
 @property (nonatomic, readonly) BOOL isSelected;
