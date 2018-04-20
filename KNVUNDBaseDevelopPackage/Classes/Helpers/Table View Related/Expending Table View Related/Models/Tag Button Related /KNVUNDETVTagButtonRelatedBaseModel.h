@@ -35,5 +35,6 @@
 
 //// General Methods
 - (void)markTagButtonAsSelected;
+- (void)markTagButtonAsUnSelected;
 
 @end

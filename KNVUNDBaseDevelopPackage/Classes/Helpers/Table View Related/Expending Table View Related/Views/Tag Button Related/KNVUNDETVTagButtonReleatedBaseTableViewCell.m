@@ -7,13 +7,10 @@
 
 #import "KNVUNDETVTagButtonReleatedBaseTableViewCell.h"
 
-// Models
-#import "KNVUNDETVTagButtonRelatedBaseModel.h"
-
 // Tools
 #import "KNVUNDThreadRelatedTool.h"
 
-@interface KNVUNDETVTagButtonReleatedBaseTableViewCell() <KNVUNDETVTagButtonRelatedBaseModelCellDelegate>
+@interface KNVUNDETVTagButtonReleatedBaseTableViewCell()
 
 @property (readonly) KNVUNDETVTagButtonRelatedBaseModel *etvtbBaseModel;
 

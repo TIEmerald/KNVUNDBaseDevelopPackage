@@ -46,10 +46,13 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
 @property (weak) id<KNVUNDETVRelatedModelDelegate> delegate;
 @property (weak) id<KNVUNDExpendingTableViewRelatedModelCellDelegate> relatedCellDelegate;/// This delegate always link to the associated cell object.
 
+- (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended;
+
 //// Hirearchy Related properties
 @property (nonatomic, readonly) NSUInteger modelDepthLevel; /// This value is set from parent
 @property (nonatomic, strong, nullable) NSArray<KNVUNDExpendingTableViewRelatedModel *> *children;
 @property (nonatomic, weak, nullable) KNVUNDExpendingTableViewRelatedModel *parent;
+
 
 //// Selection Related
 @property (nonatomic, readonly) BOOL isSelected;

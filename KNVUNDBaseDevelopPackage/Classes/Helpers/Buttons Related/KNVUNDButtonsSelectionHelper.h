@@ -24,6 +24,7 @@
 - (void)tapAButton:(UIButton *_Nonnull)tappingButton;
 - (void)setAButtonStatusToSelected:(UIButton *_Nonnull)tappingButton;
 - (void)setAButtonStatusToUnSelected:(UIButton *_Nonnull)tappingButton;
+- (void)clearSelections; /// Only works if isForceSelection != NO;
 
 #pragma mark - Reset Methods
 - (void)resetCurrentHelper;

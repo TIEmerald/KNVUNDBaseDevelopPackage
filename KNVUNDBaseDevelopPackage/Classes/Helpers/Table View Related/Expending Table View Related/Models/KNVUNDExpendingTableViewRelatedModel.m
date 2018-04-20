@@ -80,6 +80,13 @@
     return [self.delegate isSettingSingleSelection];
 }
 
+#pragma mark - General Methods
+- (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended
+{
+    _isCurrentModelSelected = isSelected;
+    _isCurrentModelExpended = isExpended;
+}
+
 #pragma mark - Hirearchy Related Properties
 #pragma mark Getters
 - (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)children

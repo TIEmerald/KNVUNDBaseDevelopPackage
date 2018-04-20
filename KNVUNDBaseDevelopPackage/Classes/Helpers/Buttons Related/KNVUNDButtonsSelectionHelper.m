@@ -118,6 +118,17 @@
     }
 }
 
+- (void)clearSelections
+{
+    if (self.isForceSelection) {
+        return;
+    }
+    
+    for (UIButton *selectedButton in [self currentSelectedButtons]) {
+        [self didTapBSButton:selectedButton];
+    }
+}
+
 #pragma mark - Reset Methods
 - (void)resetCurrentHelper
 {

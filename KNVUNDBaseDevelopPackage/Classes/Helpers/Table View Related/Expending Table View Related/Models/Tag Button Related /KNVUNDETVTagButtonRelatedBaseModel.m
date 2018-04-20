@@ -64,6 +64,11 @@
     [_associatedTagButton triggerSelfToSelectedInRelatedSelectionHelper];
 }
 
+- (void)markTagButtonAsUnSelected
+{
+    [_associatedTagButton triggerSelfToUnSelectedInRelatedSelectionHelper];
+}
+
 #pragma mark Support Methods
 - (void)triggerTagButtonFunction
 {

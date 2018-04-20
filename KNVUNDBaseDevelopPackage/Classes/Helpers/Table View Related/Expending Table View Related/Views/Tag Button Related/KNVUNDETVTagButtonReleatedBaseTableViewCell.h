@@ -7,7 +7,10 @@
 
 #import "KNVUNDETVRelatedBasicTableViewCell.h"
 
-@interface KNVUNDETVTagButtonReleatedBaseTableViewCell : KNVUNDETVRelatedBasicTableViewCell
+// Models
+#import "KNVUNDETVTagButtonRelatedBaseModel.h"
+
+@interface KNVUNDETVTagButtonReleatedBaseTableViewCell : KNVUNDETVRelatedBasicTableViewCell <KNVUNDETVTagButtonRelatedBaseModelCellDelegate>
 
 #pragma mark - Methods for Override
 - (void)setUpTagSelectionStatusRelatedUIWithStatus:(BOOL)tagViewSelectionStatus;
