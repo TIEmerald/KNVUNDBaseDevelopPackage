@@ -276,9 +276,12 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelf];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self presentViewController:alertControlelr
-                           animated:alertSettingModel.shouldShowUpWithAnimation
-                         completion:alertSettingModel.didShowUpBlock];
+        [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
+                       contentViewController:alertControlelr
+               viewControllerGeneratingBlock:^UIViewController *{
+                   return alertControlelr;
+               }
+                     andPresentCompleteBlock:alertSettingModel.didShowUpBlock];
     }];
 }
 
@@ -362,7 +365,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 // Content VC in here is used to checking to see if we need to present a new ViewController or not.
 - (void)presentPresentViewWithAnimated:(BOOL)animated contentViewController:(UIViewController *)contentVC viewControllerGeneratingBlock:(UIViewController *(^_Nonnull)(void))viewControllerGeneratingBlock andPresentCompleteBlock:(void(^_Nullable)(void))completeBlock
 {
-    if ([_currentPresentingViewController isKindOfClass:[contentVC class]]) {
+    if (_currentPresentingViewController == contentVC) {
         return; // we will never present same view controller twice... otherwise, the UI animation will be very wired...
     }
     
