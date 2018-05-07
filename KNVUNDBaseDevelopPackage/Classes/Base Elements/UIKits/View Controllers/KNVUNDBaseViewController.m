@@ -44,11 +44,16 @@
 }
 
 #pragma mark - Support Methods
-- (UIAlertAction *)retrieveAlertActionFromSelf
+- (UIAlertAction *)retrieveAlertActionFromSelfWithBaseViewController:(KNVUNDBaseViewController *)baseUIViewController
 {
     UIAlertAction *returnAction = [UIAlertAction actionWithTitle:self.title
                                                            style:self.actionStyle
-                                                         handler:_storedSettingBlock];
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             if (_storedSettingBlock) {
+                                                                 _storedSettingBlock(action);
+                                                             }
+                                                             [baseUIViewController setPresentedViewControllerToNil];
+                                                         }];
     return returnAction;
 }
 
@@ -81,13 +86,13 @@
 }
 
 #pragma mark - Support Methods
-- (UIAlertController *)retrieveAlertControllerFromSelf
+- (UIAlertController *)retrieveAlertControllerFromSelfWithBaseViewController:(KNVUNDBaseViewController *)baseViewController
 {
     UIAlertController *returnController = [UIAlertController alertControllerWithTitle:self.title
                                                                               message:self.message
                                                                        preferredStyle:self.alertStyle];
     for (KNVUNDAlertActionSettingModel *actionModel in _storedActions) {
-        UIAlertAction *alertAction = [actionModel retrieveAlertActionFromSelf];
+        UIAlertAction *alertAction = [actionModel retrieveAlertActionFromSelfWithBaseViewController:baseViewController];
         [returnController addAction:alertAction];
     }
     return returnController;
@@ -274,7 +279,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - Alert Related
 - (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel
 {
-    UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelf];
+    UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelfWithBaseViewController:self];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
                        contentViewController:alertControlelr
@@ -349,7 +354,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     
     if (_currentPresentingViewController) {
-        _currentPresentingViewController = nil; // We put this out of completion because we don't want you call dismiss Current FormSheet PresentationView methods multiple times before it completed.
+        [self setPresentedViewControllerToNil]; // We put this out of completion because we don't want you call dismiss Current FormSheet PresentationView methods multiple times before it completed.
         [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
             [self dismissViewControllerAnimated:animation
                                      completion:^{
@@ -406,7 +411,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - UIPopoverPresentationControllerDelegate
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
-    _currentPresentingViewController = nil;
+    [self setPresentedViewControllerToNil];
 }
 
 #pragma mark - RMessageProtocol
@@ -417,6 +422,11 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 
 
 #pragma mark - Support Methods
+- (void)setPresentedViewControllerToNil
+{
+    _currentPresentingViewController = nil;
+}
+
 - (void)showUpBannerWithTitle:(NSString *)title message:(NSString *)message andBannerType:(KNVUNDBaseVCBannerMessageType)bannerType
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO

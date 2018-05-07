@@ -185,5 +185,8 @@ typedef enum : NSUInteger {
 - (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation;
 - (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)(void))completionBlock;
 
+#pragma mark - Support Methods
+- (void)setPresentedViewControllerToNil;
+
 @end
 
