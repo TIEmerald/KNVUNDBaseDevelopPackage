@@ -49,10 +49,10 @@
     UIAlertAction *returnAction = [UIAlertAction actionWithTitle:self.title
                                                            style:self.actionStyle
                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                             [baseUIViewController setPresentedViewControllerToNil];
                                                              if (_storedSettingBlock) {
                                                                  _storedSettingBlock(action);
                                                              }
-                                                             [baseUIViewController setPresentedViewControllerToNil];
                                                          }];
     return returnAction;
 }
