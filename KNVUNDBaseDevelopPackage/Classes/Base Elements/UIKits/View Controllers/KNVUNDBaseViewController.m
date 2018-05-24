@@ -209,12 +209,32 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 /// Dirctly Modify Views
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController
 {
+    [self addChildViewController:childViewController
+              withPresentingType:KNVUNDBaseVCChildViewControlerPresentType_FullSize];
+}
+
+- (void)addChildViewController:(UIViewController *)childViewController withPresentingType:(KNVUNDBaseVCChildViewControlerPresentType)presentingType
+{
+    CGRect childUsingFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);;
+    switch (presentingType) {
+        case KNVUNDBaseVCChildViewControlerPresentType_PreferredSize_Centralised:{
+            CGFloat usingHeight = childViewController.preferredContentSize.height;
+            CGFloat usingWidth = childViewController.preferredContentSize.width;
+            CGFloat originalPositionX = (self.view.frame.size.width - usingWidth) / 2;
+            CGFloat originalPositionY = (self.view.frame.size.height - usingHeight) / 2;
+            childUsingFrame = CGRectMake(originalPositionX, originalPositionY, usingWidth, usingHeight);
+            break;
+        }
+        default:
+            break;
+    }
+    
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
                                              [self addChildViewController:childViewController];
                                              UIView* destView = childViewController.view;
                                              destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-                                             destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                                             destView.frame = childUsingFrame;
                                              [self.view addSubview:destView];
                                              [childViewController didMoveToParentViewController:self];
                                          }];
