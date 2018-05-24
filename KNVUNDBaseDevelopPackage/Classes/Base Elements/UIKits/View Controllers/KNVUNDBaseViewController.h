@@ -87,6 +87,11 @@ typedef enum : NSUInteger {
     KNVUNDBaseVCBannerPosition_Bottom
 } KNVUNDBaseVCBannerPosition;
 
+typedef enum : NSUInteger {
+    KNVUNDBaseVCChildViewControlerPresentType_FullSize,
+    KNVUNDBaseVCChildViewControlerPresentType_PreferredSize_Centralised
+} KNVUNDBaseVCChildViewControlerPresentType;
+
 @interface KNVUNDBaseViewController : UIViewController <UIPopoverPresentationControllerDelegate>
 
 /////****************************************************************
@@ -143,6 +148,7 @@ typedef enum : NSUInteger {
  * @param childViewController Which View controller you want to add as child view controller.
  */
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController;
+- (void)addChildViewController:(UIViewController *)childViewController withPresentingType:(KNVUNDBaseVCChildViewControlerPresentType)presentingType;
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController;
 - (void)removeAllChildrenViewControllers;
 
