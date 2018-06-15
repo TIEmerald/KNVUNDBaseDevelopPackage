@@ -228,13 +228,18 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
         default:
             break;
     }
-    
+    [self addChildViewController:childViewController
+                   withFrameRect:childUsingFrame];
+}
+
+- (void)addChildViewController:(UIViewController *)childViewController withFrameRect:(CGRect)frameRect
+{
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
                                              [self addChildViewController:childViewController];
                                              UIView* destView = childViewController.view;
                                              destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-                                             destView.frame = childUsingFrame;
+                                             destView.frame = frameRect;
                                              [self.view addSubview:destView];
                                              [childViewController didMoveToParentViewController:self];
                                          }];

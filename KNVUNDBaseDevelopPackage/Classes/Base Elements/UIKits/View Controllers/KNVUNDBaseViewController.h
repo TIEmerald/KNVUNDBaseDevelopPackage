@@ -149,6 +149,7 @@ typedef enum : NSUInteger {
  */
 - (void)addChildViewControllerWithFullSizeWithCurrentView:(UIViewController *)childViewController;
 - (void)addChildViewController:(UIViewController *)childViewController withPresentingType:(KNVUNDBaseVCChildViewControlerPresentType)presentingType;
+- (void)addChildViewController:(UIViewController *)childViewController withFrameRect:(CGRect)frameRect;
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController;
 - (void)removeAllChildrenViewControllers;
 
