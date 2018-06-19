@@ -17,10 +17,12 @@
     
     /// Selection Related
     BOOL _isCurrentModelSelected;
+    KNVUNDETVRelatedModelBooleanStatusChangedBlock _selectionStatusWillChange;
     KNVUNDETVRelatedModelBooleanStatusChangedBlock _selectionStatusOnChange;
     
     /// Expending Status Related
     BOOL _isCurrentModelExpended;
+    KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusWillChange;
     KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusOnChange;
 }
 
@@ -46,7 +48,17 @@
     
 }
 
+- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected
+{
+    
+}
+
 - (void)isExpendedSatatusChangedTo:(BOOL)isExpended
+{
+    
+}
+
+- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended
 {
     
 }
@@ -61,8 +73,14 @@
         [self setSelectionStatusOnChangeBlock:^(BOOL newStatusBoolean) {
             [weakSelf isSelectedSatatusChangedTo:newStatusBoolean];
         }];
+        [self setSelectionStatusWillChangeBlock:^(BOOL newStatusBoolean) {
+            [weakSelf isSelectedSatatusWillChangedTo:newStatusBoolean];
+        }];
         [self setExpendingStatusOnChangeBlock:^(BOOL newStatusBoolean) {
             [weakSelf isExpendedSatatusChangedTo:newStatusBoolean];
+        }];
+        [self setExpendingStatusWillChangeBlock:^(BOOL newStatusBoolean) {
+            [weakSelf isExpendedSatatusWillChangedTo:newStatusBoolean];
         }];
     }
     return self;
@@ -179,6 +197,11 @@
     _selectionStatusOnChange = selectionStatusOnChangeBlock;
 }
 
+- (void)setSelectionStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)selectionStatusWillChangeBlock
+{
+    _selectionStatusWillChange = selectionStatusWillChangeBlock;
+}
+
 - (void)toggleSelectionStatus
 {
     [self toggleSelectionStatusAndShouldUpdateRelatedCells:YES];
@@ -195,14 +218,20 @@
         }
     }
     
+    BOOL selectionStatusWillChangedTo = !self.isSelected;
+    
+    if (_selectionStatusWillChange) {
+        _selectionStatusWillChange(selectionStatusWillChangedTo);
+    }
+    
     NSMutableSet *updatedModels = [NSMutableSet new];
     if (self.isSelectable) {
         /// Step One, if it's not selected, we will select current Model
         if (!self.isSelected) {
-            _isCurrentModelSelected = YES;
+            _isCurrentModelSelected = selectionStatusWillChangedTo;
         } else {
             if (_isCurrentModelSelected) {
-                _isCurrentModelSelected = NO;
+                _isCurrentModelSelected = selectionStatusWillChangedTo;
             } else {
                 for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
                     if (child.isSelected) {
@@ -214,6 +243,11 @@
         }
         [updatedModels addObject:self];
         [updatedModels addObjectsFromArray:[self getAllAncestor].allObjects];
+        
+        NSArray *relatedModels = self.selectionStatusRelatedModels;
+        if ([relatedModels count] > 0) {
+            [updatedModels addObjectsFromArray:relatedModels];
+        }
     }
     
     if (shouldUpdateCells) {
@@ -265,9 +299,20 @@
     _expendingStatusOnChange = expendingStatusOnChangeBlock;
 }
 
+- (void)setExpendingStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock
+{
+    _expendingStatusWillChange = expendingStatusWillChangeBlock;
+}
+
 - (void)toggleExpendedStatus
 {
     NSArray *displayingDescendants = [self getDisplayingDescendants];
+    BOOL expendedStatusWillChangedTo = !_isCurrentModelExpended;
+    
+    if (_expendingStatusWillChange) {
+        _expendingStatusWillChange(expendedStatusWillChangedTo);
+    }
+    
     if (self.isExpended) {
         // Which means current displaying models contains all displaying descendant
         NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingDescendants];
@@ -290,13 +335,22 @@
             }
         }
     }
-    _isCurrentModelExpended = !_isCurrentModelExpended;
+    
+    _isCurrentModelExpended = expendedStatusWillChangedTo;
+    
     if (_expendingStatusOnChange) {
         _expendingStatusOnChange(self.isExpended);
     }
 }
 
 #pragma mark Support Methods
+- (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)siblings
+{
+    NSMutableArray *tempArray = [NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:self.parent.children];
+    [tempArray removeObject:self];
+    return [NSArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:tempArray];
+}
+
 - (NSArray *)getDisplayingDescendants
 {
     NSMutableArray *returnArray = [NSMutableArray new];

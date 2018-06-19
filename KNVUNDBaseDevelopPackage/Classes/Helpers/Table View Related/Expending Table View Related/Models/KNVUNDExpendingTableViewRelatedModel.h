@@ -38,7 +38,9 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
 #pragma mark - Instance Methods
 - (void)isSelectedSatatusChangedTo:(BOOL)isSelected NS_REQUIRES_SUPER;
+- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected NS_REQUIRES_SUPER;
 - (void)isExpendedSatatusChangedTo:(BOOL)isExpended NS_REQUIRES_SUPER;
+- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended NS_REQUIRES_SUPER;
 
 #pragma mark - General Methods
 /// Object Level
@@ -57,6 +59,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
 //// Selection Related
 @property (nonatomic, readonly) BOOL isSelected;
 @property (nonatomic) BOOL isSelectable; // You could overrride thie getter if you want a certain model will never be selected
+@property (nonatomic, strong) NSArray *selectionStatusRelatedModels; /// Whenever self's selection status updated, all models inside this array will update, too.
 @property (nonatomic) BOOL shouldReloadCellWhenSelectionStatusChanged; // Set this value to YES if you want to call [TableView reloadRowsAtIndexPaths:...] to reload this Model's related cell... otherwise, we will just call [UITableViewCell updateCellUI] instead. .... For example, if you want to change the height of the cell.
 /*!
  * @brief Please call this method if you want to have any reaction based on Selection Status Changed.
@@ -71,8 +74,11 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
  * @brief Please call this method if you want to have any reaction based on Expending Status Changed.
  */
 - (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusOnChangeBlock;
+- (void)setExpendingStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock;
 - (void)toggleExpendedStatus;
+
 /////// Support Methods
+@property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *siblings;
 - (NSArray *_Nonnull)getDisplayingDescendants;
 
 //// Log Related

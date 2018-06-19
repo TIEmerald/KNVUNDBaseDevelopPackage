@@ -127,6 +127,7 @@
     return [usingCellClass cellHeight];
 }
 
+///// If you want to handle the Selection by your self, you might mark the Cell selection style as None and handle the selection logic by yourself in your Table View Cell.
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
