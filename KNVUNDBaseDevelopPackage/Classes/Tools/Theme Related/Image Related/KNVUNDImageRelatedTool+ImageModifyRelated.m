@@ -224,13 +224,22 @@ struct PixelColors
     CGSize usingSize = newSize;
     
     BOOL shouldUsingNewSize = (originalImageSize.width == 0.0 && logic == KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeWidth) || (originalImageSize.height == 0.0 && logic == KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeHeigt);
+    CGSize sizeBasedOnNewWidth = CGSizeMake(usingSize.width, usingSize.width * originalImageSize.height / originalImageSize.width);
+    CGSize sizeBasedOnNewHeight = CGSizeMake(usingSize.height * originalImageSize.width / originalImageSize.height, usingSize.height);
     if (!shouldUsingNewSize) {
         switch (logic) {
+            case KNVUNDImageRelatedTool_ResizeLogic_FitSize:
+                if (sizeBasedOnNewWidth.height <= newSize.height) {
+                    usingSize = sizeBasedOnNewWidth;
+                } else {
+                    usingSize = sizeBasedOnNewHeight;
+                }
+                break;
             case KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeWidth:
-                usingSize = CGSizeMake(usingSize.width, usingSize.width * originalImageSize.height / originalImageSize.width);
+                usingSize = sizeBasedOnNewWidth;
                 break;
             case KNVUNDImageRelatedTool_ResizeLogic_RatioWithNewSizeHeigt:
-                usingSize = CGSizeMake(usingSize.height * originalImageSize.width / originalImageSize.height, usingSize.height);
+                usingSize = sizeBasedOnNewHeight;
                 break;
             case KNVUNDImageRelatedTool_ResizeLogic_SameAsNewSize:
             default:
@@ -297,6 +306,25 @@ struct PixelColors
 }
 
 #pragma mark - Combining
++ (UIImage *_Nullable)getImageFromOverlayingImages:(NSArray *_Nonnull)fromImages
+{
+    CGFloat returnImageHeight = 0.0f;
+    CGFloat returnImageWidth = 0.0f;
+    for (UIImage *fromImage in fromImages) {
+        returnImageWidth = MAX(returnImageWidth, fromImage.size.width);
+        returnImageHeight = MAX(returnImageHeight, fromImage.size.height);
+    }
+    UIGraphicsBeginImageContext(CGSizeMake(returnImageWidth, returnImageHeight));
+    for (UIImage *fromImage in fromImages) {
+        CGFloat originX = (returnImageWidth - fromImage.size.width) / 2;
+        CGFloat originY = (returnImageHeight - fromImage.size.height) / 2;
+        [fromImage drawInRect:CGRectMake(originX, originY, fromImage.size.width, fromImage.size.height)];
+    }
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 + (UIImage *_Nullable)getImageFromCombiningImages:(NSArray *_Nonnull)fromImages withOrientation:(KNVUNDImageRelatedTool_CombiningOrientation)orientation
 {
     return [self getImageFromCombiningImages:fromImages
