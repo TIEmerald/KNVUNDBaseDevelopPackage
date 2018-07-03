@@ -102,4 +102,18 @@
     return (__bridge NSString *)uuidStringRef;
 }
 
+// APP SPECIFIC (will change when uninstalled or redeployed)
++ (NSString *) deviceUUID
+{
+    // Getting vendor ID instead of deprecated DeviceUDID
+    // http://stackoverflow.com/questions/20944932/how-to-get-device-udid-in-programatically-in-ios7
+    NSUUID *deviceId;
+#if TARGET_IPHONE_SIMULATOR
+    deviceId = [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"];
+#else
+    deviceId = [UIDevice currentDevice].identifierForVendor;
+#endif
+    return deviceId.UUIDString;
+}
+
 @end

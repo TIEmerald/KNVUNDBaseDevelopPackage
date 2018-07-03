@@ -35,5 +35,6 @@
 
 #pragma mark - Others
 + (NSString *)generateUUID;
++ (NSString *)getDeviceUUID;
 
 @end
