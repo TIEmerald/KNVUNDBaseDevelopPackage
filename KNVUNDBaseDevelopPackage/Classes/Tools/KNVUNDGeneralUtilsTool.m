@@ -74,6 +74,12 @@
 
 
 #pragma mark - Version and Build Number Related
++ (NSString *)getApplicationName
+{
+    NSDictionary *appInfoDictionary = [[NSBundle mainBundle] infoDictionary];
+    return [NSString stringWithFormat:@"%@", [appInfoDictionary objectForKey:@"CFBundleDisplayName"]];
+}
+
 /// Call this method to retrieve the Version and Build Description String.
 + (NSString *)getVersionAndBuildDescriptionString
 {
