@@ -103,7 +103,7 @@
 }
 
 // APP SPECIFIC (will change when uninstalled or redeployed)
-+ (NSString *) deviceUUID
++ (NSString *) getDeviceUUID
 {
     // Getting vendor ID instead of deprecated DeviceUDID
     // http://stackoverflow.com/questions/20944932/how-to-get-device-udid-in-programatically-in-ios7
