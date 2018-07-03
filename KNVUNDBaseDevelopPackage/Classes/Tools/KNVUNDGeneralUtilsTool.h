@@ -32,4 +32,7 @@
 #pragma mark - Version and Build Number Related
 + (NSString *)getVersionAndBuildDescriptionString;
 
+#pragma mark - Others
++ (NSString *)generateUUID;
+
 @end
