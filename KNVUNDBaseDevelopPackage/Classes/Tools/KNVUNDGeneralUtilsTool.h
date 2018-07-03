@@ -30,6 +30,7 @@
 + (void)setDataToUserDefaults:(NSString *)key value:(id)object;
 
 #pragma mark - Version and Build Number Related
++ (NSString *)getApplicationName;
 + (NSString *)getVersionAndBuildDescriptionString;
 
 #pragma mark - Others
