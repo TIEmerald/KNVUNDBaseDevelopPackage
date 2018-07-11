@@ -37,6 +37,13 @@ extern NSString *const KNVUNDBasicTableViewCell_BaseModel_Key;
  */
 + (void)registerSelfIntoTableView:(UITableView *)targetTableView;
 
+#pragma mark - Object Methods for Class Methods
+//// All of these methods were called from [self class]
+- (NSString *)nibName;
+- (NSString *)cellIdentifierName;
+- (CGFloat)cellHeight;
+- (void)registerSelfIntoTableView:(UITableView *)targetTableView;
+
 #pragma mark - General Methods
 /*!
  * @brief You could override this method in Sub-Classes or write your own set up Methods. This method is created to make set up methods in table view cells more consistent.
