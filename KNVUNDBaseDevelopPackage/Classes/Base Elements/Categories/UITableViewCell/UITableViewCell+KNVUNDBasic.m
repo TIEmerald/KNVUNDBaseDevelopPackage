@@ -36,6 +36,26 @@ NSString *const KNVUNDBasicTableViewCell_BaseModel_Key = @"KNVUNDBasicTableViewC
           forCellReuseIdentifier:[self cellIdentifierName]];
 }
 
+#pragma mark - Object Methods for Class Methods
+//// All of these methods were called from [self class]
+- (NSString *)nibName
+{
+    return [[self class] nibName];
+}
+- (NSString *)cellIdentifierName
+{
+    return [[self class] cellIdentifierName];
+}
+- (CGFloat)cellHeight
+{
+    return [[self class] cellHeight];
+}
+
+- (void)registerSelfIntoTableView:(UITableView *)targetTableView
+{
+    return [[self class] registerSelfIntoTableView:targetTableView];
+}
+
 #pragma mark - General Methods
 - (void)setupCellBasedOnModelDictionary:(NSDictionary *)models
 {
