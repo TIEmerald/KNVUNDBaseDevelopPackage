@@ -79,6 +79,15 @@ NSString * const KNVUNDRegexRelatedTool_Pattern_VoucherCode = @"^[A-Z0-9a-z]*$";
 
 + (BOOL)validateString:(NSString *)string withPattern:(NSString *)pattern
 {
+    return [self validateString:string withPattern:pattern isEmptyStringValid:NO];
+}
+
++ (BOOL)validateString:(NSString *)string withPattern:(NSString *)pattern isEmptyStringValid:(BOOL)isEmptyStringValid
+{
+    if (string.length == 0) {
+        return isEmptyStringValid;
+    }
+    
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     

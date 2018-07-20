@@ -56,5 +56,6 @@ extern NSString * const KNVUNDRegexRelatedTool_Pattern_VoucherCode;
 + (BOOL)checkOnlyContainDecimalDigit:(NSString *)aString;
 
 + (BOOL)validateString:(NSString *)string withPattern:(NSString *)pattern;
++ (BOOL)validateString:(NSString *)string withPattern:(NSString *)pattern isEmptyStringValid:(BOOL)isEmptyStringValid;
 
 @end
