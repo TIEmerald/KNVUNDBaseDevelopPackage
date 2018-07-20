@@ -42,10 +42,12 @@ NSString *const KNVUNDBasicTableViewCell_BaseModel_Key = @"KNVUNDBasicTableViewC
 {
     return [[self class] nibName];
 }
+
 - (NSString *)cellIdentifierName
 {
     return [[self class] cellIdentifierName];
 }
+
 - (CGFloat)cellHeight
 {
     return [[self class] cellHeight];
