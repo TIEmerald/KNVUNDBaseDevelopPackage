@@ -104,6 +104,8 @@
 		20208AE1206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208ADF206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m */; };
 		20208AE5206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20208AE6206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */; };
+		20377540210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */; };
+		20377541210AE180004C5D0A /* KNVUNDPagingRelatedHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2037753D210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		205819CF20837F83009013AC /* KNVUNDFileRelatedTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 205819CD20837F83009013AC /* KNVUNDFileRelatedTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		205819D020837F83009013AC /* KNVUNDFileRelatedTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 205819CE20837F83009013AC /* KNVUNDFileRelatedTool.m */; };
 		2066EE2E97ABA4A07CC95AB429962526 /* NotificationBackgroundWarningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEF2BBD9C06F98EACE15DC893587CD8F /* NotificationBackgroundWarningIcon@2x.png */; };
@@ -1250,6 +1252,8 @@
 		20208ADF206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonRelatedBaseModel.m; sourceTree = "<group>"; };
 		20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.h; sourceTree = "<group>"; };
 		20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.m; sourceTree = "<group>"; };
+		2037753D210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDPagingRelatedHelper.h; sourceTree = "<group>"; };
+		2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDPagingRelatedHelper.m; sourceTree = "<group>"; };
 		205819CD20837F83009013AC /* KNVUNDFileRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDFileRelatedTool.h; sourceTree = "<group>"; };
 		205819CE20837F83009013AC /* KNVUNDFileRelatedTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFileRelatedTool.m; sourceTree = "<group>"; };
 		2078D416207476D40023526D /* KNVUNDRegexRelatedTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDRegexRelatedTool.h; sourceTree = "<group>"; };
@@ -2295,6 +2299,15 @@
 				20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */,
 			);
 			path = "Tag Button Related";
+			sourceTree = "<group>";
+		};
+		2037753C210AE0C0004C5D0A /* Paging Related */ = {
+			isa = PBXGroup;
+			children = (
+				2037753D210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.h */,
+				2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */,
+			);
+			path = "Paging Related";
 			sourceTree = "<group>";
 		};
 		2078D415207476910023526D /* Regex Related */ = {
@@ -3474,6 +3487,7 @@
 		AE5DBF0618FCC682BF72F859E8C57996 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2037753C210AE0C0004C5D0A /* Paging Related */,
 				D270D9940B1E0C1C103B3D9D07E4B287 /* Buttons Related */,
 				58C3EA9CFB57912B1A564D82DD016FA9 /* Log Related */,
 				9E9D34A21F0CC449293BE9D5CFBE2FEB /* Scanning Related */,
@@ -4094,6 +4108,7 @@
 				EA0EEB310EEC8F61904768CAD92D12D8 /* KNVUNDImageRelatedTool.h in Headers */,
 				69B47DCD2638A05B1D891C2BE7B90C42 /* KNVUNDLocalRelatedTool.h in Headers */,
 				144448C90DDE555EA4457CBE339B5C46 /* KNVUNDLogRelatedHelper.h in Headers */,
+				20377541210AE180004C5D0A /* KNVUNDPagingRelatedHelper.h in Headers */,
 				D6BE74EF45221F36B649C9F018AC9C82 /* KNVUNDRootErrorCodeTool.h in Headers */,
 				CA03D6F583E602D3C161AB4083A06AA6 /* KNVUNDRuntimeRelatedTool.h in Headers */,
 				C241ABCB8DCED85E66D7C9DFD6F1A018 /* KNVUNDScannerHelper.h in Headers */,
@@ -5192,6 +5207,7 @@
 				1D676445A1446539D4B722E6EF0C802A /* ExpectaSupport.m in Sources */,
 				BFC7D32CFE8200730837306AFF61E5AD /* EXPExpect.m in Sources */,
 				5E4F55D319FF771D658CCE335E7CB498 /* EXPFloatTuple.m in Sources */,
+				20377540210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m in Sources */,
 				150503B99F77D3D8897EFFC68C09A351 /* EXPMatcherHelpers.m in Sources */,
 				9A0ADF06F5B6BC3A70EDE1285BAF9346 /* EXPMatchers+beCloseTo.m in Sources */,
 				8220368E5F7EA70947BAD2B6F216C61B /* EXPMatchers+beFalsy.m in Sources */,
