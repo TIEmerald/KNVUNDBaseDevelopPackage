@@ -42,7 +42,6 @@
     [self setupGeneralUIBasedOnModel];
     [self setupExpendedStatusUI];
     [self setupSelectedStatusUI];
-    
 }
 
 #pragma mark - UITableViewCell
