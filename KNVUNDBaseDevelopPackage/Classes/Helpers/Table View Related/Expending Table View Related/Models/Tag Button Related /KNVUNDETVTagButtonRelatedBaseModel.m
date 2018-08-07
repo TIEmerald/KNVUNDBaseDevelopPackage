@@ -23,10 +23,10 @@
 #pragma mark - KNVUNDExpendingTableViewRelatedModel
 #pragma mark - Overrided Methods
 #pragma mark Instance Methods
-- (void)isSelectedSatatusChangedTo:(BOOL)isSelected
+- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
-    [super isSelectedSatatusChangedTo:isSelected];
-    if (isSelected) {
+    [super isSelectedSatatusChangedFrom:oldValue to:newValue andCouldUpdateExpendStatus:couldUpdateExpendStatus];
+    if (newValue) {
         [self markTagButtonAsSelected];
     }
 }

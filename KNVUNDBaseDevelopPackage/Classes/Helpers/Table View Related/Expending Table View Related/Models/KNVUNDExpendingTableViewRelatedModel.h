@@ -29,23 +29,29 @@
 
 @end
 
-typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBoolean);
+typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus);
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
 #pragma mark - Overrided Methods
 #pragma mark - Class Methods
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
+
 #pragma mark - Instance Methods
-- (void)isSelectedSatatusChangedTo:(BOOL)isSelected NS_REQUIRES_SUPER;
-- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected NS_REQUIRES_SUPER;
-- (void)isExpendedSatatusChangedTo:(BOOL)isExpended NS_REQUIRES_SUPER;
-- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended NS_REQUIRES_SUPER;
+- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (void)isExpendedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
+- (void)isExpendedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
+
+- (void)isSelectedSatatusChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusChangedFrom:to:andCouldUpdateExpendStatus: instead.")));
+- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusWillChangedFrom:to:andCouldUpdateExpendStatus: instead.")));
+- (void)isExpendedSatatusChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusChangedFrom:to: instead.")));
+- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusWillChangedFrom:to: instead.")));
 
 #pragma mark - General Methods
 /// Object Level
 @property (nonatomic, strong, nonnull) id associatedItem;
-@property (weak) id<KNVUNDETVRelatedModelDelegate> delegate;
+@property (nonatomic, weak) id<KNVUNDETVRelatedModelDelegate> delegate;
 @property (weak) id<KNVUNDExpendingTableViewRelatedModelCellDelegate> relatedCellDelegate;/// This delegate always link to the associated cell object.
 
 - (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended;
@@ -57,7 +63,8 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL newStatusBool
 
 
 //// Selection Related
-@property (nonatomic, readonly) BOOL isSelected;
+@property (nonatomic, readonly) BOOL isSelected; /// If any one of the children isSelected, this value will return True.
+@property (readonly) BOOL isCurrentModelSelected; /// This proper will ignore the selection of children....
 @property (nonatomic) BOOL isSelectable; // You could overrride thie getter if you want a certain model will never be selected
 @property (nonatomic, strong) NSArray *selectionStatusRelatedModels; /// Whenever self's selection status updated, all models inside this array will update, too.
 @property (nonatomic) BOOL shouldReloadCellWhenSelectionStatusChanged; // Set this value to YES if you want to call [TableView reloadRowsAtIndexPaths:...] to reload this Model's related cell... otherwise, we will just call [UITableViewCell updateCellUI] instead. .... For example, if you want to change the height of the cell.
