@@ -13,6 +13,8 @@
 
 @protocol KNVUNDETVRelatedModelDelegate <NSObject>
 
+@property (nonatomic, weak) UITableView *associatedTableView;
+@property (nonatomic, weak) UIViewController *relatedViewController;
 @property (nonatomic, strong, nonnull) NSMutableArray <KNVUNDExpendingTableViewRelatedModel *> *displayingModels;
 
 /// Setting Related

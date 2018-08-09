@@ -13,6 +13,7 @@
 
 #pragma mark - Set Up
 - (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView;
+- (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses relatedViewController:(UIViewController *)viewController andRelatedTableView:(UITableView *)relatedTableView;
 
 #pragma mark - General Methods
 - (void)updateTableWithRootModelArray:(NSArray *)rootModelArray;
