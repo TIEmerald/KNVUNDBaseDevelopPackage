@@ -15,13 +15,11 @@
 
 @interface KNVUNDExpendingTableViewRelatedHelper() <KNVUNDETVRelatedModelDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) UITableView *associatedTableView;
-
 @end
 
 @implementation KNVUNDExpendingTableViewRelatedHelper
 
-@synthesize displayingModels;
+@synthesize displayingModels, relatedViewController, associatedTableView;
 
 #pragma mark - KNVUNDBasic
 - (BOOL)shouldShowRelatedLog
@@ -32,13 +30,23 @@
 #pragma mark - Set Up
 - (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView
 {
-    _associatedTableView = relatedTableView;
-    _associatedTableView.dataSource = self;
-    _associatedTableView.delegate = self;
+    [self setUpWithRootModelArray:rootModelArray
+            supportedModelClasses:supportedModelClasses
+            relatedViewController:nil
+              andRelatedTableView:relatedTableView];
+}
+
+- (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses relatedViewController:(UIViewController *)viewController andRelatedTableView:(UITableView *)relatedTableView
+{
+    self.relatedViewController = viewController;
+    
+    self.associatedTableView = relatedTableView;
+    self.associatedTableView.dataSource = self;
+    self.associatedTableView.delegate = self;
     
     for (Class supportedModelClass in supportedModelClasses) {
         Class supportedCellClass = [supportedModelClass relatedTableViewCell];
-        [supportedCellClass registerSelfIntoTableView:_associatedTableView];
+        [supportedCellClass registerSelfIntoTableView:self.associatedTableView];
     }
     
     [self updateTableWithRootModelArray:rootModelArray];
@@ -60,7 +68,7 @@
     }
     self.displayingModels = usingDisplayingArray;
     
-    [_associatedTableView reloadData];
+    [self.associatedTableView reloadData];
 }
 
 #pragma mark - Delegates
@@ -77,11 +85,11 @@
     [self performConsoleLogWithLogStringFormat:@"Reloading Cell At Indexs: %@",
      indexPaths];
     if (shouldReloadCell) {
-        [_associatedTableView reloadRowsAtIndexPaths:indexPaths
-                                    withRowAnimation:UITableViewRowAnimationNone];
+        [self.associatedTableView reloadRowsAtIndexPaths:indexPaths
+                                        withRowAnimation:UITableViewRowAnimationNone];
     } else {
         for (NSIndexPath *indexPath in indexPaths) {
-            UITableViewCell *relatedTableViewCell = [_associatedTableView cellForRowAtIndexPath:indexPath];
+            UITableViewCell *relatedTableViewCell = [self.associatedTableView cellForRowAtIndexPath:indexPath];
             [relatedTableViewCell updateCellUI];
         }
     }
@@ -91,16 +99,16 @@
 {
     [self performConsoleLogWithLogStringFormat:@"Inserting Cell At Indexs: %@",
      indexPaths];
-    [_associatedTableView insertRowsAtIndexPaths:indexPaths
-                                withRowAnimation:UITableViewRowAnimationBottom];
+    [self.associatedTableView insertRowsAtIndexPaths:indexPaths
+                                    withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
     [self performConsoleLogWithLogStringFormat:@"Deleting Cell At Indexs: %@",
      indexPaths];
-    [_associatedTableView deleteRowsAtIndexPaths:indexPaths
-                                withRowAnimation:UITableViewRowAnimationBottom];
+    [self.associatedTableView deleteRowsAtIndexPaths:indexPaths
+                                    withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 #pragma mark - UITableViewDataSource
@@ -122,7 +130,7 @@
     }
     
     [usingCell setupCellWitKNVUNDWithModel:usingModel];
-
+    
     return usingCell;
 }
 
