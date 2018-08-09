@@ -104,6 +104,9 @@
                           andMappingDictionary:mappingDictionary
                       avoidObjectPropertyNames:avoidingProperties
                        withModifyPropertyBlock:^(KNVUNDRRTPropertyDetailsModel *selfPropertyDetails, KNVUNDRRTPropertyDetailsModel *objectPropertyDetails, BOOL isTwoPropertyDetailsValid) {
+                           if (selfPropertyDetails.isReadOnly) {
+                               return;
+                           }
                            id passingValue = nil;
                            if (isTwoPropertyDetailsValid) {
                                passingValue = objectPropertyDetails.value;
@@ -152,6 +155,9 @@
                           andMappingDictionary:mappingDictionary
                       avoidObjectPropertyNames:avoidingProperties
                        withModifyPropertyBlock:^(KNVUNDRRTPropertyDetailsModel *selfPropertyDetails, KNVUNDRRTPropertyDetailsModel *objectPropertyDetails, BOOL isTwoPropertyDetailsValid) {
+                           if (objectPropertyDetails.isReadOnly) {
+                               return;
+                           }
                            id passingValue = nil;
                            if (isTwoPropertyDetailsValid) {
                                passingValue = selfPropertyDetails.value;
