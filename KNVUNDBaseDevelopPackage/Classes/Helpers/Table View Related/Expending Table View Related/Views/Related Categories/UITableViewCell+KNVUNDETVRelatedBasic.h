@@ -28,7 +28,7 @@
 - (void)setupSelectedStatusUI;
 - (void)setupSelectedStatusUIWithFirstTimeCheck:(BOOL)isFirstTime;
 
-#pragma mark - Set up
-- (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel;
+/// Set Up
+- (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel NS_REQUIRES_SUPER;
 
 @end
