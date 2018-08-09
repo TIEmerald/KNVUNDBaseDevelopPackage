@@ -200,7 +200,7 @@
 #pragma mark Getters
 - (BOOL)isSelected
 {
-    if (_isCurrentModelSelected) {
+    if (self.isCurrentModelSelected) {
         return YES;
     } else {
         for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {

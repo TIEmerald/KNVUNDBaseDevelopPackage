@@ -34,6 +34,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong, nonnull) NSString *propertyName;
 @property (nonatomic, strong, nullable) NSString *typeName;
 @property (nonatomic) KNVUNDRuntimeRelatedTool_PropertyType propertyType;
+@property (nonatomic) BOOL isReadOnly;
 @property (nonatomic, nullable) id value;
 
 @end

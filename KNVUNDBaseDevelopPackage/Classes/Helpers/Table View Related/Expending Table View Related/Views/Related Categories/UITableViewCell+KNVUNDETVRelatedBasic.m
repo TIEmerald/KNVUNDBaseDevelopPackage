@@ -97,6 +97,8 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
         associatdModel.relatedCellDelegate = self;
         [self updateCellUI];
         self.hasUIInitialised = YES;
+    } else {
+        [self updateCellUI];
     }
 }
 

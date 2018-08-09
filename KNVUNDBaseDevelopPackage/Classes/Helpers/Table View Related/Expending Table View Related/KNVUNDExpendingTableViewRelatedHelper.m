@@ -41,6 +41,12 @@
         [supportedCellClass registerSelfIntoTableView:_associatedTableView];
     }
     
+    [self updateTableWithRootModelArray:rootModelArray];
+}
+
+#pragma mark - General Methods
+- (void)updateTableWithRootModelArray:(NSArray *)rootModelArray
+{
     NSMutableArray *usingDisplayingArray = [NSMutableArray new];
     for (id model in rootModelArray) {
         if ([model isKindOfClass:[KNVUNDExpendingTableViewRelatedModel class]]) {

@@ -8,6 +8,7 @@
 #import "KNVUNDRuntimeRelatedTool.h"
 
 #import <objc/runtime.h>
+#import <LinqToObjectiveC/LinqToObjectiveC.h>
 
 @interface KNVUNDRRTPropertyDetailsModel()
 
@@ -42,6 +43,8 @@
                        usingDetailsModel.propertyType = propertyType;
                        usingDetailsModel.typeName = typeName;
                        usingDetailsModel.value = value;
+                       [self updatePropertyDetailsModel:usingDetailsModel
+                                   withAttributeStrings:attributes];
                        loopBlock(usingDetailsModel,
                                  stopLoop);
                    }
@@ -159,6 +162,14 @@ char const KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Selector = ':';
     } @catch (NSException *expection) {
         return KNVUNDRuntimeRelatedTool_PropertyType_UnKnown_Type;
     }
+}
+
+// https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW1
++ (void)updatePropertyDetailsModel:(KNVUNDRRTPropertyDetailsModel *)propertyDetailsModel withAttributeStrings:(NSArray *)attributeStrings
+{
+    propertyDetailsModel.isReadOnly = [attributeStrings linq_any:^BOOL(NSString *item) {
+        return [item isEqualToString:@"R"];
+    }];
 }
 
 @end
