@@ -98,8 +98,10 @@
 {
     CFUUIDRef uuidRef = CFUUIDCreate(NULL);
     CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
+    NSString *returnString = (__bridge NSString *)uuidStringRef;
     CFRelease(uuidRef);
-    return (__bridge NSString *)uuidStringRef;
+    CFRelease(uuidStringRef);
+    return returnString;
 }
 
 // APP SPECIFIC (will change when uninstalled or redeployed)
