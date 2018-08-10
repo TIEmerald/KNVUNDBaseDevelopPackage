@@ -75,6 +75,7 @@
                       &stopLoop);
         }
     }
+    free(properties);
 }
 
 #pragma mark Support Methods
