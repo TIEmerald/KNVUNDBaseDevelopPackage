@@ -187,6 +187,16 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     return _bannerShowingTime;
 }
 
+- (BOOL)isPresentingViewController
+{
+    return _currentPresentingViewController != nil;
+}
+
+- (UIViewController *)currentPresentingViewController
+{
+    return _currentPresentingViewController;
+}
+
 - (BOOL)isFormsheetActive
 {
     return _currentPresentingViewController != nil;
