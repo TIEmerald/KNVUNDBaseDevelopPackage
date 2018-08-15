@@ -91,7 +91,7 @@
     NSDateFormatter *dateLevelformatter = [NSDateFormatter new];
     [dateLevelformatter setDateFormat:@"YYYY-MM-dd"];
     NSDateFormatter *secondLevelDateFormatter = [NSDateFormatter new];
-    [secondLevelDateFormatter setDateFormat:@"YYYYMMddHHmmss.sss"];
+    [secondLevelDateFormatter setDateFormat:@"YYYYMMddHHmmss.SSSS"];
     NSDate *date = [NSDate date];
     
     // Paths - We're saving the data based on the day.
