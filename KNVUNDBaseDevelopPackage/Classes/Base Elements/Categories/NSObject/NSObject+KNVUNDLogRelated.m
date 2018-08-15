@@ -88,8 +88,10 @@
 + (void)logStringIntoTempDirectory:(NSString *)string {
     
     // Setup date stuff
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-dd-MM"];
+    NSDateFormatter *dateLevelformatter = [NSDateFormatter new];
+    [dateLevelformatter setDateFormat:@"YYYY-MM-dd"];
+    NSDateFormatter *secondLevelDateFormatter = [NSDateFormatter new];
+    [secondLevelDateFormatter setDateFormat:@"YYYYMMddHHmmss.sss"];
     NSDate *date = [NSDate date];
     
     // Paths - We're saving the data based on the day.
@@ -99,14 +101,14 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:folderPath]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
     }
-    NSString *fileName = [NSString stringWithFormat:@"KNVUNDLogFile-%@.txt", [formatter stringFromDate:date]];
+    NSString *fileName = [NSString stringWithFormat:@"KNVUNDLogFile-%@.txt", [dateLevelformatter stringFromDate:date]];
     NSString *writePath = [folderPath stringByAppendingPathComponent:fileName];
     
     // We're going to want to append new data, so get the previous data.
     NSString *fileContents = [NSString stringWithContentsOfFile:writePath encoding:NSUTF8StringEncoding error:nil];
     
     // Write it to the string
-    string = [NSString stringWithFormat:@"%@\n%@ - %@", fileContents, [formatter stringFromDate:date], string];
+    string = [NSString stringWithFormat:@"%@\n%@ - %@", fileContents, [secondLevelDateFormatter stringFromDate:date], string];
     
     // Write to file stored at: "~/Library/Application\ Support/iPhone\ Simulator/*version*/Applications/*appGUID*/temp/KNVUNDLogFiles/KNVUNDLogFile-*date*.txt"
     [string writeToFile:writePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
