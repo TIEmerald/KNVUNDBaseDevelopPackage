@@ -15,6 +15,11 @@
 // You have to override this method if you want to show any log inside Class Method.
 + (BOOL)shouldShowClassMethodLog;
 
+#pragma mark - Override Methods
++ (BOOL)isDevelopMode;
++ (BOOL)isLogIntoTempDirectory;
++ (void)performServerLogWithLogString:(NSString *)string;
+
 #pragma mark Log Related
 + (void)performConsoleLogWithLogString:(NSString *_Nonnull)string;
 + (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2);

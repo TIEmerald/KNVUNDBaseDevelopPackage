@@ -108,7 +108,9 @@ typedef enum : NSUInteger {
 /////****************************************************************
 /// View Controller Presentation Related
 // This property will tell you if we are currently displaying Formsheet or not.
-@property (readonly) BOOL isFormsheetActive;
+@property (readonly) BOOL isPresentingViewController;
+@property (readonly) UIViewController *currentPresentingViewController;
+@property (readonly) BOOL isFormsheetActive __attribute__((deprecated("Use -isPresentingViewController instead.")));
 
 #pragma mark - Override Methods
 #pragma mark - Identifiers
