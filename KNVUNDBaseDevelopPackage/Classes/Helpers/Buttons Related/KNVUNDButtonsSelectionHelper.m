@@ -50,10 +50,7 @@
 {
     _currentAssociatedButtons = buttons;
     for (UIButton *selectionButton in buttons) {
-        [selectionButton addTarget:self
-                            action:@selector(didTapBSButton:)
-                  forControlEvents:UIControlEventTouchUpInside];
-        selectionButton.relatedSelectionHelper = self;
+        [self setUpAssociatedButton:selectionButton];
     }
     
     NSMutableArray *preSelectingArray = [NSMutableArray new];
@@ -90,10 +87,19 @@
         } else {
             NSMutableArray *tempArray = [NSMutableArray<UIButton *> arrayWithArray:_currentAssociatedButtons];
             [tempArray addObject:appendingButton];
-            appendingButton.relatedSelectionHelper = self;
+            [self setUpAssociatedButton:appendingButton];
             _currentAssociatedButtons = [NSArray<UIButton *> arrayWithArray:tempArray];
         }
     }
+}
+
+#pragma mark Support Methods
+- (void)setUpAssociatedButton:(UIButton *)buttonToSetUp
+{
+    [buttonToSetUp addTarget:self
+                      action:@selector(didTapBSButton:)
+            forControlEvents:UIControlEventTouchUpInside];
+    buttonToSetUp.relatedSelectionHelper = self;
 }
 
 #pragma mark - InterAction Methods
@@ -159,11 +165,6 @@
 {
     NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
     [self performConsoleLogWithLogStringFormat:@"Will Select Button with Index: %@",@(buttonIndex)];
-    button.selected = YES;
-    if (button.selectedFunctionBlock) {
-        button.selectedFunctionBlock(button);
-    }
-    
     if (self.isSingleSelection) {
         for (UIButton *selectedButton in [self currentSelectedButtons]) {
             if (selectedButton != button) {
@@ -171,6 +172,12 @@
             }
         }
     }
+    
+    button.selected = YES;
+    if (button.selectedFunctionBlock) {
+        button.selectedFunctionBlock(button);
+    }
+    
     [self performConsoleLogWithLogStringFormat:@"Did Select Button with Index: %@",@(buttonIndex)];
 }
 
