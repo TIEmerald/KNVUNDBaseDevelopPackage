@@ -50,7 +50,7 @@
 
 - (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
-    
+    [self isSelectedSatatusChangedTo:newValue];
 }
 
 - (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected
@@ -60,7 +60,7 @@
 
 - (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
-    
+    [self isSelectedSatatusWillChangedTo:newValue];
 }
 
 - (void)isExpendedSatatusChangedTo:(BOOL)isExpended
@@ -70,7 +70,7 @@
 
 - (void)isExpendedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue
 {
-    
+    [self isExpendedSatatusChangedTo:newValue];
 }
 
 - (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended
@@ -80,7 +80,7 @@
 
 - (void)isExpendedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue
 {
-    
+    [self isExpendedSatatusWillChangedTo:newValue];
 }
 
 #pragma mark - Initial
