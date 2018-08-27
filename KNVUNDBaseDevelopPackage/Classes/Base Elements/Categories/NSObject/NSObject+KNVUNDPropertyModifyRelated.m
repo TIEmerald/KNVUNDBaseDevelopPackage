@@ -7,6 +7,9 @@
 
 #import "NSObject+KNVUNDPropertyModifyRelated.h"
 
+// Categories
+#import "NSObject+KNVUNDLogRelated.h"
+
 /// Third Party
 #import <LinqToObjectiveC/LinqToObjectiveC.h>
 
@@ -202,16 +205,16 @@
 
 - (BOOL)isSelfPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)selfPropertyDetails isValidWithObjectPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)objectPropertyDetails
 {
-    //DLog(@"Checking Property from Self: %@\n And Property from Object: %@.",
-    //         selfPropertyDetails.debugDescription,
-    //         objectPropertyDetails.debugDescription);
+    [self performConsoleLogWithLogStringFormat:(@"Checking Property from Self: %@\n And Property from Object: %@.",
+                                                selfPropertyDetails.debugDescription,
+                                                objectPropertyDetails.debugDescription)];
     if (selfPropertyDetails.propertyType != objectPropertyDetails.propertyType) {
-        //DLog(@"Invalid, The property types are not matching");
+        [self performConsoleLogWithLogString:@"Invalid, The property types are not matching"];
         return NO;
     }
     
     if (![[self class] supportObjectPropertyType:selfPropertyDetails.propertyType]) {
-        //DLog(@"Invalid, The property type is supported");
+        [self performConsoleLogWithLogString:@"Invalid, The property type is supported"];
         return NO;
     }
     
@@ -219,15 +222,15 @@
         NSArray *supportingSelfPropertyTypeNames = [[[self class] objectObjectTypePropertNameMappingDictionary] valueForKey:objectPropertyDetails.typeName];
         for (NSString *supportedPropertyName in supportingSelfPropertyTypeNames) {
             if ([selfPropertyDetails.typeName isEqualToString:supportedPropertyName]) {
-                //DLog(@"Valid");
+                [self performConsoleLogWithLogString:@"Valid."];
                 return YES;
             }
         }
-        //DLog(@"Invalid, The object property type property names are not matching");
+        [self performConsoleLogWithLogString:@"Invalid, The object property type property names are not matching"];
         
         return NO;
-    }
-    //DLog(@"Valid");
+    } 
+    [self performConsoleLogWithLogString:@"Valid."];
     
     return YES;
 }
