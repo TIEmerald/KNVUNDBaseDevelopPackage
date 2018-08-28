@@ -39,7 +39,8 @@
     BOOL hasSelectedButton = NO;
     for (UIButton *selectedButton in [self currentSelectedButtons]) {
         if (hasSelectedButton) {
-            [self deSelectKNVUNDBSButton:selectedButton];
+            [self deSelectKNVUNDBSButton:selectedButton
+                 followingSelectionCount:0];
         }
         hasSelectedButton = YES;
     }
@@ -153,7 +154,8 @@
     [self performConsoleLogWithLogString:@"Before Tap Status: "];
     [self logAllButtonsStatus];
     if (tapedButton.isSelected) {
-        [self deSelectKNVUNDBSButton:tapedButton];
+        [self deSelectKNVUNDBSButton:tapedButton
+             followingSelectionCount:0];
     } else {
         [self selectKNVUNDBSButton:tapedButton];
     }
@@ -168,7 +170,8 @@
     if (self.isSingleSelection) {
         for (UIButton *selectedButton in [self currentSelectedButtons]) {
             if (selectedButton != button) {
-                [self deSelectKNVUNDBSButton:selectedButton];
+                [self deSelectKNVUNDBSButton:selectedButton
+                     followingSelectionCount:1];
             }
         }
     }
@@ -181,11 +184,11 @@
     [self performConsoleLogWithLogStringFormat:@"Did Select Button with Index: %@",@(buttonIndex)];
 }
 
-- (void)deSelectKNVUNDBSButton:(UIButton *)button
+- (void)deSelectKNVUNDBSButton:(UIButton *)button followingSelectionCount:(NSInteger)followingSelectionCount
 {
     NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
     [self performConsoleLogWithLogStringFormat:@"Will De-Select Button with Index: %@",@(buttonIndex)];
-    if (self.isForceSelection && [[self currentSelectedButtons] count] == 1) {
+    if (self.isForceSelection && [[self currentSelectedButtons] count] == (1 - followingSelectionCount)) {
         // If it is force selection, we won't process it.
         return;
     }
