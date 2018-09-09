@@ -17,7 +17,7 @@
 // You have to override this method if you want to show any log inside Class Method.
 + (BOOL)shouldShowClassMethodLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - Method Related

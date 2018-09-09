@@ -20,7 +20,7 @@
 #pragma mark - KNVUNDBaseModel
 - (BOOL)shouldShowRelatedLog
 {
-    return YES;
+    return NO;
 }
 
 #pragma mark - Getters & Setters
