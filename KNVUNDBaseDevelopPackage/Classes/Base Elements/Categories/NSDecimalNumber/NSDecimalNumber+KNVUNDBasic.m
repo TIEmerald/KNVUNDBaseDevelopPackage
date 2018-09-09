@@ -9,6 +9,19 @@
 
 @implementation NSDecimalNumber (KNVUNDBasic)
 
+#pragma mark - Statistic Methods
++ (NSDecimalNumber *)negativeDecimal
+{
+    return [NSDecimalNumber decimalNumberWithMantissa:1 exponent:0 isNegative:YES];
+}
+
+#pragma mark - Getters & Setters
+#pragma mark - Getters
+- (NSDecimalNumber *)negativeDecimalNumber
+{
+    return [self decimalNumberByMultiplyingBy:[NSDecimalNumber negativeDecimal]];
+}
+
 #pragma mark - Validators
 - (BOOL)couldBecomeDivisor
 {
