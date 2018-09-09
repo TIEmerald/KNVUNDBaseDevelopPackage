@@ -104,6 +104,8 @@
 		20208AE1206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208ADF206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m */; };
 		20208AE5206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20208AE6206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */; };
+		20278FFD21425C4C0013B63F /* NSNumber+KNVUNDBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 20278FFB21425C4C0013B63F /* NSNumber+KNVUNDBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20278FFE21425C4C0013B63F /* NSNumber+KNVUNDBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 20278FFC21425C4C0013B63F /* NSNumber+KNVUNDBasic.m */; };
 		2032F0182119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2032F0162119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2032F0192119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2032F0172119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.m */; };
 		20377540210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */; };
@@ -1254,6 +1256,8 @@
 		20208ADF206BC3640031B212 /* KNVUNDETVTagButtonRelatedBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonRelatedBaseModel.m; sourceTree = "<group>"; };
 		20208AE3206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.h; sourceTree = "<group>"; };
 		20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVTagButtonReleatedBaseTableViewCell.m; sourceTree = "<group>"; };
+		20278FFB21425C4C0013B63F /* NSNumber+KNVUNDBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+KNVUNDBasic.h"; sourceTree = "<group>"; };
+		20278FFC21425C4C0013B63F /* NSNumber+KNVUNDBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+KNVUNDBasic.m"; sourceTree = "<group>"; };
 		2032F0162119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+KNVUNDETVRelatedBasic.h"; sourceTree = "<group>"; };
 		2032F0172119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+KNVUNDETVRelatedBasic.m"; sourceTree = "<group>"; };
 		2037753D210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDPagingRelatedHelper.h; sourceTree = "<group>"; };
@@ -2305,6 +2309,15 @@
 			path = "Tag Button Related";
 			sourceTree = "<group>";
 		};
+		20278FFA21425C290013B63F /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				20278FFB21425C4C0013B63F /* NSNumber+KNVUNDBasic.h */,
+				20278FFC21425C4C0013B63F /* NSNumber+KNVUNDBasic.m */,
+			);
+			path = NSNumber;
+			sourceTree = "<group>";
+		};
 		2032F00D2119504500CE026C /* Related Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -3322,11 +3335,12 @@
 			children = (
 				201CBCB520E4C4590089760F /* UIView */,
 				20CBBD4320773A8200CD28AF /* UICollectionViewCell */,
+				F805EA32BA83016DF380B7AE761A217B /* UITableViewCell */,
 				EDE6DC3DA2FD31AEA6AC8BE37F5E452D /* NSDecimalNumber */,
 				1ED0804FA2D5889034E44DF8396CC2DA /* NSMutableAttributeString */,
+				20278FFA21425C290013B63F /* NSNumber */,
 				63379A42CBBE9155BAB560BE8A6FBB0A /* NSObject */,
 				023CA53F8A96AE1C56DC673C0FEA19C0 /* NSString */,
-				F805EA32BA83016DF380B7AE761A217B /* UITableViewCell */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -4134,6 +4148,7 @@
 				5C0D96BA7ACD49E65C79110EC1749C66 /* NSObject+KNVUNDLogRelated.h in Headers */,
 				2032F0182119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h in Headers */,
 				D273B9926BFE9A6E86011EADAB5D2EC8 /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
+				20278FFD21425C4C0013B63F /* NSNumber+KNVUNDBasic.h in Headers */,
 				B1994EA5440AF83348B4D44BA0405121 /* NSString+KNVUNDBasic.h in Headers */,
 				BC6FB7DD3700F34CF9ED349C19BFD92F /* UIButton+KNVUNDButtonsSelectionButton.h in Headers */,
 				41E1710CF7C4F5423E81E08A4A6DD898 /* UITableViewCell+KNVUNDBasic.h in Headers */,
@@ -4861,6 +4876,7 @@
 				335B24E0198824EA3C0E45DE0ED4707F /* KNVUNDFormatedStringRelatedTool.m in Sources */,
 				52A31E1DC52333258278D4F14CC647B4 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m in Sources */,
 				A903C5EF6726DA3DCA5084E4FE97E87A /* KNVUNDFSRToolHTMLLikeStringModel.m in Sources */,
+				20278FFE21425C4C0013B63F /* NSNumber+KNVUNDBasic.m in Sources */,
 				644998729924608C5C655B397F5FC74A /* KNVUNDGeneralUtilsTool.m in Sources */,
 				9C05F2DB178B91F8D209A7EE367756D9 /* KNVUNDImageRelatedTool+ImageModifyRelated.m in Sources */,
 				BC2424CF750FCA167E78AFC9316CA15E /* KNVUNDImageRelatedTool.m in Sources */,

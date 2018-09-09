@@ -9,6 +9,12 @@
 
 @interface NSDecimalNumber (KNVUNDBasic)
 
+#pragma mark - Statistic Methods
++ (NSDecimalNumber *)negativeDecimal;
+
+#pragma mark - Getters
+@property (readonly) NSDecimalNumber *negativeDecimalNumber;
+
 #pragma mark - Validators
 - (BOOL)couldBecomeDivisor;
 - (BOOL)couldPassToOperator;
