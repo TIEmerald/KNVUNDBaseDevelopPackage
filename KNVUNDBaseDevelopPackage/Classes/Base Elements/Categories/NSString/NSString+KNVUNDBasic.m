@@ -9,6 +9,16 @@
 
 @implementation NSString (KNVUNDBasic)
 
+#pragma mark - Factory Methods
++ (NSString *)stringWithChar:(char)aChar andFullLength:(NSInteger)length
+{
+    NSMutableString *returnString = [NSMutableString new];
+    for (int i = 0; i < length; i++) {
+        [returnString appendFormat:@"%c", aChar];
+    }
+    return returnString;
+}
+
 #pragma mark - Modify
 #pragma mark Trimming
 - (NSString *)stringByTrimmingWhiteSpaces
