@@ -9,6 +9,9 @@
 
 @interface NSString (KNVUNDBasic)
 
+#pragma mark - Factory Methods
++ (NSString *)stringWithChar:(char)aChar andFullLength:(NSInteger)length;
+
 #pragma mark - Modify
 #pragma mark Trimming
 - (NSString *)stringByTrimmingWhiteSpaces;
