@@ -30,14 +30,6 @@
     return self;
 }
 
-- (void)sendActionsForControlEvents:(UIControlEvents)controlEvents
-{
-    if (controlEvents == UIControlEventTouchUpInside) {
-        [self startActivityProgress];
-    }
-    [super sendActionsForControlEvents:controlEvents];
-}
-
 #pragma mark Support Methods
 - (void)superInitialize
 {
