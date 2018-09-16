@@ -30,14 +30,6 @@
     return self;
 }
 
-- (void)sendActionsForControlEvents:(UIControlEvents)controlEvents
-{
-    if (controlEvents == UIControlEventTouchUpInside) {
-        [self startActivityProgress];
-    }
-    [super sendActionsForControlEvents:controlEvents];
-}
-
 #pragma mark Support Methods
 - (void)superInitialize
 {
@@ -48,12 +40,14 @@
 - (void)startActivityProgress
 {
     self.hidden = YES;
+    self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void)stopActivityProgress
 {
     self.hidden = NO;
+    self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }
 
