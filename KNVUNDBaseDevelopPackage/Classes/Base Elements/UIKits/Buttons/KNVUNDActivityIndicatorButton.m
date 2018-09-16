@@ -40,12 +40,14 @@
 - (void)startActivityProgress
 {
     self.hidden = YES;
+    self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void)stopActivityProgress
 {
     self.hidden = NO;
+    self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }
 
