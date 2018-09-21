@@ -28,6 +28,18 @@ describe(@"ImageRelatedTool", ^{
                                                         withZXBarcodeFormat:kBarcodeFormatCode128
                                                                       width:300
                                                                   andHeight:300]).to.beNil();
+            expect([KNVUNDImageRelatedTool generateSpecialBarCodeFromString:@"abacus"
+                                                        withZXBarcodeFormat:kBarcodeFormatCode128
+                                                                      width:0
+                                                                  andHeight:0]).notTo.beNil();
+            expect([KNVUNDImageRelatedTool generateSpecialBarCodeFromString:@(10)
+                                                        withZXBarcodeFormat:kBarcodeFormatCode128
+                                                                      width:300
+                                                                  andHeight:300]).to.beNil();
+            expect([KNVUNDImageRelatedTool generateSpecialBarCodeFromString:@"abacus"
+                                                        withZXBarcodeFormat:kBarcodeFormatCode128
+                                                                      width:300
+                                                                  andHeight:300]).notTo.beNil();
         });
         
         it(@"read from empty image", ^{

@@ -106,9 +106,9 @@
 		20208AE6206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20208AE4206BC4290031B212 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */; };
 		20278FFD21425C4C0013B63F /* NSNumber+KNVUNDBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 20278FFB21425C4C0013B63F /* NSNumber+KNVUNDBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20278FFE21425C4C0013B63F /* NSNumber+KNVUNDBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 20278FFC21425C4C0013B63F /* NSNumber+KNVUNDBasic.m */; };
+		203014582150BF5D0015914B /* KNVUNDPagingRelatedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */; };
 		2032F0182119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2032F0162119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2032F0192119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2032F0172119512600CE026C /* UITableViewCell+KNVUNDETVRelatedBasic.m */; };
-		20377540210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037753E210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m */; };
 		20377541210AE180004C5D0A /* KNVUNDPagingRelatedHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2037753D210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		203E4860214B604100728583 /* KNVUNDActivityIndicatorButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 203E485E214B604100728583 /* KNVUNDActivityIndicatorButton.h */; };
 		203E4861214B604100728583 /* KNVUNDActivityIndicatorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 203E485F214B604100728583 /* KNVUNDActivityIndicatorButton.m */; };
@@ -4909,6 +4909,7 @@
 				58FCA4C0642234CD4F5314A2D4F3CAF5 /* NSMutableAttributedString+KNVUNDBasic.m in Sources */,
 				4500AC40104A07F67F81F33FAD461E24 /* NSObject+KNVUNDEqualityChecking.m in Sources */,
 				FC8A5161342B68DF8250AD0B29F6A0CD /* NSObject+KNVUNDLogRelated.m in Sources */,
+				203014582150BF5D0015914B /* KNVUNDPagingRelatedHelper.m in Sources */,
 				E549BB71EDDC5D512DCB1F0580843939 /* NSObject+KNVUNDPropertyModifyRelated.m in Sources */,
 				729FBE08AA4C117CCCA8216A393A4C9F /* NSString+KNVUNDBasic.m in Sources */,
 				6B4E46357E196507979A11E5C1732BE7 /* UIButton+KNVUNDButtonsSelectionButton.m in Sources */,
@@ -5255,7 +5256,6 @@
 				1D676445A1446539D4B722E6EF0C802A /* ExpectaSupport.m in Sources */,
 				BFC7D32CFE8200730837306AFF61E5AD /* EXPExpect.m in Sources */,
 				5E4F55D319FF771D658CCE335E7CB498 /* EXPFloatTuple.m in Sources */,
-				20377540210AE0E3004C5D0A /* KNVUNDPagingRelatedHelper.m in Sources */,
 				150503B99F77D3D8897EFFC68C09A351 /* EXPMatcherHelpers.m in Sources */,
 				9A0ADF06F5B6BC3A70EDE1285BAF9346 /* EXPMatchers+beCloseTo.m in Sources */,
 				8220368E5F7EA70947BAD2B6F216C61B /* EXPMatchers+beFalsy.m in Sources */,
@@ -5735,6 +5735,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -6237,6 +6238,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

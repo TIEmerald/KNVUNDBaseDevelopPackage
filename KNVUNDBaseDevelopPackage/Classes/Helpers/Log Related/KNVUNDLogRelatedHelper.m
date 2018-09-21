@@ -52,44 +52,63 @@
 #pragma mark - Appending
 - (void)appendLogStringWithObjectArray:(NSArray<id<KNVUNDLogRelatedModelProtocol>> *)objectArray andObjectName:(NSString *_Nonnull)objectName
 {
-    [self appendLogStringWithTitle:[NSString stringWithFormat:@"\n\n%@ Details:", objectName]
-             andCurrentIndentLevel:0];
-    NSNumber *objectCounts = @(objectArray.count);
-    if (objectCounts.integerValue == 0) {
-        [self appendLogStringWithTitle:[NSString stringWithFormat:@"No %@.", objectName]
-                 andCurrentIndentLevel:1];
-    } else {
-        NSMutableArray *usingArray = [NSMutableArray new];
-        int indexValue = 1;
-        for (id<KNVUNDLogRelatedModelProtocol> object in objectArray) {
-            [usingArray addObject:[[KNVUNDLogRelatedHelperContentModel alloc] initWithDescriptionString:[NSString stringWithFormat:@"-- %@ (%@ / %@)",
-                                                                                                         objectName,
-                                                                                                         @(indexValue),
-                                                                                                         objectCounts]
-                                                                                        andContentValue:object]];
-            indexValue += 1;
-        }
-        [self appendLogStringWithTitle:[NSString stringWithFormat:@"Has %@ %@s",
-                                        objectCounts,
-                                        objectName]
-                                contentModelArrays:usingArray
-                             andCurrentIndentLevel:1];
-    }
+    [self appendLogStringWithObjectArray:objectArray
+                           andObjectName:objectName
+                   andCurrentIndentLevel:0];
 }
 
-- (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString andCurrentIndentLevel:(NSUInteger)currentIndentLevel
+- (void)appendLogStringWithObjectArray:(NSArray<id<KNVUNDLogRelatedModelProtocol>> *)objectArray andObjectName:(NSString *_Nonnull)objectName andCurrentIndentLevel:(NSUInteger)currentIndentLevel
 {
-    [self appendLogStringWithTitle:titleString
-                contentModelArrays:@[]
-             andCurrentIndentLevel:currentIndentLevel];
+    [self appendLogStringWithBlock:^{
+        NSNumber *objectCounts = @(objectArray.count);
+        if (objectCounts.integerValue == 0) {
+            [self appendLogStringWithTitle:[NSString stringWithFormat:@"No %@.", objectName]
+                     andCurrentIndentLevel:currentIndentLevel + 1];
+        } else {
+            NSMutableArray *usingArray = [NSMutableArray new];
+            int indexValue = 1;
+            for (id<KNVUNDLogRelatedModelProtocol> object in objectArray) {
+                [usingArray addObject:[[KNVUNDLogRelatedHelperContentModel alloc] initWithDescriptionString:[NSString stringWithFormat:@"-- %@ (%@ / %@)",
+                                                                                                             objectName,
+                                                                                                             @(indexValue),
+                                                                                                             objectCounts]
+                                                                                            andContentValue:object]];
+                indexValue += 1;
+            }
+            [self appendLogStringWithTitle:[NSString stringWithFormat:@"Has %@ %@s",
+                                            objectCounts,
+                                            objectName]
+                        contentModelArrays:usingArray
+                     andCurrentIndentLevel:currentIndentLevel + 1];
+        }
+    } andObjectName:objectName andCurrentIndentLevel:currentIndentLevel];
+}
+
+- (void)appendLogStringWithObject:(id<KNVUNDLogRelatedModelProtocol>)logObject andObjectName:(NSString *_Nonnull)objectName
+{
+    [self appendLogStringWithObject:logObject
+                      andObjectName:objectName
+              andCurrentIndentLevel:0];
+}
+
+- (void)appendLogStringWithObject:(id<KNVUNDLogRelatedModelProtocol>)logObject andObjectName:(NSString *_Nonnull)objectName andCurrentIndentLevel:(NSUInteger)currentIndentLevel
+{
+    [self appendLogStringWithBlock:^{
+        if ([logObject respondsToSelector:@selector(getSelfLogStringWithTitle:andIndentString:andCurrentIndentLevel:)]) {
+            [self appendLogString:[logObject getSelfLogStringWithTitle:@""
+                                                       andIndentString:self.indentString
+                                                 andCurrentIndentLevel:currentIndentLevel + 1]];
+        } else {
+            [self appendLogString:[NSString stringWithFormat:@"No %@",
+                                   objectName]
+            andCurrentIndentLevel:currentIndentLevel + 1];
+        }
+    } andObjectName:objectName andCurrentIndentLevel:currentIndentLevel];
 }
 
 - (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString contentModelArrays:(NSArray *_Nonnull)contentArray andCurrentIndentLevel:(NSUInteger)currentIndentLevel
 {
-    NSString *currentIndentString = @"";
-    for (int index = 0; index < currentIndentLevel; index += 1 ) {
-        currentIndentString = [currentIndentString stringByAppendingString:self.indentString];
-    }
+    NSString *currentIndentString = [self getIndentStringWithCurrentIndentLevel:currentIndentLevel];
     
     NSString *returnString = [NSString stringWithFormat:@"%@%@\n",
                               currentIndentString,
@@ -113,8 +132,39 @@
                                                                   value]];
         }
     }
-    
-    _tempStoredString = [_tempStoredString stringByAppendingString:returnString];
+    [self appendLogString:returnString];
+}
+
+- (void)appendLogString:(NSString *)logString
+{
+    [self appendLogString:logString
+    andCurrentIndentLevel:0];
+}
+
+- (void)appendLogString:(NSString *)logString andCurrentIndentLevel:(NSUInteger)currentIndentLevel
+{
+    _tempStoredString = [_tempStoredString stringByAppendingString:[NSString stringWithFormat:@"%@%@",
+                                                                    [self getIndentStringWithCurrentIndentLevel:currentIndentLevel],
+                                                                    logString]];
+}
+
+#pragma mark Support Methods
+- (void)appendLogStringWithBlock:(void(^)(void))logStringBlock andObjectName:(NSString *_Nonnull)objectName andCurrentIndentLevel:(NSUInteger)currentIndentLevel
+{
+    [self appendLogStringWithTitle:[NSString stringWithFormat:@"\n\n%@ Details:", objectName]
+             andCurrentIndentLevel:currentIndentLevel];
+    if (logStringBlock) {
+        logStringBlock();
+    }
+}
+
+- (NSString *)getIndentStringWithCurrentIndentLevel:(NSUInteger)currentIndentLevel
+{
+    NSString *currentIndentString = @"";
+    for (int index = 0; index < currentIndentLevel; index += 1 ) {
+        currentIndentString = [currentIndentString stringByAppendingString:self.indentString];
+    }
+    return currentIndentString;
 }
 
 #pragma mark - Clearing
@@ -127,6 +177,14 @@
 - (NSString *_Nonnull)retrieveResultString
 {
     return _tempStoredString;
+}
+
+#pragma mark - Deprecated Methods
+- (void)appendLogStringWithTitle:(NSString *_Nonnull)titleString andCurrentIndentLevel:(NSUInteger)currentIndentLevel
+{
+    [self appendLogStringWithTitle:titleString
+                contentModelArrays:@[]
+             andCurrentIndentLevel:currentIndentLevel];
 }
 
 @end
