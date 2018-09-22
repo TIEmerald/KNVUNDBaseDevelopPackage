@@ -145,6 +145,20 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self tableView:tableView didTappedCellAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self tableView:tableView didTappedCellAtIndexPath:indexPath];
+}
+
+#pragma mark Support Methods
+- (void)tableView:(UITableView *)tableView didTappedCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    /// We are handle Selection and De-Selection Action by ourselves... that's why we don't care if the click is select or diselect
+    [self performConsoleLogWithLogStringFormat:@"Did select Cell At Index: %@",
+     indexPath];
     KNVUNDETVRelatedBasicTableViewCell *usingCell = [tableView cellForRowAtIndexPath:indexPath];
     [usingCell.relatedModel toggleSelectionStatus];
 }
