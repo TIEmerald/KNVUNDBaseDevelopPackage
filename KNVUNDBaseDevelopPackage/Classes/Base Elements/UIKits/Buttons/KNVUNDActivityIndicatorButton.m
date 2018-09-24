@@ -7,7 +7,9 @@
 
 #import "KNVUNDActivityIndicatorButton.h"
 
-@interface KNVUNDActivityIndicatorButton()
+@interface KNVUNDActivityIndicatorButton() {
+    BOOL _hasUserSetButtonToHidden;
+}
 
 @end
 
@@ -30,6 +32,14 @@
     return self;
 }
 
+#pragma mark Setters
+- (void)setHidden:(BOOL)hidden
+{
+    [self stopActivityProgress];
+    [super setHidden:hidden];
+    _hasUserSetButtonToHidden = hidden;
+}
+
 #pragma mark Support Methods
 - (void)superInitialize
 {
@@ -39,14 +49,20 @@
 #pragma mark - General Methods
 - (void)startActivityProgress
 {
-    self.hidden = YES;
+    if (_hasUserSetButtonToHidden) {
+        return;
+    }
+    [super setHidden:YES];
     self.activityIndicatorView.hidden = NO;
     [self.activityIndicatorView startAnimating];
 }
 
 - (void)stopActivityProgress
 {
-    self.hidden = NO;
+    if (_hasUserSetButtonToHidden) {
+        return;
+    }
+    [super setHidden:NO];
     self.activityIndicatorView.hidden = YES;
     [self.activityIndicatorView stopAnimating];
 }
