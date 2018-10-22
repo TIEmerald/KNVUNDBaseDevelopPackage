@@ -7,6 +7,9 @@
 
 #import "KNVUNDActivityIndicatorButton.h"
 
+/// Tools
+#import "KNVUNDThreadRelatedTool.h"
+
 @interface KNVUNDActivityIndicatorButton() {
     BOOL _hasUserSetButtonToHidden;
 }
@@ -52,9 +55,11 @@
     if (_hasUserSetButtonToHidden) {
         return;
     }
-    [super setHidden:YES];
-    self.activityIndicatorView.hidden = NO;
-    [self.activityIndicatorView startAnimating];
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [super setHidden:YES];
+        self.activityIndicatorView.hidden = NO;
+        [self.activityIndicatorView startAnimating];
+    }];
 }
 
 - (void)stopActivityProgress
@@ -62,9 +67,11 @@
     if (_hasUserSetButtonToHidden) {
         return;
     }
-    [super setHidden:NO];
-    self.activityIndicatorView.hidden = YES;
-    [self.activityIndicatorView stopAnimating];
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [super setHidden:NO];
+        self.activityIndicatorView.hidden = YES;
+        [self.activityIndicatorView stopAnimating];
+    }];
 }
 
 @end
