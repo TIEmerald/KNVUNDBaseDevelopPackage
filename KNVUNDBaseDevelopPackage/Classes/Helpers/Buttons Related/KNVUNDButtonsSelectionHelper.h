@@ -19,6 +19,7 @@
 #pragma mark - Set Up Method
 - (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons;
 - (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton;
+- (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton shouldCheckForceSelection:(BOOL)shouldCheckForceSelection;
 
 #pragma mark - InterAction Methods
 - (void)tapAButton:(UIButton *_Nonnull)tappingButton;

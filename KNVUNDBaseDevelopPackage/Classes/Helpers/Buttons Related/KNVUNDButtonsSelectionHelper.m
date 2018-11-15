@@ -49,6 +49,13 @@
 #pragma mark - Set Up Method
 - (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons
 {
+    [self setupWithHelperButtonsArray:buttons
+                  withSelectedButtons:selectedButtons
+            shouldCheckForceSelection:YES];
+}
+
+- (void)setupWithHelperButtonsArray:(NSArray<UIButton *> *_Nonnull)buttons withSelectedButtons:(NSArray<UIButton *> *_Nullable)selectedButtons shouldCheckForceSelection:(BOOL)shouldCheckForceSelection
+{
     _currentAssociatedButtons = buttons;
     for (UIButton *selectionButton in buttons) {
         [self setUpAssociatedButton:selectionButton];
@@ -68,7 +75,7 @@
         }
     }
     
-    if (self.isForceSelection && [preSelectingArray count] == 0) {
+    if (shouldCheckForceSelection && self.isForceSelection && [preSelectingArray count] == 0) {
         [preSelectingArray addObject:_currentAssociatedButtons.firstObject];
     }
     
@@ -82,9 +89,15 @@
 
 - (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton
 {
+    [self appendOneMoreButton:appendingButton
+    shouldCheckForceSelection:YES];
+}
+
+- (void)appendOneMoreButton:(UIButton *_Nonnull)appendingButton shouldCheckForceSelection:(BOOL)shouldCheckForceSelection
+{
     if (appendingButton != nil) {
         if ([_currentAssociatedButtons count] == 0) {
-            [self setupWithHelperButtonsArray:@[appendingButton] withSelectedButtons:nil];
+            [self setupWithHelperButtonsArray:@[appendingButton] withSelectedButtons:nil shouldCheckForceSelection:shouldCheckForceSelection];
         } else {
             NSMutableArray *tempArray = [NSMutableArray<UIButton *> arrayWithArray:_currentAssociatedButtons];
             [tempArray addObject:appendingButton];
