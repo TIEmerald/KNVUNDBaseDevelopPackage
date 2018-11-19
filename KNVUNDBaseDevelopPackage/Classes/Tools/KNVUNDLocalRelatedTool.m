@@ -7,6 +7,9 @@
 
 #import "KNVUNDLocalRelatedTool.h"
 
+/// Categories
+#import "NSNumber+KNVUNDBasic.h"
+
 @implementation KNVUNDLocalRelatedTool
 
 
@@ -120,6 +123,34 @@
 {
     NSNumberFormatter *currencyFormatter = [self getCurrentCurrencyNumberFormatter];
     return [currencyFormatter stringFromNumber:value ?: @(0)];
+}
+
+/*!
+ * @brief This is a method used to get the number base on the smallest Unit From the value you input.
+ */
++ (NSNumber *_Nonnull)getNumberWithTheSmallestUnitFromValue:(NSNumber *_Nullable)value
+{
+    //// Update this method in multiple currency
+    NSDecimalNumber *originalDeciamNumber = [NSDecimalNumber decimalNumberWithString:value.stringValue];
+    NSUInteger fractionDigits = [self getCurrentCurrencyNumberFormatter].maximumFractionDigits;
+    for (int i = 0; i < fractionDigits ; i += 1) {
+        originalDeciamNumber = [originalDeciamNumber decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:@"10"]];
+    }
+    return @(originalDeciamNumber.integerValue);
+}
+
++ (NSDecimalNumber *_Nonnull)getOriginalValueFromNumberBasedOnTheSmallestUnit:(NSNumber *_Nonnull)numberBasedOnTheSmallestUnit
+{
+    NSNumberFormatter *usingCurrencyNumberFormatter = [self getCurrentCurrencyNumberFormatter];
+    NSDecimalNumber *resultDecimalNumber = numberBasedOnTheSmallestUnit.decimalNumber;
+    NSDecimalNumber *tenDecimalNumber = [NSDecimalNumber decimalNumberWithString:@"10"];
+    NSUInteger fractionDigits = usingCurrencyNumberFormatter.maximumFractionDigits;
+    for (int i = 0; i < fractionDigits ; i += 1) {
+        resultDecimalNumber = [resultDecimalNumber decimalNumberByDividingBy:tenDecimalNumber];
+    }
+    NSDecimalNumberHandler *handler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:usingCurrencyNumberFormatter.maximumFractionDigits raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:YES];
+    resultDecimalNumber = [resultDecimalNumber decimalNumberByRoundingAccordingToBehavior:handler];
+    return resultDecimalNumber;
 }
 
 + (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString

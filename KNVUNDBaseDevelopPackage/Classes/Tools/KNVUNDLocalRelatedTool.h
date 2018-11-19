@@ -41,6 +41,12 @@
  */
 + (NSString *_Nonnull)getDefaultCurrencyStringFromValue:(NSNumber * _Nullable)value;
 
+/*!
+ * @brief This is a method used to get the number base on the smallest Unit From the value you input.
+ */
++ (NSNumber *_Nonnull)getNumberWithTheSmallestUnitFromValue:(NSNumber *_Nullable)value;
++ (NSDecimalNumber *_Nonnull)getOriginalValueFromNumberBasedOnTheSmallestUnit:(NSNumber *_Nonnull)numberBasedOnTheSmallestUnit;
+
 + (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString;
 + (NSNumber *_Nonnull)getCurrencyValueFromDefaultCurrencyString:(NSString * _Nullable)defaultCurrencyString containingCurrencySymbol:(BOOL)isContainingCurrencySymbol;
 
