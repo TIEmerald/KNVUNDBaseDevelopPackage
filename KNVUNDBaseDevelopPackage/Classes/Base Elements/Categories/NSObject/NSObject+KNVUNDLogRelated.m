@@ -28,43 +28,43 @@
     return NO;
 }
 
-+ (void)performServerLogWithLogString:(NSString *)string
++ (void)performFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string
 {
-    
+    [self performServerLogWithLogString:string];
 }
 
 #pragma mark Log Related
-+ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
++ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
 {
     [self performConsoleLogWithLogString:string
                       withControlBoolean:[self shouldShowClassMethodLog]];
 }
 
-+ (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
++ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
 {
     va_list variables;
     va_start(variables, format);
     NSString *string = [[NSString alloc] initWithFormat:format
                                               arguments:variables];
     va_end(variables);
-    [self performConsoleLogWithLogString:string];
+    [self performConsoleLogWithLogLevel:logLevel andLogString:string];
 }
 
-+ (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
 {
     NSString *usingLogString = [self getFormatedStringFromString:logString];
-    [self performServerLogWithLogString: usingLogString];
-    [self performConsoleLogWithLogString:usingLogString];
+    [self performConsoleLogWithLogLevel:logLevel andLogString:usingLogString];
+    [self performFurtherLogWithLogLevel:logLevel andLogString:usingLogString];
 }
 
-+ (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
 {
     va_list variables;
     va_start(variables, format);
     NSString *string = [[NSString alloc] initWithFormat:format
                                               arguments:variables];
     va_end(variables);
-    [self performConsoleAndServerLogWithLogString:string];
+    [self performConsoleAndFurtherLogWithLogLevel:logLevel andLogString:string];
 }
 
 #pragma mark - Support Methods
@@ -131,10 +131,87 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
 }
 
 #pragma mark - Log Related
-- (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
+- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
 {
     [[self class] performConsoleLogWithLogString:string
                               withControlBoolean:self.shouldShowRelatedLog];
+}
+
+- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:logLevel andLogString:string];
+}
+
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
+{
+    NSString *usingLogString = [[self class] getFormatedStringFromString:logString];
+    [[self class] performFurtherLogWithLogLevel:logLevel
+                                  andLogString:usingLogString];
+    [self performConsoleLogWithLogLevel:logLevel
+                           andLogString:usingLogString];
+}
+
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleAndFurtherLogWithLogLevel:logLevel
+                                    andLogString:string];
+}
+
+
+#pragma mark - Deprecated Methods
++ (void)performServerLogWithLogString:(NSString *)string
+{
+    
+}
+
++ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
+{
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:string];
+}
+
++ (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:string];
+}
+
++ (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString
+{
+    [self performConsoleAndFurtherLogWithLogLevel:NSObject_LogLevel_Debug
+                                    andLogString:logString];
+}
+
++ (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleAndFurtherLogWithLogLevel:NSObject_LogLevel_Debug
+                                    andLogString:string];
+}
+
+- (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
+{
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:string];
 }
 
 - (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
@@ -144,14 +221,14 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
     NSString *string = [[NSString alloc] initWithFormat:format
                                               arguments:variables];
     va_end(variables);
-    [self performConsoleLogWithLogString:string];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:string];
 }
 
 - (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString
 {
-    NSString *usingLogString = [[self class] getFormatedStringFromString:logString];
-    [[self class] performServerLogWithLogString:usingLogString];
-    [self performConsoleLogWithLogString:usingLogString];
+    [self performConsoleAndFurtherLogWithLogLevel:NSObject_LogLevel_Debug
+                                    andLogString:logString];
 }
 
 - (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2)
@@ -161,7 +238,8 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
     NSString *string = [[NSString alloc] initWithFormat:format
                                               arguments:variables];
     va_end(variables);
-    [self performConsoleAndServerLogWithLogString:string];
+    [self performConsoleAndFurtherLogWithLogLevel:NSObject_LogLevel_Debug
+                                    andLogString:string];
 }
 
 @end
