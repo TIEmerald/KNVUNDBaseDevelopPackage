@@ -134,7 +134,7 @@
     NSDecimalNumber *originalDeciamNumber = [NSDecimalNumber decimalNumberWithString:value.stringValue];
     NSUInteger fractionDigits = [self getCurrentCurrencyNumberFormatter].maximumFractionDigits;
     for (int i = 0; i < fractionDigits ; i += 1) {
-        originalDeciamNumber = [originalDeciamNumber decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:@"10"]];
+        originalDeciamNumber = [originalDeciamNumber decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"10"]];
     }
     return @(originalDeciamNumber.integerValue);
 }
