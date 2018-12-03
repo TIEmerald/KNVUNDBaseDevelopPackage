@@ -91,10 +91,10 @@ NSString *const KNVUNDETVRelatedBasicTableViewCell_UnSelectedBackendColour = @"#
 #pragma mark - Set up
 - (void)setupCellWitKNVUNDWithModel:(KNVUNDExpendingTableViewRelatedModel *)associatdModel
 {
+    associatdModel.relatedCellDelegate = self;
     if (self.relatedModel != associatdModel) {
         objc_setAssociatedObject(self, UITableViewCell_RelatedModel, associatdModel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         self.hasUIInitialised = NO;
-        associatdModel.relatedCellDelegate = self;
         [self updateCellUI];
         self.hasUIInitialised = YES;
     } else {
