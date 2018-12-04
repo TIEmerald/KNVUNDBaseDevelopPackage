@@ -16,6 +16,7 @@
 @interface KNVUNDSHScannerModel : KNVUNDBaseModel <AVCaptureMetadataOutputObjectsDelegate>
 
 @property (nonatomic, weak) id<KNVUNDSHScannerModelDelegate> delegate;
+@property (nonatomic, weak) UIView *relatedPreviewView;
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
@@ -41,38 +42,7 @@
 - (instancetype)initScannerOnView: (UIView *)view
 {
     if (self = [super init]) {
-        
-        self.captureSession = [[AVCaptureSession alloc] init];
-        AVCaptureDevice *videoCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        
-        NSError *error = nil;
-        AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
-        
-        if(videoInput){
-            [self.captureSession addInput:videoInput];
-            [self.captureSession setSessionPreset:AVCaptureSessionPreset1280x720];
-            
-            AVCaptureMetadataOutput *metadataOutput = [[AVCaptureMetadataOutput alloc] init];
-            [self.captureSession addOutput:metadataOutput];
-            [metadataOutput setMetadataObjectsDelegate:self
-                                                 queue:dispatch_get_main_queue()];
-            
-            // Support QRCode and Code 128
-            [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code]];
-            
-            self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
-            self.previewLayer.frame = view.layer.bounds;
-            self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-            
-            [view.layer addSublayer:self.previewLayer];
-            [self setUpOritationOfScannerView];
-            
-            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(setUpOritationOfScannerView)
-                                                         name:UIDeviceOrientationDidChangeNotification
-                                                       object:nil];
-        }
+        self.relatedPreviewView = view;
     }
     
     return self;
@@ -90,6 +60,21 @@
 }
 
 #pragma mark - General Methods
+- (void)setUpModelWithSuccessHandler:(void(^)(void))successHandler andTheErrorHandler:(void(^)(NSString *errorMessage))errorHandler
+{
+    __weak typeof(self) weakSelf = self;
+    [self checkingCameraAccessWithSuccessfulHandler:^{
+        __strong typeof(self) strongWeakSelf = weakSelf;
+        if (strongWeakSelf == nil) {
+            return;
+        }
+        [strongWeakSelf setUpAVCaptureSession];
+        if (successHandler) {
+            successHandler();
+        }
+    } andErrorHandler:errorHandler];
+}
+
 - (void)setUpOritationOfScannerView
 {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -155,6 +140,78 @@
     return nil;
 }
 
+#pragma mark Support Methods
+- (void)checkingCameraAccessWithSuccessfulHandler:(void(^)(void))successfulHandler andErrorHandler:(void(^)(NSString *errorMessage))errorHandler
+{
+    switch ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]) {
+        case AVAuthorizationStatusAuthorized:{
+            if (successfulHandler) {
+                successfulHandler();
+            }
+            break;
+        }
+        case AVAuthorizationStatusNotDetermined:{
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo
+                                     completionHandler:^(BOOL granted) {
+                                         if (granted && successfulHandler) {
+                                             successfulHandler();
+                                         } else if (!granted && errorHandler) {
+                                             errorHandler(@"Camera permission denied");
+                                         }
+                                     }];
+            break;
+        }
+        case AVAuthorizationStatusDenied:{
+            if (errorHandler) {
+                errorHandler(@"User has previously denied access.");
+            }
+            break;
+        }
+        case AVAuthorizationStatusRestricted:{
+            if (errorHandler) {
+                errorHandler(@"User can't grant access due to restrictions.");
+            }
+            break;
+        }
+    }
+}
+
+- (void)setUpAVCaptureSession
+{
+    self.captureSession = [[AVCaptureSession alloc] init];
+    AVCaptureDevice *videoCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    NSError *error = nil;
+    AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
+    
+    if(videoInput){
+        [self.captureSession addInput:videoInput];
+        [self.captureSession setSessionPreset:AVCaptureSessionPreset1280x720];
+        
+        AVCaptureMetadataOutput *metadataOutput = [[AVCaptureMetadataOutput alloc] init];
+        [self.captureSession addOutput:metadataOutput];
+        [metadataOutput setMetadataObjectsDelegate:self
+                                             queue:dispatch_get_main_queue()];
+        
+        // Support QRCode and Code 128
+        [metadataOutput setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code]];
+        
+        self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
+        self.previewLayer.frame = self.relatedPreviewView.layer.bounds;
+        self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        
+        [self.relatedPreviewView.layer addSublayer:self.previewLayer];
+        [self setUpOritationOfScannerView];
+        
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setUpOritationOfScannerView)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
+    }
+}
+
+#pragma mark - Delegates
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
@@ -213,9 +270,22 @@
 - (void)setUpCurrentHelperWithScanningDisplayingView:(UIView *_Nonnull)displayingView andScannedResultReceivedBlock:(KNVUNDSHResultHandlerBlock _Nonnull)handler
 {
     _usingScanner = [[KNVUNDSHScannerModel alloc] initScannerOnView:displayingView];
-    _usingScanner.delegate = self;
-    _storedResultHandlerBlock = handler;
-    [self setUpCameraDevicePosition];
+    __weak typeof(self) weakSelf = self;
+    [_usingScanner setUpModelWithSuccessHandler:^{
+        __strong typeof(self) strongWeakSelf = weakSelf;
+        if (strongWeakSelf == nil) {
+            return;
+        }
+        strongWeakSelf->_usingScanner.delegate = self;
+        strongWeakSelf->_storedResultHandlerBlock = handler;
+        [strongWeakSelf setUpCameraDevicePosition];
+    } andTheErrorHandler:^(NSString *errorMessage) {
+        __strong typeof(self) strongWeakSelf = weakSelf;
+        if (strongWeakSelf == nil) {
+            return;
+        }
+        strongWeakSelf->_usingScanner = nil;
+    }];
 }
 
 #pragma mark - Public Methods
