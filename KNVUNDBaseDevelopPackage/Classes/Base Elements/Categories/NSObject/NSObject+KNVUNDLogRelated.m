@@ -18,26 +18,22 @@
 }
 
 #pragma mark - Override Methods
-+ (BOOL)isDevelopMode
-{
-    return YES;
-}
-
-+ (BOOL)isLogIntoTempDirectory
++ (BOOL)willSkipShouldShowLogChecking
 {
     return NO;
 }
 
-+ (void)performFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string
++ (void)performLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string
 {
-    [self performServerLogWithLogString:string];
+    NSLog(@"%@", string);
 }
 
 #pragma mark Log Related
 + (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
 {
     [self performConsoleLogWithLogString:string
-                      withControlBoolean:[self shouldShowClassMethodLog]];
+                      withControlBoolean:[self shouldShowClassMethodLog]
+                             andLogLevel:(NSObject_LogLevel)logLevel];
 }
 
 + (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
@@ -50,31 +46,12 @@
     [self performConsoleLogWithLogLevel:logLevel andLogString:string];
 }
 
-+ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
-{
-    NSString *usingLogString = [self getFormatedStringFromString:logString];
-    [self performConsoleLogWithLogLevel:logLevel andLogString:usingLogString];
-    [self performFurtherLogWithLogLevel:logLevel andLogString:usingLogString];
-}
-
-+ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
-{
-    va_list variables;
-    va_start(variables, format);
-    NSString *string = [[NSString alloc] initWithFormat:format
-                                              arguments:variables];
-    va_end(variables);
-    [self performConsoleAndFurtherLogWithLogLevel:logLevel andLogString:string];
-}
-
 #pragma mark - Support Methods
-+ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string withControlBoolean:(BOOL)couldLog
++ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string withControlBoolean:(BOOL)couldLog andLogLevel:(NSObject_LogLevel)logLevel
 {
-    if ([self isDevelopMode] && couldLog) {
-        NSLog(@"%@", string);
-        if ([self isLogIntoTempDirectory]) {
-            [self logStringIntoTempDirectory:string];
-        }
+    NSString *usingLogString = [[self class] getFormatedStringFromString:string];
+    if ([self willSkipShouldShowLogChecking] || couldLog) {
+        [self performLogWithLogLevel:logLevel andLogString:usingLogString];
     }
 }
 
@@ -84,36 +61,6 @@
             NSStringFromClass(self),
             fromString];
 }
-
-+ (void)logStringIntoTempDirectory:(NSString *)string {
-    
-    // Setup date stuff
-    NSDateFormatter *dateLevelformatter = [NSDateFormatter new];
-    [dateLevelformatter setDateFormat:@"YYYY-MM-dd"];
-    NSDateFormatter *secondLevelDateFormatter = [NSDateFormatter new];
-    [secondLevelDateFormatter setDateFormat:@"YYYYMMddHHmmss.SSSS"];
-    NSDate *date = [NSDate date];
-    
-    // Paths - We're saving the data based on the day.
-    NSError *error;
-    NSString *folderPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"/KNVUNDLogFiles"];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folderPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
-    }
-    NSString *fileName = [NSString stringWithFormat:@"KNVUNDLogFile-%@.txt", [dateLevelformatter stringFromDate:date]];
-    NSString *writePath = [folderPath stringByAppendingPathComponent:fileName];
-    
-    // We're going to want to append new data, so get the previous data.
-    NSString *fileContents = [NSString stringWithContentsOfFile:writePath encoding:NSUTF8StringEncoding error:nil];
-    
-    // Write it to the string
-    string = [NSString stringWithFormat:@"%@\n%@ - %@", fileContents, [secondLevelDateFormatter stringFromDate:date], string];
-    
-    // Write to file stored at: "~/Library/Application\ Support/iPhone\ Simulator/*version*/Applications/*appGUID*/temp/KNVUNDLogFiles/KNVUNDLogFile-*date*.txt"
-    [string writeToFile:writePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-}
-
 
 #pragma mark - Getters && Setters
 static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey;
@@ -134,7 +81,8 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
 - (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
 {
     [[self class] performConsoleLogWithLogString:string
-                              withControlBoolean:self.shouldShowRelatedLog];
+                              withControlBoolean:self.shouldShowRelatedLog
+                                     andLogLevel:logLevel];
 }
 
 - (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
@@ -145,26 +93,6 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
                                               arguments:variables];
     va_end(variables);
     [self performConsoleLogWithLogLevel:logLevel andLogString:string];
-}
-
-- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
-{
-    NSString *usingLogString = [[self class] getFormatedStringFromString:logString];
-    [[self class] performFurtherLogWithLogLevel:logLevel
-                                  andLogString:usingLogString];
-    [self performConsoleLogWithLogLevel:logLevel
-                           andLogString:usingLogString];
-}
-
-- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
-{
-    va_list variables;
-    va_start(variables, format);
-    NSString *string = [[NSString alloc] initWithFormat:format
-                                              arguments:variables];
-    va_end(variables);
-    [self performConsoleAndFurtherLogWithLogLevel:logLevel
-                                    andLogString:string];
 }
 
 
@@ -208,6 +136,21 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
                                     andLogString:string];
 }
 
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
+{
+    [self performConsoleLogWithLogLevel:logLevel andLogString:logString];
+}
+
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:logLevel andLogString:string];
+}
+
 - (void)performConsoleLogWithLogString:(NSString *_Nonnull)string
 {
     [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
@@ -240,6 +183,23 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
     va_end(variables);
     [self performConsoleAndFurtherLogWithLogLevel:NSObject_LogLevel_Debug
                                     andLogString:string];
+}
+
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString
+{
+    [self performConsoleLogWithLogLevel:logLevel
+                           andLogString:logString];
+}
+
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:logLevel
+                           andLogString:string];
 }
 
 @end
