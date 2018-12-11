@@ -26,34 +26,38 @@ typedef enum : NSUInteger {
 + (BOOL)shouldShowClassMethodLog;
 
 #pragma mark - Override Methods
-+ (BOOL)isDevelopMode;
-+ (BOOL)isLogIntoTempDirectory;
-+ (void)performFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string;
++ (BOOL)willSkipShouldShowLogChecking; //// If it's Develop Mode, we might not need to show up certain Log information for Debug purpose, but if it's Releasing mode, because some app need to update all logs into server.... so, please override this method and + (void)performLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string; properly to avoid certain unnecessary login...
++ (void)performLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string;
 
 #pragma mark Log Related
 + (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string;
 + (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3);
-+ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString;
-+ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3);
 
 
 #pragma mark - Log Related
 // If you want to log anything for current model, please call this method inside.
 - (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string;
 - (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3);
-- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString;
-- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3);
 
 
 #pragma mark - Deprecated Methods
-+ (void)performServerLogWithLogString:(NSString *)string __attribute__((deprecated("Use performFurtherLogWithLogLevel:andLogString: instead.")));
++ (BOOL)isDevelopMode;
++ (BOOL)isLogIntoTempDirectory __attribute__((deprecated("Not using it anymore.")));
++ (void)performFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string __attribute__((deprecated("Use performLogWithLogLevel:andLogString: instead.")));
++ (void)performServerLogWithLogString:(NSString *)string __attribute__((deprecated("Use performLogWithLogLevel:andLogString: instead.")));
+
 + (void)performConsoleLogWithLogString:(NSString *_Nonnull)string __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
 + (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogStringFormat: instead.")));
-+ (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleAndFurtherLogWithLogLevel:andLogString: instead.")));
-+ (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleAndFurtherLogWithLogLevel:andLogStringFormat: instead.")));
++ (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
++ (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
++ (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
+
 - (void)performConsoleLogWithLogString:(NSString *_Nonnull)string __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
 - (void)performConsoleLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogStringFormat: instead.")));
-- (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleAndFurtherLogWithLogLevel:andLogString: instead.")));
-- (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleAndFurtherLogWithLogLevel:andLogStringFormat: instead.")));
+- (void)performConsoleAndServerLogWithLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
+- (void)performConsoleAndServerLogWithLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(1,2) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogStringFormat: instead.")));
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)logString __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogString: instead.")));
+- (void)performConsoleAndFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3) __attribute__((deprecated("Use performConsoleLogWithLogLevel:andLogStringFormat: instead.")));
 
 @end
