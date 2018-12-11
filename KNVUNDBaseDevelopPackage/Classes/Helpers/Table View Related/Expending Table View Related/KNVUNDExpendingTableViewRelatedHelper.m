@@ -22,10 +22,10 @@
 @synthesize displayingModels, relatedViewController, associatedTableView;
 
 #pragma mark - KNVUNDBasic
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Set Up
 - (void)setUpWithRootModelArray:(NSArray *)rootModelArray supportedModelClasses:(NSArray *)supportedModelClasses andRelatedTableView:(UITableView *)relatedTableView
@@ -82,7 +82,8 @@
 #pragma mark Table View Updating Related
 - (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell
 {
-    [self performConsoleLogWithLogStringFormat:@"Reloading Cell At Indexs: %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Reloading Cell At Indexs: %@",
      indexPaths];
     if (shouldReloadCell) {
         [self.associatedTableView reloadRowsAtIndexPaths:indexPaths
@@ -97,7 +98,8 @@
 
 - (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
-    [self performConsoleLogWithLogStringFormat:@"Inserting Cell At Indexs: %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Inserting Cell At Indexs: %@",
      indexPaths];
     [self.associatedTableView insertRowsAtIndexPaths:indexPaths
                                     withRowAnimation:UITableViewRowAnimationBottom];
@@ -105,7 +107,8 @@
 
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
 {
-    [self performConsoleLogWithLogStringFormat:@"Deleting Cell At Indexs: %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Deleting Cell At Indexs: %@",
      indexPaths];
     [self.associatedTableView deleteRowsAtIndexPaths:indexPaths
                                     withRowAnimation:UITableViewRowAnimationBottom];
@@ -157,7 +160,8 @@
 - (void)tableView:(UITableView *)tableView didTappedCellAtIndexPath:(NSIndexPath *)indexPath
 {
     /// We are handle Selection and De-Selection Action by ourselves... that's why we don't care if the click is select or diselect
-    [self performConsoleLogWithLogStringFormat:@"Did select Cell At Index: %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Did select Cell At Index: %@",
      indexPath];
     KNVUNDETVRelatedBasicTableViewCell *usingCell = [tableView cellForRowAtIndexPath:indexPath];
     [usingCell.relatedModel toggleSelectionStatus];

@@ -33,10 +33,10 @@
 @implementation KNVUNDSHScannerModel
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Initial
 - (instancetype)initScannerOnView: (UIView *)view
@@ -215,7 +215,8 @@
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-    [self performConsoleLogWithLogStringFormat:@"KNVUNDScannerHelper AVCaptureMetadataOutputObjectsDelegate has been triggered with count %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"KNVUNDScannerHelper AVCaptureMetadataOutputObjectsDelegate has been triggered with count %@",
      @([metadataObjects count])];
     
     for(AVMetadataObject *metadataObject in metadataObjects)
@@ -251,10 +252,10 @@
 @implementation KNVUNDScannerHelper
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Getters && Setters
 #pragma mark - Getters
@@ -304,7 +305,8 @@
 #pragma mark - KNVUNDSHScannerModelDelegate
 - (void)didCaptureCodeString:(NSString *)codeString
 {
-    [self performConsoleLogWithLogStringFormat:@"Did Read String from Code Scanner --- %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Did Read String from Code Scanner --- %@",
      codeString];
     // We will only sure the scanned string is correct when we have received the same String Twice...
     if([_storedScannedString isEqualToString:codeString]) {

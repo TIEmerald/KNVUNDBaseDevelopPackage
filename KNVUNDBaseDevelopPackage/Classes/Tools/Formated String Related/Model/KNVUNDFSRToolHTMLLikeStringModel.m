@@ -22,10 +22,10 @@
 @implementation KNVUNDFSRToolHTMLLikeStringModel
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Getters && Setters
 #pragma mark - Getters

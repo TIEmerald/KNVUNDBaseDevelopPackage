@@ -51,10 +51,10 @@ typedef enum : NSUInteger {
 @implementation KNVUNDFSReadingHelperSingleReadingModel
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Getters & Setters
 #pragma mark - Getters
@@ -202,14 +202,16 @@ typedef enum : NSUInteger {
     [self completeCurrentReadingFunctionAndShouldRemoveLastChar:YES];
     self.storedAttributeKeyValue = self.lastReadingCompleteString;
     self.lastReadingCompleteString = @"";
-    [self performConsoleLogWithLogStringFormat:@"Setting Stored Attribtue Key Value --- %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Setting Stored Attribtue Key Value --- %@",
      self.storedAttributeKeyValue];
 }
 
 - (void)haveEndedCheckingValueForStoredAttributeKey
 {
     if (self.storedAttributeKeyValue.length > 0) {
-        [self performConsoleLogWithLogStringFormat:@"Adding Attribut Key - Value --- %@ - %@",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Adding Attribut Key - Value --- %@ - %@",
          self.storedAttributeKeyValue,
          self.lastReadingCompleteString];
         [self.relatedStringModel updateAddictionalAttributeKey:self.storedAttributeKeyValue
@@ -257,7 +259,8 @@ typedef enum : NSUInteger {
 {
     if (self.relatedStringModel != nil && !self.hasCheckedAttributesPartForRelatedStringModel) {
         self.currentReadingString = [self.currentReadingString stringByAppendACharacter:aChar];
-        [self performConsoleLogWithLogStringFormat:@"Current Attributes Checking Reading Content is: %@",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Current Attributes Checking Reading Content is: %@",
          self.currentReadingString];
     }
 }
@@ -270,7 +273,8 @@ typedef enum : NSUInteger {
         }
         self.lastReadingCompleteString = self.currentReadingString;
         self.currentReadingString = @"";
-        [self performConsoleLogWithLogStringFormat:@"Stop Previous Reading Scope --- Last Reading Scope Content: %@",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Stop Previous Reading Scope --- Last Reading Scope Content: %@",
          self.lastReadingCompleteString];
     }
     [self resetIndexIdentifierForChecking];
@@ -312,10 +316,10 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Initial
 - (instancetype)initWithSettingModel:(KNVUNDFSReadingHelperSettingModel *)settingModel
@@ -353,9 +357,11 @@ typedef enum : NSUInteger {
     NSUInteger insertingModelInsertLocation = 0;
     BOOL shouldBackToLastLevelWhenFinished = singleReadingModel.relatedStringModel != nil; /// If we have passed newModel which means this method is called in nested... we need to back to privious level when this level checking is finished
     if (shouldBackToLastLevelWhenFinished) {
-        [self performConsoleLogWithLogString:@"Enter Next Level Retrieving Loop Method --- Reason: Find another String Reading Model inside anther Reading Model."];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                               andLogString:@"Enter Next Level Retrieving Loop Method --- Reason: Find another String Reading Model inside anther Reading Model."];
     } else {
-        [self performConsoleLogWithLogString:@"Enter Initial Retrieving Loop Method."];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                               andLogString:@"Enter Initial Retrieving Loop Method."];
     }
     BOOL shouldStop = NO;
     NSRange formatTypeFirstPartRange;
@@ -365,7 +371,8 @@ typedef enum : NSUInteger {
     while (*checkingIndex < readingContent.length && !shouldStop) {
         char currentCheckingChar = [readingContent characterAtIndex:*checkingIndex];
         
-        [self performConsoleLogWithLogStringFormat:@"Checking Character at Index: %@ ---- \'%c\'",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Checking Character at Index: %@ ---- \'%c\'",
          @(*checkingIndex),
          currentCheckingChar];
         
@@ -410,7 +417,8 @@ typedef enum : NSUInteger {
             KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:singleReadingModel.propertyName
                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_Format
                                                                                                             andLocation:currentCheckingIndex - singleReadingModel.checkingIndexInFormatTypeFirstWrapperStart + 1];
-            [self performConsoleLogWithLogStringFormat:@"Found Possible Format Type Property at Location: %@.",
+            [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                             andLogStringFormat:@"Found Possible Format Type Property at Location: %@.",
              @(newModel.location)];
             
             if (singleReadingModel.relatedStringModel == nil) {
@@ -432,7 +440,8 @@ typedef enum : NSUInteger {
             KNVUNDFSRToolHTMLLikeStringModel *newModel = [[KNVUNDFSRToolHTMLLikeStringModel alloc] initWithPropertyName:singleReadingModel.propertyName
                                                                                                                    type:KNVUNDFSRToolHTMLLikeStringModel_Type_PlaceHolder
                                                                                                             andLocation:currentCheckingIndex - singleReadingModel.checkingIndexInPlaceholderTypeWrapperStart + 1];
-            [self performConsoleLogWithLogStringFormat:@"Found Possible Placeholder Type Property at Location: %@.",
+            [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                             andLogStringFormat:@"Found Possible Placeholder Type Property at Location: %@.",
              @(newModel.location)];
             
             if (singleReadingModel.relatedStringModel == nil) {
@@ -493,7 +502,8 @@ typedef enum : NSUInteger {
                     *checkingIndex = *checkingIndex - propertyPartRange.length;
                     [foundModel updateFullLengthFromReading:propertyPartRange.length];
                     
-                    [self performConsoleLogWithLogStringFormat:@"Confirm Placeholder Type Property at Range: %@  ----  %@ \nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                     andLogStringFormat:@"Confirm Placeholder Type Property at Range: %@  ----  %@ \nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
                      NSStringFromRange(propertyPartRange),
                      propertyFullString,
                      @(beforeDeletingIndex),
@@ -504,7 +514,8 @@ typedef enum : NSUInteger {
                     singleReadingModel.hasCheckedFullInformationForRelatedStringModel = YES;
                 } else {
                     formatTypeFirstPartRange = propertyPartRange; /// Stored for the deleting logic
-                    [self performConsoleLogWithLogStringFormat:@"Update Stored Format Type First Part Range --- %@",
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                     andLogStringFormat:@"Update Stored Format Type First Part Range --- %@",
                      NSStringFromRange(formatTypeFirstPartRange)];
                     
                 }
@@ -534,7 +545,8 @@ typedef enum : NSUInteger {
                     [readingContent deleteCharactersInRange:fullRange];
                     *checkingIndex = *checkingIndex - fullRange.length;
                     
-                    [self performConsoleLogWithLogStringFormat:@"Confirm Format Type Property at Range: %@ ----  %@ \nContent: %@\nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                     andLogStringFormat:@"Confirm Format Type Property at Range: %@ ----  %@ \nContent: %@\nChange Next Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
                      NSStringFromRange(fullRange),
                      fullString,
                      foundModel.contentValue,
@@ -552,7 +564,8 @@ typedef enum : NSUInteger {
                     [readingContent deleteCharactersInRange:formatTypeFirstPartRange];
                     *checkingIndex = *checkingIndex - formatTypeFirstPartRange.length;
                     
-                    [self performConsoleLogWithLogStringFormat:@"Confirm Format Type Property at Range: %@ and %@ ----  %@ \nContent: %@\nChange Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                     andLogStringFormat:@"Confirm Format Type Property at Range: %@ and %@ ----  %@ \nContent: %@\nChange Checking Index %@ --> %@\n Change Formated String:\n  From: %@ \n  To: %@",
                      NSStringFromRange(formatTypeFirstPartRange),
                      NSStringFromRange(secondPartRange),
                      fullString,
@@ -569,7 +582,8 @@ typedef enum : NSUInteger {
         /// The last part is if we have confirmed one checking process for one model, we will restart for next one.
         if (singleReadingModel.hasCheckedFullInformationForRelatedStringModel) {
             KNVUNDFSRToolHTMLLikeStringModel *completedModel = [singleReadingModel completeRelatedStirngModelChecking];
-            [self performConsoleLogWithLogStringFormat:@"Found Model:\n%@",
+            [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                             andLogStringFormat:@"Found Model:\n%@",
              completedModel.description];
             [returnArray insertObject:completedModel
                               atIndex:insertingModelInsertLocation];
@@ -577,9 +591,11 @@ typedef enum : NSUInteger {
         
             if (singleReadingModel.remainingCheckingTimes == 1 || shouldBackToLastLevelWhenFinished) {
                 if (shouldBackToLastLevelWhenFinished) {
-                    [self performConsoleLogWithLogString:@"Stop Retrieving Loop Method --- Reason: Going To Previous Level Retrieving Loop."];
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                           andLogString:@"Stop Retrieving Loop Method --- Reason: Going To Previous Level Retrieving Loop."];
                 } else {
-                    [self performConsoleLogWithLogString:@"Stop Retrieving Loop Method --- Reason: Reached the highest checking limit."];
+                    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                           andLogString:@"Stop Retrieving Loop Method --- Reason: Reached the highest checking limit."];
                 }
                 shouldStop = YES;
             }

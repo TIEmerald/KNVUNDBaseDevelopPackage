@@ -18,10 +18,10 @@
 @implementation KNVUNDButtonsSelectionHelper
 
 #pragma mark - KNVUNDBaseModel
-- (BOOL)shouldShowRelatedLog
-{
-    return NO;
-}
+//- (BOOL)shouldShowRelatedLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Getters & Setters
 #pragma mark - Setters
@@ -163,8 +163,10 @@
 #pragma mark - Support Methods
 - (void)didTapBSButton:(UIButton *)tapedButton
 {
-    [self performConsoleLogWithLogStringFormat:@"Performing Tap with Button: %@", tapedButton];
-    [self performConsoleLogWithLogString:@"Before Tap Status: "];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Performing Tap with Button: %@", tapedButton];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:@"Before Tap Status: "];
     [self logAllButtonsStatus];
     if (tapedButton.isSelected) {
         [self deSelectKNVUNDBSButton:tapedButton
@@ -172,14 +174,16 @@
     } else {
         [self selectKNVUNDBSButton:tapedButton];
     }
-    [self performConsoleLogWithLogString:@"After Tap Status: "];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:@"After Tap Status: "];
     [self logAllButtonsStatus];
 }
 
 - (void)selectKNVUNDBSButton:(UIButton *)button
 {
     NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
-    [self performConsoleLogWithLogStringFormat:@"Will Select Button with Index: %@",@(buttonIndex)];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Will Select Button with Index: %@",@(buttonIndex)];
     if (self.isSingleSelection) {
         for (UIButton *selectedButton in [self currentSelectedButtons]) {
             if (selectedButton != button) {
@@ -194,13 +198,15 @@
         button.selectedFunctionBlock(button);
     }
     
-    [self performConsoleLogWithLogStringFormat:@"Did Select Button with Index: %@",@(buttonIndex)];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Did Select Button with Index: %@",@(buttonIndex)];
 }
 
 - (void)deSelectKNVUNDBSButton:(UIButton *)button followingSelectionCount:(NSInteger)followingSelectionCount
 {
     NSInteger buttonIndex = [_currentAssociatedButtons indexOfObject:button];
-    [self performConsoleLogWithLogStringFormat:@"Will De-Select Button with Index: %@",@(buttonIndex)];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Will De-Select Button with Index: %@",@(buttonIndex)];
     if (self.isForceSelection && [[self currentSelectedButtons] count] == (1 - followingSelectionCount)) {
         // If it is force selection, we won't process it.
         return;
@@ -210,7 +216,8 @@
     if (button.deSelectedFunctionBlock) {
         button.deSelectedFunctionBlock(button);
     }
-    [self performConsoleLogWithLogStringFormat:@"Did De-Select Button with Index: %@",@(buttonIndex)];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Did De-Select Button with Index: %@",@(buttonIndex)];
 }
 
 - (NSArray *)currentSelectedButtons
@@ -224,7 +231,8 @@
 - (void)logAllButtonsStatus
 {
     for (UIButton *aButton in _currentAssociatedButtons) {
-        [self performConsoleLogWithLogStringFormat:@"Button: %@\nSelection Status: %@",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Button: %@\nSelection Status: %@",
          aButton,
          @(aButton.isSelected)];
     }
