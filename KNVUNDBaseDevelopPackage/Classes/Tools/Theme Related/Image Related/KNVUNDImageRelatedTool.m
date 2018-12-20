@@ -10,10 +10,10 @@
 @implementation KNVUNDImageRelatedTool
 
 #pragma mark - KNVUNDBaseModel
-+ (BOOL)shouldShowClassMethodLog
-{
-    return NO;
-}
+//+ (BOOL)shouldShowClassMethodLog
+//{
+//    return YES;
+//}
 
 #pragma mark - Image Generating Related
 /// This method use ZXingObjC Package to generating related BarCode.
@@ -34,14 +34,16 @@
             return [UIImage imageWithCGImage:image];
         }
         else {
-            [self performConsoleLogWithLogStringFormat:@"Failed to generating BarCode Image with - %@ (Error: %@)",
+            [self performConsoleLogWithLogLevel:NSObject_LogLevel_Error
+                             andLogStringFormat:@"Failed to generating BarCode Image with - %@ (Error: %@)",
              barcodeString,
              error.localizedDescription];
             return nil;
         }
     }
     @catch(NSException *exception) {
-        [self performConsoleLogWithLogStringFormat:@"Failed to generating BarCode Image with - %@ (Exception: %@)",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Error
+                         andLogStringFormat:@"Failed to generating BarCode Image with - %@ (Exception: %@)",
          barcodeString,
          exception.reason];
         return nil;
@@ -68,7 +70,8 @@
         return result;
     }
     @catch(NSException *exception) {
-        [self performConsoleLogWithLogStringFormat:@"Failed to read barcode result from image - %@ (Exception: %@)",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Error
+                         andLogStringFormat:@"Failed to read barcode result from image - %@ (Exception: %@)",
          checkingImage,
          exception.reason];
         return nil;

@@ -20,10 +20,10 @@
 @implementation KNVUNDFormatedStringRelatedTool
 
 #pragma mark - KNVUNDBaseModel
-+ (BOOL)shouldShowClassMethodLog
-{
-    return NO;
-}
+//+ (BOOL)shouldShowClassMethodLog
+//{
+//    return YES;
+//}
 
 #pragma mark - HTML-like Strings
 #pragma mark - Generating
@@ -49,7 +49,8 @@ NSUInteger KNVUNDFormatedStringRelatedTool_ReadFunction_MaximumCheckTimes = 0;
         return [NSArray new]; // We won't support empty property name.
     }
     
-    [self performConsoleLogWithLogStringFormat:@"Checking Property Name: %@, \nStarting Checking Location: %@\n Checking Times: %@\n Should Remove Content Value: %@\n Checking Formated String: %@",
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Checking Property Name: %@, \nStarting Checking Location: %@\n Checking Times: %@\n Should Remove Content Value: %@\n Checking Formated String: %@",
      propertyName,
      @(startCheckingLocation),
      @(checkingTimes),
