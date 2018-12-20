@@ -23,17 +23,42 @@
     return NO;
 }
 
++ (void)performLogWithLogLevel:(NSObject_LogLevel)logLevel tag:(NSString *)tag andLogString:(NSString *)string
+{
+    [self performLogWithLogLevel:logLevel
+                    andLogString:string];
+}
 + (void)performLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string
 {
     NSLog(@"%@", string);
 }
 
 #pragma mark Log Related
-+ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
++ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel tag:(NSString *)tag andLogString:(NSString *_Nonnull)string
 {
     [self performConsoleLogWithLogString:string
                       withControlBoolean:[self shouldShowClassMethodLog]
+                                     tag:tag
                              andLogLevel:(NSObject_LogLevel)logLevel];
+}
+
++ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel tag:(NSString *)tag andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(3,4)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:logLevel
+                                    tag:tag
+                           andLogString:string];
+}
+
++ (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
+{
+    [self performConsoleLogWithLogLevel:logLevel
+                                    tag:nil
+                           andLogString:string];
 }
 
 + (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
@@ -47,11 +72,13 @@
 }
 
 #pragma mark - Support Methods
-+ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string withControlBoolean:(BOOL)couldLog andLogLevel:(NSObject_LogLevel)logLevel
++ (void)performConsoleLogWithLogString:(NSString *_Nonnull)string withControlBoolean:(BOOL)couldLog tag:(NSString *)tag andLogLevel:(NSObject_LogLevel)logLevel
 {
     NSString *usingLogString = [[self class] getFormatedStringFromString:string];
     if ([self willSkipShouldShowLogChecking] || couldLog) {
-        [self performLogWithLogLevel:logLevel andLogString:usingLogString];
+        [self performLogWithLogLevel:logLevel
+                                 tag:tag
+                        andLogString:usingLogString];
     }
 }
 
@@ -78,11 +105,31 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
 }
 
 #pragma mark - Log Related
-- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
+- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel tag:(NSString *)tag andLogString:(NSString *_Nonnull)string
 {
     [[self class] performConsoleLogWithLogString:string
                               withControlBoolean:self.shouldShowRelatedLog
+                                             tag:tag
                                      andLogLevel:logLevel];
+}
+
+- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel tag:(NSString *)tag andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(3,4)
+{
+    va_list variables;
+    va_start(variables, format);
+    NSString *string = [[NSString alloc] initWithFormat:format
+                                              arguments:variables];
+    va_end(variables);
+    [self performConsoleLogWithLogLevel:logLevel
+                                    tag:tag
+                           andLogString:string];
+}
+
+- (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *_Nonnull)string
+{
+    [self performConsoleLogWithLogLevel:logLevel
+                                    tag:nil
+                           andLogString:string];
 }
 
 - (void)performConsoleLogWithLogLevel:(NSObject_LogLevel)logLevel andLogStringFormat:(NSString *_Nonnull)format, ... NS_FORMAT_FUNCTION(2,3)
