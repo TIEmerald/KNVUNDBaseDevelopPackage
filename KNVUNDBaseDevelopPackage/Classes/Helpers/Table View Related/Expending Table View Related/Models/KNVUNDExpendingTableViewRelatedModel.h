@@ -54,7 +54,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 /// Object Level
 @property (nonatomic, strong, nonnull) id associatedItem;
 @property (nonatomic, weak) id<KNVUNDETVRelatedModelDelegate> delegate;
-@property (weak) id<KNVUNDExpendingTableViewRelatedModelCellDelegate> relatedCellDelegate;/// This delegate always link to the associated cell object.
+@property (nonatomic, weak) id<KNVUNDExpendingTableViewRelatedModelCellDelegate> relatedCellDelegate;/// This delegate always link to the associated cell object.
 
 - (void)setupModelWithSelectionStatus:(BOOL)isSelected andExpendedStatus:(BOOL)isExpended;
 
@@ -62,6 +62,11 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 @property (nonatomic, readonly) NSUInteger modelDepthLevel; /// This value is set from parent
 @property (nonatomic, strong, nullable) NSArray<KNVUNDExpendingTableViewRelatedModel *> *children;
 @property (nonatomic, weak, nullable) KNVUNDExpendingTableViewRelatedModel *parent;
+/// Inserting new child
+- (void)addOneChild:(KNVUNDExpendingTableViewRelatedModel *)child;
+- (void)addOneChild:(KNVUNDExpendingTableViewRelatedModel *)child withChildIndex:(NSInteger)childIndex;
+/// Removing old child
+- (void)removeOneChild:(KNVUNDExpendingTableViewRelatedModel *)child;
 
 
 //// Selection Related
@@ -88,7 +93,9 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 
 /////// Support Methods
 @property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *siblings;
+- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedants;
 - (NSArray *_Nonnull)getDisplayingDescendants;
+- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancester; /// Self is a descendant of self...
 
 //// Log Related
 - (NSString *_Nonnull)logDescription;
