@@ -26,6 +26,7 @@
     KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusOnChange;
 }
 
+@property (readonly) BOOL hasLinkedToDisplayingHelper;
 @property (readonly) NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
 
 //// Hirearchy Related properties
@@ -114,6 +115,11 @@
 
 #pragma mark - Getters && Setters
 #pragma mark Delegate Related
+- (BOOL)hasLinkedToDisplayingHelper
+{
+    return self.delegate != nil;
+}
+
 - (NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
 {
     return self.delegate.displayingModels;
@@ -181,7 +187,7 @@
 }
 
 #pragma mark Support Methods
-// these two methods is called for .parent =
+/// Inserting new child
 - (void)addOneChild:(KNVUNDExpendingTableViewRelatedModel *)child
 {
     if (![_mutableChildrenArray containsObject:child]) {
@@ -189,10 +195,69 @@
     }
 }
 
+- (void)addOneChild:(KNVUNDExpendingTableViewRelatedModel *)child withChildIndex:(NSInteger)childIndex
+{
+    if (![_mutableChildrenArray containsObject:child]) {
+        NSInteger usingInsertingIndex = childIndex;
+        if (usingInsertingIndex > [self.children count]) {
+            usingInsertingIndex = [self.children count];
+        }
+        if (usingInsertingIndex < 0) {
+            usingInsertingIndex = 0;
+        }
+        [_mutableChildrenArray insertObject:child atIndex:childIndex];
+        
+        if (self.hasLinkedToDisplayingHelper && self.isExpended) { /// Which means we need to update the displaying UI, too.
+            /// Step One find the inserting Starting Index for the new child model
+            NSInteger insertingIndex = [self insertingDisplayingIndexForNewChildWithNewChildIndex:childIndex];
+            
+            /// Step Two find out the Array need to insert in that index
+            NSMutableArray *insertingModels = [NSMutableArray arrayWithObject:child];
+            [insertingModels addObjectsFromArray:[child getDisplayingDescendants]];
+            
+            /// Step Three Inserting Displaying Model
+            [self insertDisplayingModels:insertingModels
+                      withInsertingIndex:insertingIndex];
+        }
+    }
+    
+}
+
+- (NSInteger)insertingDisplayingIndexForNewChildWithNewChildIndex:(NSInteger)newChildInsertingIndex
+{
+    //// The logic is reach the models belond to next sibling, we will find out the inserting displaying index for the new model
+    
+    NSInteger selfIndex = [self getCurrentDisplayingIndex]; /// This is the index for parent
+   
+    KNVUNDExpendingTableViewRelatedModel *nextSubling = nil;
+    if (newChildInsertingIndex + 1 < [self.children count] ) {
+        nextSubling = [self.children objectAtIndex:newChildInsertingIndex + 1];
+    }
+    
+    /// Then we will keep checking the displaying models until we found what we need
+    for (NSInteger index = selfIndex + 1; index < [self.relatedModelArray count]; index += 1) {
+        KNVUNDExpendingTableViewRelatedModel *currentDisplayingModel = self.relatedModelArray[index];
+        if (currentDisplayingModel == nextSubling) { /// We will return the Index for Next Sibling as the index where we entry the new Displaying model
+            return index;
+        }
+        if (![currentDisplayingModel isDescendantOf:self]) { /// Or we will entry the new displaying Model at the end of the displaying descendants...
+            return index;
+        }
+    }
+}
+
+/// Removing old child
 - (void)removeOneChild:(KNVUNDExpendingTableViewRelatedModel *)child
 {
     if ([_mutableChildrenArray containsObject:child]) {
         [_mutableChildrenArray removeObject:child];
+        
+        if (self.hasLinkedToDisplayingHelper && self.isExpended) {
+            NSMutableArray *removingModels = [NSMutableArray arrayWithObject:child];
+            [removingModels addObjectsFromArray:[child getDisplayingDescendants]];
+            
+            [self removeDisplayingModels:removingModels];
+        }
     }
 }
 
@@ -344,24 +409,12 @@
     
     if (self.isExpended) {
         // Which means current displaying models contains all displaying descendant
-        NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingDescendants];
-        [self.relatedModelArray removeObjectsInArray:displayingDescendants];
-        if ([self.delegate respondsToSelector:@selector(deleteCellsAtIndexPaths:)]) {
-            [self.delegate deleteCellsAtIndexPaths:updatedIndexPaths];
-        }
+        [self removeDisplayingModels:displayingDescendants];
     } else {
         if ([self.relatedModelArray containsObject:self]) {
             NSInteger selfIndex = [self.relatedModelArray indexOfObject:self];
-            NSInteger insertingIndex = selfIndex + 1;
-            for (KNVUNDExpendingTableViewRelatedModel *descendant in displayingDescendants) {
-                [self.relatedModelArray insertObject:descendant
-                                             atIndex:insertingIndex];
-                insertingIndex = insertingIndex + 1;
-            }
-            NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingDescendants];
-            if ([self.delegate respondsToSelector:@selector(insertCellsAtIndexPaths:)]) {
-                [self.delegate insertCellsAtIndexPaths:updatedIndexPaths];
-            }
+            [self insertDisplayingModels:displayingDescendants
+                      withInsertingIndex:selfIndex + 1];
         }
     }
     
@@ -380,6 +433,22 @@
     return [NSArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:tempArray];
 }
 
+- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedants
+{
+    NSMutableArray *returnIndexPaths = [NSMutableArray new];
+    NSIndexPath *relatedIndexPath = [self getCurrentIndexPath];
+    if (relatedIndexPath != nil) {
+        [returnIndexPaths addObject:relatedIndexPath];
+    }
+    for (KNVUNDExpendingTableViewRelatedModel *model in [self getDisplayingDescendants]) {
+        NSIndexPath *relatedChildIndexPath = [self getCurrentIndexPath];
+        if (relatedChildIndexPath != nil) {
+            [returnIndexPaths addObject:relatedChildIndexPath];
+        }
+    }
+    return returnIndexPaths;
+}
+
 - (NSArray *)getDisplayingDescendants
 {
     NSMutableArray *returnArray = [NSMutableArray new];
@@ -391,6 +460,19 @@
         }
     }
     return returnArray;
+}
+
+- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancester
+{
+    KNVUNDExpendingTableViewRelatedModel *checkingParent = self;
+    while (checkingParent != nil) {
+        if (checkingParent == ancester) {
+            return YES;
+        } else {
+            checkingParent = checkingParent.parent;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Log Related
@@ -405,11 +487,15 @@
 
 #pragma mark - Support Methods
 #pragma mark Table View Related
+- (NSUInteger)getCurrentDisplayingIndex
+{
+    return [self.relatedModelArray indexOfObject:self];
+}
+
 - (NSIndexPath *_Nullable)getCurrentIndexPath
 {
     if ([self.relatedModelArray containsObject:self]) {
-        NSUInteger row = [self.relatedModelArray indexOfObject:self];
-        return [NSIndexPath indexPathForRow:row
+        return [NSIndexPath indexPathForRow:[self getCurrentDisplayingIndex]
                                   inSection:0];
     } else {
         return nil;
@@ -428,11 +514,34 @@
     return returnIndexPaths;
 }
 
+- (void)insertDisplayingModels:(NSArray *)displayingModels withInsertingIndex:(NSInteger)insertingIndex
+{
+    NSInteger usingInsertingIndex = insertingIndex;
+    for (KNVUNDExpendingTableViewRelatedModel *insertingModel in displayingModels) {
+        [self.relatedModelArray insertObject:insertingModel
+                                     atIndex:usingInsertingIndex];
+        usingInsertingIndex = usingInsertingIndex + 1;
+    }
+    NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingModels];
+    if ([self.delegate respondsToSelector:@selector(insertCellsAtIndexPaths:)]) {
+        [self.delegate insertCellsAtIndexPaths:updatedIndexPaths];
+    }
+}
+
 - (void)reloadTheCellForSelf
 {
     NSIndexPath *currentIndexForSelf = [self getCurrentIndexPath];
     if (currentIndexForSelf != nil) {
         [self.delegate reloadCellsAtIndexPaths:@[currentIndexForSelf] shouldReloadCell:NO];
+    }
+}
+
+- (void)removeDisplayingModels:(NSArray *)displayingModels
+{
+    NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingModels];
+    [self.relatedModelArray removeObjectsInArray:displayingModels];
+    if ([self.delegate respondsToSelector:@selector(deleteCellsAtIndexPaths:)]) {
+        [self.delegate deleteCellsAtIndexPaths:updatedIndexPaths];
     }
 }
 
