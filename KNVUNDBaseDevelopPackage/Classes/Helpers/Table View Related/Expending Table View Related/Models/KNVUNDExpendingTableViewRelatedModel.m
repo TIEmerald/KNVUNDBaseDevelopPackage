@@ -158,11 +158,6 @@
 #pragma mark Setters
 - (void)setChildren:(NSArray<KNVUNDExpendingTableViewRelatedModel *> *)children
 {
-    for (KNVUNDExpendingTableViewRelatedModel *child in _mutableChildrenArray) {
-        child.parent = nil;
-        child.delegate = nil;
-        child.modelDepthLevel = 0;
-    }
     _mutableChildrenArray = [NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:children];
     for (KNVUNDExpendingTableViewRelatedModel *child in _mutableChildrenArray) {
         if (child.parent != self) {
@@ -426,6 +421,11 @@
 }
 
 #pragma mark Support Methods
+- (NSIndexPath *)currentDisplayingIndexPath
+{
+    return [self getCurrentIndexPath];
+}
+
 - (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)siblings
 {
     NSMutableArray *tempArray = [NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:self.parent.children];
@@ -441,7 +441,7 @@
         [returnIndexPaths addObject:relatedIndexPath];
     }
     for (KNVUNDExpendingTableViewRelatedModel *model in [self getDisplayingDescendants]) {
-        NSIndexPath *relatedChildIndexPath = [self getCurrentIndexPath];
+        NSIndexPath *relatedChildIndexPath = [model getCurrentIndexPath];
         if (relatedChildIndexPath != nil) {
             [returnIndexPaths addObject:relatedChildIndexPath];
         }

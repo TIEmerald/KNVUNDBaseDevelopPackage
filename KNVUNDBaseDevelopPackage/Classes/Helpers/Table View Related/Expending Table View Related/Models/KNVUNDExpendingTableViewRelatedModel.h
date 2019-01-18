@@ -92,6 +92,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 - (void)toggleExpendedStatus;
 
 /////// Support Methods
+@property (readonly) NSIndexPath *currentDisplayingIndexPath;
 @property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *siblings;
 - (NSArray *)getCurrentDisplayedIndexPathIncludingDecedants;
 - (NSArray *_Nonnull)getDisplayingDescendants;
