@@ -13,6 +13,7 @@
 @interface KNVUNDExpendingTableViewRelatedHelper : KNVUNDBaseModel
 
 @property (nonatomic) BOOL isSingleSelection;
+@property (nonatomic) BOOL isDisableTableViewAnimation; 
 
 #pragma mark - Getters && Setters
 #pragma mark - Getters

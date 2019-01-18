@@ -21,6 +21,7 @@
 - (BOOL)isSettingSingleSelection;
 
 /// Table View Updating Related
+- (void)rollToCellAtIndexPath:(NSIndexPath *)indexPath atScrollPoisiton:(UITableViewScrollPosition)position;
 - (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell;
 - (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
