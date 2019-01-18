@@ -162,22 +162,27 @@
     for (KNVUNDExpendingTableViewRelatedModel *child in _mutableChildrenArray) {
         if (child.parent != self) {
             child.parent = self;
-            child.delegate = self.delegate;
-            child.modelDepthLevel = self.modelDepthLevel + 1;
         }
     }
 }
 
 - (void)setParent:(KNVUNDExpendingTableViewRelatedModel *)parent
 {
-    [_parent removeOneChild:self];
-    self.modelDepthLevel = 0;
-    self.delegate = nil;
     _parent = parent;
+    _delegate = nil; /// For convenience, we will only set _delegate to nil as long as it involves parent...
     if (_parent != nil) {
         [_parent addOneChild:self];
         self.modelDepthLevel = _parent.modelDepthLevel + 1;
-        self.delegate = _parent.delegate;
+    } else {
+        self.modelDepthLevel = 0;
+    }
+}
+
+- (void)setModelDepthLevel:(NSUInteger)modelDepthLevel
+{
+    _modelDepthLevel = modelDepthLevel;
+    for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
+        child.modelDepthLevel = modelDepthLevel + 1;
     }
 }
 
