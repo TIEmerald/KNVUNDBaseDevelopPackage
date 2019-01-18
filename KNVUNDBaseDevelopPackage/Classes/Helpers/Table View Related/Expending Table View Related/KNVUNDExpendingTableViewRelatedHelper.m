@@ -147,12 +147,8 @@
     }
     
     if (latestIndexPath) {
-        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                         andLogStringFormat:@"Scroll Cell to Index: %@",
-         latestIndexPath];
-        [self.associatedTableView scrollToRowAtIndexPath:latestIndexPath
-                                        atScrollPosition:UITableViewScrollPositionBottom
-                                                animated:YES];
+        [self rollToCellAtIndexPath:latestIndexPath
+                   atScrollPoisiton:UITableViewScrollPositionBottom];
     }
 }
 
@@ -186,6 +182,16 @@
 }
 
 #pragma mark Table View Updating Related
+- (void)rollToCellAtIndexPath:(NSIndexPath *)indexPath atScrollPoisiton:(UITableViewScrollPosition)position
+{
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Scroll Cell to Index: %@",
+     indexPath];
+    [self.associatedTableView scrollToRowAtIndexPath:indexPath
+                                    atScrollPosition:position
+                                            animated:!self.isDisableTableViewAnimation];
+}
+
 - (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell
 {
     [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
@@ -208,7 +214,7 @@
                      andLogStringFormat:@"Inserting Cell At Indexs: %@",
      indexPaths];
     [self.associatedTableView insertRowsAtIndexPaths:indexPaths
-                                    withRowAnimation:UITableViewRowAnimationBottom];
+                                    withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone];
 }
 
 - (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
@@ -217,7 +223,7 @@
                      andLogStringFormat:@"Deleting Cell At Indexs: %@",
      indexPaths];
     [self.associatedTableView deleteRowsAtIndexPaths:indexPaths
-                                    withRowAnimation:UITableViewRowAnimationBottom];
+                                    withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationTop : UITableViewRowAnimationNone];
 }
 
 #pragma mark - UITableViewDataSource
