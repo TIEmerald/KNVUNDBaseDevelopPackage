@@ -115,20 +115,20 @@
     for (id model in rootModelArray) {
         if ([model isKindOfClass:[KNVUNDExpendingTableViewRelatedModel class]]) {
             KNVUNDExpendingTableViewRelatedModel *convertedModel = (KNVUNDExpendingTableViewRelatedModel *)model;
-            [self addOneRootModelIntoDisplayingModels:model];
+            [self addOneRootModelIntoDisplayingModels:model isInTheTop:NO];
         }
     }
     
     [self.associatedTableView reloadData]; /// Update UI
 }
 
-- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
+- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
 {
     if (self.displayingModels == nil) {
         self.displayingModels = [NSMutableArray new];
     }
     
-    [self addOneRootModelIntoDisplayingModels:insertingModel];
+    [self addOneRootModelIntoDisplayingModels:insertingModel isInTheTop:isInTheTop];
     
     NSArray *insertingIndexPaths = [insertingModel getCurrentDisplayedIndexPathIncludingDecedants];
     
@@ -138,17 +138,31 @@
         [insertingModel toggleSelectionStatus];
     }
     
-    /// Scoll to the bottom of the inserted Cell inf needed
-    NSIndexPath *latestIndexPath = insertingIndexPaths.firstObject;
-    for (NSIndexPath *indexPath in insertingIndexPaths) {
-        if (indexPath.section > latestIndexPath.section || (indexPath.section == latestIndexPath.section && indexPath.row > latestIndexPath.row)) {
-            latestIndexPath = indexPath;
+    /// Scoll to the bottom of the inserted Cell info needed
+    if (isInTheTop) {
+        NSIndexPath *firstIndexPath = insertingIndexPaths.firstObject;
+        for (NSIndexPath *indexPath in insertingIndexPaths) {
+            if (indexPath.section < firstIndexPath.section || (indexPath.section == firstIndexPath.section && indexPath.row < firstIndexPath.row)) {
+                firstIndexPath = indexPath;
+            }
         }
-    }
-    
-    if (latestIndexPath) {
-        [self rollToCellAtIndexPath:latestIndexPath
-                   atScrollPoisiton:UITableViewScrollPositionBottom];
+        
+        if (firstIndexPath) {
+            [self rollToCellAtIndexPath:firstIndexPath
+                       atScrollPoisiton:UITableViewScrollPositionTop];
+        }
+    } else {
+        NSIndexPath *latestIndexPath = insertingIndexPaths.firstObject;
+        for (NSIndexPath *indexPath in insertingIndexPaths) {
+            if (indexPath.section > latestIndexPath.section || (indexPath.section == latestIndexPath.section && indexPath.row > latestIndexPath.row)) {
+                latestIndexPath = indexPath;
+            }
+        }
+        
+        if (latestIndexPath) {
+            [self rollToCellAtIndexPath:latestIndexPath
+                       atScrollPoisiton:UITableViewScrollPositionBottom];
+        }
     }
 }
 
@@ -164,12 +178,23 @@
 }
 
 #pragma mark Support Methods
-- (void)addOneRootModelIntoDisplayingModels:(KNVUNDExpendingTableViewRelatedModel *)insertingModel
+- (void)addOneRootModelIntoDisplayingModels:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop
 {
-    [self.displayingModels addObject:insertingModel];
-    insertingModel.delegate = self;
-    if (insertingModel.isExpended) {
-        [self.displayingModels addObjectsFromArray:[insertingModel getDisplayingDescendants]];
+    if (isInTheTop) {
+        [self.displayingModels insertObject:insertingModel atIndex:0];
+        NSInteger insertingIndex = 1;
+        insertingModel.delegate = self;
+        for (KNVUNDExpendingTableViewRelatedModel *descedant in [insertingModel getDisplayingDescendants]) {
+            [self.displayingModels insertObject:descedant
+                                        atIndex:insertingIndex];
+            insertingIndex += 1;
+        }
+    } else {
+        [self.displayingModels addObject:insertingModel];
+        insertingModel.delegate = self;
+        if (insertingModel.isExpended) {
+            [self.displayingModels addObjectsFromArray:[insertingModel getDisplayingDescendants]];
+        }
     }
 }
 

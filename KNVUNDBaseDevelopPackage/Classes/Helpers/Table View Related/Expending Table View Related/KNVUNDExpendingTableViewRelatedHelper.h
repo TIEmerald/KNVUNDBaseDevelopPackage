@@ -30,7 +30,7 @@
 
 #pragma mark - General Methods
 - (void)updateTableWithRootModelArray:(NSArray *)rootModelArray;
-- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel shouldMarkAsSelected:(BOOL)shouldMarkAsSelected;
+- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop shouldMarkAsSelected:(BOOL)shouldMarkAsSelected;
 - (void)deleteOneDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *)deletingModel;
 
 @end
