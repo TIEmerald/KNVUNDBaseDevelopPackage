@@ -265,13 +265,14 @@
 #pragma mark Getters
 - (BOOL)isSelected
 {
-    if (self.isCurrentModelSelected) {
-        return YES;
-    } else {
-        for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
-            if (child.isSelected) {
-                return YES;
-            }
+    return self.isSelfOrAnyDescendantCurrentSelected;
+}
+
+- (BOOL)isSelfOrAnyDescendantCurrentSelected
+{
+    for (KNVUNDExpendingTableViewRelatedModel *relatedModel in [self getAllDescendantsIncludingSelf]) {
+        if (relatedModel->_isCurrentModelSelected) {
+            return YES;
         }
     }
     return NO;
@@ -307,8 +308,7 @@
         for (KNVUNDExpendingTableViewRelatedModel *tableModel in self.relatedModelArray) {
             if (tableModel->_isCurrentModelSelected) {
                 [tableModel  toggleSelectionStatusWithCouldUpdateRelatedCells:NO];
-                [updatedModels addObjectsFromArray:[tableModel getAllAncestor].allObjects];
-                [updatedModels addObjectsFromArray:[tableModel getAllDescendantsIncludingSelf].allObjects];
+                [updatedModels addObjectsFromArray:[tableModel selectionUIUpdatingRelatedModelsFromSelf]];
             }
         }
     }
@@ -335,13 +335,7 @@
                 }
             }
         }
-        [updatedModels addObjectsFromArray:[self getAllAncestor].allObjects];
-        [updatedModels addObjectsFromArray:[self getAllDescendantsIncludingSelf].allObjects];
-        
-        NSArray *relatedModels = self.selectionStatusRelatedModels;
-        if ([relatedModels count] > 0) {
-            [updatedModels addObjectsFromArray:relatedModels];
-        }
+        [updatedModels addObjectsFromArray:[self selectionUIUpdatingRelatedModelsFromSelf]];
     }
     
     if (shouldUpdateCells) {
@@ -363,6 +357,19 @@
     if (_selectionStatusOnChange) {
         _selectionStatusOnChange(selectionStatusWillChangedFrom, self.isSelected, shouldUpdateCells);
     }
+}
+
+- (NSArray *)selectionUIUpdatingRelatedModelsFromSelf
+{
+    NSMutableArray *returnArray = [NSMutableArray new];
+    [returnArray addObjectsFromArray:[self getAllAncestor].allObjects];
+    [returnArray addObjectsFromArray:[self getAllDescendantsIncludingSelf].allObjects];
+    
+    NSArray *relatedModels = self.selectionStatusRelatedModels;
+    if ([relatedModels count] > 0) {
+        [returnArray addObjectsFromArray:relatedModels];
+    }
+    return returnArray;
 }
 
 #pragma mark - Expending Status Related
