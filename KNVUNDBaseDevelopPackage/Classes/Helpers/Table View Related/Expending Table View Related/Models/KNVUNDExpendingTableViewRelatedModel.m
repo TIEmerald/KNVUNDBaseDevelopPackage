@@ -303,9 +303,9 @@
 {
     NSMutableSet *updatedModels = [NSMutableSet new];
     
-    if ([self isSingleSelection] && ![self isCurrentModelSelected]) {
+    if ([self isSingleSelection] && !self->_isCurrentModelSelected) {
         for (KNVUNDExpendingTableViewRelatedModel *tableModel in self.relatedModelArray) {
-            if ([tableModel isCurrentModelSelected]) {
+            if (tableModel->_isCurrentModelSelected) {
                 [tableModel  toggleSelectionStatusWithCouldUpdateRelatedCells:NO];
                 [updatedModels addObjectsFromArray:[tableModel getAllAncestor].allObjects];
                 [updatedModels addObjectsFromArray:[tableModel getAllDescendantsIncludingSelf].allObjects];
