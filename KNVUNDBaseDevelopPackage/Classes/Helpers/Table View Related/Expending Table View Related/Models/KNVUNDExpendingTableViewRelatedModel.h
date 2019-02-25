@@ -73,6 +73,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 //// Selection Related
 @property (nonatomic, readonly) BOOL isSelected; /// If any one of the children isSelected, this value will return True.
 @property (readonly) BOOL isCurrentModelSelected; /// This proper will ignore the selection of children....
+@property (readonly) BOOL isSelfOrAnyDescendantCurrentSelected; /// This proper will ignore the selection of children....
 @property (nonatomic) BOOL isSelectable; // You could overrride thie getter if you want a certain model will never be selected
 @property (nonatomic, strong) NSArray *selectionStatusRelatedModels; /// Whenever self's selection status updated, all models inside this array will update, too.
 @property (nonatomic) BOOL shouldReloadCellWhenSelectionStatusChanged; // Set this value to YES if you want to call [TableView reloadRowsAtIndexPaths:...] to reload this Model's related cell... otherwise, we will just call [UITableViewCell updateCellUI] instead. .... For example, if you want to change the height of the cell.
