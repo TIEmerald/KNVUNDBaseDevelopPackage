@@ -9,11 +9,11 @@
 
 typedef enum : NSUInteger {
     NSObject_LogLevel_Off = 0,
-    NSObject_LogLevel_Error,
-    NSObject_LogLevel_Warning,
-    NSObject_LogLevel_Info,
-    NSObject_LogLevel_Debug,
     NSObject_LogLevel_Verbose,
+    NSObject_LogLevel_Debug,
+    NSObject_LogLevel_Info,
+    NSObject_LogLevel_Warning,
+    NSObject_LogLevel_Error,
     NSObject_LogLevel_All
 } NSObject_LogLevel; /// Currently we added for support some DDLog Integration.... we are not actually use it inside our library....
 
