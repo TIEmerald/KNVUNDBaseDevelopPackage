@@ -10,8 +10,13 @@
 /// Categories
 #import "NSNumber+KNVUNDBasic.h"
 
+/// Tools
+#import "KNVUNDGeneralUtilsTool.h"
+
 @implementation KNVUNDLocalRelatedTool
 
+#pragma mark - Constants
+NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier = @"KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier";
 
 #pragma mark - Locale Related
 /*!
@@ -31,7 +36,8 @@
 
 + (NSLocale *)getCurrentLocal
 {
-    return [NSLocale currentLocale];
+    NSString *storedDefaultLocalIdentifier = [KNVUNDGeneralUtilsTool getDataFromUserDefaults:KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier];
+    return [[NSLocale alloc] initWithLocaleIdentifier:storedDefaultLocalIdentifier] ?: [NSLocale currentLocale];
 }
 
 + (void)logLocaleDetailsFromLocale:(NSLocale *)checkingLocale
