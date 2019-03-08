@@ -9,6 +9,10 @@
 
 @interface KNVUNDLocalRelatedTool : KNVUNDBaseModel
 
+#pragma mark - Constants
+//// Please change User Default for this value, if you want to change the default Local;
+extern NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier;
+
 #pragma mark - Locale Related
 /*!
  * @brief This method return the Country Name for current device setted locale in English. Like if you set your device Setting Region to Australia this method will return "Australia"
