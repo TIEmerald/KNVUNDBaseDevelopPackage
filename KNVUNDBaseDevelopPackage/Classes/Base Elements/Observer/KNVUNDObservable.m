@@ -44,7 +44,7 @@
     if (self.isNotifying) {
         [self.pendingAdd addObject:observer];
     } else {
-        [self.observers addObject:observer];
+        [self checkAndAddObserver:observer];
     }
 }
 
@@ -53,13 +53,13 @@
     if (self.isNotifying) {
         [self.pendingRemove addObject:observer];
     } else {
-        [self.observers addObject:observer];
+        [self.observers removeObject:observer];
     }
 }
 
 - (void)notifyObservers:(KNVUNDInvocation *)invocation
 {
-    [self.invocationHashTable addObject:invocation];
+    [self.invocationHashTable addObject:invocation];\
     for (id<NSObject> observer in self.observers) {
         if (![self.pendingRemove containsObject:observer] && [observer respondsToSelector:[invocation selector]]) {
             [invocation setTarget:observer];
@@ -75,13 +75,20 @@
 {
     if (!self.isNotifying) {
         for (id <NSObject> pendingAddObserver in self.pendingAdd.copy) {
-            [self.observers addObject:pendingAddObserver];
+            [self checkAndAddObserver:pendingAddObserver];
             [self.pendingAdd removeObject:pendingAddObserver];
         }
         for (id <NSObject> pendingRemoveObserver in self.pendingRemove.copy) {
             [self.observers removeObject:pendingRemoveObserver];
             [self.pendingRemove removeObject:pendingRemoveObserver];
         }
+    }
+}
+
+- (void)checkAndAddObserver:(id<NSObject>)observer
+{
+    if (![self.observers containsObject:observer]) {
+        [self.observers addObject:observer];
     }
 }
 
