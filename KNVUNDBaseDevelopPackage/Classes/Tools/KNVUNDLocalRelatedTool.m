@@ -34,10 +34,15 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
     return [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
 }
 
-+ (NSLocale *)getCurrentLocal
++ (NSLocale *)getCurrentStoredDefaultLocal
 {
     NSString *storedDefaultLocalIdentifier = [KNVUNDGeneralUtilsTool getDataFromUserDefaults:KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier];
     return [[NSLocale alloc] initWithLocaleIdentifier:storedDefaultLocalIdentifier] ?: [NSLocale currentLocale];
+}
+
++ (NSLocale *)getCurrentLocal
+{
+    return [NSLocale currentLocale];
 }
 
 + (void)logLocaleDetailsFromLocale:(NSLocale *)checkingLocale
@@ -81,10 +86,32 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
 }
 
 #pragma mark Locale Related
++ (NSString *)formatDate:(NSDate *)inputDate withPatternType:(KNVUNDLocalRelatedTool_DateFormatTemplate_Type)patternType
+{
+    NSString *templateString = @"jmma";
+    switch (patternType) {
+        case KNVUNDLocalRelatedTool_DateFormatTemplate_Type_ShortDate:
+            templateString = @"yyyyLLd";
+            break;
+        case KNVUNDLocalRelatedTool_DateFormatTemplate_Type_LongDate:
+            templateString = @"yyyyLLLd";
+            break;
+        case KNVUNDLocalRelatedTool_DateFormatTemplate_Type_TimeAndShortDate:
+            templateString = @"yyyyLLdjmma";
+            break;
+        case KNVUNDLocalRelatedTool_DateFormatTemplate_Type_TimeAndLongDate:
+            templateString = @"yyyyLLLdjmma";
+            break;
+        case KNVUNDLocalRelatedTool_DateFormatTemplate_Type_Time:
+        default:
+            break;
+    }
+    return [self formatDate:inputDate withPattern:templateString];
+}
+
 + (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern
 {
-    NSLocale *locale = [self getCurrentLocal];
-    return [self formatDate:inputDate withFormatTemplate:pattern andLocale:locale];
+    return [self formatDate:inputDate withFormatTemplate:pattern andLocale:[self getCurrentLocal]];
 }
 
 // I guess it will display date based on the locale I copy it from the method above because it seems like this is what code actually does.
@@ -99,23 +126,6 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
     [formatter setDateFormat:dateFormat];
     [formatter setLocale:locale];
     return [formatter stringFromDate:inputDate];
-}
-
-+ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withPattern:(NSString *)pattern
-{
-    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_AU"];
-    return [self parseDateFromLocaleFormatedString:localFormatedString withFormatTemplate:pattern andLocale:locale];
-}
-
-// This is the anti-method for + (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
-// I hope it works..... it will only convert locale formated String.
-+ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:locale];
-    [formatter setDateFormat:dateFormat];
-    [formatter setLocale:locale];
-    return [formatter dateFromString:localFormatedString];
 }
 
 #pragma mark - Currency Related
@@ -181,7 +191,7 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
 #pragma mark Support Methods
 + (NSNumberFormatter *)getCurrentCurrencyNumberFormatter
 {
-    NSLocale *currencyLocale = [self getCurrentLocal];
+    NSLocale *currencyLocale = [self getCurrentStoredDefaultLocal];
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.locale = currencyLocale;
@@ -191,6 +201,23 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
     [formatter setUsesGroupingSeparator:YES];
     
     return formatter;
+}
+
+#pragma mark - Deprecated Methods
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withPattern:(NSString *)pattern
+{
+    return [self parseDateFromLocaleFormatedString:localFormatedString withFormatTemplate:pattern andLocale:[self getCurrentLocal]];
+}
+
+// This is the anti-method for + (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
+// I hope it works..... it will only convert locale formated String.
++ (NSDate *)parseDateFromLocaleFormatedString:(NSString *)localFormatedString withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
+    [formatter setLocale:locale];
+    return [formatter dateFromString:localFormatedString];
 }
 
 @end
