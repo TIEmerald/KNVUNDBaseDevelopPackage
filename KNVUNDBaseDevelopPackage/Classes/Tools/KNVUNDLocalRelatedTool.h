@@ -34,12 +34,17 @@ extern NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal
 #pragma mark - Date Parsing Related
 #pragma mark General
 + (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr;
++ (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr andTimezoneIanaFormat:(NSString *)timezoneIanaFormat;
 + (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr;
++ (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr andTimezoneIanaFormat:(NSString *)timezoneIanaFormat;
 
 #pragma mark Locale Related
 + (NSString *)formatDate:(NSDate *)inputDate withPatternType:(KNVUNDLocalRelatedTool_DateFormatTemplate_Type)patternType;
++ (NSString *)formatDate:(NSDate *)inputDate withPatternType:(KNVUNDLocalRelatedTool_DateFormatTemplate_Type)patternType andTimezoneIanaFormat:(NSString *)timezoneIanaFormat;
 + (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern;
-+ (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale;
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andTimezoneIanaFormat:(NSString *)timezoneIanaFormat;
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andLocale:(NSLocale *)locale;
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andLocale:(NSLocale *)locale andTimezoneIanaFormat:(NSString *)timezoneIanaFormat;
 
 #pragma mark - Currency Related
 #pragma mark Display

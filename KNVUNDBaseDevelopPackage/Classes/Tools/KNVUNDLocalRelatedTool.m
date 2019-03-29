@@ -73,20 +73,47 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
 #pragma mark General
 + (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr
 {
+    return [self formatDate:inputDate
+                 withFormat:formatStr
+      andTimezoneIanaFormat:nil];
+}
+
++ (NSString *)formatDate:(NSDate *)inputDate withFormat:(NSString *)formatStr andTimezoneIanaFormat:(NSString *_Nullable)timezoneIanaFormat
+{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    if (timezoneIanaFormat.length != nil) {
+        NSTimeZone *usingTimeZone = [NSTimeZone timeZoneWithName:timezoneIanaFormat];
+        formatter.timeZone = usingTimeZone;
+    }
     [formatter setDateFormat:formatStr];
     return [formatter stringFromDate:inputDate];
 }
 
 + (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr
 {
+    return [self parseDateForString:dateStr
+                         withFormat:formatStr
+              andTimezoneIanaFormat:nil];
+}
+
++ (NSDate *)parseDateForString:(NSString *)dateStr withFormat:(NSString *)formatStr andTimezoneIanaFormat:(NSString *_Nullable)timezoneIanaFormat
+{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    if (timezoneIanaFormat.length != nil) {
+        NSTimeZone *usingTimeZone = [NSTimeZone timeZoneWithName:timezoneIanaFormat];
+        formatter.timeZone = usingTimeZone;
+    }
     [formatter setDateFormat:formatStr];
     return [formatter dateFromString:dateStr];
 }
 
 #pragma mark Locale Related
 + (NSString *)formatDate:(NSDate *)inputDate withPatternType:(KNVUNDLocalRelatedTool_DateFormatTemplate_Type)patternType
+{
+    return [self formatDate:inputDate withPatternType:patternType andTimezoneIanaFormat:nil];
+}
+
++ (NSString *)formatDate:(NSDate *)inputDate withPatternType:(KNVUNDLocalRelatedTool_DateFormatTemplate_Type)patternType andTimezoneIanaFormat:(NSString *)timezoneIanaFormat
 {
     NSString *templateString = @"jmma";
     switch (patternType) {
@@ -106,23 +133,45 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
         default:
             break;
     }
-    return [self formatDate:inputDate withPattern:templateString];
+    return [self formatDate:inputDate
+                withPattern:templateString
+      andTimezoneIanaFormat:timezoneIanaFormat];
 }
 
 + (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern
 {
-    return [self formatDate:inputDate withFormatTemplate:pattern andLocale:[self getCurrentLocal]];
+    return [self formatDate:inputDate withPattern:pattern andTimezoneIanaFormat:nil];
+}
+
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andTimezoneIanaFormat:(NSString *)timezoneIanaFormat
+{
+    return [self formatDate:inputDate
+                withPattern:pattern
+                  andLocale:[self getCurrentLocal]
+      andTimezoneIanaFormat:timezoneIanaFormat];
 }
 
 // I guess it will display date based on the locale I copy it from the method above because it seems like this is what code actually does.
 // The template is just tell format how many componants should be displayed in this format. and locale decide how is the format look like
-+ (NSString *)formatDate:(NSDate *)inputDate withFormatTemplate:(NSString *)template andLocale:(NSLocale *)locale
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andLocale:(NSLocale *)locale
+{
+    return [self formatDate:inputDate
+                withPattern:pattern
+                  andLocale:locale
+      andTimezoneIanaFormat:nil];
+}
+
++ (NSString *)formatDate:(NSDate *)inputDate withPattern:(NSString *)pattern andLocale:(NSLocale *)locale andTimezoneIanaFormat:(NSString *_Nullable)timezoneIanaFormat
 {
     if (!inputDate) {
         return @"";
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:template options:0 locale:locale];
+    if (timezoneIanaFormat.length != nil) {
+        NSTimeZone *usingTimeZone = [NSTimeZone timeZoneWithName:timezoneIanaFormat];
+        formatter.timeZone = usingTimeZone;
+    }
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:pattern options:0 locale:locale];
     [formatter setDateFormat:dateFormat];
     [formatter setLocale:locale];
     return [formatter stringFromDate:inputDate];
