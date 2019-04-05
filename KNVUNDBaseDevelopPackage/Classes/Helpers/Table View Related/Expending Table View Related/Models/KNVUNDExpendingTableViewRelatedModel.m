@@ -205,11 +205,11 @@
         if (usingInsertingIndex < 0) {
             usingInsertingIndex = 0;
         }
-        [_mutableChildrenArray insertObject:child atIndex:childIndex];
+        [_mutableChildrenArray insertObject:child atIndex:usingInsertingIndex];
         
         if (self.hasLinkedToDisplayingHelper && self.isExpended) { /// Which means we need to update the displaying UI, too.
             /// Step One find the inserting Starting Index for the new child model
-            NSInteger insertingIndex = [self insertingDisplayingIndexForNewChildWithNewChildIndex:childIndex];
+            NSInteger insertingIndex = [self insertingDisplayingIndexForNewChildWithNewChildIndex:usingInsertingIndex];
             
             /// Step Two find out the Array need to insert in that index
             NSMutableArray *insertingModels = [NSMutableArray arrayWithObject:child];
@@ -235,15 +235,18 @@
     }
     
     /// Then we will keep checking the displaying models until we found what we need
-    for (NSInteger index = selfIndex + 1; index < [self.relatedModelArray count]; index += 1) {
-        KNVUNDExpendingTableViewRelatedModel *currentDisplayingModel = self.relatedModelArray[index];
+    NSInteger checkingIndex = selfIndex + 1;
+    while (checkingIndex < [self.relatedModelArray count]) {
+        KNVUNDExpendingTableViewRelatedModel *currentDisplayingModel = self.relatedModelArray[checkingIndex];
         if (currentDisplayingModel == nextSubling) { /// We will return the Index for Next Sibling as the index where we entry the new Displaying model
-            return index;
+            return checkingIndex;
         }
         if (![currentDisplayingModel isDescendantOf:self]) { /// Or we will entry the new displaying Model at the end of the displaying descendants...
-            return index;
+            return checkingIndex;
         }
+        checkingIndex += 1;
     }
+    return checkingIndex;
 }
 
 /// Removing old child
