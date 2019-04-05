@@ -296,7 +296,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				05285808BB137DF65BA875D2 /* [CP] Embed Pods Frameworks */,
-				CC7239D2214763A478BF44BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -316,7 +315,6 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				C01072AC3D912181D07EB1BB /* [CP] Embed Pods Frameworks */,
-				E2E6BBD822F05D3C9AFC5647 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,7 +336,11 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "niyejunze.j@gmail.com";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = G2A7N2MPK3;
+					};
 					6003F5AD195388D20070C39A = {
+						DevelopmentTeam = G2A7N2MPK3;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
@@ -506,36 +508,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Tests/Pods-KNVUNDBaseDevelopPackage_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC7239D2214763A478BF44BC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Example/Pods-KNVUNDBaseDevelopPackage_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2E6BBD822F05D3C9AFC5647 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KNVUNDBaseDevelopPackage_Tests/Pods-KNVUNDBaseDevelopPackage_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -678,6 +650,7 @@
 			baseConfigurationReference = B788B6600BC7DFBEB368FE3C /* Pods-KNVUNDBaseDevelopPackage_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Prefix.pch";
 				INFOPLIST_FILE = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Info.plist";
@@ -693,6 +666,7 @@
 			baseConfigurationReference = F90F5E82713BD1E666D627EE /* Pods-KNVUNDBaseDevelopPackage_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Prefix.pch";
 				INFOPLIST_FILE = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Info.plist";
@@ -708,6 +682,7 @@
 			baseConfigurationReference = 32252ECE5F71A3A55DBA61AB /* Pods-KNVUNDBaseDevelopPackage_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -732,6 +707,7 @@
 			baseConfigurationReference = 3DC883B47C0D2C8F7BB7BC9C /* Pods-KNVUNDBaseDevelopPackage_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

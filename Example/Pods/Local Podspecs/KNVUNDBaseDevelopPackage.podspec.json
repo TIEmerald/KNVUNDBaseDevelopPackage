@@ -1,6 +1,6 @@
 {
   "name": "KNVUNDBaseDevelopPackage",
-  "version": "0.1.0",
+  "version": "0.2.6",
   "summary": "A short description of KNVUNDBaseDevelopPackage.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/niyejunze.j@gmail.com/KNVUNDBaseDevelopPackage",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/niyejunze.j@gmail.com/KNVUNDBaseDevelopPackage.git",
-    "tag": "0.1.0"
+    "tag": "0.2.6"
   },
   "platforms": {
     "ios": "8.0"
@@ -34,7 +34,7 @@
 
     ],
     "TSMessages": [
-      "~> 0.9.13"
+
     ],
     "LinqToObjectiveC": [
 
