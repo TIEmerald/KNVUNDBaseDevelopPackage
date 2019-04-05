@@ -144,9 +144,26 @@ static void * ShouldShowRelatedLogPropertyKey = &ShouldShowRelatedLogPropertyKey
 
 
 #pragma mark - Deprecated Methods
++ (BOOL)isDevelopMode
+{
+    return NO;
+}
+
++ (BOOL)isLogIntoTempDirectory
+{
+    return NO;
+}
+
 + (void)performServerLogWithLogString:(NSString *)string
 {
     
+}
+
++ (void)performFurtherLogWithLogLevel:(NSObject_LogLevel)logLevel andLogString:(NSString *)string
+{
+    [self performLogWithLogLevel:logLevel
+                             tag:@""
+                    andLogString:string];
 }
 
 + (void)performConsoleLogWithLogString:(NSString *_Nonnull)string

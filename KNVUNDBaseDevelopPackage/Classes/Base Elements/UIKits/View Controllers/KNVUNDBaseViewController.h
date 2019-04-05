@@ -8,9 +8,9 @@
 #import <UIKit/UIKit.h>
 
 // Third Party Packages
-#import "RMessage.h"
-#import "TSMessage.h"
-#import "MZFormSheetPresentationViewController.h"
+#import <RMessage/RMessage.h>
+#import <TSMessages/TSMessage.h>
+#import <MZFormSheetPresentationController/MZFormSheetPresentationController.h>
 
 #pragma mark -
 #pragma mark -

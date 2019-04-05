@@ -6058,6 +6058,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C616D65944AB693CBC338AE8F4A4658D /* KNVUNDBaseDevelopPackage.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -6646,6 +6647,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C616D65944AB693CBC338AE8F4A4658D /* KNVUNDBaseDevelopPackage.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

@@ -60,7 +60,8 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
     logMessage = [logMessage stringByAppendingString:[NSString stringWithFormat:@"Group Size : %lu \n",
                                                       (unsigned long)[self getCurrentCurrencyNumberFormatter].groupingSize]];
     
-    [self performConsoleLogWithLogString:logMessage];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:logMessage];
 }
 
 #pragma mark Support Methods

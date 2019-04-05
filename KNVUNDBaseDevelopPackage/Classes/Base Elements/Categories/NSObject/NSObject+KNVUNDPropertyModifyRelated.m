@@ -205,16 +205,19 @@
 
 - (BOOL)isSelfPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)selfPropertyDetails isValidWithObjectPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)objectPropertyDetails
 {
-    [self performConsoleLogWithLogStringFormat:(@"Checking Property from Self: %@\n And Property from Object: %@.",
-                                                selfPropertyDetails.debugDescription,
-                                                objectPropertyDetails.debugDescription)];
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:(@"Checking Property from Self: %@\n And Property from Object: %@.",
+                                         selfPropertyDetails.debugDescription,
+                                         objectPropertyDetails.debugDescription)];
     if (selfPropertyDetails.propertyType != objectPropertyDetails.propertyType) {
-        [self performConsoleLogWithLogString:@"Invalid, The property types are not matching"];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                               andLogString:@"Invalid, The property types are not matching"];
         return NO;
     }
     
     if (![[self class] supportObjectPropertyType:selfPropertyDetails.propertyType]) {
-        [self performConsoleLogWithLogString:@"Invalid, The property type is supported"];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                               andLogString:@"Invalid, The property type is supported"];
         return NO;
     }
     
@@ -222,15 +225,18 @@
         NSArray *supportingSelfPropertyTypeNames = [[[self class] objectObjectTypePropertNameMappingDictionary] valueForKey:objectPropertyDetails.typeName];
         for (NSString *supportedPropertyName in supportingSelfPropertyTypeNames) {
             if ([selfPropertyDetails.typeName isEqualToString:supportedPropertyName]) {
-                [self performConsoleLogWithLogString:@"Valid."];
+                [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                                       andLogString:@"Valid."];
                 return YES;
             }
         }
-        [self performConsoleLogWithLogString:@"Invalid, The object property type property names are not matching"];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                               andLogString:@"Invalid, The object property type property names are not matching"];
         
         return NO;
-    } 
-    [self performConsoleLogWithLogString:@"Valid."];
+    }
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:@"Valid."];
     
     return YES;
 }

@@ -7,7 +7,7 @@
 
 #import "KNVUNDBaseModel.h"
 
-#import "ZXingObjC.h"
+#import <ZXingObjC/ZXingObjC.h>
 
 @interface KNVUNDImageRelatedTool : KNVUNDBaseModel
 

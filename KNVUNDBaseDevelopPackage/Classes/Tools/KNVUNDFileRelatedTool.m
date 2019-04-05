@@ -13,7 +13,8 @@
 + (BOOL)compressFile:(NSString *)originalFilePath withError:(NSError **)error andLogBlock:(void(^)(NSString *logingString))logBlock
 {
     void(^usingLogBlock)(NSString *logingString) = ^(NSString *logingString){
-        [self performConsoleLogWithLogString:logingString];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Verbose
+                               andLogString:logingString];
         if (logBlock) {
             logBlock(logingString);
         }
@@ -32,7 +33,7 @@
         //  9. Close input and output file
         // 10. Teardown zlib
         
-        usingLogBlock([NSString stringWithFormat:@"Starting Compress File:%@ into File:%@",
+        usingLogBlock([NSString stringWithFormat:@"Starting Compress File:%@",
                        originalFilePath]);
         
         return YES;

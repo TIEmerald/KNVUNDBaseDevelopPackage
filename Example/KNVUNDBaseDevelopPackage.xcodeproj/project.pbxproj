@@ -650,6 +650,7 @@
 			baseConfigurationReference = B788B6600BC7DFBEB368FE3C /* Pods-KNVUNDBaseDevelopPackage_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Prefix.pch";
@@ -666,6 +667,7 @@
 			baseConfigurationReference = F90F5E82713BD1E666D627EE /* Pods-KNVUNDBaseDevelopPackage_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEVELOPMENT_TEAM = G2A7N2MPK3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KNVUNDBaseDevelopPackage/KNVUNDBaseDevelopPackage-Prefix.pch";

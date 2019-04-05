@@ -7,7 +7,6 @@
 
 #import "KNVUNDBaseViewController.h"
 
-
 // Tools
 #import "KNVUNDThreadRelatedTool.h"
 
@@ -50,8 +49,8 @@
                                                            style:self.actionStyle
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              [baseUIViewController setPresentedViewControllerToNil];
-                                                             if (_storedSettingBlock) {
-                                                                 _storedSettingBlock(action);
+                                                             if (self->_storedSettingBlock) {
+                                                                 self->_storedSettingBlock(action);
                                                              }
                                                          }];
     return returnAction;
@@ -415,7 +414,7 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
             [self presentViewController:presentingViewController
                                animated:animated
                              completion:^{
-                                 _currentPresentingViewController = contentVC;
+                                 self->_currentPresentingViewController = contentVC;
                                  
                                  [self presentViewControllerDidAppear];
                                  
