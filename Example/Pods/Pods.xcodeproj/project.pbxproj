@@ -1289,16 +1289,16 @@
 		238FCAD9DDC1155CE9911B7E3024BA4F /* EXPMatchers+beTruthy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beTruthy.m"; path = "Expecta/Matchers/EXPMatchers+beTruthy.m"; sourceTree = "<group>"; };
 		23B7D83A67C9CEC8974A1FB35C97A729 /* ZXingObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZXingObjC.modulemap; sourceTree = "<group>"; };
 		23F05E733B515B9E84C2D1E6EFA744B3 /* ZXVINResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXVINResultParser.h; path = ZXingObjC/client/result/ZXVINResultParser.h; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2492BF51395997C62A43423F78891C00 /* KNVUNDVerticalCentralCATextLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDVerticalCentralCATextLayer.h; sourceTree = "<group>"; };
 		25D2FB5FA906150699F36EDB063A442E /* ZXEncodeHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEncodeHints.h; path = ZXingObjC/core/ZXEncodeHints.h; sourceTree = "<group>"; };
 		260782734467F8C7DD64976F1259C623 /* ZXDetectorResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDetectorResult.m; path = ZXingObjC/common/ZXDetectorResult.m; sourceTree = "<group>"; };
-		26710F6753A65123B905D47D6163C4DA /* Expecta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Expecta.framework; path = Expecta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26710F6753A65123B905D47D6163C4DA /* Expecta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26762E63097C87D7C9C926DE6D5FCB7A /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		26CD29EBF689CA3A94B9F43FE9A432F3 /* UIButton+KNVUNDButtonsSelectionButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIButton+KNVUNDButtonsSelectionButton.m"; sourceTree = "<group>"; };
 		26EC5ECDD053A0D0ACDF669DA912C1E3 /* ZXAztecWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecWriter.h; path = ZXingObjC/aztec/ZXAztecWriter.h; sourceTree = "<group>"; };
 		26F062499900B010EB79B0E228F611DB /* ZXAI013x0xDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAI013x0xDecoder.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI013x0xDecoder.m; sourceTree = "<group>"; };
-		273AE635209EBC3429AFA2BD6F143367 /* design.json */ = {isa = PBXFileReference; includeInIndex = 1; name = design.json; path = Resources/design.json; sourceTree = "<group>"; };
+		273AE635209EBC3429AFA2BD6F143367 /* design.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = design.json; path = Resources/design.json; sourceTree = "<group>"; };
 		274DC2346B526EF4F90C7E4EEDEEBE8E /* NotificationBackgroundWarning.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundWarning.png; path = Resources/Images/NotificationBackgroundWarning.png; sourceTree = "<group>"; };
 		276E8CF4BF579CFBCEB76996F9401521 /* ZXDataMatrixASCIIEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixASCIIEncoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixASCIIEncoder.h; sourceTree = "<group>"; };
 		278A5E11A3204A6A2F9601B275485176 /* EXPMatchers+beLessThan.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beLessThan.m"; path = "Expecta/Matchers/EXPMatchers+beLessThan.m"; sourceTree = "<group>"; };
@@ -1313,7 +1313,7 @@
 		29C4CA48BAD0A1E78173E58268F37D56 /* EXPMatchers+beInTheRangeOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beInTheRangeOf.m"; path = "Expecta/Matchers/EXPMatchers+beInTheRangeOf.m"; sourceTree = "<group>"; };
 		29D73B003028D2E1F1CB619B19340AA9 /* Pods-KNVUNDBaseDevelopPackage_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KNVUNDBaseDevelopPackage_Example-resources.sh"; sourceTree = "<group>"; };
 		2A15D0DAD015E7940091FDDE5162D951 /* ZXAztecCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAztecCode.h; path = ZXingObjC/aztec/encoder/ZXAztecCode.h; sourceTree = "<group>"; };
-		2ACB497B607DD09E2CDA2979864B083A /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
+		2ACB497B607DD09E2CDA2979864B083A /* RMessageDefaultDesign.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = RMessageDefaultDesign.json; path = RMessage/Assets/RMessageDefaultDesign.json; sourceTree = "<group>"; };
 		2AFCF66B20D69D886A986F476C8A80D3 /* ZXBookmarkDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXBookmarkDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXBookmarkDoCoMoResultParser.m; sourceTree = "<group>"; };
 		2B638CFD9C842BEC99263C333634EFF1 /* NSStream+SKPSMTPExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSStream+SKPSMTPExtensions.m"; path = "SMTPLibrary/NSStream+SKPSMTPExtensions.m"; sourceTree = "<group>"; };
 		2C682C8D66E397030F6D3893CD19A4E1 /* MZFormSheetPresentationController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MZFormSheetPresentationController-umbrella.h"; sourceTree = "<group>"; };
@@ -1372,8 +1372,8 @@
 		3BC2BEF9CB6B935FCEB0F98F616D4217 /* ZXAztecSimpleToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAztecSimpleToken.m; path = ZXingObjC/aztec/encoder/ZXAztecSimpleToken.m; sourceTree = "<group>"; };
 		3CD7497707C989B0383E77C83B3D2450 /* ZXEmailAddressResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEmailAddressResultParser.h; path = ZXingObjC/client/result/ZXEmailAddressResultParser.h; sourceTree = "<group>"; };
 		3D5AA805BE3BF21B9EAFEF064F2C26F4 /* MZFormSheetPresentationController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MZFormSheetPresentationController-prefix.pch"; sourceTree = "<group>"; };
-		3D91B91B048C190A81CE8511234A0340 /* TSMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TSMessages.framework; path = TSMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DFE8148ED2152D2EF416A6D34D7B255 /* MZAppearance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MZAppearance.framework; path = MZAppearance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D91B91B048C190A81CE8511234A0340 /* TSMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TSMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DFE8148ED2152D2EF416A6D34D7B255 /* MZAppearance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZAppearance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E10E3BF49478A8C751ED2B43F1C66A2 /* ZXURIResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXURIResultParser.h; path = ZXingObjC/client/result/ZXURIResultParser.h; sourceTree = "<group>"; };
 		3E1AD9C199F22A2EAAFC06DF4F740BD8 /* ZXURIResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXURIResultParser.m; path = ZXingObjC/client/result/ZXURIResultParser.m; sourceTree = "<group>"; };
 		3EFE57B2AADAC734840E6BD8F440BEC2 /* ZXQRCodeDecodedBitStreamParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeDecodedBitStreamParser.h; path = ZXingObjC/qrcode/decoder/ZXQRCodeDecodedBitStreamParser.h; sourceTree = "<group>"; };
@@ -1386,7 +1386,7 @@
 		413E1707E2FE7E35A36B64B80CC45411 /* UITableViewCell+KNVUNDETVRelatedBasic.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+KNVUNDETVRelatedBasic.m"; sourceTree = "<group>"; };
 		41833331E02BA1EC8E5CBAF819DF9743 /* ZXIntArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXIntArray.h; path = ZXingObjC/common/ZXIntArray.h; sourceTree = "<group>"; };
 		419719B3B896F11FF0B3CCC3C50EA590 /* EXPMatchers+contain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+contain.m"; path = "Expecta/Matchers/EXPMatchers+contain.m"; sourceTree = "<group>"; };
-		41F248A4FD57FF0E6B7BC2A5D22A5C86 /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PPTopMostController.framework; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41F248A4FD57FF0E6B7BC2A5D22A5C86 /* PPTopMostController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PPTopMostController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42475CC3C4F276E43CDFFE9B8B6FF8E5 /* MZTransition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZTransition.h; path = MZFormSheetPresentationController/MZTransition.h; sourceTree = "<group>"; };
 		424CD88FD9726BD4FF840B433506C737 /* ZXMonochromeRectangleDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXMonochromeRectangleDetector.h; path = ZXingObjC/common/detector/ZXMonochromeRectangleDetector.h; sourceTree = "<group>"; };
 		42F4FF0366599CA60F16170251E818B9 /* ZXDataMatrixDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixDetector.h; path = ZXingObjC/datamatrix/detector/ZXDataMatrixDetector.h; sourceTree = "<group>"; };
@@ -1521,7 +1521,7 @@
 		64513181C46207597C8775813A9CBDF0 /* ZXMultiFormatUPCEANReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXMultiFormatUPCEANReader.h; path = ZXingObjC/oned/ZXMultiFormatUPCEANReader.h; sourceTree = "<group>"; };
 		6471CB050B042ACC2E215A1E091D34D5 /* ZXRSSExpandedRow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRSSExpandedRow.h; path = ZXingObjC/oned/rss/expanded/ZXRSSExpandedRow.h; sourceTree = "<group>"; };
 		647CED176C22F5DDAE194FFF4533D85C /* ZXErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXErrors.h; path = ZXingObjC/core/ZXErrors.h; sourceTree = "<group>"; };
-		6514283E05373D46762624BEA0400998 /* KNVUNDBaseDevelopPackage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KNVUNDBaseDevelopPackage.framework; path = KNVUNDBaseDevelopPackage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6514283E05373D46762624BEA0400998 /* KNVUNDBaseDevelopPackage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KNVUNDBaseDevelopPackage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		651A18903805969EC36CD6F17E6D5815 /* ZXPDF417BarcodeValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXPDF417BarcodeValue.m; path = ZXingObjC/pdf417/decoder/ZXPDF417BarcodeValue.m; sourceTree = "<group>"; };
 		65530E1158F8CDCB2903F777D19E9026 /* ZXCharacterSetECI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXCharacterSetECI.m; path = ZXingObjC/common/ZXCharacterSetECI.m; sourceTree = "<group>"; };
 		6568F2E3DD21507FFD00EE431064B78B /* skpsmtpmessage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = skpsmtpmessage.modulemap; sourceTree = "<group>"; };
@@ -1553,8 +1553,8 @@
 		6CB55571ABB73E69880C47F71D5ED195 /* Expecta+Snapshots.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Expecta+Snapshots.modulemap"; sourceTree = "<group>"; };
 		6CBF778EA219DD5DF7D3B9E06CDC8AE9 /* ZXQRCodeErrorCorrectionLevel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeErrorCorrectionLevel.h; path = ZXingObjC/qrcode/decoder/ZXQRCodeErrorCorrectionLevel.h; sourceTree = "<group>"; };
 		6CCB9FE7CCEFDC03E107922C8EDD9399 /* SPTSpec.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SPTSpec.m; path = Specta/Specta/SPTSpec.m; sourceTree = "<group>"; };
-		6D1B7BB790EE1F399110E1905CF97E03 /* MZFormSheetPresentationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MZFormSheetPresentationController.framework; path = MZFormSheetPresentationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D1E7E37BD0E784BCCB25656FADBBB7A /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RMessage.framework; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D1B7BB790EE1F399110E1905CF97E03 /* MZFormSheetPresentationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZFormSheetPresentationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D1E7E37BD0E784BCCB25656FADBBB7A /* RMessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D299169C48821308FD1DDF4D5E04562 /* ZXMonochromeRectangleDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXMonochromeRectangleDetector.m; path = ZXingObjC/common/detector/ZXMonochromeRectangleDetector.m; sourceTree = "<group>"; };
 		6D310B45496B8B2DE42CAB52D25BB261 /* ZXGlobalHistogramBinarizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXGlobalHistogramBinarizer.h; path = ZXingObjC/common/ZXGlobalHistogramBinarizer.h; sourceTree = "<group>"; };
 		6D41CE7BC3CCDD10C0605B694DA4743D /* UITableViewCell+KNVUNDETVRelatedBasic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+KNVUNDETVRelatedBasic.h"; sourceTree = "<group>"; };
@@ -1632,7 +1632,7 @@
 		7F328C75928358C64FB2B3AA1A60FB3C /* EXPExpect.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPExpect.h; path = Expecta/EXPExpect.h; sourceTree = "<group>"; };
 		7F4AC353625B007CF06E48EFDB1B479B /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
 		7F69E512CF497B959556FD8744323B05 /* KNVUNDRegexRelatedTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDRegexRelatedTool.h; sourceTree = "<group>"; };
-		7F7B51A4B7AFADCBC5069B7E8FAADB6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		7F7B51A4B7AFADCBC5069B7E8FAADB6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7F8C4FB24123D272CEB1455C0C450425 /* ZXWifiResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXWifiResultParser.h; path = ZXingObjC/client/result/ZXWifiResultParser.h; sourceTree = "<group>"; };
 		7F8F3E70C1635DE3938A90AC2F216703 /* ZXPDF417Reader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417Reader.h; path = ZXingObjC/pdf417/ZXPDF417Reader.h; sourceTree = "<group>"; };
 		7F9572123A7E87F772A8117F6F589CA9 /* NSDictionary+LinqExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LinqExtensions.h"; sourceTree = "<group>"; };
@@ -1657,7 +1657,7 @@
 		85F40816663F53A1AE9F95EC05BDB723 /* ZXDecodeHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDecodeHints.h; path = ZXingObjC/core/ZXDecodeHints.h; sourceTree = "<group>"; };
 		865B485BD280E6B96075532C2F2101F5 /* ZXUPCEANWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXUPCEANWriter.m; path = ZXingObjC/oned/ZXUPCEANWriter.m; sourceTree = "<group>"; };
 		873477EA6013CD95855E7BC40FB80BAF /* ZXUPCEANExtensionSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXUPCEANExtensionSupport.h; path = ZXingObjC/oned/ZXUPCEANExtensionSupport.h; sourceTree = "<group>"; };
-		87707B48B28AF89C7A67FC9BBEE628A7 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Specta.framework; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87707B48B28AF89C7A67FC9BBEE628A7 /* Specta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Specta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CD0ADBD217864BC00820C65EBE165C /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88155892E7BA99ECB298A49033B484E7 /* ZXBarcodeFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXBarcodeFormat.h; path = ZXingObjC/core/ZXBarcodeFormat.h; sourceTree = "<group>"; };
 		883F189EA2907327CCBD54C403658FE7 /* KNVUNDPagingRelatedHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDPagingRelatedHelper.h; sourceTree = "<group>"; };
@@ -1670,7 +1670,7 @@
 		8A130C9C4174AEF16DE5CEC21D364B30 /* EXPMatcherHelpers.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPMatcherHelpers.m; path = Expecta/Matchers/EXPMatcherHelpers.m; sourceTree = "<group>"; };
 		8A58EE97C081F2FA2783D22E202E2894 /* ZXDataMatrixVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixVersion.h; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixVersion.h; sourceTree = "<group>"; };
 		8A74A31AD2C48CBA4E5257F66032F120 /* ZXAI01weightDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAI01weightDecoder.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXAI01weightDecoder.m; sourceTree = "<group>"; };
-		8A8974AD7D9E9C6E4BA91523F524579B /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A8974AD7D9E9C6E4BA91523F524579B /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA89D20BAD549A482CB4BA7A22CC92B /* MZAppearance-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MZAppearance-dummy.m"; sourceTree = "<group>"; };
 		8AB4AC716E2870D37C7F8F6335E6DDF8 /* NotificationBackgroundSuccessIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NotificationBackgroundSuccessIcon.png; path = Resources/Images/NotificationBackgroundSuccessIcon.png; sourceTree = "<group>"; };
 		8ADB24D069A27AE54A750113EB651212 /* KNVUNDBaseModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDBaseModel.m; sourceTree = "<group>"; };
@@ -1732,7 +1732,7 @@
 		9A5C4CA633E14FA50899D0B15F92F7AD /* PPTopMostController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PPTopMostController-umbrella.h"; sourceTree = "<group>"; };
 		9A78537765F1FAD1710311CC6AA5CC92 /* SPTExampleGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTExampleGroup.h; path = Specta/Specta/SPTExampleGroup.h; sourceTree = "<group>"; };
 		9A7EE1D0389DB7771764A0FD94C86132 /* SPTCompiledExample.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SPTCompiledExample.m; path = Specta/Specta/SPTCompiledExample.m; sourceTree = "<group>"; };
-		9ACC95D80D18A9035E071AEE939307E0 /* ZXingObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZXingObjC.framework; path = ZXingObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ACC95D80D18A9035E071AEE939307E0 /* ZXingObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZXingObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ACE27BB945FFB67F933146C1F61180A /* ZXSMTPResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXSMTPResultParser.h; path = ZXingObjC/client/result/ZXSMTPResultParser.h; sourceTree = "<group>"; };
 		9B4FFFEDCD02D1ABCC186B5C7197F15E /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		9B8429A8196814D282598BB00B98BA54 /* MZFormSheetPresentationViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZFormSheetPresentationViewController.h; path = MZFormSheetPresentationController/MZFormSheetPresentationViewController.h; sourceTree = "<group>"; };
@@ -1755,10 +1755,10 @@
 		A02A4FA12A766E56D4CFE5EFACFF032B /* ZXPlanarYUVLuminanceSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPlanarYUVLuminanceSource.h; path = ZXingObjC/core/ZXPlanarYUVLuminanceSource.h; sourceTree = "<group>"; };
 		A0500D8D888C7F5A406B5E9CC6BA9DCC /* EXPMatchers+beNil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beNil.h"; path = "Expecta/Matchers/EXPMatchers+beNil.h"; sourceTree = "<group>"; };
 		A05A2B712591265A5EE8575B5D537ACE /* MZAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZAppearance.m; path = MZAppearance/MZAppearance.m; sourceTree = "<group>"; };
-		A05DC48063B6CE7EAB5D1C5F09B2270B /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A05DC48063B6CE7EAB5D1C5F09B2270B /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B8D2A54D21FC2D9DFE44703D582E7A /* ZXQRCodeDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeDecoder.m; path = ZXingObjC/qrcode/decoder/ZXQRCodeDecoder.m; sourceTree = "<group>"; };
 		A16F0B032FC6F6C77D4DD9D1191526D7 /* ZXITFWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXITFWriter.h; path = ZXingObjC/oned/ZXITFWriter.h; sourceTree = "<group>"; };
-		A18EE34B5C780497E3B7BE358B5A2FF2 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HexColors.framework; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18EE34B5C780497E3B7BE358B5A2FF2 /* HexColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexColors.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F35ABFEAC7422B8369DBAAECFCF342 /* ZXCode128Writer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXCode128Writer.m; path = ZXingObjC/oned/ZXCode128Writer.m; sourceTree = "<group>"; };
 		A4363CCB6F95DEACE03B9B00CAAC36C7 /* ZXEAN13Writer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEAN13Writer.m; path = ZXingObjC/oned/ZXEAN13Writer.m; sourceTree = "<group>"; };
 		A4A9FFB4C10B40DB27FE946D9953156C /* ZXSMSTOMMSTOResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXSMSTOMMSTOResultParser.h; path = ZXingObjC/client/result/ZXSMSTOMMSTOResultParser.h; sourceTree = "<group>"; };
@@ -1808,7 +1808,7 @@
 		B0C59D7F9A9530684911A4EA796F7055 /* ZXAztecDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAztecDecoder.m; path = ZXingObjC/aztec/decoder/ZXAztecDecoder.m; sourceTree = "<group>"; };
 		B0E0F6AFF25CF748C802548C4C6BAAB1 /* ZXQRCodeDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeDetector.m; path = ZXingObjC/qrcode/detector/ZXQRCodeDetector.m; sourceTree = "<group>"; };
 		B0E20C60FA8F5A25D03CF6A8566D3C22 /* ZXDefaultGridSampler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXDefaultGridSampler.m; path = ZXingObjC/common/ZXDefaultGridSampler.m; sourceTree = "<group>"; };
-		B104378BC17EBDF46A9DD67828DCF245 /* Pods_KNVUNDBaseDevelopPackage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KNVUNDBaseDevelopPackage_Example.framework; path = "Pods-KNVUNDBaseDevelopPackage_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B104378BC17EBDF46A9DD67828DCF245 /* Pods_KNVUNDBaseDevelopPackage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KNVUNDBaseDevelopPackage_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1AF39F96D2ADE86CCCCDC8CC676E377 /* ZXDataMatrixEncoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixEncoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixEncoder.h; sourceTree = "<group>"; };
 		B1C39229EAC4E220FFC509C3451FF982 /* ZXVINParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXVINParsedResult.h; path = ZXingObjC/client/result/ZXVINParsedResult.h; sourceTree = "<group>"; };
 		B1D4CA464598B31EE44CE00BC3F5B138 /* ZXCode39Writer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXCode39Writer.m; path = ZXingObjC/oned/ZXCode39Writer.m; sourceTree = "<group>"; };
@@ -1817,7 +1817,7 @@
 		B2B2D54FE1105C8D4B2194286C942E06 /* ZXAbstractDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXAbstractDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXAbstractDoCoMoResultParser.m; sourceTree = "<group>"; };
 		B2C695EE0C606F54DCECCF2B82BCC8B8 /* ZXRGBLuminanceSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRGBLuminanceSource.h; path = ZXingObjC/core/ZXRGBLuminanceSource.h; sourceTree = "<group>"; };
 		B3061FEC0F39D230B749B03E91E93038 /* ZXRSSExpandedCurrentParsingState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSExpandedCurrentParsingState.m; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedCurrentParsingState.m; sourceTree = "<group>"; };
-		B33B9AACEB57B703758EAC7DCEC5C493 /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KNVUNDBaseDevelopPackage_Tests.framework; path = "Pods-KNVUNDBaseDevelopPackage_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B33B9AACEB57B703758EAC7DCEC5C493 /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KNVUNDBaseDevelopPackage_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38F0C078D34D870F2AAB34204ED0631 /* ZXingObjC.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZXingObjC.xcconfig; sourceTree = "<group>"; };
 		B3CCA06B496B22E96D19B083BF684E43 /* ZXCode93Writer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXCode93Writer.h; path = ZXingObjC/oned/ZXCode93Writer.h; sourceTree = "<group>"; };
 		B3E227D413ABB2C5D64BDFF58C96A3A7 /* EXPMatchers+beLessThanOrEqualTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beLessThanOrEqualTo.m"; path = "Expecta/Matchers/EXPMatchers+beLessThanOrEqualTo.m"; sourceTree = "<group>"; };
@@ -1862,7 +1862,7 @@
 		BD4D230BF0D0F157ED8EB5547492937F /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		BDA9CBA7EDDC42E77F4429B97339C66D /* MZAppearance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZAppearance.h; path = MZAppearance/MZAppearance.h; sourceTree = "<group>"; };
 		BE7897EBEFA5D127ACD71FC45CC9563D /* ZXEncodeHints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEncodeHints.m; path = ZXingObjC/core/ZXEncodeHints.m; sourceTree = "<group>"; };
-		BE7C0A7E4C6C054F40662862A33A48B6 /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LinqToObjectiveC.framework; path = LinqToObjectiveC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7C0A7E4C6C054F40662862A33A48B6 /* LinqToObjectiveC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinqToObjectiveC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED5731BD621872B9A9C244349263FC1 /* RMessage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RMessage-prefix.pch"; sourceTree = "<group>"; };
 		BEEC67BF7B804C0DD8011CF707B60F2B /* ZXWhiteRectangleDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXWhiteRectangleDetector.m; path = ZXingObjC/common/detector/ZXWhiteRectangleDetector.m; sourceTree = "<group>"; };
 		BF3E836CC2DB149D133DE2E8DA9ABE00 /* ZXCodaBarWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXCodaBarWriter.h; path = ZXingObjC/oned/ZXCodaBarWriter.h; sourceTree = "<group>"; };
@@ -1870,7 +1870,7 @@
 		BFB2308732CC562EFAF335704A17D885 /* ZXGenericGFPoly.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXGenericGFPoly.h; path = ZXingObjC/common/reedsolomon/ZXGenericGFPoly.h; sourceTree = "<group>"; };
 		C007FA4C695F307D76955CF8BDB2B54D /* KNVUNDBaseDevelopPackage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KNVUNDBaseDevelopPackage-umbrella.h"; sourceTree = "<group>"; };
 		C041B4416BDFB0F04B7EA7A123CE41B5 /* ZXSMSParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXSMSParsedResult.h; path = ZXingObjC/client/result/ZXSMSParsedResult.h; sourceTree = "<group>"; };
-		C050C1A918AF22C85EF26F58F0B7B28E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		C050C1A918AF22C85EF26F58F0B7B28E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C058D5FA445619859F622BC7E9938BBE /* EXPMatchers+conformTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+conformTo.m"; path = "Expecta/Matchers/EXPMatchers+conformTo.m"; sourceTree = "<group>"; };
 		C0765920CB13C4FDFB8A0670F8B217AC /* ZXQRCodeAlignmentPatternFinder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeAlignmentPatternFinder.h; path = ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPatternFinder.h; sourceTree = "<group>"; };
 		C0B6664D10707F3034AF6B7C4C2F4BB4 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
@@ -1906,7 +1906,7 @@
 		C7F6D867B34675202A7D4F83F9D2F25D /* MZFormSheetPresentationViewControllerInteractiveAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MZFormSheetPresentationViewControllerInteractiveAnimator.h; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerInteractiveAnimator.h; sourceTree = "<group>"; };
 		C838BE454339A60FA97952769B6F5E37 /* UITabBarController+PPTopMostController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+PPTopMostController.h"; path = "PPTopMostController-Files/UITabBarController+PPTopMostController.h"; sourceTree = "<group>"; };
 		C879A51B81CA813245A768EB801EDC99 /* ZXQRCodeAlignmentPattern.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeAlignmentPattern.h; path = ZXingObjC/qrcode/detector/ZXQRCodeAlignmentPattern.h; sourceTree = "<group>"; };
-		C9330F55217112D8DD2FA9937B14092D /* Expecta_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Expecta_Snapshots.framework; path = "Expecta+Snapshots.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9330F55217112D8DD2FA9937B14092D /* Expecta_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta_Snapshots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C966265F39890E618B61EFC8C58CA086 /* ZXMathUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXMathUtils.h; path = ZXingObjC/common/detector/ZXMathUtils.h; sourceTree = "<group>"; };
 		CA6E55AA6AB2150F15C1C0B740EF7BFE /* EXPMatchers+beIdenticalTo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beIdenticalTo.h"; path = "Expecta/Matchers/EXPMatchers+beIdenticalTo.h"; sourceTree = "<group>"; };
 		CAA19526313F70FEC1589A0313E92246 /* ZXEmailAddressParsedResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEmailAddressParsedResult.h; path = ZXingObjC/client/result/ZXEmailAddressParsedResult.h; sourceTree = "<group>"; };
@@ -1921,7 +1921,7 @@
 		CCF007194BD69B4B6B9C8D01E303F8A3 /* EXPMatchers+beKindOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beKindOf.m"; path = "Expecta/Matchers/EXPMatchers+beKindOf.m"; sourceTree = "<group>"; };
 		CD0DBFAEC7679A54D1BA7A1A362B9BBE /* ZXRSSExpandedPair.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXRSSExpandedPair.m; path = ZXingObjC/oned/rss/expanded/ZXRSSExpandedPair.m; sourceTree = "<group>"; };
 		CD78B230ED744BE2562B3FE348DFE173 /* UIColor+KNVUNDBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+KNVUNDBase.h"; sourceTree = "<group>"; };
-		CE7C321B4CA405F4C7B9B3FB1AF982DB /* KNVUNDBaseDevelopPackage.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = KNVUNDBaseDevelopPackage.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CE7C321B4CA405F4C7B9B3FB1AF982DB /* KNVUNDBaseDevelopPackage.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = KNVUNDBaseDevelopPackage.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CECAB0C443550B44D541416B111D49EA /* ZXResultPoint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXResultPoint.m; path = ZXingObjC/core/ZXResultPoint.m; sourceTree = "<group>"; };
 		CF28A2C59D5A14CB64BF200C6ED3D010 /* ZXEANManufacturerOrgSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXEANManufacturerOrgSupport.h; path = ZXingObjC/oned/ZXEANManufacturerOrgSupport.h; sourceTree = "<group>"; };
 		CFC9E19A7D004B2BE697538988B8412A /* ZXDataMatrixBitMatrixParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixBitMatrixParser.h; path = ZXingObjC/datamatrix/decoder/ZXDataMatrixBitMatrixParser.h; sourceTree = "<group>"; };
@@ -2021,7 +2021,7 @@
 		ECCC53F40853BBB6C00AFE72D3CBF601 /* Pods-KNVUNDBaseDevelopPackage_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KNVUNDBaseDevelopPackage_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		ECF52C7F10875BB828981B824751F64D /* ZXPDF417DetectionResultColumn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXPDF417DetectionResultColumn.h; path = ZXingObjC/pdf417/decoder/ZXPDF417DetectionResultColumn.h; sourceTree = "<group>"; };
 		ED01720B417ABD35FC9D5D6F49E1F513 /* KNVUNDThreadRelatedTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDThreadRelatedTool.h; sourceTree = "<group>"; };
-		ED20F831D7361CC5D36018271ACF0F74 /* skpsmtpmessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = skpsmtpmessage.framework; path = skpsmtpmessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED20F831D7361CC5D36018271ACF0F74 /* skpsmtpmessage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = skpsmtpmessage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED27765A6B3F7B817006F29498072232 /* ZXRSSExpandedDecodedNumeric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXRSSExpandedDecodedNumeric.h; path = ZXingObjC/oned/rss/expanded/decoders/ZXRSSExpandedDecodedNumeric.h; sourceTree = "<group>"; };
 		ED8CB7A03BF3EA68A685762B1AC926EF /* ZXQRCodeBitMatrixParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXQRCodeBitMatrixParser.h; path = ZXingObjC/qrcode/decoder/ZXQRCodeBitMatrixParser.h; sourceTree = "<group>"; };
 		ED8EF8D814A9E39295B6B1469D1D732B /* ZXIntArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXIntArray.m; path = ZXingObjC/common/ZXIntArray.m; sourceTree = "<group>"; };
@@ -2257,7 +2257,6 @@
 				F27509695F8E2B7642E92A7775DE2D0C /* Support Files */,
 				11F2106201896E121FE85B7A19E4652B /* SwiftSupport */,
 			);
-			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -2285,7 +2284,6 @@
 				05E51437CB49A4831A1B69E638AD640B /* NSDictionary+LinqExtensions.m */,
 				83AE6506BC2CA91C0CCA6F03AE9521C4 /* Support Files */,
 			);
-			name = LinqToObjectiveC;
 			path = LinqToObjectiveC;
 			sourceTree = "<group>";
 		};
@@ -2295,7 +2293,6 @@
 				18C74F4BB37F0800C9115F355DE86A53 /* KNVUNDColourRelatedTool.h */,
 				E86B0B6E914EAEF5653C57A44F8A0409 /* KNVUNDColourRelatedTool.m */,
 			);
-			name = "Colour Related";
 			path = "Colour Related";
 			sourceTree = "<group>";
 		};
@@ -2319,7 +2316,6 @@
 				1CA69E5C6E73A84B04F530B08D12D60C /* KNVUNDFormatedStringReadingHelper.h */,
 				5C56FB56359A9BC8BFA152DD3B763E8F /* KNVUNDFormatedStringReadingHelper.m */,
 			);
-			name = Helper;
 			path = Helper;
 			sourceTree = "<group>";
 		};
@@ -2358,7 +2354,6 @@
 				C547CF3D712EC4008B31C348D9E6429E /* NSString+KNVUNDBasic.h */,
 				62B4F5BFABE01AA614CBB2DD93C474DA /* NSString+KNVUNDBasic.m */,
 			);
-			name = NSString;
 			path = NSString;
 			sourceTree = "<group>";
 		};
@@ -2368,7 +2363,6 @@
 				CD78B230ED744BE2562B3FE348DFE173 /* UIColor+KNVUNDBase.h */,
 				0E8F77C6731628C0F56CC324D03B320C /* UIColor+KNVUNDBase.m */,
 			);
-			name = UIColor;
 			path = UIColor;
 			sourceTree = "<group>";
 		};
@@ -2402,7 +2396,6 @@
 				AFA56D14D1285A3A9A6B0C145D400E2C /* All */,
 				440D7EC14F48FB4D3BDECA66405BAC48 /* Support Files */,
 			);
-			name = ZXingObjC;
 			path = ZXingObjC;
 			sourceTree = "<group>";
 		};
@@ -2413,7 +2406,6 @@
 				8D92392EB7580F2121C8018DAA03FE87 /* KNVUNDButtonViewControllerTagViewHelper.m */,
 				85D84154946B54D69F55DCFE33A66D94 /* Protocol */,
 			);
-			name = "Tag View Related";
 			path = "Tag View Related";
 			sourceTree = "<group>";
 		};
@@ -2425,7 +2417,6 @@
 				9BD8315C18814F5BB434B0EF34E31535 /* Related Categories */,
 				4310DA9DC771EB643A22CB9E93CA3E0A /* Tag Button Related */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -2453,7 +2444,6 @@
 				994889F3A2D861B8657A3FF4A90A5E21 /* Resources */,
 				60F52A344D6615253480B279AC65E900 /* Support Files */,
 			);
-			name = RMessage;
 			path = RMessage;
 			sourceTree = "<group>";
 		};
@@ -2501,7 +2491,6 @@
 				0AAF11616DE6BEB907EFA1AB2D66D8F2 /* UIButton+KNVUNDButtonsSelectionButton.h */,
 				26CD29EBF689CA3A94B9F43FE9A432F3 /* UIButton+KNVUNDButtonsSelectionButton.m */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -2511,7 +2500,6 @@
 				152BE908607A75D3ECF3D80005BFC6BB /* UICollectionViewCell+KNVUNDBasic.h */,
 				233122521854EE64B4BAFF571A0C7BB8 /* UICollectionViewCell+KNVUNDBasic.m */,
 			);
-			name = UICollectionViewCell;
 			path = UICollectionViewCell;
 			sourceTree = "<group>";
 		};
@@ -2520,7 +2508,6 @@
 			children = (
 				F070031F9CA65F17BA9338DE594EE25F /* Expending Table View Related */,
 			);
-			name = "Table View Related";
 			path = "Table View Related";
 			sourceTree = "<group>";
 		};
@@ -2551,7 +2538,6 @@
 				D9EFB9DF8A20D6FB1056892B8B1A8781 /* KNVUNDBaseViewController.h */,
 				784B10BC171B06964DBD02320D3D27CF /* KNVUNDBaseViewController.m */,
 			);
-			name = "View Controllers";
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
@@ -2562,7 +2548,6 @@
 				4E3BFB0D50E1556916763D54672C53EF /* KNVUNDExpendingTableViewRelatedModel.m */,
 				BCE922129C06D402C6AA26107877F8B2 /* Tag Button Related  */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -2572,7 +2557,6 @@
 				B947A81EC56C117F62AC5539CCB48F32 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.h */,
 				ED96FFEAA822DD65477141891EB559BA /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m */,
 			);
-			name = "Tag Button Related";
 			path = "Tag Button Related";
 			sourceTree = "<group>";
 		};
@@ -2595,7 +2579,6 @@
 			children = (
 				7E496804EC9560473142D5337BA0E08D /* CATextLayer */,
 			);
-			name = "Core Animation";
 			path = "Core Animation";
 			sourceTree = "<group>";
 		};
@@ -2619,7 +2602,6 @@
 				05C5C97A0BE228F316E15049C0E9D948 /* Colour Related */,
 				F54D7123A8E447D67A368EC24614BDDF /* Image Related */,
 			);
-			name = "Theme Related";
 			path = "Theme Related";
 			sourceTree = "<group>";
 		};
@@ -2657,7 +2639,6 @@
 				00427D92E19920BE89FA29745380BF34 /* KNVUNDEmailRelatedTool.h */,
 				2D2B756DBD2644BC31B832906A3A3875 /* KNVUNDEmailRelatedTool.m */,
 			);
-			name = "Network Related";
 			path = "Network Related";
 			sourceTree = "<group>";
 		};
@@ -2687,7 +2668,6 @@
 				BBCEE085539ACA2EDE6C1C33E7EE2C2D /* UIViewController+PPTopMostController.m */,
 				2FFAA71397254C1E499C4A87B0321D36 /* Support Files */,
 			);
-			name = PPTopMostController;
 			path = PPTopMostController;
 			sourceTree = "<group>";
 		};
@@ -2697,7 +2677,6 @@
 				7F69E512CF497B959556FD8744323B05 /* KNVUNDRegexRelatedTool.h */,
 				235DC372263100AA33AEFEAEFA55B393 /* KNVUNDRegexRelatedTool.m */,
 			);
-			name = "Regex Related";
 			path = "Regex Related";
 			sourceTree = "<group>";
 		};
@@ -2707,7 +2686,6 @@
 				883F189EA2907327CCBD54C403658FE7 /* KNVUNDPagingRelatedHelper.h */,
 				021BD7D0E34D55B94191240A3A79C475 /* KNVUNDPagingRelatedHelper.m */,
 			);
-			name = "Paging Related";
 			path = "Paging Related";
 			sourceTree = "<group>";
 		};
@@ -2717,7 +2695,6 @@
 				1F8BB4153C0A412736367E434F6AC964 /* KNVUNDInvocation.h */,
 				669E1BE54943D75E97CA7087F5668922 /* KNVUNDInvocation.m */,
 			);
-			name = Invocation;
 			path = Invocation;
 			sourceTree = "<group>";
 		};
@@ -2745,7 +2722,6 @@
 				5C84BEC15FE66DB24CAC03A74FA8D776 /* NSDecimalNumber+KNVUNDBasic.h */,
 				4BE1A7D921F389EA2B65EFB750DDA129 /* NSDecimalNumber+KNVUNDBasic.m */,
 			);
-			name = NSDecimalNumber;
 			path = NSDecimalNumber;
 			sourceTree = "<group>";
 		};
@@ -2756,7 +2732,6 @@
 				8984C16C01F257B65AFDA0C2990315BD /* KNVUNDButtonsSelectionHelper.m */,
 				3073388607CA7F6EAE8C4F182D5EF200 /* Categories */,
 			);
-			name = "Buttons Related";
 			path = "Buttons Related";
 			sourceTree = "<group>";
 		};
@@ -2783,7 +2758,6 @@
 				61DBA67276C3918BD205A7186BD417C3 /* KNVUNDScannerHelper.h */,
 				B83279C5026D80751AE63EC67BD63A8E /* KNVUNDScannerHelper.m */,
 			);
-			name = "Scanning Related";
 			path = "Scanning Related";
 			sourceTree = "<group>";
 		};
@@ -2793,7 +2767,6 @@
 				7AC5ADA3A7651BB419C69A3D2AE6F94B /* KNVUNDRootErrorCodeTool.h */,
 				43577D25CEF503A4ACAC2EF1E78EF9D9 /* KNVUNDRootErrorCodeTool.m */,
 			);
-			name = "Error Code Related";
 			path = "Error Code Related";
 			sourceTree = "<group>";
 		};
@@ -2825,7 +2798,6 @@
 				2492BF51395997C62A43423F78891C00 /* KNVUNDVerticalCentralCATextLayer.h */,
 				E1C730BE735C5E98B72D8AAA691B8AE6 /* KNVUNDVerticalCentralCATextLayer.m */,
 			);
-			name = CATextLayer;
 			path = CATextLayer;
 			sourceTree = "<group>";
 		};
@@ -2843,7 +2815,6 @@
 				DCA22CF97D4F1E17D6F398391F250FD7 /* Resources */,
 				49C0F7FD54B597C1CA7E5D241A37996C /* Support Files */,
 			);
-			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2869,7 +2840,6 @@
 				67CEB3D1A1161C849BF442788B5409B8 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.h */,
 				AE9A77A5FE6F23F5175C653AF4254246 /* KNVUNDFSRToolHTMLLikeStringModel+PackageInternal.m */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -2878,7 +2848,6 @@
 			children = (
 				0D6CB6E5F05C9850683AE309BF2D1F69 /* KNVUNDButtonVCTVHelperTagVCProtocol.h */,
 			);
-			name = Protocol;
 			path = Protocol;
 			sourceTree = "<group>";
 		};
@@ -2909,7 +2878,6 @@
 				148539F90914264808A2AEBA5360D3AB /* KNVUNDActivityIndicatorButton.h */,
 				434FA0F211786ECC4E0872CAD1F4142F /* KNVUNDActivityIndicatorButton.m */,
 			);
-			name = Buttons;
 			path = Buttons;
 			sourceTree = "<group>";
 		};
@@ -2919,7 +2887,6 @@
 				384DB993611CAAF519FFD0BF6FFC9375 /* UILabel+FormattedText.h */,
 				A7EBFDA5C81CE6CAB4CCAD631A345C3A /* UILabel+FormattedText.m */,
 			);
-			name = UILabel;
 			path = UILabel;
 			sourceTree = "<group>";
 		};
@@ -2943,7 +2910,6 @@
 				888F65B864AFFC5A4C68117A4D07FFFC /* Buttons */,
 				3E023DA2801EB01641C7CA4B09503E5A /* View Controllers */,
 			);
-			name = UIKits;
 			path = UIKits;
 			sourceTree = "<group>";
 		};
@@ -2954,7 +2920,6 @@
 				3AB7BD864214311BDA1995303CEABA72 /* HexColors.m */,
 				02E30DE5D1A3C4AF91C7F89B24D5E1EF /* Support Files */,
 			);
-			name = HexColors;
 			path = HexColors;
 			sourceTree = "<group>";
 		};
@@ -2973,7 +2938,6 @@
 				6D41CE7BC3CCDD10C0605B694DA4743D /* UITableViewCell+KNVUNDETVRelatedBasic.h */,
 				413E1707E2FE7E35A36B64B80CC45411 /* UITableViewCell+KNVUNDETVRelatedBasic.m */,
 			);
-			name = "Related Categories";
 			path = "Related Categories";
 			sourceTree = "<group>";
 		};
@@ -3017,7 +2981,6 @@
 				B834E7C69BA03C922DC6AA52030BBF57 /* Resources */,
 				CD21CEA895B6BAC4EB49034212AFFB57 /* Support Files */,
 			);
-			name = TSMessages;
 			path = TSMessages;
 			sourceTree = "<group>";
 		};
@@ -3034,7 +2997,6 @@
 				8AB1E7E8587852DB502ADF3BA53E6886 /* UILabel */,
 				F3FD7CF86701DAB39DBCBE942C2BF48D /* UITableViewCell */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -3519,7 +3481,6 @@
 				FE7EB1F98E7AA1B8713EFAB6EDBB4AC5 /* NSInvocation+Copy.m */,
 				CF976CDF3DBAE9B29A472CEA6CF0821B /* Support Files */,
 			);
-			name = MZAppearance;
 			path = MZAppearance;
 			sourceTree = "<group>";
 		};
@@ -3532,7 +3493,6 @@
 				5CADED49130B386E42323E05C8F596D3 /* EXPMatchers+FBSnapshotTest.m */,
 				289336A81B927C4C82F461E61EF861CF /* Support Files */,
 			);
-			name = "Expecta+Snapshots";
 			path = "Expecta+Snapshots";
 			sourceTree = "<group>";
 		};
@@ -3552,7 +3512,6 @@
 				8592932C9B7AAEAA42835A6590680741 /* KNVUNDRuntimeRelatedTool.h */,
 				963D7A231B650A77DDFEA3A505FC5788 /* KNVUNDRuntimeRelatedTool.m */,
 			);
-			name = "Runtime Related";
 			path = "Runtime Related";
 			sourceTree = "<group>";
 		};
@@ -3595,7 +3554,6 @@
 				D1134598B7EBB0AD157E711C34C982AD /* SKPSMTPMessage.m */,
 				58324AA6C6CD50C42B6824B789E043C9 /* Support Files */,
 			);
-			name = skpsmtpmessage;
 			path = skpsmtpmessage;
 			sourceTree = "<group>";
 		};
@@ -3613,7 +3571,6 @@
 				8E3504D82BDA30E02237E6D97C35C260 /* KNVUNDETVTagButtonRelatedBaseModel.h */,
 				F204D3934C2D6F94150E64C4E9C3C9E3 /* KNVUNDETVTagButtonRelatedBaseModel.m */,
 			);
-			name = "Tag Button Related ";
 			path = "Tag Button Related ";
 			sourceTree = "<group>";
 		};
@@ -3632,7 +3589,6 @@
 				78C32BA1B45C842A03518DBA7481625D /* NSMutableAttributedString+KNVUNDBasic.h */,
 				D053432074C7F2030CE82265D165B7BB /* NSMutableAttributedString+KNVUNDBasic.m */,
 			);
-			name = NSMutableAttributeString;
 			path = NSMutableAttributeString;
 			sourceTree = "<group>";
 		};
@@ -3667,7 +3623,6 @@
 				8DC2EF1B00EED657CC2C3D2DED61FB0C /* UIViewController+TargetViewController.m */,
 				9CD4E2B608E5C116C63D741C5DDD3911 /* Support Files */,
 			);
-			name = MZFormSheetPresentationController;
 			path = MZFormSheetPresentationController;
 			sourceTree = "<group>";
 		};
@@ -3719,7 +3674,6 @@
 				0DC3A8A9CB4DF53D09343062188CD79D /* Helper */,
 				84F4E1AD82B3513C67D33844420E8972 /* Model */,
 			);
-			name = "Formated String Related";
 			path = "Formated String Related";
 			sourceTree = "<group>";
 		};
@@ -3736,8 +3690,8 @@
 			children = (
 				896ACBBC09938186BCF92ECC05FD3DA3 /* KNVUNDBaseModel.h */,
 				8ADB24D069A27AE54A750113EB651212 /* KNVUNDBaseModel.m */,
+				FA372F1659D913EF6BBAAF853826E48D /* Observer */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -3819,7 +3773,6 @@
 				F44906B48F1088555F589426C295F250 /* NSValue+Expecta.m */,
 				7B4B5613A6A7DFC48951934FACF91A93 /* Support Files */,
 			);
-			name = Expecta;
 			path = Expecta;
 			sourceTree = "<group>";
 		};
@@ -3829,7 +3782,6 @@
 				A2E0882975E749C51BAFE69519A21C94 /* Categories */,
 				464F3DBEC6480CB7C6DFD7D8A43135B9 /* Core Animation */,
 				DD10662E11B2EE14274AAA1C470CD4AC /* Models */,
-				FA372F1659D913EF6BBAAF853826E48D /* Observer */,
 				8DB3A4B46E8580D1C6E1E153AA611530 /* UIKits */,
 			);
 			name = "Base Elements";
@@ -3842,7 +3794,6 @@
 				8B174EC4A066B5192521E63D9726C376 /* KNVUNDLogRelatedHelper.h */,
 				0C7A5A3A231D5119D59CB7F1DBDF3A7A /* KNVUNDLogRelatedHelper.m */,
 			);
-			name = "Log Related";
 			path = "Log Related";
 			sourceTree = "<group>";
 		};
@@ -3852,7 +3803,6 @@
 				A5DF3B5655BFC43C97B6266328D942CF /* NSNumber+KNVUNDBasic.h */,
 				4463C5B2D90FC80CC9767CBB2B5F2088 /* NSNumber+KNVUNDBasic.m */,
 			);
-			name = NSNumber;
 			path = NSNumber;
 			sourceTree = "<group>";
 		};
@@ -3866,7 +3816,6 @@
 				D9EF903E4464750A5952CB287C10F3E0 /* NSObject+KNVUNDPropertyModifyRelated.h */,
 				34BFA47E83063F68679834D8CCDB273F /* NSObject+KNVUNDPropertyModifyRelated.m */,
 			);
-			name = NSObject;
 			path = NSObject;
 			sourceTree = "<group>";
 		};
@@ -3878,7 +3827,6 @@
 				4266FB974C79977BA08A5ADF94856303 /* Models */,
 				282BAF634079A0901358826B62BDAA83 /* Views */,
 			);
-			name = "Expending Table View Related";
 			path = "Expending Table View Related";
 			sourceTree = "<group>";
 		};
@@ -3902,7 +3850,6 @@
 				23742DA81BE6A1F970F40E1396BC2F0F /* UITableViewCell+KNVUNDBasic.h */,
 				8E635F158D9399BBB2BBFF2F9585ECE4 /* UITableViewCell+KNVUNDBasic.m */,
 			);
-			name = UITableViewCell;
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
@@ -3914,7 +3861,6 @@
 				7C5EBE138A6541D0657CAF2E4F91A8C6 /* KNVUNDImageRelatedTool+ImageModifyRelated.h */,
 				F0A8D24CB1300229229A736B9D52990A /* KNVUNDImageRelatedTool+ImageModifyRelated.m */,
 			);
-			name = "Image Related";
 			path = "Image Related";
 			sourceTree = "<group>";
 		};
@@ -3966,7 +3912,6 @@
 				D7DB11B7747781C4FE06B12EC476FEC6 /* XCTestCase+Specta.m */,
 				0AD1B8A9B60BA3C9A3325C7AA9EAD302 /* Support Files */,
 			);
-			name = Specta;
 			path = Specta;
 			sourceTree = "<group>";
 		};
@@ -3977,7 +3922,6 @@
 				B75C6BA9AB1F112266CAAC87EC3D82A0 /* KNVUNDObservable.m */,
 				6F48E57FC32DF46C5BCFBCC7E23215D4 /* Invocation */,
 			);
-			name = Observer;
 			path = Observer;
 			sourceTree = "<group>";
 		};
@@ -6630,8 +6574,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
