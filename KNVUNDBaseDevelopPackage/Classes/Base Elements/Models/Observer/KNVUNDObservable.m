@@ -17,11 +17,6 @@
 
 @implementation KNVUNDObservable
 
-- (BOOL)shouldShowRelatedLog
-{
-    return YES;
-}
-
 #pragma mark - Getters && Setters
 #pragma mark - Getters
 - (BOOL)isNotifying
