@@ -10,14 +10,17 @@
 @interface KNVUNDObservable()
 
 @property (strong, nonatomic) NSHashTable *observers;
-@property (strong, nonatomic) NSHashTable *pendingAdd;
-@property (strong, nonatomic) NSHashTable *pendingRemove;
 @property (strong, nonatomic) NSHashTable *invocationHashTable; /// We are using this to tracing if the Observer is notifying or not...
 @property (readonly) BOOL isNotifying;
 
 @end
 
 @implementation KNVUNDObservable
+
+- (BOOL)shouldShowRelatedLog
+{
+    return YES;
+}
 
 #pragma mark - Getters && Setters
 #pragma mark - Getters
@@ -31,8 +34,6 @@
 {
     if (self = [super init]) {
         self.observers = [NSHashTable weakObjectsHashTable];
-        self.pendingAdd = [NSHashTable weakObjectsHashTable];
-        self.pendingRemove = [NSHashTable weakObjectsHashTable];
         self.invocationHashTable = [NSHashTable weakObjectsHashTable];
     }
     return self;
@@ -41,50 +42,41 @@
 #pragma mark - General Methods
 - (void)addObserver:(id<NSObject>)observer
 {
-    if (self.isNotifying) {
-        [self.pendingAdd addObject:observer];
-    } else {
-        [self checkAndAddObserver:observer];
-    }
+    NSUInteger countBeforeChange = [self.observers count];
+    NSHashTable *tempHashTable = [self.observers copy];
+    [tempHashTable addObject:observer];
+    self.observers = tempHashTable;
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Added new Observer (From %@ to %@)",
+     @(countBeforeChange), @([self.observers count])];
 }
 
 - (void)removeObserver:(id<NSObject>)observer
 {
-    if (self.isNotifying) {
-        [self.pendingRemove addObject:observer];
-    } else {
-        [self.observers removeObject:observer];
-    }
+    NSUInteger countBeforeChange = [self.observers count];
+    NSHashTable *tempHashTable = [self.observers copy];
+    [tempHashTable removeObject:observer];
+    self.observers = tempHashTable;
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                     andLogStringFormat:@"Removed new Observer (From %@ to %@)",
+     @(countBeforeChange), @([self.observers count])];
 }
 
 - (void)notifyObservers:(KNVUNDInvocation *)invocation
 {
-    [self.invocationHashTable addObject:invocation];\
+    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                           andLogString:@"Notifying new Observer"];
+    [self.invocationHashTable addObject:invocation];
     for (id<NSObject> observer in self.observers) {
-        if (![self.pendingRemove containsObject:observer] && [observer respondsToSelector:[invocation selector]]) {
+        if ([observer respondsToSelector:[invocation selector]]) {
             [invocation setTarget:observer];
             [invocation invoke];
         }
     }
     [self.invocationHashTable removeObject:invocation];
-    [self commitPending];
 }
 
 #pragma mark - Support Methods
-- (void)commitPending
-{
-    if (!self.isNotifying) {
-        for (id <NSObject> pendingAddObserver in self.pendingAdd.copy) {
-            [self checkAndAddObserver:pendingAddObserver];
-            [self.pendingAdd removeObject:pendingAddObserver];
-        }
-        for (id <NSObject> pendingRemoveObserver in self.pendingRemove.copy) {
-            [self.observers removeObject:pendingRemoveObserver];
-            [self.pendingRemove removeObject:pendingRemoveObserver];
-        }
-    }
-}
-
 - (void)checkAndAddObserver:(id<NSObject>)observer
 {
     if (![self.observers containsObject:observer]) {
