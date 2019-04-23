@@ -16,7 +16,8 @@
     NSString *objectDescriptionString = ((KNVUNDFSRToolHTMLLikeStringModel *)object).description;
     
     if (![selfDescriptionString isEqual:objectDescriptionString]) {
-        [self performConsoleLogWithLogStringFormat:@"Description is not Match:\nSelf Model    :%@\nExpected Model:%@",
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Description is not Match:\nSelf Model    :%@\nExpected Model:%@",
          selfDescriptionString,
          objectDescriptionString];
         return NO;
