@@ -407,6 +407,10 @@
     _expendingStatusWillChange = expendingStatusWillChangeBlock;
 }
 
+- (BOOL)canToggleExpendedStatus {
+    return true;
+}
+
 - (void)toggleExpendedStatus
 {
     NSArray *displayingDescendants = [self getDisplayingDescendants];

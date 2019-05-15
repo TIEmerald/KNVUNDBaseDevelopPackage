@@ -92,6 +92,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 - (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusOnChangeBlock;
 - (void)setExpendingStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock;
 - (void)toggleExpendedStatus;
+- (BOOL)canToggleExpendedStatus;
 
 /////// Support Methods
 @property (readonly) NSIndexPath *currentDisplayingIndexPath;
