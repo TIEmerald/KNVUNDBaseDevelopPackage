@@ -21,8 +21,7 @@ typedef enum : NSUInteger {
 
 @implementation KNVUNDLotsOfPropertiesModel
 
-int const KNVUNDLotsOfPropertiesModel_PropertiesCount = 100;
-int const KNVUNDLotsOfPropertiesModel_IgnoringPropertiesCount = 100;
+int const KNVUNDLotsOfPropertiesModel_PropertiesCount = 300;
 NSString * const KNVUNDLotsOfPropertiesModel_PropertiesFormat = @"property_%d";
 
 #pragma mark - Overrided Methods
@@ -31,7 +30,7 @@ NSString * const KNVUNDLotsOfPropertiesModel_PropertiesFormat = @"property_%d";
     NSMutableDictionary *tempDictionary = [NSMutableDictionary new];
     for (int i = 0; i < KNVUNDLotsOfPropertiesModel_PropertiesCount; i += 1) {
         NSString *propertyString = [NSString stringWithFormat:KNVUNDLotsOfPropertiesModel_PropertiesFormat, i];
-        [tempDictionary setObject:@[propertyString]
+        [tempDictionary setObject:@[propertyString,propertyString,propertyString,propertyString,propertyString]
                            forKey:propertyString];
     }
     return [NSDictionary dictionaryWithDictionary:tempDictionary];
@@ -39,7 +38,7 @@ NSString * const KNVUNDLotsOfPropertiesModel_PropertiesFormat = @"property_%d";
 
 + (NSDictionary *)objectObjectTypePropertNameMappingDictionary
 {
-    return @{@"":@[@""]};
+    return @{@"":@[@""],@"NSString":@[@"NSString"],@"NSNumber":@[@"NSNumber"],@"NSDecimalNumber":@[@"NSDecimalNumber"],@"KNVUNDLotsOfPropertiesModel":@[@"KNVUNDLotsOfPropertiesModel"]};
 }
 
 + (BOOL)supportObjectPropertyType:(KNVUNDRuntimeRelatedTool_PropertyType)objectPropertyType

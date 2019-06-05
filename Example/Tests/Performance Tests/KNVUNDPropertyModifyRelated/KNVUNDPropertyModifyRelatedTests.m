@@ -19,10 +19,20 @@ describe(@"NSObject_KNVUNDPropertyModifyRelated", ^{
         KNVUNDLotsOfPropertiesModel *testingModel = [[KNVUNDLotsOfPropertiesModel alloc] initWithPropertyTypeArray:usingPropertyTypeArray];
         KNVUNDLotsOfPropertiesModel *convertedModel = [[KNVUNDLotsOfPropertiesModel alloc] initWithPropertyTypeArray:usingPropertyTypeArray];
         NSDate *beforeStartTime = [NSDate date];
-        [testingModel updateObejctBasedOnSelf:convertedModel avoidObjectPropertyNames:[KNVUNDLotsOfPropertiesModel generatePropertiesArrayWithCount:10]];
+        for (int i = 0; i < 10; i += 1) {
+            [testingModel updateObejctBasedOnSelf:convertedModel avoidObjectPropertyNames:[KNVUNDLotsOfPropertiesModel generatePropertiesArrayWithCount:100]];
+        }
         NSTimeInterval spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
-        NSLog(@"Time Spent: %f",spendingTime);
-        expect(spendingTime<1).to.beTruthy();
+        NSLog(@"Time Spent for 100 ignore Properties: %f",spendingTime); /// Right now it's around 7s for 10 updating process for objects with 300 properties.
+        expect(spendingTime<8).to.beTruthy();
+        
+        beforeStartTime = [NSDate date];
+        for (int i = 0; i < 10; i += 1) {
+            [testingModel updateObejctBasedOnSelf:convertedModel];
+        }
+        spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
+        NSLog(@"Time Spent for without ignore Properties: %f",spendingTime); /// Right now it's around 7.5s for 10 updating process for objects with 300 properties.
+        expect(spendingTime<8).to.beTruthy();
     });
     
     it(@"updateObejctBasedOnSelf", ^{
