@@ -206,9 +206,9 @@
 - (BOOL)isSelfPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)selfPropertyDetails isValidWithObjectPropertyDetails:(KNVUNDRRTPropertyDetailsModel *)objectPropertyDetails
 {
     [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                     andLogStringFormat:(@"Checking Property from Self: %@\n And Property from Object: %@.",
+                     andLogStringFormat:@"Checking Property from Self: %@\n And Property from Object: %@.",
                                          selfPropertyDetails.debugDescription,
-                                         objectPropertyDetails.debugDescription)];
+                                         objectPropertyDetails.debugDescription];
     if (selfPropertyDetails.propertyType != objectPropertyDetails.propertyType) {
         [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
                                andLogString:@"Invalid, The property types are not matching"];

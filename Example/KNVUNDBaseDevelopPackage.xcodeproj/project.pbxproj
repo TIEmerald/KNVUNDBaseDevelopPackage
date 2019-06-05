@@ -11,6 +11,9 @@
 		204722D62064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204722D52064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m */; };
 		204722DA2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204722D82064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m */; };
 		204722DB2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204722D92064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib */; };
+		20680D2B22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2A22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m */; };
+		20680D2F22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */; };
+		20680D3022A79E3A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */; };
 		20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */; };
 		20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */; };
 		33C0B25C8AE86D27B1D8765A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308B578D502E122EE3D3A58A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */; };
@@ -49,6 +52,9 @@
 		204722D72064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVRelatedTagButtonCell.h; sourceTree = "<group>"; };
 		204722D82064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVRelatedTagButtonCell.m; sourceTree = "<group>"; };
 		204722D92064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNVUNDETVRelatedTagButtonCell.xib; sourceTree = "<group>"; };
+		20680D2A22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDPropertyModifyRelatedTests.m; sourceTree = "<group>"; };
+		20680D2D22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDLotsOfPropertiesModel.h; sourceTree = "<group>"; };
+		20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDLotsOfPropertiesModel.m; sourceTree = "<group>"; };
 		20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFormatedStringRelatedToolTests.m; sourceTree = "<group>"; };
 		20D66BB61FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h"; sourceTree = "<group>"; };
 		20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m"; sourceTree = "<group>"; };
@@ -119,6 +125,23 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		2018191922A74AD200336150 /* Performance Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2018191A22A74AF000336150 /* KNVUNDPropertyModifyRelated */,
+			);
+			path = "Performance Tests";
+			sourceTree = "<group>";
+		};
+		2018191A22A74AF000336150 /* KNVUNDPropertyModifyRelated */ = {
+			isa = PBXGroup;
+			children = (
+				20680D2C22A799030014CAF4 /* Models */,
+				20680D2A22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m */,
+			);
+			path = KNVUNDPropertyModifyRelated;
+			sourceTree = "<group>";
+		};
 		204722D02064B4F00031660C /* Bridging Folder */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +176,15 @@
 				204722D92064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		20680D2C22A799030014CAF4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20680D2D22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.h */,
+				20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		20C9FB0820229375001293D3 /* KNVUNDImageRelatedTool */ = {
@@ -246,6 +278,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				2018191922A74AD200336150 /* Performance Tests */,
 				20125CBF1FE219730006A70C /* Tools */,
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -350,6 +383,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -516,6 +550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				204722D62064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m in Sources */,
+				20680D3022A79E3A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */,
 				6003F59E195388D20070C39A /* KNVUNDAppDelegate.m in Sources */,
 				204722DA2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m in Sources */,
 				6003F5A7195388D20070C39A /* KNVUNDViewController.m in Sources */,
@@ -528,7 +563,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */,
+				20680D2F22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				20680D2B22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m in Sources */,
 				20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */,
 				20125CC11FE219730006A70C /* KNVUNDImageRelatedToolTests.m in Sources */,
 			);
