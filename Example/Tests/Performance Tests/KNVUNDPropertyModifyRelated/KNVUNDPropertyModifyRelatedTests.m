@@ -23,7 +23,7 @@ describe(@"NSObject_KNVUNDPropertyModifyRelated", ^{
             [testingModel updateObejctBasedOnSelf:convertedModel avoidObjectPropertyNames:[KNVUNDLotsOfPropertiesModel generatePropertiesArrayWithCount:100]];
         }
         NSTimeInterval spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
-        NSLog(@"Time Spent for 100 ignore Properties: %f",spendingTime); /// Right now it's around 7s for 10 updating process for objects with 300 properties.
+        NSLog(@"Update Object logic, Time Spent for 100 ignore Properties: %f",spendingTime); /// Right now it's around 7s for 10 updating process for objects with 300 properties.
         expect(spendingTime<8).to.beTruthy();
         
         beforeStartTime = [NSDate date];
@@ -31,7 +31,23 @@ describe(@"NSObject_KNVUNDPropertyModifyRelated", ^{
             [testingModel updateObejctBasedOnSelf:convertedModel];
         }
         spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
-        NSLog(@"Time Spent for without ignore Properties: %f",spendingTime); /// Right now it's around 7.5s for 10 updating process for objects with 300 properties.
+        NSLog(@"Update Object logic, Time Spent for without ignore Properties: %f",spendingTime); /// Right now it's around 7.5s for 10 updating process for objects with 300 properties.
+        expect(spendingTime<8).to.beTruthy();
+        
+        beforeStartTime = [NSDate date];
+        for (int i = 0; i < 10; i += 1) {
+            [testingModel updateSelfWithObject:convertedModel avoidObjectPropertyNames:[KNVUNDLotsOfPropertiesModel generatePropertiesArrayWithCount:100]];
+        }
+        spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
+        NSLog(@"Update Self logic, Time Spent for 100 ignore Properties: %f",spendingTime); /// Right now it's around 7s for 10 updating process for objects with 300 properties.
+        expect(spendingTime<8).to.beTruthy();
+        
+        beforeStartTime = [NSDate date];
+        for (int i = 0; i < 10; i += 1) {
+            [testingModel updateSelfWithObject:convertedModel];
+        }
+        spendingTime = [[NSDate date] timeIntervalSinceDate:beforeStartTime];
+        NSLog(@"Update Self logic, Time Spent for without ignore Properties: %f",spendingTime); /// Right now it's around 7.5s for 10 updating process for objects with 300 properties.
         expect(spendingTime<8).to.beTruthy();
     });
     
