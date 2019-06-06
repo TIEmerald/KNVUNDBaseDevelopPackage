@@ -29,22 +29,26 @@
 @implementation KNVUNDRuntimeRelatedTool
 
 #pragma mark - Property Related Methodss
++ (KNVUNDRRTPropertyDetailsModel *)getPropertyDetailsModelFromObject:(id)object withPropertyName:(NSString *)propertyName
+{
+    objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
+    NSString *existedPropertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
+    NSString *attributeString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
+    id objectPropertyValue = [object valueForKey:(NSString *)propertyName];
+    
+    return [self generatePropertyDetailsModelWithValue:objectPropertyValue
+                                          propertyName:existedPropertyName
+                                    andAttributeString:attributeString];
+}
+
 + (void)loopThroughAllPropertiesOfObject:(id)object withLoopBlock:(void(^)(KNVUNDRRTPropertyDetailsModel *_Nonnull detailsModel, BOOL *stopLoop))loopBlock
 {
     [self loopThroughAllPropertiesOfObject:object
                withAttributStringLoopBlock:^(NSString * _Nonnull propertyName, NSString * _Nonnull attributeString, id  _Nullable value, BOOL * _Nonnull stopLoop) {
-                   NSString *typeName;
-                   NSArray *attributes = [attributeString componentsSeparatedByString:@","];
-                   KNVUNDRuntimeRelatedTool_PropertyType propertyType = [self getPropertyTypeFromPropertyAttributeString:attributes[0]
-                                                                                                        withDetailedName:&typeName];
                    if (loopBlock) {
-                       KNVUNDRRTPropertyDetailsModel *usingDetailsModel = [KNVUNDRRTPropertyDetailsModel new];
-                       usingDetailsModel.propertyName = propertyName;
-                       usingDetailsModel.propertyType = propertyType;
-                       usingDetailsModel.typeName = typeName;
-                       usingDetailsModel.value = value;
-                       [self updatePropertyDetailsModel:usingDetailsModel
-                                   withAttributeStrings:attributes];
+                       KNVUNDRRTPropertyDetailsModel *usingDetailsModel = [self generatePropertyDetailsModelWithValue:value
+                                                                                                         propertyName:propertyName
+                                                                                                   andAttributeString:attributeString];
                        loopBlock(usingDetailsModel,
                                  stopLoop);
                    }
@@ -79,6 +83,26 @@
 }
 
 #pragma mark Support Methods
++ (KNVUNDRRTPropertyDetailsModel *_Nullable)generatePropertyDetailsModelWithValue:(id)value propertyName:(NSString *)propertyName andAttributeString:(NSString *)attributeString
+{
+    if (propertyName.length == 0) { /// Without Property Name means the property doesn't existed
+        return nil;
+    }
+    
+    NSString *typeName;
+    NSArray *attributes = [attributeString componentsSeparatedByString:@","];
+    KNVUNDRuntimeRelatedTool_PropertyType propertyType = [self getPropertyTypeFromPropertyAttributeString:attributes[0]
+                                                                                         withDetailedName:&typeName];
+    KNVUNDRRTPropertyDetailsModel *usingDetailsModel = [KNVUNDRRTPropertyDetailsModel new];
+    usingDetailsModel.propertyName = propertyName;
+    usingDetailsModel.propertyType = propertyType;
+    usingDetailsModel.typeName = typeName;
+    usingDetailsModel.value = value;
+    [self updatePropertyDetailsModel:usingDetailsModel
+                withAttributeStrings:attributes];
+    return usingDetailsModel;
+}
+
 /// Property Attributs Example
 //// Documentation: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100-SW1
 //        Printing description of propertyDict:
@@ -172,5 +196,6 @@ char const KNVUNDRuntimeRelatedTool_PropertyAttributeIdentifier_Selector = ':';
         return [item isEqualToString:@"R"];
     }];
 }
+
 
 @end
