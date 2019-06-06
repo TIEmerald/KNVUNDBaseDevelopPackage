@@ -14,6 +14,7 @@
 		20680D2B22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2A22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m */; };
 		20680D2F22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */; };
 		20680D3022A79E3A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */; };
+		206E7A7222A9D53100CAC162 /* KNVUNDPropertyConvertingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 206E7A7022A9D53100CAC162 /* KNVUNDPropertyConvertingModel.m */; };
 		20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */; };
 		20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */; };
 		33C0B25C8AE86D27B1D8765A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308B578D502E122EE3D3A58A /* Pods_KNVUNDBaseDevelopPackage_Tests.framework */; };
@@ -55,6 +56,8 @@
 		20680D2A22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDPropertyModifyRelatedTests.m; sourceTree = "<group>"; };
 		20680D2D22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDLotsOfPropertiesModel.h; sourceTree = "<group>"; };
 		20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDLotsOfPropertiesModel.m; sourceTree = "<group>"; };
+		206E7A6F22A9D53100CAC162 /* KNVUNDPropertyConvertingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDPropertyConvertingModel.h; sourceTree = "<group>"; };
+		206E7A7022A9D53100CAC162 /* KNVUNDPropertyConvertingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDPropertyConvertingModel.m; sourceTree = "<group>"; };
 		20D66BB11FFDF48D00AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDFormatedStringRelatedToolTests.m; sourceTree = "<group>"; };
 		20D66BB61FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.h"; sourceTree = "<group>"; };
 		20D66BB71FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m"; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 			children = (
 				20680D2D22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.h */,
 				20680D2E22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m */,
+				206E7A6F22A9D53100CAC162 /* KNVUNDPropertyConvertingModel.h */,
+				206E7A7022A9D53100CAC162 /* KNVUNDPropertyConvertingModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 			files = (
 				20D66BB31FFDF4D000AB8E99 /* KNVUNDFormatedStringRelatedToolTests.m in Sources */,
 				20680D2F22A7994A0014CAF4 /* KNVUNDLotsOfPropertiesModel.m in Sources */,
+				206E7A7222A9D53100CAC162 /* KNVUNDPropertyConvertingModel.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 				20680D2B22A798C80014CAF4 /* KNVUNDPropertyModifyRelatedTests.m in Sources */,
 				20D66BB81FFDF6BE00AB8E99 /* KNVUNDFSRToolHTMLLikeStringModel+TestRelated.m in Sources */,

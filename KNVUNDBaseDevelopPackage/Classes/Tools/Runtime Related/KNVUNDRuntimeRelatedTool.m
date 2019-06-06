@@ -32,6 +32,9 @@
 + (KNVUNDRRTPropertyDetailsModel *)getPropertyDetailsModelFromObject:(id)object withPropertyName:(NSString *)propertyName
 {
     objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
+    if (property == NULL) {
+        return nil;
+    }
     NSString *existedPropertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
     NSString *attributeString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
     id objectPropertyValue = [object valueForKey:(NSString *)propertyName];

@@ -9,6 +9,7 @@
 // https://github.com/Specta/Specta
 
 #import "KNVUNDLotsOfPropertiesModel.h"
+#import "KNVUNDPropertyConvertingModel.h"
 
 SpecBegin(KNVUNDPropertyModifyRelated)
 
@@ -67,6 +68,22 @@ describe(@"NSObject_KNVUNDPropertyModifyRelated", ^{
         KNVUNDLotsOfPropertiesModel *convertedModel = [[KNVUNDLotsOfPropertiesModel alloc] initWithPropertyTypeArray:usingPropertyTypeArray];
         [testingModel updateSelfWithObject:convertedModel];
         expect([testingModel isEqual:convertedModel]).to.beTruthy();
+    });
+    
+    it(@"property missing testing", ^{
+        KNVUNDPropertyConvertingModel *modelA = [KNVUNDPropertyConvertingModel new];
+        KNVUNDPropertyConvertedModel *modelB = [KNVUNDPropertyConvertedModel new];
+        [modelA updateSelfWithObject:modelB];
+        expect([modelA.property_A_1 isEqual:modelB.property_A]).to.beTruthy();
+        expect([modelA.property_A_2 isEqual:modelB.property_A]).to.beTruthy();
+        expect([modelA.property_C_1 isEqual:modelB.property_C]).to.beTruthy();
+        
+        modelA = [KNVUNDPropertyConvertingModel new];
+        modelB = [KNVUNDPropertyConvertedModel new];
+        [modelA updateObejctBasedOnSelf:modelB];
+        expect([modelB.property_A isEqual:modelA.property_A_2]).to.beTruthy();
+        expect([modelB.property_C isEqual:modelA.property_C_1]).to.beTruthy();
+        
     });
 });
 
