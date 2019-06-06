@@ -42,6 +42,7 @@ typedef enum : NSUInteger {
 @interface KNVUNDRuntimeRelatedTool : KNVUNDBaseModel
 
 #pragma mark - Property Related Methods
++ (KNVUNDRRTPropertyDetailsModel *_Nullable)getPropertyDetailsModelFromObject:(id _Nonnull)object withPropertyName:(NSString *_Nonnull)propertyName;
 + (void)loopThroughAllPropertiesOfObject:(id _Nonnull)object withLoopBlock:(void(^_Nonnull)(KNVUNDRRTPropertyDetailsModel *_Nonnull detailsModel, BOOL *_Nullable stopLoop))loopBlock;
 + (void)loopThroughAllPropertiesOfObject:(id _Nonnull)object withAttributStringLoopBlock:(void(^_Nonnull)(NSString *_Nonnull propertyName, NSString *_Nonnull attributeString,  id _Nullable value, BOOL *_Nonnull stopLoop))loopBlock;
 
