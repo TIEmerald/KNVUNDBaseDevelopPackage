@@ -9,7 +9,6 @@
 
 // Third Party Packages
 #import <RMessage/RMessage.h>
-#import <TSMessages/TSMessage.h>
 #import <MZFormSheetPresentationController/MZFormSheetPresentationViewController.h>
 
 #pragma mark -
@@ -78,11 +77,6 @@ typedef enum KNVUNDBaseVCBannerMessageType : NSInteger{
 }KNVUNDBaseVCBannerMessageType;
 
 typedef enum : NSUInteger {
-    KNVUNDBaseVCBannerTool_RMessage,
-    KNVUNDBaseVCBannerTool_TMessage
-} KNVUNDBaseVCBannerTool;
-
-typedef enum : NSUInteger {
     KNVUNDBaseVCBannerPosition_Top,
     KNVUNDBaseVCBannerPosition_Bottom
 } KNVUNDBaseVCBannerPosition;
@@ -101,7 +95,6 @@ typedef enum : NSUInteger {
  */
 @property (weak, nonatomic) UIViewController *bannerMessageDisplayingVC;
 @property (nonatomic) NSTimeInterval bannerShowingTime; /// Default 3.0s
-@property (readonly) KNVUNDBaseVCBannerTool bannerToolType; /// Decide which third party package we will using for bannoer.
 @property (readonly) KNVUNDBaseVCBannerPosition bannerPosition; /// By default it will show up in the bottom.
 
 

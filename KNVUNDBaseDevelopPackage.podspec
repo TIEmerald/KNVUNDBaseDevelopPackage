@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KNVUNDBaseDevelopPackage'
-  s.version          = '0.3.6'
+  s.version          = '0.3.7'
   s.summary          = 'This is a general support pods library for Abacus Solution Group Pty Ltd'
 
 # This description is used to generate tags and improve search results.
@@ -73,7 +73,6 @@ Pod::Spec.new do |s|
     s.dependency 'ZXingObjC'
     s.dependency 'MZFormSheetPresentationController'
     s.dependency 'RMessage'
-    s.dependency 'TSMessages'
     s.dependency 'LinqToObjectiveC'
     s.dependency 'skpsmtpmessage'
     s.dependency 'SVProgressHUD'
