@@ -9,6 +9,5 @@ target 'KNVUNDBaseDevelopPackage_Tests' do
     pod 'KNVUNDBaseDevelopPackage', :path => '../'
     pod 'Specta'
     pod 'Expecta'
-    pod 'FBSnapshotTestCase'
     pod 'Expecta+Snapshots'
 end
