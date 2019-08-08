@@ -60,6 +60,7 @@ typedef void(^KNVUNDAlertControllerSettingCompleteBlock)(void);
 
 @property (nonatomic) UIAlertControllerStyle alertStyle;
 @property (nonatomic) BOOL shouldShowUpWithAnimation;
+@property (nonatomic) BOOL notTrackingWithResentingViewController; /// If you set this value to YES, new presenting View Controller to current View Controller won't dismiss previous Alert Message Automatically.
 @property (nonatomic) KNVUNDAlertControllerSettingCompleteBlock didShowUpBlock;
 
 #pragma mark - Generator

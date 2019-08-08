@@ -315,12 +315,18 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelfWithBaseViewController:self];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
-                       contentViewController:alertControlelr
-               viewControllerGeneratingBlock:^UIViewController *{
-                   return alertControlelr;
-               }
-                     andPresentCompleteBlock:alertSettingModel.didShowUpBlock];
+        if (alertSettingModel.notTrackingWithResentingViewController) {
+            [self presentViewController:alertControlelr
+                               animated:alertSettingModel.shouldShowUpWithAnimation
+                             completion:alertSettingModel.didShowUpBlock];
+        } else {
+            [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
+                           contentViewController:alertControlelr
+                   viewControllerGeneratingBlock:^UIViewController *{
+                       return alertControlelr;
+                   }
+                         andPresentCompleteBlock:alertSettingModel.didShowUpBlock];
+        }
     }];
 }
 
