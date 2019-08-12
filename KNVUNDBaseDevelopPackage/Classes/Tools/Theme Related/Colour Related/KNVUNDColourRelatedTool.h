@@ -17,4 +17,15 @@
  */
 + (UIColor *)colorWithHexString: (NSString *) hexString;
 
+/*!
+ * @discussion This method will tell user if two color is similar to each other or not, we will only compare RBG with 3D distence for now..
+ * @param colorA The first color you input
+ * @param colorB The second color you input
+ * @param tolerance The accepted difference we could accept to treat these two input colors are similar
+ * @return BOOL if the two parameter colors look similar or not.
+ */
++ (BOOL)checkColourSimilarityBetween:(UIColor *)colorA and:(UIColor *)colorB withTolerance:(CGFloat)tolerance;
++ (UIColor *)getDifferentColorFrom:(UIColor *)fromColor withTolerance:(CGFloat)tolerance;
+
+
 @end

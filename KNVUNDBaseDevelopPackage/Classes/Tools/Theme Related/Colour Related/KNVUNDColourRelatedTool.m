@@ -7,6 +7,9 @@
 
 #import "KNVUNDColourRelatedTool.h"
 
+/// Libraries
+#include "math.h"
+
 @implementation KNVUNDColourRelatedTool
 
 #pragma mark - General Methods
@@ -47,6 +50,25 @@
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }
 
++ (BOOL)checkColourSimilarityBetween:(UIColor *)colorA and:(UIColor *)colorb withTolerance:(CGFloat)tolerance
+{
+    CGFloat r1, g1, b1, a1, r2, g2, b2, a2;
+    [colorA getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
+    [colorb getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
+    return powf((powf(r1 - r2, 2) + powf(g1 - g2, 2) + powf(b1 - b2, 2)), 0.5) <= tolerance;
+}
+
++ (UIColor *)getDifferentColorFrom:(UIColor *)fromColor withTolerance:(CGFloat)tolerance
+{
+    CGFloat usingDimensionDifference = powf(MAX((powf(tolerance, 2) / 3), 0.1), 0.5);
+    CGFloat r0, g0, b0, a0;
+    [fromColor getRed:&r0 green:&g0 blue:&b0 alpha:&a0];
+    CGFloat rNew = r0 > usingDimensionDifference ? r0 - usingDimensionDifference : r0 + usingDimensionDifference;
+    CGFloat gNew = g0 > usingDimensionDifference ? g0 - usingDimensionDifference : g0 + usingDimensionDifference;
+    CGFloat bNew = b0 > usingDimensionDifference ? b0 - usingDimensionDifference : b0 + usingDimensionDifference;
+    return [UIColor colorWithRed:rNew green:gNew blue:bNew alpha:a0];
+}
+
 #pragma mark Support Methods
 + (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length
 {
@@ -56,6 +78,5 @@
     [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
     return hexComponent / 255.0;
 }
-
 
 @end
