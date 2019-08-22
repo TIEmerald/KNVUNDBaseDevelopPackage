@@ -110,6 +110,10 @@
 		1F49BCA46AFC5BC359FAB42792E0B49A /* NSObject+KNVUNDLogRelated.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB3D7A85ACF7F9EDF7D8EEC6881644F /* NSObject+KNVUNDLogRelated.m */; };
 		1F797D709CDC9F1304BD345D8649B98E /* ZXAztecEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D32785699CA74D130BCCC052A1605D9C /* ZXAztecEncoder.m */; };
 		1FA96A711A7BA79F120375A70D6D5258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124B9B3724DF4148487F1645D7A024BE /* Foundation.framework */; };
+		2015553D230E2711002917D2 /* UIAlertController+Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 2015553B230E2711002917D2 /* UIAlertController+Window.h */; };
+		2015553E230E2711002917D2 /* UIAlertController+Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 2015553B230E2711002917D2 /* UIAlertController+Window.h */; };
+		2015553F230E2711002917D2 /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 2015553C230E2711002917D2 /* UIAlertController+Window.m */; };
+		20155540230E2711002917D2 /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 2015553C230E2711002917D2 /* UIAlertController+Window.m */; };
 		20B234B5044A53FEF13F8ACBE21BAE4A /* ZXBizcardResultParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3AA3A0EC01ED21910F8D0C5514524F /* ZXBizcardResultParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20C622A28985745B4CA9C8DE0549FCC4 /* ZXDataMatrixVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A58EE97C081F2FA2783D22E202E2894 /* ZXDataMatrixVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20CFF72D1825985D86869B727D38857E /* ZXITFWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F0B032FC6F6C77D4DD9D1191526D7 /* ZXITFWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1215,6 +1219,8 @@
 		1EE3D8546E37AF8BC19E12314A0512FE /* ZXHybridBinarizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXHybridBinarizer.h; path = ZXingObjC/common/ZXHybridBinarizer.h; sourceTree = "<group>"; };
 		1F17C4055C68049AA818BB7E13501E20 /* ZXQRCodeMatrixUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeMatrixUtil.m; path = ZXingObjC/qrcode/encoder/ZXQRCodeMatrixUtil.m; sourceTree = "<group>"; };
 		1F8BB4153C0A412736367E434F6AC964 /* KNVUNDInvocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDInvocation.h; sourceTree = "<group>"; };
+		2015553B230E2711002917D2 /* UIAlertController+Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Window.h"; sourceTree = "<group>"; };
+		2015553C230E2711002917D2 /* UIAlertController+Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Window.m"; sourceTree = "<group>"; };
 		20A44664F5CAC1F20792620033D8B955 /* MZFormSheetPresentationViewControllerAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZFormSheetPresentationViewControllerAnimator.m; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerAnimator.m; sourceTree = "<group>"; };
 		20AB46601D3D70202B3AE8FBBC82001F /* ZXEmailDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEmailDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXEmailDoCoMoResultParser.m; sourceTree = "<group>"; };
 		20EBCCFEF542FD5912A7A78431519711 /* ZXDataMatrixBase256Encoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixBase256Encoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixBase256Encoder.h; sourceTree = "<group>"; };
@@ -2301,6 +2307,15 @@
 			path = KNVUNDBaseDevelopPackage/Classes/Tools;
 			sourceTree = "<group>";
 		};
+		2015553A230E2711002917D2 /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				2015553B230E2711002917D2 /* UIAlertController+Window.h */,
+				2015553C230E2711002917D2 /* UIAlertController+Window.m */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
 		21BF565B0CA7A8501122DEF06CDE970B /* ZXingObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2881,6 +2896,7 @@
 		A2E0882975E749C51BAFE69519A21C94 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				2015553A230E2711002917D2 /* UIAlertController */,
 				6F73E81DAB8E8E58F1904E80667F2C71 /* NSDecimalNumber */,
 				C422623D2CA11F364F8E8D0F8F7F607C /* NSMutableAttributeString */,
 				E75E0A67E28891137EE70E11E122ED3D /* NSNumber */,
@@ -3789,6 +3805,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				896E7AFFDAB412F42FE2F36D9A9C9819 /* Pods-KNVUNDBaseDevelopPackage_Tests-umbrella.h in Headers */,
+				2015553E230E2711002917D2 /* UIAlertController+Window.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3869,6 +3886,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5586FD92724E2FB797F5E2E1A5EE627 /* Pods-KNVUNDBaseDevelopPackage_Example-umbrella.h in Headers */,
+				2015553D230E2711002917D2 /* UIAlertController+Window.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4885,6 +4903,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20155540230E2711002917D2 /* UIAlertController+Window.m in Sources */,
 				B8BB887D89B1DAE44F43AB0D2E503DD1 /* Pods-KNVUNDBaseDevelopPackage_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4893,6 +4912,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2015553F230E2711002917D2 /* UIAlertController+Window.m in Sources */,
 				CB7CE052D2D978888B738D0D05FA5EF6 /* Pods-KNVUNDBaseDevelopPackage_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

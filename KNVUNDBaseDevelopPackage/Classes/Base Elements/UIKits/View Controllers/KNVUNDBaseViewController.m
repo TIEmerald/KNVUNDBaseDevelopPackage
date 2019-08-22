@@ -10,6 +10,9 @@
 // Tools
 #import "KNVUNDThreadRelatedTool.h"
 
+// Categories
+#import "UIAlertController+Window.h"
+
 #pragma mark -
 #pragma mark -
 @implementation KNVUNDFormSheetSettingModel
@@ -313,17 +316,16 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 #pragma mark - Alert Related
 - (void)displayAlertMessageWithAlertSettingModel:(KNVUNDAlertControllerSettingModel *)alertSettingModel
 {
-    UIAlertController *alertControlelr = [alertSettingModel retrieveAlertControllerFromSelfWithBaseViewController:self];
+    UIAlertController *alertController = [alertSettingModel retrieveAlertControllerFromSelfWithBaseViewController:self];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         if (alertSettingModel.notTrackingWithResentingViewController) {
-            [self presentViewController:alertControlelr
-                               animated:alertSettingModel.shouldShowUpWithAnimation
-                             completion:alertSettingModel.didShowUpBlock];
+            /// If We want to present Alert Controller without tracking it with presenting view controller, we will present the controller in a new window
+            [alertController show];
         } else {
             [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
-                           contentViewController:alertControlelr
+                           contentViewController:alertController
                    viewControllerGeneratingBlock:^UIViewController *{
-                       return alertControlelr;
+                       return alertController;
                    }
                          andPresentCompleteBlock:alertSettingModel.didShowUpBlock];
         }
