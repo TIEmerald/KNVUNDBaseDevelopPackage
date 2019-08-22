@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KNVUNDBaseDevelopPackage'
-  s.version          = '0.3.10'
+  s.version          = '0.3.12'
   s.summary          = 'This is a general support pods library for Abacus Solution Group Pty Ltd'
 
 # This description is used to generate tags and improve search results.
