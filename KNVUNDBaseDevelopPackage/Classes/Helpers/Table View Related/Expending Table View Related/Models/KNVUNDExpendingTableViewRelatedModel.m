@@ -52,6 +52,13 @@
 - (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
     [self isSelectedSatatusChangedTo:newValue];
+    if (self.shouldExpendWhileSelected) {
+        if (!oldValue && newValue && couldUpdateExpendStatus && !self.isExpended) {
+            [self toggleExpendedStatus];
+        } else if (oldValue && !newValue && couldUpdateExpendStatus && self.isExpended) {
+            [self toggleExpendedStatus];
+        }
+    }
 }
 
 - (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected
@@ -271,10 +278,19 @@
     return self.isSelfOrAnyDescendantCurrentSelected;
 }
 
+- (BOOL)isSelectable
+{
+    if (self.shouldSelectedStatusBasedOnParent) {
+        return NO;
+    } else {
+        return _isSelectable;
+    }
+}
+
 - (BOOL)isSelfOrAnyDescendantCurrentSelected
 {
     for (KNVUNDExpendingTableViewRelatedModel *relatedModel in [self getAllDescendantsIncludingSelf]) {
-        if (relatedModel->_isCurrentModelSelected) {
+        if (relatedModel.isCurrentModelSelected) {
             return YES;
         }
     }
@@ -283,7 +299,11 @@
 
 - (BOOL)isCurrentModelSelected
 {
-    return _isCurrentModelSelected;
+    if (self.shouldSelectedStatusBasedOnParent) {
+        return self.parent.isCurrentModelSelected;
+    } else {
+        return _isCurrentModelSelected;
+    }
 }
 
 #pragma mark Setters
@@ -379,12 +399,20 @@
 #pragma mark Getters
 - (BOOL)isExpended
 {
-    return _isCurrentModelExpended;
+    if (self.shouldAlwaysExpended) {
+        return YES;
+    } else {
+        return _isCurrentModelExpended;
+    }
 }
 
 - (BOOL)isExpendable
 {
-    return _isExpendable && [self.children count] > 0;
+    if (self.shouldAlwaysExpended) {
+        return NO;
+    } else {
+        return _isExpendable && [self.children count] > 0;
+    }
 }
 
 #pragma mark Setters

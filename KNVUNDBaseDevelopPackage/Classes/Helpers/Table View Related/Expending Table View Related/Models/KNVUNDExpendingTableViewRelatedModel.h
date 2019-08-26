@@ -36,6 +36,11 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
+/// Properties related to Style
+@property (nonatomic) BOOL shouldExpendWhileSelected;
+@property (nonatomic) BOOL shouldSelectedStatusBasedOnParent;
+@property (nonatomic) BOOL shouldAlwaysExpended;
+
 #pragma mark - Overrided Methods
 #pragma mark - Class Methods
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
