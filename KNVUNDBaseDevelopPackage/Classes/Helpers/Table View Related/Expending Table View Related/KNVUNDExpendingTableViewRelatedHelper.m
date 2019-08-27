@@ -59,7 +59,9 @@
         [supportedCellClass registerSelfIntoTableView:self.associatedTableView];
     }
     
-    [self.associatedTableView reloadData];
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [self.associatedTableView reloadData]; /// Update UI
+    }];
 }
 
 - (void)setUpRelatedViewController:(UIViewController *)viewController
@@ -122,7 +124,9 @@
         }
     }
     
-    [self.associatedTableView reloadData]; /// Update UI
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        [self.associatedTableView reloadData]; /// Update UI
+    }];
 }
 
 - (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
