@@ -21,13 +21,15 @@
 
 @interface KNVUNDExpendingTableViewRelatedHelper() <KNVUNDETVRelatedModelDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSArray *_storedSupportedModelClasses;
+    
+    NSArray *_storedDisplayArray;
 }
 
 @end
 
 @implementation KNVUNDExpendingTableViewRelatedHelper
 
-@synthesize displayingModels, relatedViewController, associatedTableView;
+@synthesize relatedViewController, associatedTableView;
 
 #pragma mark - KNVUNDBasic
 //- (BOOL)shouldShowRelatedLog
@@ -40,6 +42,22 @@
 - (NSArray *)getDisplayingModelsWithPredicator:(BOOL(^)(KNVUNDExpendingTableViewRelatedModel *checkingModel))predicator
 {
     return [self.displayingModels linq_where:predicator];
+}
+
+- (KNVUNDExpendingTableViewRelatedModel *)getFirstDisplayingModelWithPredicator:(BOOL(^)(KNVUNDExpendingTableViewRelatedModel *checkingModel))predicator
+{
+    return [self.displayingModels linq_firstOrNil:predicator];
+}
+
+- (NSUInteger)getIndexOfFirstDisplayingModelWithPredicator:(BOOL(^)(KNVUNDExpendingTableViewRelatedModel *checkingModel))predicator
+{
+    return [self.displayingModels indexOfObjectPassingTest:^BOOL(KNVUNDExpendingTableViewRelatedModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (predicator(obj)) {
+            *stop = YES;
+            return YES;
+        }
+        return NO;
+    }];
 }
 
 #pragma mark - Setters
@@ -111,102 +129,101 @@
 #pragma mark - General Methods
 - (void)updateTableWithRootModelArray:(NSArray *)rootModelArray
 {
-    for (KNVUNDExpendingTableViewRelatedModel *displayingModel in self.displayingModels) {
-        displayingModel.delegate = nil; /// re-set the delegate
-    }
-    
-    self.displayingModels = [NSMutableArray new];
-    
-    for (id model in rootModelArray) {
-        if ([model isKindOfClass:[KNVUNDExpendingTableViewRelatedModel class]]) {
-            KNVUNDExpendingTableViewRelatedModel *convertedModel = (KNVUNDExpendingTableViewRelatedModel *)model;
-            [self addOneRootModelIntoDisplayingModels:model isInTheTop:NO];
-        }
-    }
-    
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self.associatedTableView reloadData]; /// Update UI
+        for (KNVUNDExpendingTableViewRelatedModel *displayingModel in self.displayingModels) {
+            displayingModel.delegate = nil; /// re-set the delegate
+        }
+        
+        NSMutableArray *changingDisplayingModel = [NSMutableArray new];
+        for (id model in rootModelArray) {
+            if ([model isKindOfClass:[KNVUNDExpendingTableViewRelatedModel class]]) {
+                KNVUNDExpendingTableViewRelatedModel *convertingModel = (KNVUNDExpendingTableViewRelatedModel *)model;
+                [changingDisplayingModel addObject:convertingModel];
+                [changingDisplayingModel addObjectsFromArray:[convertingModel getDisplayingDescendants]];
+            }
+        }
+        
+        self.displayingModels = [NSArray arrayWithArray:changingDisplayingModel];
+        
+        for (KNVUNDExpendingTableViewRelatedModel *displayingModel in self.displayingModels) {
+            displayingModel.delegate = self; /// re-set the delegate
+        }
+        
+        [self.associatedTableView reloadData];
+        
     }];
 }
 
-- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
+- (NSArray *)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel atIndex:(NSUInteger)index shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
 {
-    if (self.displayingModels == nil) {
-        self.displayingModels = [NSMutableArray new];
-    }
-    
-    [self addOneRootModelIntoDisplayingModels:insertingModel isInTheTop:isInTheTop];
-    
-    NSArray *insertingIndexPaths = [insertingModel getCurrentDisplayedIndexPathIncludingDecedants];
-    
-    [self insertCellsAtIndexPaths:insertingIndexPaths]; /// Update UI
+    /// We need to ensure Array updating should happened inside the same thread where the UI updated...
+    NSMutableArray *insertingArray = [NSMutableArray new];
+    [insertingArray addObject:insertingModel];
+    [insertingArray addObjectsFromArray:[insertingModel getDisplayingDescendants]];
+    [self inSertCellsWithDisplayingModelArray:insertingArray
+                               withStartIndex:index];
     
     if (shouldMarkAsSelected && !insertingModel.isSelected) { /// Update Selection Status
         [insertingModel toggleSelectionStatus];
     }
     
+    return [NSArray arrayWithArray:insertingArray];
+}
+
+- (void)insertOneMoreRootModel:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop shouldMarkAsSelected:(BOOL)shouldMarkAsSelected
+{
+    NSArray *insertingArray = [self insertOneMoreRootModel:insertingModel
+                                                   atIndex:isInTheTop ? 0 : [self.displayingModels count]
+                                      shouldMarkAsSelected:shouldMarkAsSelected];
+    
     /// Scoll to the bottom of the inserted Cell info needed
     if (isInTheTop) {
-        NSIndexPath *firstIndexPath = insertingIndexPaths.firstObject;
-        for (NSIndexPath *indexPath in insertingIndexPaths) {
-            if (indexPath.section < firstIndexPath.section || (indexPath.section == firstIndexPath.section && indexPath.row < firstIndexPath.row)) {
-                firstIndexPath = indexPath;
-            }
-        }
-        
-        if (firstIndexPath) {
-            [self rollToCellAtIndexPath:firstIndexPath
-                       atScrollPoisiton:UITableViewScrollPositionTop];
-        }
+        [self rollToCellWithDisplayingModel:insertingArray.firstObject
+                           atScrollPoisiton:UITableViewScrollPositionTop];
     } else {
-        NSIndexPath *latestIndexPath = insertingIndexPaths.firstObject;
-        for (NSIndexPath *indexPath in insertingIndexPaths) {
-            if (indexPath.section > latestIndexPath.section || (indexPath.section == latestIndexPath.section && indexPath.row > latestIndexPath.row)) {
-                latestIndexPath = indexPath;
-            }
-        }
-        
-        if (latestIndexPath) {
-            [self rollToCellAtIndexPath:latestIndexPath
-                       atScrollPoisiton:UITableViewScrollPositionBottom];
-        }
+        [self rollToCellWithDisplayingModel:insertingArray.lastObject
+                           atScrollPoisiton:UITableViewScrollPositionBottom];
+    }
+}
+
+- (void)deleteFirstDisplayingModelWithPredicator:(BOOL(^)(KNVUNDExpendingTableViewRelatedModel *checkingModel))predicator
+{
+    KNVUNDExpendingTableViewRelatedModel *firstMatchingModel = [self getFirstDisplayingModelWithPredicator:predicator];
+    if (firstMatchingModel) {
+        [self deleteOneDisplayingModel:firstMatchingModel];
     }
 }
 
 - (void)deleteOneDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *)deletingModel
 {
-    if ([self.displayingModels containsObject:deletingModel]) {
-        NSMutableArray *deletingArray = [NSMutableArray arrayWithObject:deletingModel];
-        [deletingArray addObjectsFromArray:[deletingModel getDisplayingDescendants]];
-        NSArray *deletingIndexPathArray = [deletingModel getCurrentDisplayedIndexPathIncludingDecedants];
-        [self.displayingModels removeObjectsInArray:deletingArray];
-        [self deleteCellsAtIndexPaths:deletingIndexPathArray];
-    }
+    NSMutableArray *deletingArray = [NSMutableArray arrayWithObject:deletingModel];
+    [deletingArray addObjectsFromArray:[deletingModel getDisplayingDescendants]];
+    [self deleteCellsWithDisplayingModelArray:deletingArray];
 }
 
-#pragma mark Support Methods
-- (void)addOneRootModelIntoDisplayingModels:(KNVUNDExpendingTableViewRelatedModel *)insertingModel isInTheTop:(BOOL)isInTheTop
+- (void)reloadFirstDisplayingModelWithPredicator:(BOOL(^)(KNVUNDExpendingTableViewRelatedModel *checkingModel))predicator
 {
-    if (isInTheTop) {
-        [self.displayingModels insertObject:insertingModel atIndex:0];
-        NSInteger insertingIndex = 1;
-        insertingModel.delegate = self;
-        for (KNVUNDExpendingTableViewRelatedModel *descedant in [insertingModel getDisplayingDescendants]) {
-            [self.displayingModels insertObject:descedant
-                                        atIndex:insertingIndex];
-            insertingIndex += 1;
-        }
-    } else {
-        [self.displayingModels addObject:insertingModel];
-        insertingModel.delegate = self;
-        if (insertingModel.isExpended) {
-            [self.displayingModels addObjectsFromArray:[insertingModel getDisplayingDescendants]];
-        }
+    KNVUNDExpendingTableViewRelatedModel *firstMatchingModel = [self getFirstDisplayingModelWithPredicator:predicator];
+    if (firstMatchingModel) {
+        [firstMatchingModel reloadTheCellForSelf];
     }
 }
 
 #pragma mark - Delegates
 #pragma mark - KNVUNDETVRelatedModelDelegate
+- (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)displayingModels
+{
+    if (_storedDisplayArray == nil) {  /// Lazy set up
+        _storedDisplayArray = [NSArray new];
+    }
+    return _storedDisplayArray;
+}
+
+- (void)setDisplayingModels:(NSArray<KNVUNDExpendingTableViewRelatedModel *> *)displayingModels
+{
+    _storedDisplayArray = displayingModels;
+}
+
 #pragma mark Setting Related
 - (BOOL)isSettingSingleSelection
 {
@@ -214,29 +231,79 @@
 }
 
 #pragma mark Table View Updating Related
-- (void)rollToCellAtIndexPath:(NSIndexPath *)indexPath atScrollPoisiton:(UITableViewScrollPosition)position
+- (void)deleteCellsWithDisplayingModelArray:(NSArray *_Nonnull)deletingDisplayingModels
 {
-    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                     andLogStringFormat:@"Scroll Cell to Index: %@",
-     indexPath];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self.associatedTableView scrollToRowAtIndexPath:indexPath
-                                        atScrollPosition:position
-                                                animated:!self.isDisableTableViewAnimation];
+        NSMutableArray *deletingIndexPaths = [NSMutableArray new];
+        NSMutableArray *changingDisplayingModel = [NSMutableArray arrayWithArray:self.displayingModels];
+        for (KNVUNDExpendingTableViewRelatedModel *deletingModel in deletingDisplayingModels) {
+            deletingModel.delegate = nil;
+            NSUInteger modelIndex = [self.displayingModels indexOfObject:deletingModel];
+            if (modelIndex != NSNotFound) {
+                [deletingIndexPaths addObject:[NSIndexPath indexPathForRow:modelIndex
+                                                                 inSection:0]];
+                [changingDisplayingModel removeObject:deletingModel];
+            }
+        }
+        self.displayingModels = [NSArray arrayWithArray:changingDisplayingModel];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Deleting Cell At Indexs: %@",
+         deletingIndexPaths];
+        [self.associatedTableView deleteRowsAtIndexPaths:deletingIndexPaths
+                                        withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationTop : UITableViewRowAnimationNone];
     }];
 }
 
-- (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell
+- (void)inSertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex
 {
-    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                     andLogStringFormat:@"Reloading Cell At Indexs: %@",
-     indexPaths];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        NSMutableArray *insertingIndexPaths = [NSMutableArray new];
+        NSMutableArray *changingDisplayingModel = [NSMutableArray arrayWithArray:self.displayingModels];
+        NSInteger insertingIndex = startIndex;
+        if (insertingIndex > [self.displayingModels count]) {
+            insertingIndex = [self.displayingModels count];
+        } else if (insertingIndex < 0) {
+            insertingIndex = 0;
+        }
+        for (KNVUNDExpendingTableViewRelatedModel *insertingModel in insertingDisplayingModels) {
+            [insertingIndexPaths addObject:[NSIndexPath indexPathForRow:insertingIndex
+                                                              inSection:0]];
+            [changingDisplayingModel insertObject:insertingModel atIndex:insertingIndex];
+            insertingModel.delegate = self;
+            insertingIndex += 1;
+        }
+        
+        self.displayingModels = [NSArray arrayWithArray:changingDisplayingModel];
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Deleting Cell At Indexs: %@",
+         insertingIndexPaths];
+        [self.associatedTableView insertRowsAtIndexPaths:insertingIndexPaths
+                                        withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone];
+    }];
+}
+
+- (void)reloadCellsWithDisplayingModelArray:(NSArray *_Nonnull)reloadingDisplayingModels shouldReloadCell:(BOOL)shouldReloadCell
+{
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        NSMutableArray *reloadingIndexPaths = [NSMutableArray new];
+        
+        for (KNVUNDExpendingTableViewRelatedModel *reloadingModel in reloadingDisplayingModels) {
+            NSUInteger modelIndex = [self.displayingModels indexOfObject:reloadingModel];
+            if (modelIndex != NSNotFound) {
+                [reloadingIndexPaths addObject:[NSIndexPath indexPathForRow:modelIndex
+                                                                  inSection:0]];
+            }
+        }
+        
+        [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                         andLogStringFormat:@"Reloading Cell At Indexs: %@",
+         reloadingIndexPaths];
+        
         if (shouldReloadCell) {
-            [self.associatedTableView reloadRowsAtIndexPaths:indexPaths
+            [self.associatedTableView reloadRowsAtIndexPaths:reloadingIndexPaths
                                             withRowAnimation:UITableViewRowAnimationNone];
         } else {
-            for (NSIndexPath *indexPath in indexPaths) {
+            for (NSIndexPath *indexPath in reloadingIndexPaths) {
                 UITableViewCell *relatedTableViewCell = [self.associatedTableView cellForRowAtIndexPath:indexPath];
                 [relatedTableViewCell updateCellUI];
             }
@@ -244,25 +311,101 @@
     }];
 }
 
-- (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
+- (void)reloadChildrenCellsWithDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *_Nonnull)relatedModel
+                     withChildrenUpdatingBlock:(void(^_Nonnull)(KNVUNDExpendingTableViewRelatedModel *_Nonnull relatedModel))updatingBlock
+                             shouldScrollToTop:(BOOL)shouldScrollToTop
 {
-    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                     andLogStringFormat:@"Inserting Cell At Indexs: %@",
-     indexPaths];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self.associatedTableView insertRowsAtIndexPaths:indexPaths
-                                        withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone];
+        NSUInteger relatedModelIndex = [self.displayingModels indexOfObject:relatedModel];
+        NSArray *displayingChildrenBeforeChange = [relatedModel getDisplayingDescendants];
+        updatingBlock(relatedModel);
+        NSArray *displayingChildrenAfterChange = [relatedModel getDisplayingDescendants];
+        
+        if (relatedModelIndex != NSNotFound) { /// We will only perform UI updates while related model is currently displaying
+            
+            /// Update the Displaying Models
+            NSMutableArray *changingDisplayingModel = [NSMutableArray arrayWithArray:self.displayingModels];
+            [changingDisplayingModel removeObjectsInArray:displayingChildrenBeforeChange];
+            NSUInteger insertingIndex = relatedModelIndex + 1;
+            for (KNVUNDExpendingTableViewRelatedModel *newChildeModel in displayingChildrenAfterChange) {
+                [changingDisplayingModel insertObject:newChildeModel
+                                              atIndex:insertingIndex];
+                insertingIndex += 1;
+            }
+            
+            /// Generating Updating IndexPath Array
+            NSUInteger countForChildeBeforeChange = [displayingChildrenBeforeChange count];
+            NSUInteger countForChildeAfterChange = [displayingChildrenAfterChange count];
+            NSUInteger countForIndexNeedReload = MIN(countForChildeBeforeChange, countForChildeAfterChange) + 1; /// Also the model's cell
+            NSUInteger countForIndexNeedToChange = MAX(countForChildeBeforeChange, countForChildeAfterChange) -
+                                                            MIN(countForChildeBeforeChange, countForChildeAfterChange);
+            BOOL changeIsInsert = countForChildeAfterChange > countForChildeBeforeChange;
+            
+            NSMutableArray *indexPathsToReload = [NSMutableArray new];
+            NSMutableArray *indexPathsToChange = [NSMutableArray new];
+            NSUInteger startIndex = relatedModelIndex;
+            
+            for (int index = 0; index < countForIndexNeedReload; index += 1) {
+                [indexPathsToReload addObject:[NSIndexPath indexPathForRow:startIndex
+                                                                 inSection:0]];
+                startIndex += 1;
+            }
+            
+            for (int index = 0; index < countForIndexNeedToChange; index += 1) {
+                [indexPathsToChange addObject:[NSIndexPath indexPathForRow:startIndex
+                                                                 inSection:0]];
+                startIndex += 1;
+            }
+            
+            /// Then Perform the updating
+            self.displayingModels = [NSArray arrayWithArray:changingDisplayingModel];
+            
+            NSIndexPath *lastIndexPathAfterChange = indexPathsToReload.lastObject;
+            NSIndexPath *firstIndexPathAfterChange = indexPathsToReload.firstObject;
+            
+            if ([indexPathsToChange count] > 0) {
+                if (changeIsInsert) {
+                    [self.associatedTableView insertRowsAtIndexPaths:indexPathsToChange
+                                                    withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone];
+                    lastIndexPathAfterChange = indexPathsToChange.lastObject;
+                } else {
+                    [self.associatedTableView deleteRowsAtIndexPaths:indexPathsToChange
+                                                    withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationTop : UITableViewRowAnimationNone];
+                }
+            }
+            
+            [self.associatedTableView reloadRowsAtIndexPaths:indexPathsToReload
+                                            withRowAnimation:UITableViewRowAnimationNone];
+            
+            /// The last step is scroll down to the Laste IndexPath if the last IndexPath is not visible.
+            NSIndexPath *checkingIndexPath = shouldScrollToTop ? firstIndexPathAfterChange : lastIndexPathAfterChange;
+            if (![self.associatedTableView.indexPathsForVisibleRows linq_any:^BOOL(NSIndexPath *item) {
+                return item.section == checkingIndexPath.section && item.row == checkingIndexPath.row;
+            }]) {
+                [self.associatedTableView scrollToRowAtIndexPath:checkingIndexPath
+                                                atScrollPosition:shouldScrollToTop ? UITableViewScrollPositionTop : UITableViewScrollPositionBottom
+                                                        animated:!self.isDisableTableViewAnimation];
+            }
+        }
+        
     }];
 }
 
-- (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths
+- (void)rollToCellWithDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *_Nonnull)relatedModel
+                     atScrollPoisiton:(UITableViewScrollPosition)position
 {
-    [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                     andLogStringFormat:@"Deleting Cell At Indexs: %@",
-     indexPaths];
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-        [self.associatedTableView deleteRowsAtIndexPaths:indexPaths
-                                        withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationTop : UITableViewRowAnimationNone];
+        NSUInteger modelIndex = [self.displayingModels indexOfObject:relatedModel];
+        if (modelIndex != NSNotFound) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:modelIndex
+                                                        inSection:0];
+            [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
+                             andLogStringFormat:@"Scroll Cell to Index: %@",
+             indexPath];
+            [self.associatedTableView scrollToRowAtIndexPath:indexPath
+                                            atScrollPosition:position
+                                                    animated:!self.isDisableTableViewAnimation];
+        }
     }];
 }
 

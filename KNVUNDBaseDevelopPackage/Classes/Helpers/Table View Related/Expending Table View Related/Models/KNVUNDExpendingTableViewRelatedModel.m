@@ -10,6 +10,9 @@
 /// Views
 #import "KNVUNDETVRelatedBasicTableViewCell.h"
 
+/// Tools
+#import "KNVUNDThreadRelatedTool.h"
+
 @interface KNVUNDExpendingTableViewRelatedModel(){
     
     /// Hirearchy Related Properties
@@ -27,7 +30,7 @@
 }
 
 @property (readonly) BOOL hasLinkedToDisplayingHelper;
-@property (readonly) NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
+@property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
 
 //// Hirearchy Related properties
 @property (nonatomic, readwrite) NSUInteger modelDepthLevel;
@@ -127,7 +130,7 @@
     return self.delegate != nil;
 }
 
-- (NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
+- (NSArray <KNVUNDExpendingTableViewRelatedModel *> *)relatedModelArray
 {
     return self.delegate.displayingModels;
 }
@@ -280,11 +283,7 @@
 
 - (BOOL)isSelectable
 {
-    if (self.shouldSelectedStatusBasedOnParent) {
-        return NO;
-    } else {
-        return _isSelectable;
-    }
+    return _isSelectable;
 }
 
 - (BOOL)isSelfOrAnyDescendantCurrentSelected
@@ -362,7 +361,7 @@
     }
     
     if (shouldUpdateCells) {
-        if ([self.delegate respondsToSelector:@selector(reloadCellsAtIndexPaths:shouldReloadCell:)]) {
+        if ([self.delegate respondsToSelector:@selector(reloadCellsWithDisplayingModelArray:shouldReloadCell:)]) {
             NSMutableArray *shouldReloadCellModels = [NSMutableArray new];
             NSMutableArray *shouldNotReloadCellModels = [NSMutableArray new];
             for (KNVUNDExpendingTableViewRelatedModel *model in updatedModels.allObjects) {
@@ -372,8 +371,8 @@
                     [shouldNotReloadCellModels addObject:model];
                 }
             }
-            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:shouldReloadCellModels] shouldReloadCell:YES];
-            [self.delegate reloadCellsAtIndexPaths:[self getIndexPathsFromModels:shouldNotReloadCellModels] shouldReloadCell:NO];
+            [self.delegate reloadCellsWithDisplayingModelArray:shouldReloadCellModels shouldReloadCell:YES];
+            [self.delegate reloadCellsWithDisplayingModelArray:shouldNotReloadCellModels shouldReloadCell:NO];
         }
     }
     
@@ -441,7 +440,7 @@
 
 - (void)toggleExpendedStatus
 {
-    NSArray *displayingDescendants = [self getDisplayingDescendants];
+    NSArray *displayingDescendants = [self getAllDescndantsThatShouldDisplay];
     BOOL expendedStatusWillChangedFrom = _isCurrentModelExpended;
     BOOL expendedStatusWillChangedTo = !expendedStatusWillChangedFrom;
     
@@ -498,13 +497,16 @@
 
 - (NSArray *)getDisplayingDescendants
 {
+    return self.isExpended ? [self getAllDescndantsThatShouldDisplay] : [NSArray new];
+}
+
+- (NSArray *)getAllDescndantsThatShouldDisplay
+{
     NSMutableArray *returnArray = [NSMutableArray new];
     for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
         [returnArray addObject:child];
-        if (child.isExpended) {
-            NSArray *childDisplayingDescendants = [child getDisplayingDescendants];
-            [returnArray addObjectsFromArray:childDisplayingDescendants];
-        }
+        NSArray *childDisplayingDescendants = [child getDisplayingDescendants];
+        [returnArray addObjectsFromArray:childDisplayingDescendants];
     }
     return returnArray;
 }
@@ -563,32 +565,21 @@
 
 - (void)insertDisplayingModels:(NSArray *)displayingModels withInsertingIndex:(NSInteger)insertingIndex
 {
-    NSInteger usingInsertingIndex = insertingIndex;
-    for (KNVUNDExpendingTableViewRelatedModel *insertingModel in displayingModels) {
-        [self.relatedModelArray insertObject:insertingModel
-                                     atIndex:usingInsertingIndex];
-        usingInsertingIndex = usingInsertingIndex + 1;
-    }
-    NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingModels];
-    if ([self.delegate respondsToSelector:@selector(insertCellsAtIndexPaths:)]) {
-        [self.delegate insertCellsAtIndexPaths:updatedIndexPaths];
+    if ([self.delegate respondsToSelector:@selector(inSertCellsWithDisplayingModelArray:withStartIndex:)]) {
+        [self.delegate inSertCellsWithDisplayingModelArray:displayingModels
+                                            withStartIndex:insertingIndex];
     }
 }
 
 - (void)reloadTheCellForSelf
 {
-    NSIndexPath *currentIndexForSelf = [self getCurrentIndexPath];
-    if (currentIndexForSelf != nil) {
-        [self.delegate reloadCellsAtIndexPaths:@[currentIndexForSelf] shouldReloadCell:NO];
-    }
+    [self.delegate reloadCellsWithDisplayingModelArray:@[self] shouldReloadCell:NO];
 }
 
 - (void)removeDisplayingModels:(NSArray *)displayingModels
 {
-    NSArray *updatedIndexPaths = [self getIndexPathsFromModels:displayingModels];
-    [self.relatedModelArray removeObjectsInArray:displayingModels];
-    if ([self.delegate respondsToSelector:@selector(deleteCellsAtIndexPaths:)]) {
-        [self.delegate deleteCellsAtIndexPaths:updatedIndexPaths];
+    if ([self.delegate respondsToSelector:@selector(deleteCellsWithDisplayingModelArray:)]) {
+        [self.delegate deleteCellsWithDisplayingModelArray:displayingModels];
     }
 }
 

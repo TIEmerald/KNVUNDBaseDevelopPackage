@@ -15,16 +15,20 @@
 
 @property (nonatomic, weak) UITableView *associatedTableView;
 @property (nonatomic, weak) UIViewController *relatedViewController;
-@property (nonatomic, strong, nonnull) NSMutableArray <KNVUNDExpendingTableViewRelatedModel *> *displayingModels;
+@property (nonatomic, strong, nonnull) NSArray <KNVUNDExpendingTableViewRelatedModel *> *displayingModels;
 
 /// Setting Related
 - (BOOL)isSettingSingleSelection;
 
 /// Table View Updating Related
-- (void)rollToCellAtIndexPath:(NSIndexPath *)indexPath atScrollPoisiton:(UITableViewScrollPosition)position;
-- (void)reloadCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths shouldReloadCell:(BOOL)shouldReloadCell;
-- (void)insertCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
-- (void)deleteCellsAtIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)deleteCellsWithDisplayingModelArray:(NSArray *_Nonnull)deletingDisplayingModels;
+- (void)inSertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex;
+- (void)reloadCellsWithDisplayingModelArray:(NSArray *_Nonnull)reloadingDisplayingModels shouldReloadCell:(BOOL)shouldReloadCell;
+- (void)reloadChildrenCellsWithDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *_Nonnull)relatedModel
+                     withChildrenUpdatingBlock:(void(^_Nonnull)(KNVUNDExpendingTableViewRelatedModel *_Nonnull relatedModel))updatingBlock
+                             shouldScrollToTop:(BOOL)shouldScrollToTop;
+- (void)rollToCellWithDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *_Nonnull)relatedModel
+                     atScrollPoisiton:(UITableViewScrollPosition)position;
 
 @end
 
