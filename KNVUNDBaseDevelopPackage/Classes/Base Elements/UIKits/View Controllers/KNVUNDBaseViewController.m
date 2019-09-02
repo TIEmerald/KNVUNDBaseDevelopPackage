@@ -450,6 +450,19 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 }
 
 #pragma mark - Delegate
+#pragma mark - KNVUNDBaseVCVMDelegate
+- (void)showUpErrorWithTitle:(NSString *)title andMessage:(NSString *)message
+{
+    [self displayBannerMessageWithBannerType:KNVUNDBaseVCBannerMessageType_Notify
+                                       title:title
+                                  andMessage:message];
+}
+
+- (void)updateDisplayingUIBasedOnViewModel
+{
+    /// Pls Over write this method if you want to binding View Model into the View Controller
+}
+
 #pragma mark - UIPopoverPresentationControllerDelegate
 - (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {

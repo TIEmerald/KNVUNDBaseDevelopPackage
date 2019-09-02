@@ -11,6 +11,9 @@
 #import <RMessage/RMessage.h>
 #import <MZFormSheetPresentationController/MZFormSheetPresentationViewController.h>
 
+/// View Models
+#import "KNVUNDBaseViewModel.h"
+
 #pragma mark -
 #pragma mark -
 // This model is used passing setting's information while you want to show up FormSheet
@@ -87,7 +90,7 @@ typedef enum : NSUInteger {
     KNVUNDBaseVCChildViewControlerPresentType_PreferredSize_Centralised
 } KNVUNDBaseVCChildViewControlerPresentType;
 
-@interface KNVUNDBaseViewController : UIViewController <UIPopoverPresentationControllerDelegate>
+@interface KNVUNDBaseViewController : UIViewController <UIPopoverPresentationControllerDelegate, KNVUNDBaseVMDelegate>
 
 /////****************************************************************
 /// Banner Related Settings....
