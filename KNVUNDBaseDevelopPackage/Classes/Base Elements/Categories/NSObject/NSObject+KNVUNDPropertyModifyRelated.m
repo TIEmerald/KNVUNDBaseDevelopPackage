@@ -127,7 +127,7 @@
                            // We will update the value to default value if the the value is nil...
                            passingValue = passingValue ?: [[self class]getDefaultValueForPropertyDetails:objectPropertyDetails];
                            [self setValue:passingValue
-                                   forKey:selfPropertyDetails.propertyName];
+                               forKeyPath:selfPropertyDetails.propertyName];
                        }];
 }
 
@@ -178,7 +178,7 @@
                            // We will update the value to default value if the the value is nil...
                            passingValue = passingValue ?: [[self class]getDefaultValueForPropertyDetails:objectPropertyDetails];
                            [object setValue:passingValue
-                                     forKey:objectPropertyDetails.propertyName];
+                                 forKeyPath:objectPropertyDetails.propertyName];
                        }];
 }
 
@@ -238,24 +238,27 @@
         return YES;
     }];
     
-    [KNVUNDRuntimeRelatedTool loopThroughAllPropertiesOfObject:object
-                                                 withLoopBlock:^(KNVUNDRRTPropertyDetailsModel * _Nonnull detailsModel, BOOL *stopLoop) {
-                                                     NSArray *selfPropertyNames = usingMappingDictionary[detailsModel.propertyName];
-                                                     for (NSString *selfPropertyName in selfPropertyNames) {
-                                                         KNVUNDRRTPropertyDetailsModel *selfPropertyDetails = [self getPropertyDetailsModelWithPropertyName:selfPropertyName];
-                                                         
-                                                         if (selfPropertyDetails == nil) {
-                                                             return;
-                                                         }
-                                                         
-                                                         if (modifyPropertyBlock) {
-                                                             modifyPropertyBlock(selfPropertyDetails,
-                                                                                 detailsModel,
-                                                                                 [self isSelfPropertyDetails:selfPropertyDetails
-                                                                            isValidWithObjectPropertyDetails:detailsModel]);
-                                                         }
-                                                     }
-                                                 }];
+    [usingMappingDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *_Nonnull objectPropertyName, NSArray *_Nonnull selfPropertyNames, BOOL * _Nonnull stop) {
+        KNVUNDRRTPropertyDetailsModel * _Nonnull objectPropertyDetailModel = [object getPropertyDetailsModelWithPropertyName:objectPropertyName];
+        if (objectPropertyDetailModel == nil) {
+            return;
+        }
+        
+        for (NSString *selfPropertyName in selfPropertyNames) {
+            KNVUNDRRTPropertyDetailsModel *selfPropertyDetails = [self getPropertyDetailsModelWithPropertyName:selfPropertyName];
+            
+            if (selfPropertyDetails == nil) {
+                return;
+            }
+            
+            if (modifyPropertyBlock) {
+                modifyPropertyBlock(selfPropertyDetails,
+                                    objectPropertyDetailModel,
+                                    [self isSelfPropertyDetails:selfPropertyDetails
+                               isValidWithObjectPropertyDetails:objectPropertyDetailModel]);
+            }
+        }
+    }];
 }
 
 @end

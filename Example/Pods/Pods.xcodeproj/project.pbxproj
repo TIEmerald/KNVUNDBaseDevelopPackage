@@ -119,6 +119,8 @@
 		20CFF72D1825985D86869B727D38857E /* ZXITFWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F0B032FC6F6C77D4DD9D1191526D7 /* ZXITFWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20E220ED6AA30AFBFB2B1359A835AD23 /* ZXBookmarkDoCoMoResultParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F3A3AB5C5EE7067B88ABEB2040C0B7BC /* ZXBookmarkDoCoMoResultParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		20E8174F62995027F643F4195E277DF5 /* ZXAztecBinaryShiftToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F71E0F9E4ECC7E37DEA28BB21B4E8C /* ZXAztecBinaryShiftToken.m */; };
+		20E9B015231E0411003F47B3 /* KNVUNDBaseViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20E9B013231E0411003F47B3 /* KNVUNDBaseViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20E9B016231E0411003F47B3 /* KNVUNDBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E9B014231E0411003F47B3 /* KNVUNDBaseViewModel.m */; };
 		212BDADB661984AD3594BCBD40588B57 /* KNVUNDExpendingTableViewRelatedModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B52B534B7A31242F1455A0A1F6A06D0 /* KNVUNDExpendingTableViewRelatedModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		214C624588D1DCAE90BA46400045855C /* KNVUNDFSRToolHTMLLikeStringModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8863C36BB89599BA8AAB9B14AC9E4DF2 /* KNVUNDFSRToolHTMLLikeStringModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2167ABAC51DE1641792DB0125D0A9C30 /* ZXAI01AndOtherAIs.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C621D2EDC205768A8F83FCC04A0D80 /* ZXAI01AndOtherAIs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1223,6 +1225,8 @@
 		2015553C230E2711002917D2 /* UIAlertController+Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Window.m"; sourceTree = "<group>"; };
 		20A44664F5CAC1F20792620033D8B955 /* MZFormSheetPresentationViewControllerAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MZFormSheetPresentationViewControllerAnimator.m; path = MZFormSheetPresentationController/MZFormSheetPresentationViewControllerAnimator.m; sourceTree = "<group>"; };
 		20AB46601D3D70202B3AE8FBBC82001F /* ZXEmailDoCoMoResultParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXEmailDoCoMoResultParser.m; path = ZXingObjC/client/result/ZXEmailDoCoMoResultParser.m; sourceTree = "<group>"; };
+		20E9B013231E0411003F47B3 /* KNVUNDBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNVUNDBaseViewModel.h; sourceTree = "<group>"; };
+		20E9B014231E0411003F47B3 /* KNVUNDBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDBaseViewModel.m; sourceTree = "<group>"; };
 		20EBCCFEF542FD5912A7A78431519711 /* ZXDataMatrixBase256Encoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixBase256Encoder.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixBase256Encoder.h; sourceTree = "<group>"; };
 		211F450C51887F7D2B50589EFF3DE9E7 /* ZXTextParsedResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXTextParsedResult.m; path = ZXingObjC/client/result/ZXTextParsedResult.m; sourceTree = "<group>"; };
 		21213A2F0594B6E94BD07725AF207FFA /* ZXAddressBookDoCoMoResultParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXAddressBookDoCoMoResultParser.h; path = ZXingObjC/client/result/ZXAddressBookDoCoMoResultParser.h; sourceTree = "<group>"; };
@@ -2314,6 +2318,15 @@
 				2015553C230E2711002917D2 /* UIAlertController+Window.m */,
 			);
 			path = UIAlertController;
+			sourceTree = "<group>";
+		};
+		20E9B012231E0411003F47B3 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				20E9B013231E0411003F47B3 /* KNVUNDBaseViewModel.h */,
+				20E9B014231E0411003F47B3 /* KNVUNDBaseViewModel.m */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		21BF565B0CA7A8501122DEF06CDE970B /* ZXingObjC */ = {
@@ -3562,6 +3575,7 @@
 			children = (
 				896ACBBC09938186BCF92ECC05FD3DA3 /* KNVUNDBaseModel.h */,
 				8ADB24D069A27AE54A750113EB651212 /* KNVUNDBaseModel.m */,
+				20E9B012231E0411003F47B3 /* View Model */,
 				FA372F1659D913EF6BBAAF853826E48D /* Observer */,
 			);
 			path = Models;
@@ -4263,6 +4277,7 @@
 				CF28D186D5F46DCF625A6015F2C0CD54 /* KNVUNDButtonVCTVHelperTagVCProtocol.h in Headers */,
 				E28FD110C25222E35BBA795687849609 /* KNVUNDButtonViewControllerTagViewHelper.h in Headers */,
 				774C32574AF2CAE62CEA7EACC2C5468C /* KNVUNDColourRelatedTool.h in Headers */,
+				20E9B015231E0411003F47B3 /* KNVUNDBaseViewModel.h in Headers */,
 				4F9775348082C184EF4BE569BE873087 /* KNVUNDDebugTool.h in Headers */,
 				B8627B23E79B18B50101FADF4E522477 /* KNVUNDEmailRelatedTool.h in Headers */,
 				1474CE30BFEFEDE1A75A0EEA0E283C14 /* KNVUNDETVRelatedBasicTableViewCell.h in Headers */,
@@ -4960,6 +4975,7 @@
 				5927F9E2EDA5D92B57E48300F04E4690 /* KNVUNDLogRelatedHelper.m in Sources */,
 				B8A1627626DD20A621BC0676C84D37A2 /* KNVUNDObservable.m in Sources */,
 				E67E1DE599D2E5CCD1CB5FECA1CA78BC /* KNVUNDPagingRelatedHelper.m in Sources */,
+				20E9B016231E0411003F47B3 /* KNVUNDBaseViewModel.m in Sources */,
 				9CB795F1E10140E10795DD16409325DC /* KNVUNDRegexRelatedTool.m in Sources */,
 				29DCB127F9352F34A693C2BE6CC1AB53 /* KNVUNDRootErrorCodeTool.m in Sources */,
 				8CF2677AE27F97A52FE3EF1F0029A6EC /* KNVUNDRuntimeRelatedTool.m in Sources */,
