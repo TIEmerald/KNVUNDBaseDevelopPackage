@@ -13,6 +13,8 @@
 
 @interface KNVUNDNumberPadsSampleViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *linkedDisplayTextField;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *appendTypeButtons; // The text value of the button will appended into displaying string
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *accumulateTypeButtons; // The text value of the button will appended into displaying string
 

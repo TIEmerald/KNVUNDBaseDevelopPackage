@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="decimalDotButton" destination="OMF-xZ-nMV" id="8NL-7c-7X2"/>
                 <outlet property="deleteButton" destination="BIY-zB-oTh" id="1kj-HR-z31"/>
+                <outlet property="linkedDisplayTextField" destination="wda-Fq-TRD" id="R6P-o0-cUB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="appendTypeButtons" destination="NhX-8n-qJK" id="8gJ-Ff-EU2"/>
                 <outletCollection property="appendTypeButtons" destination="r12-W0-C2O" id="25I-XJ-IC3"/>

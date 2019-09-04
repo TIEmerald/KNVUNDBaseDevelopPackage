@@ -116,8 +116,8 @@
 		203C32D63A9AC99B03F330B9581293BE /* ZXPDF417ECErrorCorrection.m in Sources */ = {isa = PBXBuildFile; fileRef = 60897797337314421991E7CD0EE95D2A /* ZXPDF417ECErrorCorrection.m */; };
 		2043A00C73022599CB1005CC8E7F62FC /* ZXCode93Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A8447A52668784E8C0E76D40DC8A6E /* ZXCode93Writer.m */; };
 		20471DE376ACB94F0E144A26EFFCFD21 /* EXPMatchers+beSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C42ED437332F121916C863DE7C14F5 /* EXPMatchers+beSupersetOf.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		20677F48231BE104007DCF3E /* KNVUNDNumberPadInputHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 20677F46231BE104007DCF3E /* KNVUNDNumberPadInputHelper.h */; };
-		20677F49231BE104007DCF3E /* KNVUNDNumberPadInputHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 20677F47231BE104007DCF3E /* KNVUNDNumberPadInputHelper.m */; };
+		20677F48231BE104007DCF3E /* KNVUNDBasePadInputModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20677F46231BE104007DCF3E /* KNVUNDBasePadInputModel.h */; };
+		20677F49231BE104007DCF3E /* KNVUNDBasePadInputModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20677F47231BE104007DCF3E /* KNVUNDBasePadInputModel.m */; };
 		212D8BA671CDD3DFF7761D7E9213DD41 /* ZXQRCodeDataBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = B007D3CBFE1D1B3D99F3CD5C925149C8 /* ZXQRCodeDataBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		216AAA4DE21012C372613CFEADE185AF /* ZXDataMatrixDefaultPlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F48F86A6EE06EA61ED815ED18DD23DE /* ZXDataMatrixDefaultPlacement.m */; };
 		23574577BFD3C8CBFB339B7E7B9DA9CF /* MZTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F280A9CB7CB436140BFE0D7F1123464 /* MZTransition.m */; };
@@ -1204,8 +1204,8 @@
 		1F72A4427A1FB8E6F029F762B4FC5CA7 /* SpectaTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SpectaTypes.h; path = Specta/Specta/SpectaTypes.h; sourceTree = "<group>"; };
 		1FA47F6982A61113957249B3FD242C05 /* KNVUNDFormatedStringRelatedTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KNVUNDFormatedStringRelatedTool.h; sourceTree = "<group>"; };
 		205D74B5EE0C99FE87AAF564D25EEF1C /* ZXQRCodeDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZXQRCodeDetector.m; path = ZXingObjC/qrcode/detector/ZXQRCodeDetector.m; sourceTree = "<group>"; };
-		20677F46231BE104007DCF3E /* KNVUNDNumberPadInputHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDNumberPadInputHelper.h; sourceTree = "<group>"; };
-		20677F47231BE104007DCF3E /* KNVUNDNumberPadInputHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDNumberPadInputHelper.m; sourceTree = "<group>"; };
+		20677F46231BE104007DCF3E /* KNVUNDBasePadInputModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDBasePadInputModel.h; sourceTree = "<group>"; };
+		20677F47231BE104007DCF3E /* KNVUNDBasePadInputModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDBasePadInputModel.m; sourceTree = "<group>"; };
 		20A8F05D74A25413262A515270E02869 /* KNVUNDInvocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KNVUNDInvocation.m; sourceTree = "<group>"; };
 		20B68C9269B45825E82F4F5ECE0EB27C /* Expecta_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Expecta_Snapshots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2128B868ADB9DFBA9B7242DA2F1FD7F1 /* ZXDataMatrixSymbolInfo144.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZXDataMatrixSymbolInfo144.h; path = ZXingObjC/datamatrix/encoder/ZXDataMatrixSymbolInfo144.h; sourceTree = "<group>"; };
@@ -2281,10 +2281,20 @@
 		20677F45231BE091007DCF3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				20677F46231BE104007DCF3E /* KNVUNDNumberPadInputHelper.h */,
-				20677F47231BE104007DCF3E /* KNVUNDNumberPadInputHelper.m */,
+				20677F46231BE104007DCF3E /* KNVUNDBasePadInputModel.h */,
+				20677F47231BE104007DCF3E /* KNVUNDBasePadInputModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		207579F5231E89B900BEE262 /* Number Pad Input */ = {
+			isa = PBXGroup;
+			children = (
+				20677F45231BE091007DCF3E /* Models */,
+				5CA7BC6E2FD37A7A0FF052B284987A30 /* UIViewController+KNVUNDNumberPadInput.h */,
+				8BFDDA5DD8AA538B8A88D44193569EFA /* UIViewController+KNVUNDNumberPadInput.m */,
+			);
+			path = "Number Pad Input";
 			sourceTree = "<group>";
 		};
 		20EA1084328184A0952C70F76889A104 /* NSNumber */ = {
@@ -2654,9 +2664,7 @@
 		6DD32ABAC9467A916BABE2E6EFC3FAA5 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				20677F45231BE091007DCF3E /* Models */,
-				5CA7BC6E2FD37A7A0FF052B284987A30 /* UIViewController+KNVUNDNumberPadInput.h */,
-				8BFDDA5DD8AA538B8A88D44193569EFA /* UIViewController+KNVUNDNumberPadInput.m */,
+				207579F5231E89B900BEE262 /* Number Pad Input */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -4257,7 +4265,7 @@
 				6845D2179F3A5D81A692B7EB00220122 /* NSObject+KNVUNDPropertyModifyRelated.h in Headers */,
 				E165482A66C92AB960C712DD31FA75AF /* NSString+KNVUNDBasic.h in Headers */,
 				5230AF3D4AA3F0FAB1B020795584DD9C /* UIAlertController+Window.h in Headers */,
-				20677F48231BE104007DCF3E /* KNVUNDNumberPadInputHelper.h in Headers */,
+				20677F48231BE104007DCF3E /* KNVUNDBasePadInputModel.h in Headers */,
 				5403549F8077FEA97066DCFE2EFA0BF9 /* UIButton+KNVUNDButtonsSelectionButton.h in Headers */,
 				16E61DE460BC56D24D46093025CE9607 /* UICollectionViewCell+KNVUNDBasic.h in Headers */,
 				ABFDB1F346D8785010059C5FAC416E08 /* UIColor+KNVUNDBase.h in Headers */,
@@ -5192,7 +5200,7 @@
 				B4F04F2A3CF50F08C7E07CE43DC04ACB /* KNVUNDColourRelatedTool.m in Sources */,
 				7761300006D056E2595C6EA13FF4222E /* KNVUNDDebugTool.m in Sources */,
 				B7E8F15716D6AE6980BC880AA9D421D7 /* KNVUNDEmailRelatedTool.m in Sources */,
-				20677F49231BE104007DCF3E /* KNVUNDNumberPadInputHelper.m in Sources */,
+				20677F49231BE104007DCF3E /* KNVUNDBasePadInputModel.m in Sources */,
 				24CCBFA1EA6AA0ECDEE7CEEEF23C33A2 /* KNVUNDETVRelatedBasicTableViewCell.m in Sources */,
 				631F82AC06FAF555EC0576E79FD8AEA8 /* KNVUNDETVTagButtonRelatedBaseModel.m in Sources */,
 				54F5E8A5D5DFDEEA839751192FC26BE3 /* KNVUNDETVTagButtonReleatedBaseTableViewCell.m in Sources */,
