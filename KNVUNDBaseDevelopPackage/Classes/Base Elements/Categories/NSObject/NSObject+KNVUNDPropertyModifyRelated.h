@@ -36,9 +36,15 @@
 
 #pragma mark - Updating Related Methods
 /// By Default we are using [Class objectMappingDictionary] as Dictionary
-- (void)updateObejctBasedOnSelf:(id)object;
-- (void)updateObejctBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties;
-- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary;
-- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties;
+- (void)updateObjectBasedOnSelf:(id)object;
+- (void)updateObjectBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties;
+- (void)updateObjectBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary;
+- (void)updateObjectBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties;
+
+#pragma mark - Deprecated Methods
+- (void)updateObejctBasedOnSelf:(id)object __attribute__((deprecated("Pls use - (void)updateObjectBasedOnSelf: instead.")));
+- (void)updateObejctBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties __attribute__((deprecated("Pls use - (void)updateObjectBasedOnSelf:avoidObjectPropertyNames: instead.")));
+- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary __attribute__((deprecated("Pls use - (void)updateObjectBasedOnSelf:withMappingDictionary: instead.")));
+- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties __attribute__((deprecated("Pls use - (void)updateObjectBasedOnSelf:withMappingDictionary:avoidObjectPropertyNames: instead.")));
 
 @end

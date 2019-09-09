@@ -132,27 +132,27 @@
 }
 
 #pragma mark - Updating Related Methods
-- (void)updateObejctBasedOnSelf:(id)object
+- (void)updateObjectBasedOnSelf:(id)object
 {
-    [self updateObejctBasedOnSelf:object
+    [self updateObjectBasedOnSelf:object
          avoidObjectPropertyNames:nil];
 }
 
-- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary
+- (void)updateObjectBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary
 {
-    [self updateObejctBasedOnSelf:object
+    [self updateObjectBasedOnSelf:object
             withMappingDictionary:mappingDictionary
          avoidObjectPropertyNames:nil];
 }
 
-- (void)updateObejctBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties
+- (void)updateObjectBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties
 {
-    [self updateObejctBasedOnSelf:object
+    [self updateObjectBasedOnSelf:object
             withMappingDictionary:[[self class] objectMappingDictionary]
          avoidObjectPropertyNames:avoidingProperties];
 }
 
-- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties
+- (void)updateObjectBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties
 {
     [self compareAndUpdatePropertiesWithObject:object
                           andMappingDictionary:mappingDictionary
@@ -259,6 +259,31 @@
             }
         }
     }];
+}
+
+#pragma mark - Deprecated Methods
+- (void)updateObejctBasedOnSelf:(id)object
+{
+    [self updateObjectBasedOnSelf:object];
+}
+
+- (void)updateObejctBasedOnSelf:(id)object avoidObjectPropertyNames:(NSArray *)avoidingProperties
+{
+    [self updateObjectBasedOnSelf:object
+         avoidObjectPropertyNames:avoidingProperties];
+}
+
+- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary
+{
+    [self updateObjectBasedOnSelf:object
+            withMappingDictionary:mappingDictionary];
+}
+
+- (void)updateObejctBasedOnSelf:(id)object withMappingDictionary:(NSDictionary *)mappingDictionary avoidObjectPropertyNames:(NSArray *)avoidingProperties
+{
+    [self updateObjectBasedOnSelf:object
+            withMappingDictionary:mappingDictionary
+         avoidObjectPropertyNames:avoidingProperties];
 }
 
 @end
