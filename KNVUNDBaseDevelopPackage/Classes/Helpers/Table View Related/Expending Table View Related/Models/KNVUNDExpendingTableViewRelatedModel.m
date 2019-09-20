@@ -52,14 +52,14 @@
     
 }
 
-- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
+- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
     [self isSelectedSatatusChangedTo:newValue];
     if (self.shouldExpendWhileSelected) {
         if (!oldValue && newValue && couldUpdateExpendStatus && !self.isExpended) {
-            [self toggleExpendedStatus];
+            [self toggleExpendedStatusWithIsManuallyAction:YES];
         } else if (oldValue && !newValue && couldUpdateExpendStatus && self.isExpended) {
-            [self toggleExpendedStatus];
+            [self toggleExpendedStatusWithIsManuallyAction:YES];
         }
     }
 }
@@ -69,7 +69,7 @@
     
 }
 
-- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
+- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
     [self isSelectedSatatusWillChangedTo:newValue];
 }
@@ -101,21 +101,23 @@
         __weak typeof(self) weakSelf = self;
         self.isExpendable = YES;
         self.isSelectable = YES;
-        [self setSelectionStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus) {
+        [self setSelectionStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
             [weakSelf isSelectedSatatusChangedFrom:oldStatusBoolean
                                                 to:newStatusBoolean
+                                  isManuallyAction:isManuallyAction
                         andCouldUpdateExpendStatus:couldUpdateExpendStatus];
         }];
-        [self setSelectionStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus) {
+        [self setSelectionStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
             [weakSelf isSelectedSatatusWillChangedFrom:oldStatusBoolean
                                                     to:newStatusBoolean
+                                      isManuallyAction:isManuallyAction
                             andCouldUpdateExpendStatus:couldUpdateExpendStatus];
         }];
-        [self setExpendingStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus) {
+        [self setExpendingStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
             [weakSelf isExpendedSatatusChangedFrom:oldStatusBoolean
                                                 to:newStatusBoolean];
         }];
-        [self setExpendingStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus) {
+        [self setExpendingStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
             [weakSelf isExpendedSatatusWillChangedFrom:oldStatusBoolean
                                                     to:newStatusBoolean];
         }];
@@ -318,18 +320,26 @@
 
 - (void)toggleSelectionStatus
 {
-    [self toggleSelectionStatusWithCouldUpdateRelatedCells:YES];
+    [self toggleSelectionStatusWithIsManuallyAction:YES];
 }
 
+- (void)toggleSelectionStatusWithIsManuallyAction:(BOOL)isManuallyAction
+{
+    [self toggleSelectionStatusWithCouldUpdateRelatedCells:YES
+                                       andIsManuallyAction:isManuallyAction];
+}
+
+
 /// This method will return a Set of KNVUNDExpendingTableViewRelatedModel which selection status will be affected.
-- (void)toggleSelectionStatusWithCouldUpdateRelatedCells:(BOOL)shouldUpdateCells
+- (void)toggleSelectionStatusWithCouldUpdateRelatedCells:(BOOL)shouldUpdateCells andIsManuallyAction:(BOOL)isManuallyAction
 {
     NSMutableSet *updatedModels = [NSMutableSet new];
     
     if ([self isSingleSelection] && !self->_isCurrentModelSelected) {
         for (KNVUNDExpendingTableViewRelatedModel *tableModel in self.relatedModelArray) {
             if (tableModel->_isCurrentModelSelected) {
-                [tableModel  toggleSelectionStatusWithCouldUpdateRelatedCells:NO];
+                [tableModel  toggleSelectionStatusWithCouldUpdateRelatedCells:NO
+                                                          andIsManuallyAction:NO];
                 [updatedModels addObjectsFromArray:[tableModel selectionUIUpdatingRelatedModelsFromSelf]];
             }
         }
@@ -339,7 +349,7 @@
     BOOL selectionStatusWillChangedTo = !selectionStatusWillChangedFrom;
     
     if (_selectionStatusWillChange) {
-        _selectionStatusWillChange(selectionStatusWillChangedFrom, selectionStatusWillChangedTo, shouldUpdateCells);
+        _selectionStatusWillChange(selectionStatusWillChangedFrom, selectionStatusWillChangedTo, isManuallyAction, shouldUpdateCells);
     }
     
     if (self.isSelectable) {
@@ -352,7 +362,8 @@
             } else {
                 for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
                     if (child.isSelected && child.isSelectable) {
-                        [child toggleSelectionStatusWithCouldUpdateRelatedCells:NO];
+                        [child toggleSelectionStatusWithCouldUpdateRelatedCells:NO
+                                                            andIsManuallyAction:NO];
                     }
                 }
             }
@@ -377,7 +388,7 @@
     }
     
     if (_selectionStatusOnChange) {
-        _selectionStatusOnChange(selectionStatusWillChangedFrom, self.isSelected, shouldUpdateCells);
+        _selectionStatusOnChange(selectionStatusWillChangedFrom, self.isSelected, isManuallyAction, shouldUpdateCells);
     }
 }
 
@@ -420,7 +431,7 @@
     BOOL previousExpendStatus = _isCurrentModelExpended;
     _isCurrentModelExpended = currentExpendedStatus;
     if (_expendingStatusOnChange) {
-        _expendingStatusOnChange(previousExpendStatus, _isCurrentModelExpended, YES);
+        _expendingStatusOnChange(previousExpendStatus, _isCurrentModelExpended, NO, YES);
     }
 }
 
@@ -440,12 +451,17 @@
 
 - (void)toggleExpendedStatus
 {
+    [self toggleExpendedStatusWithIsManuallyAction:YES];
+}
+
+- (void)toggleExpendedStatusWithIsManuallyAction:(BOOL)isManuallyAction
+{
     NSArray *displayingDescendants = [self getAllDescndantsThatShouldDisplay];
     BOOL expendedStatusWillChangedFrom = _isCurrentModelExpended;
     BOOL expendedStatusWillChangedTo = !expendedStatusWillChangedFrom;
     
     if (_expendingStatusWillChange) {
-        _expendingStatusWillChange(expendedStatusWillChangedFrom, expendedStatusWillChangedTo, YES);
+        _expendingStatusWillChange(expendedStatusWillChangedFrom, expendedStatusWillChangedTo, isManuallyAction, YES);
     }
     
     if (self.isExpended) {
@@ -462,7 +478,7 @@
     _isCurrentModelExpended = expendedStatusWillChangedTo;
     
     if (_expendingStatusOnChange) {
-        _expendingStatusOnChange(expendedStatusWillChangedFrom, self.isExpended, YES);
+        _expendingStatusOnChange(expendedStatusWillChangedFrom, self.isExpended, isManuallyAction, YES);
     }
 }
 

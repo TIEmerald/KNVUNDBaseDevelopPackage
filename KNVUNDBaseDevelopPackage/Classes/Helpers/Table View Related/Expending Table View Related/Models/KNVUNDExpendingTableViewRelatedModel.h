@@ -36,7 +36,7 @@
 
 @end
 
-typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL couldUpdateExpendStatus);
+typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus);
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
@@ -50,13 +50,13 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
 
 #pragma mark - Instance Methods
-- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
-- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
 - (void)isExpendedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
 - (void)isExpendedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
 
-- (void)isSelectedSatatusChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusChangedFrom:to:andCouldUpdateExpendStatus: instead.")));
-- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusWillChangedFrom:to:andCouldUpdateExpendStatus: instead.")));
+- (void)isSelectedSatatusChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusChangedFrom:to:isManuallyAction:andCouldUpdateExpendStatus: instead.")));
+- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusWillChangedFrom:to:isManuallyAction:andCouldUpdateExpendStatus: instead.")));
 - (void)isExpendedSatatusChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusChangedFrom:to: instead.")));
 - (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusWillChangedFrom:to: instead.")));
 
@@ -91,6 +91,7 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
  */
 - (void)setSelectionStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)selectionStatusOnChangeBlock;
 - (void)toggleSelectionStatus;
+- (void)toggleSelectionStatusWithIsManuallyAction:(BOOL)isManuallyAction;
 
 //// Expending Status Related
 @property (nonatomic, readonly) BOOL isExpended;

@@ -164,7 +164,7 @@
                                withStartIndex:index];
     
     if (shouldMarkAsSelected && !insertingModel.isSelected) { /// Update Selection Status
-        [insertingModel toggleSelectionStatus];
+        [insertingModel toggleSelectionStatusWithIsManuallyAction:NO];
     }
     
     return [NSArray arrayWithArray:insertingArray];
