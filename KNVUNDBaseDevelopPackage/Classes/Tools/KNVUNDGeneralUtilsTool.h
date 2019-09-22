@@ -35,6 +35,7 @@
 
 #pragma mark - Others
 + (NSString *)generateUUID;
+extern NSString *const KNVUNDGeneralUtilsTool_DeviceUDID_ForSimulator;
 + (NSString *)getDeviceUUID;
 
 @end
