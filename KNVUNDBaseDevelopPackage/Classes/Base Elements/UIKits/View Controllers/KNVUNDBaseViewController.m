@@ -419,11 +419,10 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     void(^formSheetShowUpBlock)(void) = ^() {
         UIViewController *presentingViewController = viewControllerGeneratingBlock();
         [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+            self->_currentPresentingViewController = contentVC;
             [self presentViewController:presentingViewController
                                animated:animated
                              completion:^{
-                                 self->_currentPresentingViewController = contentVC;
-                                 
                                  [self presentViewControllerDidAppear];
                                  
                                  if (completeBlock) {
