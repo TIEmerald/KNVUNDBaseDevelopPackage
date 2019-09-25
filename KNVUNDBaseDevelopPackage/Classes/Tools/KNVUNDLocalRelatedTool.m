@@ -34,15 +34,10 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
     return [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
 }
 
-+ (NSLocale *)getCurrentStoredDefaultLocal
++ (NSLocale *)getCurrentLocal
 {
     NSString *storedDefaultLocalIdentifier = [KNVUNDGeneralUtilsTool getDataFromUserDefaults:KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identifier];
     return [[NSLocale alloc] initWithLocaleIdentifier:storedDefaultLocalIdentifier] ?: [NSLocale currentLocale];
-}
-
-+ (NSLocale *)getCurrentLocal
-{
-    return [NSLocale currentLocale];
 }
 
 + (void)logLocaleDetailsFromLocale:(NSLocale *)checkingLocale
@@ -241,16 +236,20 @@ NSString *const KNVUNDLocalRelatedTool_UserDefault_Key_StoredDefaultLocal_Identi
 #pragma mark Support Methods
 + (NSNumberFormatter *)getCurrentCurrencyNumberFormatter
 {
-    NSLocale *currencyLocale = [self getCurrentStoredDefaultLocal];
+    static NSNumberFormatter *usingCurrencyFormatter;
+    static dispatch_once_t onceTokenUsingCurrencyFormatter;
+    dispatch_once(&onceTokenUsingCurrencyFormatter, ^{
+        usingCurrencyFormatter = [[NSNumberFormatter alloc] init];
+        [usingCurrencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [usingCurrencyFormatter setAlwaysShowsDecimalSeparator:NO];
+        [usingCurrencyFormatter setUsesGroupingSeparator:YES];
+    });
     
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.locale = currencyLocale;
-    [formatter setGroupingSeparator:[currencyLocale objectForKey:NSLocaleGroupingSeparator]];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setAlwaysShowsDecimalSeparator:NO];
-    [formatter setUsesGroupingSeparator:YES];
+    NSLocale *currencyLocale = [self getCurrentLocal];
+    [usingCurrencyFormatter setGroupingSeparator:[currencyLocale objectForKey:NSLocaleGroupingSeparator]];
+    usingCurrencyFormatter.locale = currencyLocale;
     
-    return formatter;
+    return usingCurrencyFormatter;
 }
 
 #pragma mark - Deprecated Methods
