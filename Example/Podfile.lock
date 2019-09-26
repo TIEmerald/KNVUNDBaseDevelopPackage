@@ -35,9 +35,10 @@ DEPENDENCIES:
   - Specta
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Expecta
     - "Expecta+Snapshots"
+    - FBSnapshotTestCase
     - HexColors
     - LinqToObjectiveC
     - MZAppearance
@@ -48,8 +49,6 @@ SPEC REPOS:
     - Specta
     - SVProgressHUD
     - ZXingObjC
-  trunk:
-    - FBSnapshotTestCase
 
 EXTERNAL SOURCES:
   KNVUNDBaseDevelopPackage:
