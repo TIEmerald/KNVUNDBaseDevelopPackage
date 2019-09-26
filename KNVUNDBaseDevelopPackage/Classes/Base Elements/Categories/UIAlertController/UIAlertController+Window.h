@@ -6,14 +6,8 @@
 //  Copyright (c) 2015 ForeFlight, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIViewController+Window.h"
 
 @interface UIAlertController (Window)
-
-- (void)show;
-- (void)show:(BOOL)animated;
-
-- (void)dismiss;
-- (void)dismiss:(BOOL)animated;
 
 @end
