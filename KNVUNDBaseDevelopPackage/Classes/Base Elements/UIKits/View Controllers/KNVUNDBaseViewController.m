@@ -394,19 +394,18 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 
 - (void)dismissCurrentPresentationViewWithAnimation:(BOOL)animation andCompletionBlock:(void(^)(void))completionBlock
 {
-    
-    if (_currentPresentingViewController) {
-        [self setPresentedViewControllerToNil]; // We put this out of completion because we don't want you call dismiss Current FormSheet PresentationView methods multiple times before it completed.
-        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+    [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
+        if (_currentPresentingViewController) {
+            [self setPresentedViewControllerToNil]; // We put this out of completion because we don't want you call dismiss Current FormSheet PresentationView methods multiple times before it completed.
             [self dismissViewControllerAnimated:animation
                                      completion:^{
-                                         [self presentViewControllerDidDisappear];
-                                         if (completionBlock) {
-                                             completionBlock();
-                                         }
-                                     }];
-        }];
-    }
+                [self presentViewControllerDidDisappear];
+                if (completionBlock) {
+                    completionBlock();
+                }
+            }];
+        }
+    }];
 }
 
 // Content VC in here is used to checking to see if we need to present a new ViewController or not.
@@ -419,25 +418,24 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     void(^formSheetShowUpBlock)(void) = ^() {
         UIViewController *presentingViewController = viewControllerGeneratingBlock();
         [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-            self->_currentPresentingViewController = contentVC;
             [self presentViewController:presentingViewController
                                animated:animated
                              completion:^{
-                                 [self presentViewControllerDidAppear];
-                                 
-                                 if (completeBlock) {
-                                     completeBlock();
-                                 }
-                             }];
+                self->_currentPresentingViewController = contentVC;
+                
+                [self presentViewControllerDidAppear];
+                
+                if (completeBlock) {
+                    completeBlock();
+                }
+            }];
         }];
     };
     
     if (_currentPresentingViewController != nil && _currentPresentingViewController != contentVC) {
-        [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
-            [self dismissCurrentPresentationViewWithAnimation:NO
-                                           andCompletionBlock:^{
-                                               formSheetShowUpBlock();
-                                           }];
+        [self dismissCurrentPresentationViewWithAnimation:NO
+                                       andCompletionBlock:^{
+            formSheetShowUpBlock();
         }];
     } else if(_currentPresentingViewController == nil) {
         formSheetShowUpBlock();
@@ -473,7 +471,6 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     
 }
-
 
 #pragma mark - Support Methods
 - (void)setPresentedViewControllerToNil
