@@ -32,6 +32,11 @@
 @implementation UIViewController (Window)
 
 #pragma mark - Methods to Override
++ (UIModalPresentationStyle)modalPresentationStyle
+{
+    return UIModalPresentationFullScreen;
+}
+
 + (UIWindowLevel)windowLevel
 {
     return UIWindowLevelNormal;
@@ -44,6 +49,7 @@
 
 - (void)show:(BOOL)animated {
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.modalPresentationStyle = [[self class] modalPresentationStyle];
         self.newWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         self.newWindow.rootViewController = [[UIViewController alloc] init];
         self.newWindow.windowLevel = [[self class] windowLevel];
