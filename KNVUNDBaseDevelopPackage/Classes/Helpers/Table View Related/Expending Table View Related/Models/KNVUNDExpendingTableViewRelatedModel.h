@@ -85,7 +85,7 @@ typedef BOOL(^KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock)(BOOL oldStatu
 /*!
  * @brief Please call this method if you want to have any reaction based on Selection Status Changed.
  */
-- (void)setSelectionStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)selectionStatusOnChangeBlock;
+- (void)setSelectionStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock)selectionStatusOnChangeBlock;
 - (void)toggleSelectionStatus;
 - (void)toggleSelectionStatusWithIsManuallyAction:(BOOL)isManuallyAction;
 
@@ -95,8 +95,8 @@ typedef BOOL(^KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock)(BOOL oldStatu
 /*!
  * @brief Please call this method if you want to have any reaction based on Expending Status Changed.
  */
-- (void)setCouldExpendingStatusChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock;
-- (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusOnChangeBlock;
+- (void)setCouldExpendingStatusChangeBlock:(KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock)couldExpendingStatusChangeBlock;
+- (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock)expendingStatusOnChangeBlock;
 - (void)toggleExpendedStatus;
 - (BOOL)canToggleExpendedStatus;
 

@@ -92,9 +92,9 @@
                                   isManuallyAction:isManuallyAction
                         andCouldUpdateExpendStatus:couldUpdateExpendStatus];
         }];
-        [self setCouldExpendingStatusChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
-            [weakSelf couldExpendedStatusChangedFrom:oldStatusBoolean
-                                                   to:newStatusBoolean];
+        [self setCouldExpendingStatusChangeBlock:^BOOL(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
+            return [weakSelf couldExpendedStatusChangedFrom:oldStatusBoolean
+                                                         to:newStatusBoolean];
         }];
         [self setExpendingStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
             [weakSelf isExpendedStatusChangedFrom:oldStatusBoolean
