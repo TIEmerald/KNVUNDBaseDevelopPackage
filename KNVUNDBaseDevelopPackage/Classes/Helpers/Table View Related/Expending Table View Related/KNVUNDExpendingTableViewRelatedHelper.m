@@ -160,7 +160,7 @@
     NSMutableArray *insertingArray = [NSMutableArray new];
     [insertingArray addObject:insertingModel];
     [insertingArray addObjectsFromArray:[insertingModel getDisplayingDescendants]];
-    [self inSertCellsWithDisplayingModelArray:insertingArray
+    [self insertCellsWithDisplayingModelArray:insertingArray
                                withStartIndex:index];
     
     if (shouldMarkAsSelected && !insertingModel.isSelected) { /// Update Selection Status
@@ -254,7 +254,7 @@
     }];
 }
 
-- (void)inSertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex
+- (void)insertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex
 {
     [KNVUNDThreadRelatedTool performBlockInMainQueue:^{
         NSMutableArray *insertingIndexPaths = [NSMutableArray new];

@@ -22,7 +22,7 @@
 
 /// Table View Updating Related
 - (void)deleteCellsWithDisplayingModelArray:(NSArray *_Nonnull)deletingDisplayingModels;
-- (void)inSertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex;
+- (void)insertCellsWithDisplayingModelArray:(NSArray *_Nonnull)insertingDisplayingModels withStartIndex:(NSUInteger)startIndex;
 - (void)reloadCellsWithDisplayingModelArray:(NSArray *_Nonnull)reloadingDisplayingModels shouldReloadCell:(BOOL)shouldReloadCell;
 - (void)reloadChildrenCellsWithDisplayingModel:(KNVUNDExpendingTableViewRelatedModel *_Nonnull)relatedModel
                      withChildrenUpdatingBlock:(void(^_Nonnull)(KNVUNDExpendingTableViewRelatedModel *_Nonnull relatedModel))updatingBlock
@@ -37,6 +37,7 @@
 @end
 
 typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus);
+typedef BOOL(^KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock)(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus);
 
 @interface KNVUNDExpendingTableViewRelatedModel : KNVUNDBaseModel
 
@@ -50,15 +51,10 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 + (Class _Nonnull)relatedTableViewCell; /// You need to override this method for each type of Model, to let Helper know which Table Cell we need to use.
 
 #pragma mark - Instance Methods
-- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
-- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
-- (void)isExpendedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
-- (void)isExpendedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
-
-- (void)isSelectedSatatusChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusChangedFrom:to:isManuallyAction:andCouldUpdateExpendStatus: instead.")));
-- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected __attribute__((deprecated("Use isSelectedSatatusWillChangedFrom:to:isManuallyAction:andCouldUpdateExpendStatus: instead.")));
-- (void)isExpendedSatatusChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusChangedFrom:to: instead.")));
-- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended __attribute__((deprecated("Use isExpendedSatatusWillChangedFrom:to: instead.")));
+- (BOOL)couldSelectedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallyAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (void)isSelectedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallyAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus NS_REQUIRES_SUPER;
+- (BOOL)couldExpendedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
+- (void)isExpendedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue NS_REQUIRES_SUPER;
 
 #pragma mark - General Methods
 /// Object Level
@@ -99,17 +95,17 @@ typedef void(^KNVUNDETVRelatedModelBooleanStatusChangedBlock)(BOOL oldStatusBool
 /*!
  * @brief Please call this method if you want to have any reaction based on Expending Status Changed.
  */
+- (void)setCouldExpendingStatusChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock;
 - (void)setExpendingStatusOnChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusOnChangeBlock;
-- (void)setExpendingStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock;
 - (void)toggleExpendedStatus;
 - (BOOL)canToggleExpendedStatus;
 
 /////// Support Methods
 @property (readonly) NSIndexPath *currentDisplayingIndexPath;
 @property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *siblings;
-- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedants;
+- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedents;
 - (NSArray *_Nonnull)getDisplayingDescendants;
-- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancester; /// Self is a descendant of self...
+- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancestor; /// Self is a descendant of self...
 
 //// Log Related
 - (NSString *_Nonnull)logDescription;

@@ -15,31 +15,31 @@
 
 @interface KNVUNDExpendingTableViewRelatedModel(){
     
-    /// Hirearchy Related Properties
+    /// Hierarchy Related Properties
     NSMutableArray<KNVUNDExpendingTableViewRelatedModel *> *_mutableChildrenArray;
     
     /// Selection Related
     BOOL _isCurrentModelSelected;
-    KNVUNDETVRelatedModelBooleanStatusChangedBlock _selectionStatusWillChange;
+    KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock _couldSelectionStatusChangeBlock;
     KNVUNDETVRelatedModelBooleanStatusChangedBlock _selectionStatusOnChange;
     
     /// Expending Status Related
     BOOL _isCurrentModelExpended;
-    KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusWillChange;
+    KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock _couldExpendingStatusChangeBlock;
     KNVUNDETVRelatedModelBooleanStatusChangedBlock _expendingStatusOnChange;
 }
 
 @property (readonly) BOOL hasLinkedToDisplayingHelper;
 @property (readonly) NSArray<KNVUNDExpendingTableViewRelatedModel *> *relatedModelArray;
 
-//// Hirearchy Related properties
+//// Hierarchy Related properties
 @property (nonatomic, readwrite) NSUInteger modelDepthLevel;
 
 @end
 
 @implementation KNVUNDExpendingTableViewRelatedModel
 
-#pragma mark - Overrided Methods
+#pragma mark - Override Methods
 #pragma mark - Class Methods
 + (Class _Nonnull)relatedTableViewCell
 {
@@ -47,14 +47,13 @@
 }
 
 #pragma mark - Instance Methods
-- (void)isSelectedSatatusChangedTo:(BOOL)isSelected
+- (BOOL)couldSelectedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallyAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
-    
+    return YES;
 }
 
-- (void)isSelectedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
+- (void)isSelectedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallyAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
 {
-    [self isSelectedSatatusChangedTo:newValue];
     if (self.shouldExpendWhileSelected) {
         if (!oldValue && newValue && couldUpdateExpendStatus && !self.isExpended) {
             [self toggleExpendedStatusWithIsManuallyAction:YES];
@@ -64,34 +63,14 @@
     }
 }
 
-- (void)isSelectedSatatusWillChangedTo:(BOOL)isSelected
+- (BOOL)couldExpendedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue
+{
+    return YES;
+}
+
+- (void)isExpendedStatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue
 {
     
-}
-
-- (void)isSelectedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue isManuallyAction:(BOOL)isManuallAction andCouldUpdateExpendStatus:(BOOL)couldUpdateExpendStatus
-{
-    [self isSelectedSatatusWillChangedTo:newValue];
-}
-
-- (void)isExpendedSatatusChangedTo:(BOOL)isExpended
-{
-    
-}
-
-- (void)isExpendedSatatusChangedFrom:(BOOL)oldValue to:(BOOL)newValue
-{
-    [self isExpendedSatatusChangedTo:newValue];
-}
-
-- (void)isExpendedSatatusWillChangedTo:(BOOL)isExpended
-{
-    
-}
-
-- (void)isExpendedSatatusWillChangedFrom:(BOOL)oldValue to:(BOOL)newValue
-{
-    [self isExpendedSatatusWillChangedTo:newValue];
 }
 
 #pragma mark - Initial
@@ -101,25 +80,25 @@
         __weak typeof(self) weakSelf = self;
         self.isExpendable = YES;
         self.isSelectable = YES;
+        [self setCouldSelectionStatusChangeBlock:^BOOL(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
+            return [weakSelf couldSelectedStatusChangedFrom:oldStatusBoolean
+                                                          to:newStatusBoolean
+                                            isManuallyAction:isManuallyAction
+                                  andCouldUpdateExpendStatus:couldUpdateExpendStatus];
+        }];
         [self setSelectionStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
-            [weakSelf isSelectedSatatusChangedFrom:oldStatusBoolean
+            [weakSelf isSelectedStatusChangedFrom:oldStatusBoolean
                                                 to:newStatusBoolean
                                   isManuallyAction:isManuallyAction
                         andCouldUpdateExpendStatus:couldUpdateExpendStatus];
         }];
-        [self setSelectionStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
-            [weakSelf isSelectedSatatusWillChangedFrom:oldStatusBoolean
-                                                    to:newStatusBoolean
-                                      isManuallyAction:isManuallyAction
-                            andCouldUpdateExpendStatus:couldUpdateExpendStatus];
+        [self setCouldExpendingStatusChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
+            [weakSelf couldExpendedStatusChangedFrom:oldStatusBoolean
+                                                   to:newStatusBoolean];
         }];
         [self setExpendingStatusOnChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
-            [weakSelf isExpendedSatatusChangedFrom:oldStatusBoolean
+            [weakSelf isExpendedStatusChangedFrom:oldStatusBoolean
                                                 to:newStatusBoolean];
-        }];
-        [self setExpendingStatusWillChangeBlock:^(BOOL oldStatusBoolean, BOOL newStatusBoolean, BOOL isManuallyAction, BOOL couldUpdateExpendStatus) {
-            [weakSelf isExpendedSatatusWillChangedFrom:oldStatusBoolean
-                                                    to:newStatusBoolean];
         }];
     }
     return self;
@@ -149,7 +128,7 @@
     _isCurrentModelExpended = isExpended;
 }
 
-#pragma mark - Hirearchy Related Properties
+#pragma mark - Hierarchy Related Properties
 #pragma mark Getters
 - (NSArray<KNVUNDExpendingTableViewRelatedModel *> *)children
 {
@@ -237,20 +216,20 @@
 
 - (NSInteger)insertingDisplayingIndexForNewChildWithNewChildIndex:(NSInteger)newChildInsertingIndex
 {
-    //// The logic is reach the models belond to next sibling, we will find out the inserting displaying index for the new model
+    //// The logic is reach the models belong to next sibling, we will find out the inserting displaying index for the new model
     
     NSInteger selfIndex = [self getCurrentDisplayingIndex]; /// This is the index for parent
    
-    KNVUNDExpendingTableViewRelatedModel *nextSubling = nil;
+    KNVUNDExpendingTableViewRelatedModel *nextSibling = nil;
     if (newChildInsertingIndex + 1 < [self.children count] ) {
-        nextSubling = [self.children objectAtIndex:newChildInsertingIndex + 1];
+        nextSibling = [self.children objectAtIndex:newChildInsertingIndex + 1];
     }
     
     /// Then we will keep checking the displaying models until we found what we need
     NSInteger checkingIndex = selfIndex + 1;
     while (checkingIndex < [self.relatedModelArray count]) {
         KNVUNDExpendingTableViewRelatedModel *currentDisplayingModel = self.relatedModelArray[checkingIndex];
-        if (currentDisplayingModel == nextSubling) { /// We will return the Index for Next Sibling as the index where we entry the new Displaying model
+        if (currentDisplayingModel == nextSibling) { /// We will return the Index for Next Sibling as the index where we entry the new Displaying model
             return checkingIndex;
         }
         if (![currentDisplayingModel isDescendantOf:self]) { /// Or we will entry the new displaying Model at the end of the displaying descendants...
@@ -313,9 +292,9 @@
     _selectionStatusOnChange = selectionStatusOnChangeBlock;
 }
 
-- (void)setSelectionStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)selectionStatusWillChangeBlock
+- (void)setCouldSelectionStatusChangeBlock:(KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock _Nullable)couldSelectionStatusChangeBlock
 {
-    _selectionStatusWillChange = selectionStatusWillChangeBlock;
+    _couldSelectionStatusChangeBlock = couldSelectionStatusChangeBlock;
 }
 
 - (void)toggleSelectionStatus
@@ -333,6 +312,22 @@
 /// This method will return a Set of KNVUNDExpendingTableViewRelatedModel which selection status will be affected.
 - (void)toggleSelectionStatusWithCouldUpdateRelatedCells:(BOOL)shouldUpdateCells andIsManuallyAction:(BOOL)isManuallyAction
 {
+    if (!self.isSelectable) {
+        return;
+    }
+    
+    BOOL selectionStatusWillChangedFrom = self.isSelected;
+    BOOL selectionStatusWillChangedTo = !selectionStatusWillChangedFrom;
+    BOOL couldPerformAction = YES;
+    
+    if (_couldSelectionStatusChangeBlock) {
+        couldPerformAction = _couldSelectionStatusChangeBlock(selectionStatusWillChangedFrom, selectionStatusWillChangedTo, isManuallyAction, shouldUpdateCells);
+    }
+    
+    if (!couldPerformAction) {
+        return;
+    }
+    
     NSMutableSet *updatedModels = [NSMutableSet new];
     
     if ([self isSingleSelection] && !self->_isCurrentModelSelected) {
@@ -345,31 +340,22 @@
         }
     }
     
-    BOOL selectionStatusWillChangedFrom = self.isSelected;
-    BOOL selectionStatusWillChangedTo = !selectionStatusWillChangedFrom;
-    
-    if (_selectionStatusWillChange) {
-        _selectionStatusWillChange(selectionStatusWillChangedFrom, selectionStatusWillChangedTo, isManuallyAction, shouldUpdateCells);
-    }
-    
-    if (self.isSelectable) {
-        /// Step One, if it's not selected, we will select current Model
-        if (!self.isSelected) {
+    /// Step One, if it's not selected, we will select current Model
+    if (!self.isSelected) {
+        _isCurrentModelSelected = selectionStatusWillChangedTo;
+    } else {
+        if (_isCurrentModelSelected) {
             _isCurrentModelSelected = selectionStatusWillChangedTo;
         } else {
-            if (_isCurrentModelSelected) {
-                _isCurrentModelSelected = selectionStatusWillChangedTo;
-            } else {
-                for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
-                    if (child.isSelected && child.isSelectable) {
-                        [child toggleSelectionStatusWithCouldUpdateRelatedCells:NO
-                                                            andIsManuallyAction:NO];
-                    }
+            for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
+                if (child.isSelected && child.isSelectable) {
+                    [child toggleSelectionStatusWithCouldUpdateRelatedCells:NO
+                                                        andIsManuallyAction:NO];
                 }
             }
         }
-        [updatedModels addObjectsFromArray:[self selectionUIUpdatingRelatedModelsFromSelf]];
     }
+    [updatedModels addObjectsFromArray:[self selectionUIUpdatingRelatedModelsFromSelf]];
     
     if (shouldUpdateCells) {
         if ([self.delegate respondsToSelector:@selector(reloadCellsWithDisplayingModelArray:shouldReloadCell:)]) {
@@ -440,9 +426,9 @@
     _expendingStatusOnChange = expendingStatusOnChangeBlock;
 }
 
-- (void)setExpendingStatusWillChangeBlock:(KNVUNDETVRelatedModelBooleanStatusChangedBlock _Nullable)expendingStatusWillChangeBlock
+- (void)setCouldExpendingStatusChangeBlock:(KNVUNDETVRelatedModelCouldBooleanStatusChangedBlock _Nullable)couldExpendingStatusChangeBlock
 {
-    _expendingStatusWillChange = expendingStatusWillChangeBlock;
+    _couldExpendingStatusChangeBlock = couldExpendingStatusChangeBlock;
 }
 
 - (BOOL)canToggleExpendedStatus {
@@ -456,13 +442,23 @@
 
 - (void)toggleExpendedStatusWithIsManuallyAction:(BOOL)isManuallyAction
 {
-    NSArray *displayingDescendants = [self getAllDescndantsThatShouldDisplay];
+    if (!self.isExpendable) {
+        return;
+    }
+    
     BOOL expendedStatusWillChangedFrom = _isCurrentModelExpended;
     BOOL expendedStatusWillChangedTo = !expendedStatusWillChangedFrom;
+    BOOL couldPerformAction = YES;
     
-    if (_expendingStatusWillChange) {
-        _expendingStatusWillChange(expendedStatusWillChangedFrom, expendedStatusWillChangedTo, isManuallyAction, YES);
+    if (_couldExpendingStatusChangeBlock) {
+       couldPerformAction = _couldExpendingStatusChangeBlock(expendedStatusWillChangedFrom, expendedStatusWillChangedTo, isManuallyAction, YES);
     }
+    
+    if (!couldPerformAction) {
+        return;
+    }
+    
+    NSArray *displayingDescendants = [self getAllDescendantsThatShouldDisplay];
     
     if (self.isExpended) {
         // Which means current displaying models contains all displaying descendant
@@ -495,7 +491,7 @@
     return [NSArray<KNVUNDExpendingTableViewRelatedModel *> arrayWithArray:tempArray];
 }
 
-- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedants
+- (NSArray *)getCurrentDisplayedIndexPathIncludingDecedents
 {
     NSMutableArray *returnIndexPaths = [NSMutableArray new];
     NSIndexPath *relatedIndexPath = [self getCurrentIndexPath];
@@ -513,10 +509,10 @@
 
 - (NSArray *)getDisplayingDescendants
 {
-    return self.isExpended ? [self getAllDescndantsThatShouldDisplay] : [NSArray new];
+    return self.isExpended ? [self getAllDescendantsThatShouldDisplay] : [NSArray new];
 }
 
-- (NSArray *)getAllDescndantsThatShouldDisplay
+- (NSArray *)getAllDescendantsThatShouldDisplay
 {
     NSMutableArray *returnArray = [NSMutableArray new];
     for (KNVUNDExpendingTableViewRelatedModel *child in self.children) {
@@ -527,11 +523,11 @@
     return returnArray;
 }
 
-- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancester
+- (BOOL)isDescendantOf:(KNVUNDExpendingTableViewRelatedModel *)ancestor
 {
     KNVUNDExpendingTableViewRelatedModel *checkingParent = self;
     while (checkingParent != nil) {
-        if (checkingParent == ancester) {
+        if (checkingParent == ancestor) {
             return YES;
         } else {
             checkingParent = checkingParent.parent;
@@ -581,8 +577,8 @@
 
 - (void)insertDisplayingModels:(NSArray *)displayingModels withInsertingIndex:(NSInteger)insertingIndex
 {
-    if ([self.delegate respondsToSelector:@selector(inSertCellsWithDisplayingModelArray:withStartIndex:)]) {
-        [self.delegate inSertCellsWithDisplayingModelArray:displayingModels
+    if ([self.delegate respondsToSelector:@selector(insertCellsWithDisplayingModelArray:withStartIndex:)]) {
+        [self.delegate insertCellsWithDisplayingModelArray:displayingModels
                                             withStartIndex:insertingIndex];
     }
 }
