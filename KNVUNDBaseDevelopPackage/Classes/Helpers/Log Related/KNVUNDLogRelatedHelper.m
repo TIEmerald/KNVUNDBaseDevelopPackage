@@ -151,7 +151,9 @@
 #pragma mark Support Methods
 - (void)appendLogStringWithBlock:(void(^)(void))logStringBlock andObjectName:(NSString *_Nonnull)objectName andCurrentIndentLevel:(NSUInteger)currentIndentLevel
 {
-    [self appendLogStringWithTitle:[NSString stringWithFormat:@"\n\n%@ Details:", objectName]
+    [self appendLogStringWithTitle:@""
+             andCurrentIndentLevel:currentIndentLevel];
+    [self appendLogStringWithTitle:[NSString stringWithFormat:@"%@ Details:", objectName]
              andCurrentIndentLevel:currentIndentLevel];
     if (logStringBlock) {
         logStringBlock();
