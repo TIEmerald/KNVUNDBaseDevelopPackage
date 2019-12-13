@@ -19,7 +19,7 @@
 #pragma mark - Getters
 - (NSDecimalNumber *)negativeDecimalNumber
 {
-    return [self decimalNumberByMultiplyingBy:[NSDecimalNumber negativeDecimal]];
+    return [self decimalNumberBySafelyMultiplyingBy:[NSDecimalNumber negativeDecimal]];
 }
 
 #pragma mark - Validators
