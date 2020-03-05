@@ -275,7 +275,7 @@
         
         self.displayingModels = [NSArray arrayWithArray:changingDisplayingModel];
         [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                         andLogStringFormat:@"Deleting Cell At Indexs: %@",
+                         andLogStringFormat:@"Inserting Cell At Indexs: %@",
          insertingIndexPaths];
         [self.associatedTableView insertRowsAtIndexPaths:insertingIndexPaths
                                         withRowAnimation:self.isDisableTableViewAnimation ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone];
@@ -296,8 +296,9 @@
         }
         
         [self performConsoleLogWithLogLevel:NSObject_LogLevel_Debug
-                         andLogStringFormat:@"Reloading Cell At Indexs: %@",
-         reloadingIndexPaths];
+                         andLogStringFormat:@"Reloading Cell At Indexs: %@, Shoud Reload Cell: %@",
+         reloadingIndexPaths,
+         @(shouldReloadCell)];
         
         if (shouldReloadCell) {
             [self.associatedTableView reloadRowsAtIndexPaths:reloadingIndexPaths
