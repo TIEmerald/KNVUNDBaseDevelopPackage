@@ -51,11 +51,11 @@
     UIAlertAction *returnAction = [UIAlertAction actionWithTitle:self.title
                                                            style:self.actionStyle
                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                             [baseUIViewController setPresentedViewControllerToNil];
-                                                             if (self->_storedSettingBlock) {
-                                                                 self->_storedSettingBlock(action);
-                                                             }
-                                                         }];
+        [baseUIViewController setPresentedViewControllerToNil];
+        if (self->_storedSettingBlock) {
+            self->_storedSettingBlock(action);
+        }
+    }];
     return returnAction;
 }
 
@@ -110,6 +110,7 @@
 
 @implementation KNVUNDBaseViewController{
     UIViewController *_currentPresentingViewController;// This Flag tells you if there is a FormSheet View Presented or not.
+    NSString *_isDisplayingBannerString; // we added this check to prevent we are presenting the same banner message too oftne.
 }
 
 #pragma mark - Override Methods
@@ -248,13 +249,13 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             [self addChildViewController:childViewController];
-                                             UIView* destView = childViewController.view;
-                                             destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-                                             destView.frame = frameRect;
-                                             [self.view addSubview:destView];
-                                             [childViewController didMoveToParentViewController:self];
-                                         }];
+        [self addChildViewController:childViewController];
+        UIView* destView = childViewController.view;
+        destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        destView.frame = frameRect;
+        [self.view addSubview:destView];
+        [childViewController didMoveToParentViewController:self];
+    }];
 }
 
 - (void)checkAndRemoveChildViewController:(UIViewController *)childViewController
@@ -275,10 +276,10 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             [self willMoveToParentViewController:nil];
-                                             [self.view removeFromSuperview];
-                                             [self removeFromParentViewController];
-                                         }];
+        [self willMoveToParentViewController:nil];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }];
 }
 
 /// Perform Sugure Related .... Override.... Make sure all segue is called in main thread... in case some error
@@ -290,8 +291,8 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             [super performSegueWithIdentifier:identifier sender:sender];
-                                         }];
+        [super performSegueWithIdentifier:identifier sender:sender];
+    }];
 }
 
 #pragma mark Support Methods
@@ -299,10 +300,10 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 {
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             [childViewController willMoveToParentViewController:nil];
-                                             [childViewController.view removeFromSuperview];
-                                             [childViewController removeFromParentViewController];
-                                         }];
+        [childViewController willMoveToParentViewController:nil];
+        [childViewController.view removeFromSuperview];
+        [childViewController removeFromParentViewController];
+    }];
 }
 
 #pragma mark - Banner Message Related
@@ -325,8 +326,8 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
             [self presentPresentViewWithAnimated:alertSettingModel.shouldShowUpWithAnimation
                            contentViewController:alertController
                    viewControllerGeneratingBlock:^UIViewController *{
-                       return alertController;
-                   }
+                return alertController;
+            }
                          andPresentCompleteBlock:alertSettingModel.didShowUpBlock];
         }
     }];
@@ -346,23 +347,23 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     [self presentPresentViewWithAnimated:settingModel.shouldShowUpWithAnimation
                    contentViewController:formsheetVC
            viewControllerGeneratingBlock:^UIViewController *{
-               // We can try to move this part logic to Super Class like KNVBaseViewController.
-               MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:formsheetVC];
-               formSheetController.presentationController.contentViewSize = [formsheetVC preferredContentSize];
-               
-               // Here is the code let it dismiss while clicked back end.
-               if (settingModel.shouldDismissWhileTappingBackend) {
-                   formSheetController.presentationController.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location){
-                       [self dismissCurrentPresentationViewWithAnimation:settingModel.shouldDismissWithAnimation];
-                   };
-               }
-               
-               formSheetController.presentationController.shouldCenterVertically = YES;
-               formSheetController.contentViewControllerTransitionStyle = settingModel.typeHolderOne;
-               formSheetController.presentationController.movementActionWhenKeyboardAppears = settingModel.typeHolderTwo;
-               
-               return formSheetController;
-           }
+        // We can try to move this part logic to Super Class like KNVBaseViewController.
+        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:formsheetVC];
+        formSheetController.presentationController.contentViewSize = [formsheetVC preferredContentSize];
+        
+        // Here is the code let it dismiss while clicked back end.
+        if (settingModel.shouldDismissWhileTappingBackend) {
+            formSheetController.presentationController.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location){
+                [self dismissCurrentPresentationViewWithAnimation:settingModel.shouldDismissWithAnimation];
+            };
+        }
+        
+        formSheetController.presentationController.shouldCenterVertically = YES;
+        formSheetController.contentViewControllerTransitionStyle = settingModel.typeHolderOne;
+        formSheetController.presentationController.movementActionWhenKeyboardAppears = settingModel.typeHolderTwo;
+        
+        return formSheetController;
+    }
                  andPresentCompleteBlock:completionBlock];
 }
 
@@ -372,16 +373,16 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
     [self presentPresentViewWithAnimated:NO
                    contentViewController:popOverViewController
            viewControllerGeneratingBlock:^UIViewController *{
-               popOverViewController.modalPresentationStyle = UIModalPresentationPopover;
-               
-               UIPopoverPresentationController *popover = popOverViewController.popoverPresentationController;
-               popover.delegate = self;
-               if (popoverUpdatingBlock) {
-                   popoverUpdatingBlock(popover);
-               }
-               
-               return popOverViewController;
-           }
+        popOverViewController.modalPresentationStyle = UIModalPresentationPopover;
+        
+        UIPopoverPresentationController *popover = popOverViewController.popoverPresentationController;
+        popover.delegate = self;
+        if (popoverUpdatingBlock) {
+            popoverUpdatingBlock(popover);
+        }
+        
+        return popOverViewController;
+    }
                  andPresentCompleteBlock:nil];
 }
 
@@ -480,21 +481,31 @@ NSTimeInterval const KNVUNDBaseVC_DefaultValue_BannerShowingTime = 3.0;
 
 - (void)showUpBannerWithTitle:(NSString *)title message:(NSString *)message andBannerType:(KNVUNDBaseVCBannerMessageType)bannerType
 {
+    NSString *fullBannerString = [NSString stringWithFormat:@"%@-%@-%@", title, message, @(bannerType)];
+    if ([_isDisplayingBannerString isEqualToString:fullBannerString]) { // If the banner is the same information, we will ingore the coming message
+        return;
+    }
+    _isDisplayingBannerString = fullBannerString;
     [KNVUNDThreadRelatedTool performBlockSynchronise:NO
                                          inMainQueue:^{
-                                             [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
-                                                                                  title:title
-                                                                               subtitle:message
-                                                                              iconImage:nil
-                                                                                   type:(RMessageType)bannerType
-                                                                         customTypeName:@""
-                                                                               duration:self.bannerShowingTime
-                                                                               callback:nil
-                                                                            buttonTitle:nil
-                                                                         buttonCallback:nil
-                                                                             atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? RMessagePositionBottom : RMessagePositionNavBarOverlay
-                                                                   canBeDismissedByUser:YES];
-                                         }];
+        [RMessage dismissActiveNotification];
+        [RMessage showNotificationInViewController:self.bannerMessageDisplayingVC
+                                             title:title
+                                          subtitle:message
+                                         iconImage:nil
+                                              type:(RMessageType)bannerType
+                                    customTypeName:@""
+                                          duration:self.bannerShowingTime
+                                          callback:nil
+                              presentingCompletion:nil
+                                 dismissCompletion:^{
+            _isDisplayingBannerString = nil;
+        }
+                                       buttonTitle:nil
+                                    buttonCallback:nil
+                                        atPosition:self.bannerPosition == KNVUNDBaseVCBannerPosition_Bottom ? RMessagePositionBottom : RMessagePositionNavBarOverlay
+                              canBeDismissedByUser:YES];
+    }];
 }
 
 @end
