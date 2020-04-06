@@ -270,6 +270,13 @@
 #pragma mark - Set Up
 - (void)setUpCurrentHelperWithScanningDisplayingView:(UIView *_Nonnull)displayingView andScannedResultReceivedBlock:(KNVUNDSHResultHandlerBlock _Nonnull)handler
 {
+    [self setUpCurrentHelperWithScanningDisplayingView:displayingView
+                         andScannedResultReceivedBlock:handler
+                                           errorHandle:^(NSString * _Nullable errorString) { }];
+}
+
+- (void)setUpCurrentHelperWithScanningDisplayingView:(UIView *_Nonnull)displayingView andScannedResultReceivedBlock:(KNVUNDSHResultHandlerBlock _Nonnull)handler errorHandle:(KNVUNDSHErrorHandlerBlock _Nullable)errorHandler
+{
     _usingScanner = [[KNVUNDSHScannerModel alloc] initScannerOnView:displayingView];
     __weak typeof(self) weakSelf = self;
     [_usingScanner setUpModelWithSuccessHandler:^{
@@ -286,6 +293,7 @@
             return;
         }
         strongWeakSelf->_usingScanner = nil;
+        errorHandler (errorMessage);
     }];
 }
 

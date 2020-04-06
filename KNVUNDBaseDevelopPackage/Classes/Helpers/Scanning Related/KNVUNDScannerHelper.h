@@ -8,6 +8,7 @@
 #import "KNVUNDBaseModel.h"
 
 typedef void(^KNVUNDSHResultHandlerBlock)(NSString *_Nonnull scannedString);
+typedef void(^KNVUNDSHErrorHandlerBlock)(NSString *_Nullable errorString);
 
 @interface KNVUNDScannerHelper : KNVUNDBaseModel
 
@@ -15,6 +16,7 @@ typedef void(^KNVUNDSHResultHandlerBlock)(NSString *_Nonnull scannedString);
 
 #pragma mark - Set Up
 - (void)setUpCurrentHelperWithScanningDisplayingView:(UIView *_Nonnull)displayingView andScannedResultReceivedBlock:(KNVUNDSHResultHandlerBlock _Nonnull)handler;
+- (void)setUpCurrentHelperWithScanningDisplayingView:(UIView *_Nonnull)displayingView andScannedResultReceivedBlock:(KNVUNDSHResultHandlerBlock _Nonnull)handler errorHandle:(KNVUNDSHErrorHandlerBlock _Nullable)errorHandler;
 
 #pragma mark - Public Methods
 - (void)switchCameraDevicePosition;
