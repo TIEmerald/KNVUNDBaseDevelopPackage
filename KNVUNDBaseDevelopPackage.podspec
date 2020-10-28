@@ -72,7 +72,7 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
     s.dependency 'ZXingObjC'
     s.dependency 'MZFormSheetPresentationController'
-    s.dependency 'RMessage'
+    s.dependency 'RMessage', '~> 2.3.0'
     s.dependency 'LinqToObjectiveC'
     s.dependency 'skpsmtpmessage'
     s.dependency 'SVProgressHUD'
