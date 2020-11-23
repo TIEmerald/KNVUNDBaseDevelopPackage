@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
 
 @property (nonatomic) UNDSideSlidePresentationControllerMaskEffect maskEffect;
 @property (nonatomic) BOOL shouldShinkPresentingViewController;
+@property (nonatomic) BOOL couldDragInUpDirection;
 
 @end
 
@@ -165,10 +166,12 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            self.presentedView.frame = CGRectMake(self.presentedView.frame.origin.x
-                                                   , self.containerView.frame.size.height / 2 + translation.y
-                                                   , self.presentedView.frame.size.width
-                                                   , self.presentedView.frame.size.height);
+            if (self.couldDragInUpDirection || translation.y > 0) {
+                self.presentedView.frame = CGRectMake(self.presentedView.frame.origin.x
+                                                       , self.containerView.frame.size.height / 2 + translation.y
+                                                       , self.presentedView.frame.size.width
+                                                       , self.presentedView.frame.size.height);
+            }
             float threshold = 0.1;
             float dragPercent = translation.y / self.containerView.frame.size.height;
             dragPercent = fmaxf(dragPercent, 0.0);
