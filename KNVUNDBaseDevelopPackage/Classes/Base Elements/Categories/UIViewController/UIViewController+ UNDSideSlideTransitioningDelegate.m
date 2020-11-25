@@ -7,6 +7,15 @@
 
 #import "UIViewController+UNDSideSlideTransitioningDelegate.h"
 
+// Thid Parties
+#import <objc/runtime.h>
+
+#pragma mark --
+
+@implementation UNDSideSlideTransitioningConfigModel
+
+@end
+
 #pragma mark --
 
 @interface UNDSideSlideBaseTransitionAnimator : NSObject<UIViewControllerAnimatedTransitioning>
@@ -111,16 +120,9 @@
 
 #pragma mark --
 
-typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
-    UNDSideSlidePresentationControllerMaskEffect_MaskDark = 0,
-    UNDSideSlidePresentationControllerMaskEffect_BlurDark = 1
-} ;
-
 @interface UNDSideSlidePresentationController : UIPresentationController
 
-@property (nonatomic) UNDSideSlidePresentationControllerMaskEffect maskEffect;
-@property (nonatomic) BOOL shouldShinkPresentingViewController;
-@property (nonatomic) BOOL couldDragInUpDirection;
+@property (nonatomic, strong) UNDSideSlideTransitioningConfigModel *configureModel;
 
 @end
 
@@ -156,7 +158,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
 }
 
 - (UIView *)maskViewWithFrame:(CGRect)usingFrame {
-    switch (self.maskEffect) {
+    switch (self.configureModel.maskEffect) {
         case UNDSideSlidePresentationControllerMaskEffect_BlurDark: {
             UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
             UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -182,9 +184,11 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
 #pragma mark - UIPresentationController
 - (instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController {
     if (self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController]) {
-        self.panGestureRecognizer = [UIPanGestureRecognizer new];
-        [self.panGestureRecognizer addTarget:self action:@selector(onPan:)];
-        [presentedViewController.view addGestureRecognizer:self.panGestureRecognizer];
+        if (!self.configureModel.isDisableManuallySlideToDismiss) {
+            self.panGestureRecognizer = [UIPanGestureRecognizer new];
+            [self.panGestureRecognizer addTarget:self action:@selector(onPan:)];
+            [presentedViewController.view addGestureRecognizer:self.panGestureRecognizer];
+        }
     }
     return self;
 }
@@ -200,7 +204,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
     [currentDimmingView addSubview:self.presentedViewController.view];
     [self.presentingViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         currentDimmingView.alpha = 1;
-        if (self.shouldShinkPresentingViewController) {
+        if (self.configureModel.shouldShinkPresentingViewController) {
             self.presentingViewController.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
         }
     }
@@ -230,7 +234,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            if (self.couldDragInUpDirection || translation.y > 0) {
+            if (self.configureModel.couldDragInUpDirection || translation.y > 0) {
                 self.presentedView.transform = CGAffineTransformMakeTranslation(0, translation.y);
             }
             float threshold = 0.1;
@@ -281,8 +285,29 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
 
 const NSTimeInterval UNDSideSlideTransitioningDelegate_SlideDuration = 0.4;
 
+#pragma mark - Getters & Setters
+static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewController_UNDSideSlideTransitioningConfigModel;
+
+#pragma mark - Getters
+- (UNDSideSlideTransitioningConfigModel *)sideSlideTransitioningConfigModel
+{
+    return objc_getAssociatedObject(self, UIViewController_UNDSideSlideTransitioningConfigModel);
+}
+
+#pragma mark - Setters
+- (void)setSideSlideTransitioningConfigModel:(UNDSideSlideTransitioningConfigModel *)sideSlideTransitioningConfigModel
+{
+    objc_setAssociatedObject(self, UIViewController_UNDSideSlideTransitioningConfigModel, sideSlideTransitioningConfigModel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 #pragma mark - General Methods
 - (void)sideSlide_show:(UIViewController *)presentedViewController {
+    [self sideSlide_show:presentedViewController
+              withConfig:[UNDSideSlideTransitioningConfigModel new]];
+}
+
+- (void)sideSlide_show:(UIViewController *)presentedViewController withConfig:(UNDSideSlideTransitioningConfigModel *)configModel {
+    self.sideSlideTransitioningConfigModel = configModel;
     presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
     presentedViewController.modalPresentationCapturesStatusBarAppearance = true;
     presentedViewController.transitioningDelegate = (id<UIViewControllerTransitioningDelegate>)self;
@@ -300,7 +325,9 @@ const NSTimeInterval UNDSideSlideTransitioningDelegate_SlideDuration = 0.4;
 }
 
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
-    return [[UNDSideSlidePresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+    UNDSideSlidePresentationController *returnControlller = [[UNDSideSlidePresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+    returnControlller.configureModel = self.sideSlideTransitioningConfigModel;
+    return returnControlller;
 }
 
 @end
