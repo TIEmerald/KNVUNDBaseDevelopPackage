@@ -231,10 +231,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
         }
         case UIGestureRecognizerStateChanged: {
             if (self.couldDragInUpDirection || translation.y > 0) {
-                self.presentedView.frame = CGRectMake(self.presentedView.frame.origin.x
-                                                       , self.containerView.frame.size.height / 2 + translation.y
-                                                       , self.presentedView.frame.size.width
-                                                       , self.presentedView.frame.size.height);
+                self.presentedView.transform = CGAffineTransformMakeTranslation(0, translation.y);
             }
             float threshold = 0.1;
             float dragPercent = translation.y / self.containerView.frame.size.height;
@@ -268,10 +265,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
           initialSpringVelocity:1
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-        CGRect containterFrame = self.containerView.frame;
-        CGRect halfFrame = CGRectMake(0, containterFrame.size.height / 2, containterFrame.size.width, containterFrame.size.height / 2);
-        CGRect usingFrame = halfFrame;
-        self.presentedView.frame = usingFrame;
+        self.presentedView.transform = CGAffineTransformIdentity;
         [self.presentedViewController.navigationController setNeedsStatusBarAppearanceUpdate];
         self.presentedViewController.navigationController.navigationBarHidden = true;
         self.presentedViewController.navigationController.navigationBarHidden = false;
