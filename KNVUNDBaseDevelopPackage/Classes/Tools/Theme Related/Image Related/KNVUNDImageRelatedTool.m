@@ -7,6 +7,8 @@
 
 #import "KNVUNDImageRelatedTool.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation KNVUNDImageRelatedTool
 
 #pragma mark - KNVUNDBaseModel
@@ -89,6 +91,15 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
++ (UIImage *)generateImageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 CGFloat const KNVUNDImageRelatedTool_ImageFromString_Default_Width = 576;

@@ -18,6 +18,7 @@
 
 /// This method we will get a pure Image with Color
 + (UIImage *_Nonnull)generateImageWithColor:(UIColor *_Nonnull)fromColor;
++ (UIImage *_Nonnull)generateImageWithView:(UIView *_Nonnull)view;
 
 /*!
  * @brief In this method we will generate an image from related Attributed String.
