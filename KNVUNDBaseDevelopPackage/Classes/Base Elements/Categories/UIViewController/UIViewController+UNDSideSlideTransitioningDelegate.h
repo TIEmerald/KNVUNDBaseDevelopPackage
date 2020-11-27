@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerMaskEffect) {
 @interface UNDSideSlideTransitioningConfigModel : NSObject
 
 @property (nonatomic) UNDSideSlidePresentationControllerMaskEffect maskEffect;
+@property (nonatomic) BOOL shouldDismissWhileClickBackground;
 @property (nonatomic) BOOL shouldShinkPresentingViewController;
 @property (nonatomic) BOOL couldDragInUpDirection;
 @property (nonatomic) BOOL isDisableManuallySlideToDismiss;

@@ -132,6 +132,7 @@
 
 @property (nonatomic) BOOL shouldComplete;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *dismissTapGestureRecognizer;
 
 @property (readonly) UIView *dimmingView;
 
@@ -150,11 +151,7 @@
 
 - (void)setUpDimmingView {
     CGRect usingFrame = CGRectMake(0, 0, self.containerView.bounds.size.width, self.containerView.bounds.size.height);
-    UIView *newView = [[UIView alloc] initWithFrame:usingFrame];
-    
-    [newView addSubview:[self maskViewWithFrame:usingFrame]];
-    
-    _dimmingView = newView;
+    _dimmingView = [self maskViewWithFrame:usingFrame];
 }
 
 - (UIView *)maskViewWithFrame:(CGRect)usingFrame {
@@ -188,6 +185,12 @@
             self.panGestureRecognizer = [UIPanGestureRecognizer new];
             [self.panGestureRecognizer addTarget:self action:@selector(onPan:)];
             [presentedViewController.view addGestureRecognizer:self.panGestureRecognizer];
+        }
+        if (self.configureModel.shouldDismissWhileClickBackground) {
+            self.dismissTapGestureRecognizer = [UITapGestureRecognizer new];
+            [self.dismissTapGestureRecognizer addTarget:self
+                                                 action:@selector(dismissPresentedViewController)];
+            [self.dimmingView addGestureRecognizer:self.dismissTapGestureRecognizer];
         }
     }
     return self;
@@ -246,7 +249,7 @@
         }
         case UIGestureRecognizerStateEnded: {
             if (self.shouldComplete) {
-                [self.presentedViewController dismissViewControllerAnimated:true completion:nil];
+                [self dismissPresentedViewController];
             } else {
                 [self resetPresentViewBackToIdle];
             }
@@ -262,6 +265,10 @@
 }
 
 #pragma mark Support Methods
+- (void)dismissPresentedViewController {
+    [self.presentedViewController dismissViewControllerAnimated:true completion:nil];
+}
+
 - (void)resetPresentViewBackToIdle {
     [UIView animateWithDuration:0.8
                           delay:0
