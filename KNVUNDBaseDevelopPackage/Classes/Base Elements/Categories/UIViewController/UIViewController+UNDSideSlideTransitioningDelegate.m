@@ -12,7 +12,35 @@
 
 #pragma mark --
 
+@interface UNDSideSlideTransitioningConfigModel()
+
+@property (nonatomic) CGSize preferredSize;
+@property (readonly) CGPoint(^preferredOriginPoint)(UIView *fromView);
+
+@end
+
 @implementation UNDSideSlideTransitioningConfigModel
+
+#pragma mark - Accessors
+#pragma mark - Getters
+- (CGPoint (^)(UIView *))preferredOriginPoint
+{
+    return ^(UIView *fromView) {
+        CGFloat presentingX = fromView.frame.size.width - self.preferredSize.width;
+        CGFloat presentingY = fromView.frame.size.height - self.preferredSize.height;
+        switch (self.presentPosition) {
+            case UNDSideSlidePresentationControllerPresentPosition_Center:
+                presentingX /= 2;
+                presentingY /= 2;
+                break;
+            case UNDSideSlidePresentationControllerPresentPosition_Bottom:
+            default:
+                presentingX /= 2;
+                break;
+        }
+        return CGPointMake(presentingX, presentingY);
+    };
+}
 
 @end
 
@@ -21,6 +49,7 @@
 @interface UNDSideSlideBaseTransitionAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic) NSTimeInterval timeInterval;
+@property (nonatomic, strong) UNDSideSlideTransitioningConfigModel *configModel;
 
 @end
 
@@ -31,9 +60,10 @@
 @implementation UNDSideSlideBaseTransitionAnimator
 
 #pragma mark - Init
-- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval {
+- (instancetype)initWithTimeInterval:(NSTimeInterval)timeInterval andConfigModel:(UNDSideSlideTransitioningConfigModel *)configModel {
     if (self = [self init]) {
         self.timeInterval = timeInterval;
+        self.configModel = configModel;
     }
     return self;
 }
@@ -66,19 +96,22 @@
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    CGPoint presentingOrigin = self.configModel.preferredOriginPoint(transitionContext.containerView);
+    CGRect originalToViewFrame = CGRectMake(presentingOrigin.x
+                                            , transitionContext.containerView.frame.size.height
+                                            , self.configModel.preferredSize.width
+                                            , self.configModel.preferredSize.height);
+    CGRect presentingToViewFrame = CGRectMake(presentingOrigin.x
+                                            , presentingOrigin.y
+                                            , self.configModel.preferredSize.width
+                                            , self.configModel.preferredSize.height);
     [transitionContext.containerView addSubview:toView];
     toView.alpha = 0;
-    toView.frame = CGRectMake(toView.frame.origin.x
-                              , toView.superview.frame.size.height
-                              , toView.frame.size.width
-                              , toView.superview.frame.size.height / 2);
+    toView.frame = originalToViewFrame;
     [UIView animateWithDuration:[self transitionDuration:transitionContext]
                      animations:^{
         toView.alpha = 1;
-        toView.frame = CGRectMake(toView.frame.origin.x
-                                  , toView.superview.frame.size.height / 2
-                                  , toView.frame.size.width
-                                  , toView.superview.frame.size.height / 2);
+        toView.frame = presentingToViewFrame;
     }
                      completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
@@ -197,7 +230,11 @@
 }
 
 - (CGRect)frameOfPresentedViewInContainerView {
-    return CGRectMake(0, self.containerView.frame.size.height / 2, self.containerView.frame.size.width, self.containerView.frame.size.height / 2);
+    CGPoint presentingOrigin = self.configureModel.preferredOriginPoint(self.containerView);
+    return CGRectMake(presentingOrigin.x
+                      , presentingOrigin.y
+                      , self.configureModel.preferredSize.width
+                      , self.configureModel.preferredSize.height);
 }
 
 - (void)presentationTransitionWillBegin {
@@ -315,6 +352,12 @@ static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewCon
 
 - (void)sideSlide_show:(UIViewController *)presentedViewController withConfig:(UNDSideSlideTransitioningConfigModel *)configModel {
     self.sideSlideTransitioningConfigModel = configModel;
+    if (CGSizeEqualToSize(presentedViewController.preferredContentSize, CGSizeZero)) {
+        self.sideSlideTransitioningConfigModel.preferredSize = CGSizeMake(self.view.bounds.size.width
+                                                                          , self.view.bounds.size.height / 2);
+    } else {
+        self.sideSlideTransitioningConfigModel.preferredSize = presentedViewController.preferredContentSize;
+    }
     presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
     presentedViewController.modalPresentationCapturesStatusBarAppearance = true;
     presentedViewController.transitioningDelegate = (id<UIViewControllerTransitioningDelegate>)self;
@@ -324,11 +367,13 @@ static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewCon
 #pragma mark - Protocols
 #pragma mark - UIViewControllerTransitioningDelegate
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [[UNDSideSlidePresentTransitionAnimator alloc] initWithTimeInterval:UNDSideSlideTransitioningDelegate_SlideDuration];
+    return [[UNDSideSlidePresentTransitionAnimator alloc] initWithTimeInterval:UNDSideSlideTransitioningDelegate_SlideDuration
+                                                                andConfigModel:self.sideSlideTransitioningConfigModel];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [[UNDSideSlideDismissTransitionAnimator alloc] initWithTimeInterval:UNDSideSlideTransitioningDelegate_SlideDuration];
+    return [[UNDSideSlideDismissTransitionAnimator alloc] initWithTimeInterval:UNDSideSlideTransitioningDelegate_SlideDuration
+                                                                andConfigModel:self.sideSlideTransitioningConfigModel];
 }
 
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
