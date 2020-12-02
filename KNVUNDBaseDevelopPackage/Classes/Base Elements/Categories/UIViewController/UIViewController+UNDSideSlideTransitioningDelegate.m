@@ -353,8 +353,8 @@ static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewCon
 - (void)sideSlide_show:(UIViewController *)presentedViewController withConfig:(UNDSideSlideTransitioningConfigModel *)configModel {
     self.sideSlideTransitioningConfigModel = configModel;
     if (CGSizeEqualToSize(presentedViewController.preferredContentSize, CGSizeZero)) {
-        self.sideSlideTransitioningConfigModel.preferredSize = CGSizeMake(self.view.bounds.size.width
-                                                                          , self.view.bounds.size.height / 2);
+        self.sideSlideTransitioningConfigModel.preferredSize = CGSizeMake([UIScreen mainScreen].bounds.size.width
+                                                                          , [UIScreen mainScreen].bounds.size.height / 2);
     } else {
         self.sideSlideTransitioningConfigModel.preferredSize = presentedViewController.preferredContentSize;
     }
