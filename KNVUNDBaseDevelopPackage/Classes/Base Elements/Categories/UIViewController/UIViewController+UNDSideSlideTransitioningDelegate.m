@@ -212,8 +212,9 @@
 
 #pragma mark - Super
 #pragma mark - UIPresentationController
-- (instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController {
+- (instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController andConfigModel:(SideSlideTransitioningConfigModel *)configModel { {
     if (self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController]) {
+        self.configureModel = configModel;
         if (!self.configureModel.isDisableManuallySlideToDismiss) {
             self.panGestureRecognizer = [UIPanGestureRecognizer new];
             [self.panGestureRecognizer addTarget:self action:@selector(onPan:)];
@@ -239,6 +240,7 @@
 
 - (void)presentationTransitionWillBegin {
     UIView *currentDimmingView = self.dimmingView;
+    currentDimmingView.frame = self.containerView.bounds;
     currentDimmingView.alpha = 0;
     [self.containerView addSubview:currentDimmingView];
     [currentDimmingView addSubview:self.presentedViewController.view];
@@ -377,9 +379,7 @@ static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewCon
 }
 
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
-    UNDSideSlidePresentationController *returnControlller = [[UNDSideSlidePresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
-    returnControlller.configureModel = self.sideSlideTransitioningConfigModel;
-    return returnControlller;
+    return [[UNDSideSlidePresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting andConfigModel:self.sideSlideTransitioningConfigModel];
 }
 
 @end
