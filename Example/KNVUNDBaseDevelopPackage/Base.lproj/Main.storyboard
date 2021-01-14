@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="ipad12_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,20 +20,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KRG-yU-IKJ">
-                                <rect key="frame" x="20" y="315" width="984" height="976"/>
+                                <rect key="frame" x="20" y="500" width="984" height="791"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80J-l2-ZGN">
+                                <rect key="frame" x="20" y="161" width="984" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.21960784310000001" green="0.38431372549999998" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KRG-yU-IKJ" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="295" id="fN6-ia-JHB"/>
+                            <constraint firstItem="80J-l2-ZGN" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="161" id="Bu6-PH-t77"/>
+                            <constraint firstAttribute="trailing" secondItem="80J-l2-ZGN" secondAttribute="trailing" constant="20" id="TNt-FS-BfF"/>
+                            <constraint firstItem="KRG-yU-IKJ" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="500" id="fN6-ia-JHB"/>
                             <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="KRG-yU-IKJ" secondAttribute="bottom" constant="75" id="kCW-fx-3Bg"/>
                             <constraint firstItem="KRG-yU-IKJ" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="kcs-2L-Ii7"/>
+                            <constraint firstItem="80J-l2-ZGN" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="rrh-VZ-HZf"/>
                             <constraint firstItem="KRG-yU-IKJ" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="yck-XL-0XK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="testingTableView" destination="KRG-yU-IKJ" id="ZEv-7x-UQd"/>
+                        <outlet property="testingTextField" destination="80J-l2-ZGN" id="jFh-lo-3vl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>

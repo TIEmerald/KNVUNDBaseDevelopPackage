@@ -13,9 +13,11 @@
 
 // Models
 #import "KNVUNDETVRelatedTagButtonModel.h"
+#import "UNDPopOverListItemModel.h"
 
 // Views
 #import "KNVUNDETVRelatedTagButtonCell.h"
+#import "UNDPopOverListView.h"
 
 // Helpers
 #import "KNVUNDButtonsSelectionHelper.h"
@@ -24,25 +26,49 @@
 // Tools
 #import "KNVUNDImageRelatedTool.h"
 
-@interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate> {
+@interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate, UITextFieldDelegate> {
     KNVUNDButtonsSelectionHelper *_buttonsSelectionHelper;
     
     KNVUNDExpendingTableViewRelatedHelper *_expendingTableViewHelper;
     KNVUNDButtonsSelectionHelper *_etvButtonsSelectionHelper;
+    
+    NSArray *_cachedStringArray;
 }
 
+@property (weak, nonatomic) IBOutlet UITextField *testingTextField;
 @property (weak, nonatomic) IBOutlet UITableView *testingTableView;
+
+@property (strong, nonatomic) UNDPopOverListView *popOverListView;
 
 @end
 
 @implementation KNVUNDViewController
 
+#pragma mark - UIViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self setupTagButtons];
+    // Do any additional setup after loading the view, typically from a nib.
+    //    [self setupTagButtons];
     [self setUpExpendableTable];
+    
+    self.testingTextField.delegate = self;
+    _cachedStringArray = @[@"Test One - Four Seasons Hotel Jakarta, JI. Daan Mogo Something I don't know",
+                           @"Test Two - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know",
+                           @"Test Three - JI. Daan Mogot Selatan Sekretaris, RT.3/RW.2 Something I don't know",
+                           @"Test Four - JI. Daan Mogot Utara, Gang 0, RT.6 / RW.3 Something I don't know",
+                           @"Five - JI. Daan Mogot Utara Kali Kelawang, RT.5/RW.3 Something I don't know",
+                           @"Test Six - JI. Daan Mogot Karle Jods Ce RT. 2/ RW. 7 Something I don't know",
+                           @"Seven - JI. Daan Mogot Edurs Puffur, RT. 10/ RW. 1 Something I don't know",
+                           @"Test Eight - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,6 +156,33 @@
 - (void)tagButtonDeSelectedWithModel:(KNVUNDETVTagButtonRelatedBaseModel *)relatedModel
 {
     
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSMutableArray *resultList = [NSMutableArray new];
+    for (NSString *item in _cachedStringArray) {
+        NSRange boldRange = [item rangeOfString:newString];
+        if (boldRange.location != NSNotFound) {
+            NSMutableAttributedString *tempString = [[NSMutableAttributedString alloc] initWithString:item];
+            [tempString addAttribute:NSFontAttributeName
+                               value:[UIFont fontWithName:@"Helvetica-Bold" size:17.0] range:boldRange];
+            [resultList addObject:[[UNDPopOverListItemModel alloc] initWithAttributeString:tempString]];
+        }
+    }
+    if (self.popOverListView.superview != nil) {
+        [self.popOverListView updateList:resultList];
+    } else {
+        self.popOverListView = [[UNDPopOverListView alloc] initWithList:resultList
+                                                             sourceRect:textField.frame
+                                                         arrowDirection:UNDPopOverListViewArrowDirectionTop
+                                                 andSelectionLogicBlock:^(id _Nonnull item) {
+            
+        }];
+        [self.view addSubview:self.popOverListView];
+    }
+    return true;
 }
 
 #pragma mark - Support Methods
