@@ -23,17 +23,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "KNVUNDBaseDevelopPackage_Example.app"
-            BlueprintName = "KNVUNDBaseDevelopPackage_Example"
-            ReferencedContainer = "container:KNVUNDBaseDevelopPackage.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -50,13 +39,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "KNVUNDBaseDevelopPackage_Example.app"
+            BuildableName = "UNDBaseDevelopPackage_Example.app"
             BlueprintName = "KNVUNDBaseDevelopPackage_Example"
             ReferencedContainer = "container:KNVUNDBaseDevelopPackage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -68,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "KNVUNDBaseDevelopPackage_Example.app"
+            BuildableName = "UNDBaseDevelopPackage_Example.app"
             BlueprintName = "KNVUNDBaseDevelopPackage_Example"
             ReferencedContainer = "container:KNVUNDBaseDevelopPackage.xcodeproj">
          </BuildableReference>
