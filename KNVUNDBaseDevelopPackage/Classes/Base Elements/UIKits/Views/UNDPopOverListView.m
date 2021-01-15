@@ -83,6 +83,39 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     return self;
 }
 
+
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    
+    CGRect sourceRect = [sourceView.superview convertRect:sourceView.frame
+                                                   toView:presentingView];
+    CGRect checkingRect = sourceRect;
+    UNDPopOverListViewArrowDirection arrowDirect = UNDPopOverListViewArrowDirectionBottom;
+    if ([presentingView isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *convertedView = (UIScrollView *)presentingView;
+        checkingRect = CGRectMake(sourceRect.origin.x - convertedView.contentOffset.x
+                                  , sourceRect.origin.y - convertedView.contentOffset.y
+                                  , sourceRect.size.width
+                                  , sourceRect.size.height);
+    }
+    
+    // Right now we only have two direction need to worry.
+    CGFloat topArea = checkingRect.origin.y;
+    CGFloat bottomArea = presentingView.bounds.size.height - checkingRect.origin.y - checkingRect.size.height;
+    if (topArea > bottomArea) {
+        arrowDirect = UNDPopOverListViewArrowDirectionBottom;
+    } else {
+        arrowDirect = UNDPopOverListViewArrowDirectionTop;
+    }
+    
+    if (self = [[UNDPopOverListView alloc] initWithList:list
+                                             sourceRect:sourceRect
+                                         arrowDirection:arrowDirect
+                                 andSelectionLogicBlock:selectionLogic]) {
+        [presentingView addSubview:self];
+    }
+    return self;
+}
+
 #pragma mark Support Methods
 - (void)setUpViewBasedOnContent {
     if (self.cachedList.count > 0) {

@@ -40,6 +40,8 @@ typedef void(^UNDPopOverListCellSelectionBlock)(id);
  * @param selectionLogic The callback while user selected any items from the pop over list view.
  */
 - (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView arrowDirection:(UNDPopOverListViewArrowDirection)arrowDirect andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic;
+// This method will decide arrowDirection automatically based on the sourceView and preserntingView
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic;
 
 #pragma mark - General Methods
 - (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList;
