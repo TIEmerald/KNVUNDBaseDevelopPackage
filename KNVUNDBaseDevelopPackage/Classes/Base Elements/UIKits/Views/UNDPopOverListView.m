@@ -294,6 +294,13 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     return returnCell;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.cachedList[indexPath.row] respondsToSelector:@selector(cachedData)]) {
+        self.cellSelectionBlock([self.cachedList[indexPath.row] cachedData]);
+    }
+}
+
 #pragma mark - Support Methods
 - (void)performInMainThread:(void(^)(void))block {
     if ([NSThread isMainThread]) {

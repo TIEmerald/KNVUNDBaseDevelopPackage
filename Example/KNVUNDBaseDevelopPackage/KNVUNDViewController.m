@@ -13,11 +13,11 @@
 
 // Models
 #import "KNVUNDETVRelatedTagButtonModel.h"
-#import "UNDPopOverListItemModel.h"
+#import "UNDPopOverListTestDataSource.h"
 
 // Views
+#import "UNDPopOverListExampleTableViewCell.h"
 #import "KNVUNDETVRelatedTagButtonCell.h"
-#import "UNDPopOverListView.h"
 
 // Helpers
 #import "KNVUNDButtonsSelectionHelper.h"
@@ -26,19 +26,18 @@
 // Tools
 #import "KNVUNDImageRelatedTool.h"
 
-@interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate, UITextFieldDelegate> {
+@interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate, UNDPopOverListExampleTableViewCellDelegate> {
     KNVUNDButtonsSelectionHelper *_buttonsSelectionHelper;
     
     KNVUNDExpendingTableViewRelatedHelper *_expendingTableViewHelper;
     KNVUNDButtonsSelectionHelper *_etvButtonsSelectionHelper;
     
+    UNDPopOverListTestDataSource *_popOverListTestDataSource;
+    
     NSArray *_cachedStringArray;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *testingTextField;
 @property (weak, nonatomic) IBOutlet UITableView *testingTableView;
-
-@property (strong, nonatomic) UNDPopOverListView *popOverListView;
 
 @end
 
@@ -49,10 +48,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //    [self setupTagButtons];
-    [self setUpExpendableTable];
-    
-    self.testingTextField.delegate = self;
+//    [self setupTagButtons];
+//    [self setUpExpendableTable];
+    [self setUpPopOverListTest];
     _cachedStringArray = @[@"Test One - Four Seasons Hotel Jakarta, JI. Daan Mogo Something I don't know",
                            @"Test Two - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know",
                            @"Test Three - JI. Daan Mogot Selatan Sekretaris, RT.3/RW.2 Something I don't know",
@@ -144,6 +142,12 @@
     _etvButtonsSelectionHelper.isForceSelection = YES;
 }
 
+- (void)setUpPopOverListTest {
+    _popOverListTestDataSource = [UNDPopOverListTestDataSource new];
+    _popOverListTestDataSource.passingDelegate = self;
+    [_popOverListTestDataSource registerTableView:self.testingTableView];
+}
+
 #pragma mark - Delegates
 #pragma mark - KNVUNDETVRelatedTagButtonModelDelegate
 - (void)tagButtonSelectedWithModel:(KNVUNDETVTagButtonRelatedBaseModel *)relatedModel
@@ -158,31 +162,13 @@
     
 }
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSMutableArray *resultList = [NSMutableArray new];
-    for (NSString *item in _cachedStringArray) {
-        NSRange boldRange = [item rangeOfString:newString];
-        if (boldRange.location != NSNotFound) {
-            NSMutableAttributedString *tempString = [[NSMutableAttributedString alloc] initWithString:item];
-            [tempString addAttribute:NSFontAttributeName
-                               value:[UIFont fontWithName:@"Helvetica-Bold" size:17.0] range:boldRange];
-            [resultList addObject:[[UNDPopOverListItemModel alloc] initWithAttributeString:tempString]];
-        }
-    }
-    if (self.popOverListView.superview != nil) {
-        [self.popOverListView updateList:resultList];
-    } else {
-        self.popOverListView = [[UNDPopOverListView alloc] initWithList:resultList
-                                                             sourceRect:textField.frame
-                                                         arrowDirection:UNDPopOverListViewArrowDirectionTop
-                                                 andSelectionLogicBlock:^(id _Nonnull item) {
-            
-        }];
-        [self.view addSubview:self.popOverListView];
-    }
-    return true;
+#pragma mark - UNDPopOverListExampleTableViewCellDelegate
+- (NSArray *)fetchingOriginArray {
+    return _cachedStringArray;
+}
+
+- (UIView *)popoverListPresentingView {
+    return self.testingTableView;
 }
 
 #pragma mark - Support Methods

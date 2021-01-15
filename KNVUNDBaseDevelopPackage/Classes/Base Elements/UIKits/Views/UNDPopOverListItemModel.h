@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UNDPopOverListItemModel : NSObject <UNDPopOverListItemModelProtocol>
 
+@property (nonatomic, strong) id cachedData;
+
 - (instancetype)initWithAttributeString:(NSAttributedString *)displayString;
 
 @end

@@ -13,6 +13,7 @@
 
 @protocol UNDPopOverListItemModelProtocol <NSObject>
 
+- (id)cachedData;
 - (Class<UNDPopOverListTableViewCellProtocol>)relatedCellClass;
 - (void)updateDisplayUIFromCell:(UITableViewCell<UNDPopOverListTableViewCellProtocol> *)aCell;
 

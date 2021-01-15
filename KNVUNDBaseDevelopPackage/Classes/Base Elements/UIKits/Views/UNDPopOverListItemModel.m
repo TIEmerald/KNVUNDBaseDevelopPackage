@@ -27,6 +27,10 @@
 }
 
 #pragma mark - UNDPopOverListItemModelProtocol
+- (id)cachedData {
+    return _cachedData;
+}
+
 - (Class<UNDPopOverListTableViewCellProtocol>)relatedCellClass {
     return [UNDPopOverListBaseTableViewCell class];
 }
