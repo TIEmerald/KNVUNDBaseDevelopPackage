@@ -71,6 +71,18 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     return self;
 }
 
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView arrowDirection:(UNDPopOverListViewArrowDirection)arrowDirect andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    CGRect sourceRect = [sourceView.superview convertRect:sourceView.frame
+                                                   toView:presentingView];
+    if (self = [[UNDPopOverListView alloc] initWithList:list
+                                             sourceRect:sourceRect
+                                         arrowDirection:arrowDirect
+                                 andSelectionLogicBlock:selectionLogic]) {
+        [presentingView addSubview:self];
+    }
+    return self;
+}
+
 #pragma mark Support Methods
 - (void)setUpViewBasedOnContent {
     if (self.cachedList.count > 0) {

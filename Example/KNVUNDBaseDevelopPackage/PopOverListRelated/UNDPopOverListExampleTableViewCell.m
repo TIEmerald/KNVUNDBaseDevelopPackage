@@ -77,15 +77,14 @@
         } else {
             __weak typeof(self) weakSelf = self;
             self.popOverListView = [[UNDPopOverListView alloc] initWithList:resultList
-                                                                 sourceRect:[self.contentView convertRect:textField.frame
-                                                                                                   toView:preserntingView]
+                                                                 sourceView:textField
+                                                             presentingView:preserntingView
                                                              arrowDirection:UNDPopOverListViewArrowDirectionTop
                                                      andSelectionLogicBlock:^(NSString *_Nonnull item) {
                 textField.text = item;
                 [weakSelf.popOverListView removeFromSuperview];
                 weakSelf.popOverListView = nil;
             }];
-            [preserntingView addSubview:self.popOverListView];
         }
     }
     return true;
