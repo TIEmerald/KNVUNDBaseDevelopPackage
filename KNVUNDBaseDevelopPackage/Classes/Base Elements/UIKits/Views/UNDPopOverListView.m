@@ -9,11 +9,66 @@
 
 #import "UNDPopOverListBaseTableViewCell.h"
 
-@interface UNDPopOverListView() <UITableViewDelegate, UITableViewDataSource> {
-    NSSet *_storedCellClasses;
+@implementation UNDPopOverListViewConfiguration
+
+#pragma mark - Constant
+CGFloat const UNDPopOverListViewConfiguration_DefaultBorder = 1.0f;
+CGFloat const UNDPopOverListViewConfiguration_DefaultCornerRadius = 3.0f;
+
+CGFloat const UNDPopOverListViewConfiguration_DefaultWidthMargin = 12.0f;
+CGFloat const UNDPopOverListViewConfiguration_DefaultWidthPadding = 12.0f;
+CGFloat const UNDPopOverListViewConfiguration_DefaultHeightMargin = 6.0f;
+CGFloat const UNDPopOverListViewConfiguration_DefaultHeightPadding = 2.5f;
+CGFloat const UNDPopOverListViewConfiguration_DefaultArrowWidth = 13.5f;
+
+CGFloat const UNDPopOverListViewConfiguration_DefaultCellHeight = 35.0f;
+
+CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
+
+#pragma mark - Factory Methods
++ (UNDPopOverListViewConfiguration *)addressAutoFillConfiguration {
+    UNDPopOverListViewConfiguration *returnConfiguration = [UNDPopOverListViewConfiguration new];
+    returnConfiguration.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    returnConfiguration.shadowRadius = 2.0f;
+    returnConfiguration.shadowOpacity = 0.60f;
+    returnConfiguration.borderWidth = 0.0f;
+    return returnConfiguration;
 }
 
-@property (nonatomic) UNDPopOverListViewArrowDirection arrowDirection;
+#pragma mark - Init
+- (instancetype)init {
+    if (self = [super init]) {
+        self.borderWidth = UNDPopOverListViewConfiguration_DefaultBorder;
+        self.cornerRadius = UNDPopOverListViewConfiguration_DefaultCornerRadius;
+        self.arrowWidth = UNDPopOverListViewConfiguration_DefaultArrowWidth;
+        self.defaultCellHeight = UNDPopOverListViewConfiguration_DefaultCellHeight;
+        self.arrowPointRatio = UNDPopOverListViewConfiguration_DefaultPopPointRatio;
+        self.shadowOpacity = 0.0;
+        
+        self.borderColor = [UIColor blackColor].CGColor;
+        self.shadowColor = [UIColor blackColor].CGColor;
+        
+        self.margin = UIEdgeInsetsMake(UNDPopOverListViewConfiguration_DefaultHeightMargin
+                                       , UNDPopOverListViewConfiguration_DefaultWidthMargin
+                                       , UNDPopOverListViewConfiguration_DefaultHeightMargin
+                                       , UNDPopOverListViewConfiguration_DefaultWidthMargin);
+        self.padding = UIEdgeInsetsMake(UNDPopOverListViewConfiguration_DefaultHeightPadding
+                                        , UNDPopOverListViewConfiguration_DefaultWidthPadding
+                                        , UNDPopOverListViewConfiguration_DefaultHeightPadding
+                                        , UNDPopOverListViewConfiguration_DefaultWidthPadding);
+        
+        self.arrowDirection = UNDPopOverListViewArrowDirectionTop;
+    }
+    return self;
+}
+
+@end
+
+@interface UNDPopOverListView() <UITableViewDelegate, UITableViewDataSource> {
+    NSSet *_storedCellClasses;
+    UNDPopOverListViewConfiguration *_usingConfiguration;
+}
+
 @property (nonatomic) CGRect sourceRect;
 @property (nonatomic, strong) NSArray<id<UNDPopOverListItemModelProtocol>> *cachedList;
 @property (nonatomic, strong) UNDPopOverListCellSelectionBlock cellSelectionBlock;
@@ -24,20 +79,6 @@
 @end
 
 @implementation UNDPopOverListView
-
-#pragma mark - Constant
-CGFloat const UNDPopOverListViewBorder = 1.0f;
-CGFloat const UNDPopOverListViewCornerRadius = 5.0f;
-
-CGFloat const UNDPopOverListViewWidthMargin = 16.0f;
-CGFloat const UNDPopOverListViewWidthPadding = 8.0f;
-CGFloat const UNDPopOverListViewHeightMargin = 8.0f;
-CGFloat const UNDPopOverListViewHeightPadding = 4.0f;
-CGFloat const UNDPopOverListViewArrowWidth = 16.0f;
-
-CGFloat const UNDPopOverListViewCellHeight = 38.0f;
-
-CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
 
 #pragma mark - Init
 - (instancetype)init {
@@ -51,12 +92,12 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     return [self init];
 }
 
-- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceRect:(CGRect)sourceRect arrowDirection:(UNDPopOverListViewArrowDirection)arrowDirect andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceRect:(CGRect)sourceRect configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
     if (self = [super initWithFrame:CGRectZero]) {
         self.cachedList = list;
         self.sourceRect = sourceRect;
-        self.arrowDirection = arrowDirect;
         self.cellSelectionBlock = selectionLogic;
+        self->_usingConfiguration = configuration ?: [UNDPopOverListViewConfiguration new];
         
         NSMutableSet *tempSet = [NSMutableSet new];
         for (id<UNDPopOverListItemModelProtocol> item in self.cachedList) {
@@ -69,6 +110,15 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
         [self setUpViewBasedOnContent];
     }
     return self;
+}
+
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceRect:(CGRect)sourceRect arrowDirection:(UNDPopOverListViewArrowDirection)arrowDirect andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    UNDPopOverListViewConfiguration *configuration = [UNDPopOverListViewConfiguration new];
+    configuration.arrowDirection = arrowDirect;
+    return [self initWithList:list
+                   sourceRect:sourceRect
+                configuration:configuration
+       andSelectionLogicBlock:selectionLogic];
 }
 
 - (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView arrowDirection:(UNDPopOverListViewArrowDirection)arrowDirect andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
@@ -85,6 +135,14 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
 
 
 - (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    return [self initWithList:list
+                   sourceView:sourceView
+               presentingView:presentingView
+                configuration:[UNDPopOverListViewConfiguration new]
+       andSelectionLogicBlock:selectionLogic];
+}
+
+- (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
     
     CGRect sourceRect = [sourceView.superview convertRect:sourceView.frame
                                                    toView:presentingView];
@@ -107,9 +165,12 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
         arrowDirect = UNDPopOverListViewArrowDirectionTop;
     }
     
+    UNDPopOverListViewConfiguration *usingConfiguration = configuration ?: [UNDPopOverListViewConfiguration new];
+    usingConfiguration.arrowDirection = arrowDirect;
+    
     if (self = [[UNDPopOverListView alloc] initWithList:list
                                              sourceRect:sourceRect
-                                         arrowDirection:arrowDirect
+                                          configuration:usingConfiguration
                                  andSelectionLogicBlock:selectionLogic]) {
         [presentingView addSubview:self];
     }
@@ -133,9 +194,14 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
         [self.backgroundShapeLayer removeFromSuperlayer];
     }
     self.backgroundShapeLayer.path = [self getBackgroundPath].CGPath;
-    self.backgroundShapeLayer.lineWidth = UNDPopOverListViewBorder;
+    self.backgroundShapeLayer.lineWidth = _usingConfiguration.borderWidth;
+    self.backgroundShapeLayer.shadowColor = _usingConfiguration.shadowColor;
+    self.backgroundShapeLayer.shadowOpacity = _usingConfiguration.shadowOpacity;
+    self.backgroundShapeLayer.shadowOffset = _usingConfiguration.shadowOffset;
+    self.backgroundShapeLayer.shadowRadius = _usingConfiguration.shadowRadius;
+    self.backgroundShapeLayer.shadowPath = nil;
     self.backgroundShapeLayer.fillColor = [UIColor whiteColor].CGColor;
-    self.backgroundShapeLayer.strokeColor = [UIColor blackColor].CGColor;
+    self.backgroundShapeLayer.strokeColor = _usingConfiguration.borderColor;
     
     [self.layer insertSublayer:_backgroundShapeLayer atIndex:0];
 }
@@ -145,10 +211,10 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     CGFloat height = 0.0f;
     CGFloat originX = 0.0f;
     CGFloat originY = 0.0f;
-    switch (self.arrowDirection) {
+    switch (_usingConfiguration.arrowDirection) {
         case UNDPopOverListViewArrowDirectionTop:
             width = self.sourceRect.size.width;
-            height = [self.cachedList count] * UNDPopOverListViewCellHeight + 2 * UNDPopOverListViewHeightPadding + 2 * UNDPopOverListViewHeightMargin;
+            height = [self.cachedList count] * _usingConfiguration.defaultCellHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
             originX = self.sourceRect.origin.x;
             originY = self.sourceRect.origin.y + self.sourceRect.size.height;
             break;
@@ -156,7 +222,7 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
         case UNDPopOverListViewArrowDirectionBottom:
         default:
             width = self.sourceRect.size.width;
-            height = [self.cachedList count] * UNDPopOverListViewCellHeight + 2 * UNDPopOverListViewHeightPadding + 2 * UNDPopOverListViewHeightMargin;
+            height = [self.cachedList count] * _usingConfiguration.defaultCellHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
             originX = self.sourceRect.origin.x;
             originY = self.sourceRect.origin.y - height;
             break;
@@ -168,75 +234,86 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     UIBezierPath *returnPath = [UIBezierPath new];
     returnPath.lineJoinStyle = kCGLineJoinRound;
     returnPath.lineCapStyle = kCGLineCapRound;
-    CGFloat marginPlusRadius = UNDPopOverListViewHeightMargin + UNDPopOverListViewCornerRadius;
-    switch (self.arrowDirection) {
+    switch (_usingConfiguration.arrowDirection) {
         case UNDPopOverListViewArrowDirectionTop: {
-            CGFloat pointedX = self.frame.size.width * UNDPopOverListViewPopPointRatio;
+            CGFloat pointedX = self.frame.size.width * _usingConfiguration.arrowPointRatio;
             [returnPath moveToPoint:CGPointMake(pointedX, 0)];
-            [returnPath addLineToPoint:CGPointMake(pointedX - UNDPopOverListViewArrowWidth / 2, UNDPopOverListViewHeightMargin)];
-            [returnPath addLineToPoint:CGPointMake(marginPlusRadius, UNDPopOverListViewHeightMargin)];
-            [returnPath addArcWithCenter:CGPointMake(marginPlusRadius, marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(pointedX - _usingConfiguration.arrowWidth / 2, _usingConfiguration.margin.top)];
+            [returnPath addLineToPoint:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius, _usingConfiguration.margin.top)];
+            [returnPath addArcWithCenter:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius
+                                                     , _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI * 3 / 2
                                 endAngle:M_PI
                                clockwise:false];
-            [returnPath addLineToPoint:CGPointMake(UNDPopOverListViewHeightMargin,
-                                                   self.frame.size.height - marginPlusRadius)];
-            [returnPath addArcWithCenter:CGPointMake(marginPlusRadius, self.frame.size.height - marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(_usingConfiguration.margin.left,
+                                                   self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)];
+            [returnPath addArcWithCenter:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius
+                                                     , self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI
                                 endAngle:M_PI / 2
                                clockwise:false];
-            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - marginPlusRadius,
-                                                   self.frame.size.height - UNDPopOverListViewHeightMargin)];
-            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - marginPlusRadius, self.frame.size.height - marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius,
+                                                   self.frame.size.height - _usingConfiguration.margin.bottom)];
+            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius
+                                                     , self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI / 2
                                 endAngle:0
                                clockwise:false];
-            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - UNDPopOverListViewHeightMargin,
-                                                   marginPlusRadius)];
-            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - marginPlusRadius, marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right,
+                                                   _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)];
+            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius
+                                                     , _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:0
                                 endAngle:M_PI * 3 /2
                                clockwise:false];
-            [returnPath addLineToPoint:CGPointMake(pointedX + UNDPopOverListViewArrowWidth / 2, UNDPopOverListViewHeightMargin)];
+            [returnPath addLineToPoint:CGPointMake(pointedX + _usingConfiguration.arrowWidth / 2, _usingConfiguration.margin.top)];
             [returnPath closePath];
             break;
         }
         case UNDPopOverListViewArrowDirectionBottom:
         default: {
-            CGFloat pointedX = self.frame.size.width * UNDPopOverListViewPopPointRatio;
+            CGFloat pointedX = self.frame.size.width * _usingConfiguration.arrowPointRatio;
             [returnPath moveToPoint:CGPointMake(pointedX, self.frame.size.height)];
-            [returnPath addLineToPoint:CGPointMake(pointedX - UNDPopOverListViewArrowWidth / 2, self.frame.size.height - UNDPopOverListViewHeightMargin)];
-            [returnPath addLineToPoint:CGPointMake(marginPlusRadius, self.frame.size.height - UNDPopOverListViewHeightMargin)];
-            [returnPath addArcWithCenter:CGPointMake(marginPlusRadius, self.frame.size.height - marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(pointedX - _usingConfiguration.arrowWidth / 2
+                                                   , self.frame.size.height - _usingConfiguration.margin.bottom)];
+            [returnPath addLineToPoint:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius
+                                                   , self.frame.size.height - _usingConfiguration.margin.bottom)];
+            [returnPath addArcWithCenter:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius
+                                                     , self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI / 2
                                 endAngle:M_PI
                                clockwise:true];
-            [returnPath addLineToPoint:CGPointMake(UNDPopOverListViewHeightMargin, marginPlusRadius)];
-            [returnPath addArcWithCenter:CGPointMake(marginPlusRadius, marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(_usingConfiguration.margin.left
+                                                   , _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)];
+            [returnPath addArcWithCenter:CGPointMake(_usingConfiguration.margin.left + _usingConfiguration.cornerRadius
+                                                     , _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI
                                 endAngle:M_PI * 3 / 2
                                clockwise:true];
-            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - marginPlusRadius,
-                                                   UNDPopOverListViewHeightMargin)];
-            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - marginPlusRadius, marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius,
+                                                   _usingConfiguration.margin.top)];
+            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius
+                                                     , _usingConfiguration.margin.top + _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:M_PI * 3 / 2
                                 endAngle:0
                                clockwise:true];
-            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - UNDPopOverListViewHeightMargin,
-                                                   self.frame.size.height - marginPlusRadius)];
-            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - marginPlusRadius, self.frame.size.height - marginPlusRadius)
-                                  radius:UNDPopOverListViewCornerRadius
+            [returnPath addLineToPoint:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right,
+                                                   self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)];
+            [returnPath addArcWithCenter:CGPointMake(self.frame.size.width - _usingConfiguration.margin.right - _usingConfiguration.cornerRadius
+                                                     , self.frame.size.height - _usingConfiguration.margin.bottom - _usingConfiguration.cornerRadius)
+                                  radius:_usingConfiguration.cornerRadius
                               startAngle:0
                                 endAngle:M_PI /2
                                clockwise:true];
-            [returnPath addLineToPoint:CGPointMake(pointedX + UNDPopOverListViewArrowWidth / 2, self.frame.size.height - UNDPopOverListViewHeightMargin)];
+            [returnPath addLineToPoint:CGPointMake(pointedX + _usingConfiguration.arrowWidth / 2
+                                                   , self.frame.size.height - _usingConfiguration.margin.bottom)];
             [returnPath closePath];
             break;
         }
@@ -267,10 +344,10 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
     CGFloat height = 0.0f;
     CGFloat originX = 0.0f;
     CGFloat originY = 0.0f;
-    originX = UNDPopOverListViewWidthMargin + UNDPopOverListViewWidthPadding;
-    originY = UNDPopOverListViewHeightMargin + UNDPopOverListViewHeightPadding;
+    originX = _usingConfiguration.margin.left + _usingConfiguration.padding.left;
+    originY = _usingConfiguration.margin.top + _usingConfiguration.padding.top;
     width = self.frame.size.width - 2 * originX;
-    height = [self.cachedList count] * UNDPopOverListViewCellHeight;
+    height = [self.cachedList count] * _usingConfiguration.defaultCellHeight;
     return CGRectMake(originX, originY, width, height);
 }
 
@@ -323,7 +400,7 @@ CGFloat const UNDPopOverListViewPopPointRatio = 0.9;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UNDPopOverListViewCellHeight;
+    return _usingConfiguration.defaultCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
