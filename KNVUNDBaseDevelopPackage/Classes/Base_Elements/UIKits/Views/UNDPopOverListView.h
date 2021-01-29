@@ -18,6 +18,7 @@ typedef enum : NSUInteger {
 } UNDPopOverListViewArrowDirection;
 
 typedef void(^UNDPopOverListCellSelectionBlock)(id);
+typedef UIView *_Nonnull(^UNDPopOverListLoadingViewBlock)(void);
 
 @interface UNDPopOverListViewConfiguration : NSObject
 
@@ -37,7 +38,10 @@ typedef void(^UNDPopOverListCellSelectionBlock)(id);
 @property (nonatomic) UIEdgeInsets margin;
 @property (nonatomic) UIEdgeInsets padding;
 
+@property (nonatomic) int maxmumDisplayCell; // Default is 5
+
 @property (nonatomic) UNDPopOverListViewArrowDirection arrowDirection;
+@property (nonatomic) UNDPopOverListLoadingViewBlock loadingViewGenerator; // If loading view generator is provided, we will show up loading view with defaultCellHeight inside the pop over list loading view
 
 @end
 
@@ -77,12 +81,17 @@ typedef void(^UNDPopOverListCellSelectionBlock)(id);
 // Compare to the init above, this method provide the ability to customise pop over view.
 - (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceView:(UIView *)sourceView presentingView:(UIView *)presentingView configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic;
 
+// Just inited a nil list. Pls be aware that Loading View related methods only works while configuration.loadingViewGenerator is valid.
+- (instancetype)initLoadingViewWithSourceView:(UIView *)sourceView presentingView:(UIView *)presentingView configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic;
+
 #pragma mark - General Methods
 /*!
  * @brief Call this method to update the content of PopOverListView
  * @param newList The new list PopOverListView want to present.
  */
 - (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList;
+// Pls be aware that Loading View related methods only works while configuration.loadingViewGenerator is valid.
+- (void)showUpLoadingView;
 
 @end
 

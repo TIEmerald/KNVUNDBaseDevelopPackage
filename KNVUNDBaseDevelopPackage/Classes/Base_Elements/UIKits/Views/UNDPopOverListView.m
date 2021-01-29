@@ -9,6 +9,10 @@
 
 #import "UNDPopOverListBaseTableViewCell.h"
 
+@interface UNDPopOverListViewConfiguration()
+@property (nonatomic) BOOL loadingFlag;
+@end
+
 @implementation UNDPopOverListViewConfiguration
 
 #pragma mark - Constant
@@ -58,6 +62,7 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
                                         , UNDPopOverListViewConfiguration_DefaultWidthPadding);
         
         self.arrowDirection = UNDPopOverListViewArrowDirectionTop;
+        self.maxmumDisplayCell = 5;
     }
     return self;
 }
@@ -69,16 +74,40 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     UNDPopOverListViewConfiguration *_usingConfiguration;
 }
 
+@property (readonly) CGFloat contentHeight;
+@property (readonly) BOOL isDisplayLoadingView;
+@property (nonatomic) int displayCellCount;
+
 @property (nonatomic) CGRect sourceRect;
 @property (nonatomic, strong) NSArray<id<UNDPopOverListItemModelProtocol>> *cachedList;
 @property (nonatomic, strong) UNDPopOverListCellSelectionBlock cellSelectionBlock;
 
 @property (nonatomic, strong) CAShapeLayer *backgroundShapeLayer;
 @property (nonatomic, strong) UITableView *displayTableView;
+@property (nonatomic, strong) UIView *cachedLoadingView;
 
 @end
 
 @implementation UNDPopOverListView
+
+#pragma mark - Accessers
+#pragma mark - Getters
+- (CGFloat)contentHeight {
+    if (self.isDisplayLoadingView) {
+        return _usingConfiguration.defaultCellHeight;
+    } else {
+        return self.displayCellCount * _usingConfiguration.defaultCellHeight;
+    }
+}
+#pragma mark - Setters
+- (BOOL)isDisplayLoadingView {
+    return _usingConfiguration.loadingViewGenerator != nil && _usingConfiguration.loadingFlag;
+}
+- (void)setCachedList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)cachedList {
+    _cachedList = cachedList;
+    _displayCellCount = (int)MIN([cachedList count], _usingConfiguration.maxmumDisplayCell);
+}
+
 
 #pragma mark - Init
 - (instancetype)init {
@@ -94,10 +123,11 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
 
 - (instancetype)initWithList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)list sourceRect:(CGRect)sourceRect configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
     if (self = [super initWithFrame:CGRectZero]) {
+        
+        self->_usingConfiguration = configuration ?: [UNDPopOverListViewConfiguration new]; // _usingConfiguration need be set up before cachedList as _displayCellCount is affected
         self.cachedList = list;
         self.sourceRect = sourceRect;
         self.cellSelectionBlock = selectionLogic;
-        self->_usingConfiguration = configuration ?: [UNDPopOverListViewConfiguration new];
         
         NSMutableSet *tempSet = [NSMutableSet new];
         for (id<UNDPopOverListItemModelProtocol> item in self.cachedList) {
@@ -177,13 +207,43 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     return self;
 }
 
+- (instancetype)initLoadingViewWithSourceView:(UIView *)sourceView presentingView:(UIView *)presentingView configuration:(UNDPopOverListViewConfiguration *)configuration andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    configuration.loadingFlag = true;
+    return [self initWithList:@[]
+                   sourceView:sourceView
+               presentingView:presentingView
+                configuration:configuration
+       andSelectionLogicBlock:selectionLogic];
+}
+
 #pragma mark Support Methods
 - (void)setUpViewBasedOnContent {
-    if (self.cachedList.count > 0) {
+    if (self.isDisplayLoadingView) {
+        [self prepareSetUpLayouts];
+        [self updateCurrentGeneralLayout];
+        UIView *loadingView = _usingConfiguration.loadingViewGenerator();
+        if (loadingView != nil) {
+            [self setUpWithLoadingView:loadingView];
+        } else {
+            [self removeFromSuperview];
+        }
+    } else if (self.cachedList.count > 0) {
+        [self prepareSetUpLayouts];
         [self updateCurrentGeneralLayout];
         [self setUpDisplayTableView];
     } else {
         [self removeFromSuperview];
+    }
+}
+
+- (void)prepareSetUpLayouts {
+    if (self.displayTableView.superview != nil) {
+        [self.displayTableView removeFromSuperview];
+        self.displayTableView = nil;
+    }
+    if (self.cachedLoadingView.superview != nil) {
+        [self.cachedLoadingView removeFromSuperview];
+        self.cachedLoadingView = nil;
     }
 }
 
@@ -214,7 +274,7 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     switch (_usingConfiguration.arrowDirection) {
         case UNDPopOverListViewArrowDirectionTop:
             width = self.sourceRect.size.width;
-            height = [self.cachedList count] * _usingConfiguration.defaultCellHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
+            height = self.contentHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
             originX = self.sourceRect.origin.x;
             originY = self.sourceRect.origin.y + self.sourceRect.size.height;
             break;
@@ -222,7 +282,7 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
         case UNDPopOverListViewArrowDirectionBottom:
         default:
             width = self.sourceRect.size.width;
-            height = [self.cachedList count] * _usingConfiguration.defaultCellHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
+            height = self.contentHeight + _usingConfiguration.padding.top + _usingConfiguration.padding.bottom + _usingConfiguration.margin.top + _usingConfiguration.margin.top;
             originX = self.sourceRect.origin.x;
             originY = self.sourceRect.origin.y - height;
             break;
@@ -322,9 +382,6 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
 }
 
 - (void)setUpDisplayTableView {
-    if (self.displayTableView.superview != nil) {
-        [self.displayTableView removeFromSuperview];
-    }
     self.displayTableView = [UITableView new];
     for (Class<UNDPopOverListTableViewCellProtocol> cellClass in _storedCellClasses) {
         [self.displayTableView registerClass:cellClass
@@ -333,13 +390,21 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     self.displayTableView.delegate = self;
     self.displayTableView.dataSource = self;
     self.displayTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.displayTableView.frame = [self calculateTableViewFrame];
+    self.displayTableView.frame = [self calculateContentViewFrame];
+    
+    self.displayTableView.exclusiveTouch = YES;
     
     [self addSubview:self.displayTableView];
     [self.displayTableView reloadData];
 }
 
-- (CGRect)calculateTableViewFrame {
+- (void)setUpWithLoadingView:(UIView *)loadingView {
+    self.cachedLoadingView = loadingView;
+    self.cachedLoadingView.frame = [self calculateContentViewFrame];
+    [self addSubview:self.cachedLoadingView];
+}
+
+- (CGRect)calculateContentViewFrame {
     CGFloat width = 0.0f;
     CGFloat height = 0.0f;
     CGFloat originX = 0.0f;
@@ -347,15 +412,23 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     originX = _usingConfiguration.margin.left + _usingConfiguration.padding.left;
     originY = _usingConfiguration.margin.top + _usingConfiguration.padding.top;
     width = self.frame.size.width - 2 * originX;
-    height = [self.cachedList count] * _usingConfiguration.defaultCellHeight;
+    height = self.contentHeight;
     return CGRectMake(originX, originY, width, height);
+}
+
+#pragma mark - Override Methods
+#pragma mark - UIView
+- (void)removeFromSuperview {
+    _usingConfiguration.loadingFlag = false;
+    [super removeFromSuperview];
 }
 
 #pragma mark - General Methods
 - (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList {
-    NSUInteger previousCount = [self.cachedList count];
+    _usingConfiguration.loadingFlag = false;
+    NSUInteger previousCount = self.displayCellCount;
     self.cachedList = newList;
-    if ([self.cachedList count] == previousCount) {
+    if (self.displayCellCount == previousCount) {
         
         // Update Cell Classes
         NSMutableSet *tempSet = [NSMutableSet setWithSet:_storedCellClasses];
@@ -389,6 +462,15 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     }
 }
 
+- (void)showUpLoadingView {
+    self.cachedList = @[];
+    _storedCellClasses = [NSSet new];
+    _usingConfiguration.loadingFlag = true;
+    [self performInMainThread:^{
+        [self setUpViewBasedOnContent];
+    }];
+}
+
 #pragma mark - Delegates
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -418,8 +500,11 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.cachedList[indexPath.row] respondsToSelector:@selector(cachedData)]) {
-        self.cellSelectionBlock([self.cachedList[indexPath.row] cachedData]);
+    id<UNDPopOverListItemModelProtocol> relatedModel = self.cachedList[indexPath.row];
+    if (![relatedModel respondsToSelector:@selector(isSelectable)] || [relatedModel isSelectable]) {
+        if ([relatedModel respondsToSelector:@selector(cachedData)]) {
+            self.cellSelectionBlock([relatedModel cachedData]);
+        }
     }
 }
 

@@ -17,6 +17,9 @@
 - (Class<UNDPopOverListTableViewCellProtocol>)relatedCellClass;
 - (void)updateDisplayUIFromCell:(UITableViewCell<UNDPopOverListTableViewCellProtocol> *)aCell;
 
+@optional
+- (BOOL)isSelectable; // You could support this configuration or not. if you sepecify this value to false. Normally for some models only support for displaying purpose.
+
 @end
 
 
