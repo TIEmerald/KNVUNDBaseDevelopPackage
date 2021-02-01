@@ -462,6 +462,11 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
     }
 }
 
+- (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic {
+    self.cellSelectionBlock = selectionLogic;
+    [self updateList:newList];
+}
+
 - (void)showUpLoadingView {
     self.cachedList = @[];
     _storedCellClasses = [NSSet new];
@@ -500,6 +505,11 @@ CGFloat const UNDPopOverListViewConfiguration_DefaultPopPointRatio = 0.9;
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performCellSelectionBlockWithIndexPath:indexPath];
+}
+
+#pragma mark - Support Methods
+- (void)performCellSelectionBlockWithIndexPath:(NSIndexPath *)indexPath {
     id<UNDPopOverListItemModelProtocol> relatedModel = self.cachedList[indexPath.row];
     if (![relatedModel respondsToSelector:@selector(isSelectable)] || [relatedModel isSelectable]) {
         if ([relatedModel respondsToSelector:@selector(cachedData)]) {

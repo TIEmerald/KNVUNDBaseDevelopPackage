@@ -90,6 +90,9 @@ typedef UIView *_Nonnull(^UNDPopOverListLoadingViewBlock)(void);
  * @param newList The new list PopOverListView want to present.
  */
 - (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList;
+// Update list as well as selection logic block
+- (void)updateList:(NSArray<id<UNDPopOverListItemModelProtocol>> *)newList andSelectionLogicBlock:(UNDPopOverListCellSelectionBlock)selectionLogic;
+
 // Pls be aware that Loading View related methods only works while configuration.loadingViewGenerator is valid.
 - (void)showUpLoadingView;
 
