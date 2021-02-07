@@ -22,23 +22,26 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerPresentPosition) {
 @interface UNDSideSlideTransitioningConfigModel : NSObject
 
 
-// Decide what's the effect of the mask between presenting view and presented view. By default, it is MaskDark, which is just a dark transparent view be inserted between presenting view and presented view.
+/// Decide what's the effect of the mask between presenting view and presented view. By default, it is MaskDark, which is just a dark transparent view be inserted between presenting view and presented view.
 @property (nonatomic) UNDSideSlidePresentationControllerMaskEffect maskEffect;
 
-// Decide where do you want show up presented view, By default it's at the bottom of the presenting view.
+/// Decide where do you want show up presented view, By default it's at the bottom of the presenting view.
 @property (nonatomic) UNDSideSlidePresentationControllerPresentPosition presentPosition;
 
-// While user tapped mask view (the part which is not presented view), will presented view dismiss or not. By default it's false.
+/// While user tapped mask view (the part which is not presented view), will presented view dismiss or not. By default it's false.
 @property (nonatomic) BOOL shouldDismissWhileClickBackground;
 
-// Will presenting view shrink 10% or not while presented view shown up. by default it's false
+/// Will presenting view shrink 10% or not while presented view shown up. by default it's false
 @property (nonatomic) BOOL shouldShrinkPresentingViewController;
 
-// Could user drag and move presented view above original position or not, by default it's false
+/// Could user drag and move presented view above original position or not, by default it's false
 @property (nonatomic) BOOL couldDragInUpDirection;
 
-// While user drage and move presented view belowe original position, could it trigger dismiss presented view or not, by default, it's false
+/// While user drage and move presented view belowe original position, could it trigger dismiss presented view or not, by default, it's false
 @property (nonatomic) BOOL isDisableManuallySlideToDismiss;
+
+/// This callback will be triggered while SideSlideTransitioningConfigModel called dismiss methods -- A. user tapped mask view, B. user slide view controller to dismiss current view.
+@property (nonatomic, nullable) void(^triggeredDismissCallback)(void);
 
 @end
 

@@ -280,7 +280,7 @@
 
 #pragma mark Support Methods
 - (void)dismissPresentedViewController {
-    [self.presentedViewController dismissViewControllerAnimated:true completion:nil];
+    [self.presentedViewController dismissViewControllerAnimated:true completion:self.configureModel.triggeredDismissCallback];
 }
 
 - (void)resetPresentViewBackToIdle {
