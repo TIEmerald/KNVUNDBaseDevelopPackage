@@ -221,7 +221,7 @@
     [currentDimmingView addSubview:self.presentedViewController.view];
     [self.presentingViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         currentDimmingView.alpha = 1;
-        if (self.configureModel.shouldShinkPresentingViewController) {
+        if (self.configureModel.shouldShrinkPresentingViewController) {
             self.presentingViewController.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
         }
     }
