@@ -350,39 +350,30 @@ const NSTimeInterval UNDSideSlideTransitioningDelegate_SlideDuration = 0.4;
 
 @implementation UIViewController (UNDSideSlideTransitioningDelegate)
 
-#pragma mark - Getters & Setters
-static void * UIViewController_UNDSideSlideTransitioningConfigModel = &UIViewController_UNDSideSlideTransitioningConfigModel;
-
-#pragma mark - Getters
-- (UNDSideSlideTransitioningConfigModel *)sideSlide_TransitioningConfigModel
-{
-    return objc_getAssociatedObject(self, UIViewController_UNDSideSlideTransitioningConfigModel);
-}
-
-#pragma mark - Setters
-- (void)setSideSlide_TransitioningConfigModel:(UNDSideSlideTransitioningConfigModel *)sideSlideTransitioningConfigModel
-{
-    objc_setAssociatedObject(self, UIViewController_UNDSideSlideTransitioningConfigModel, sideSlideTransitioningConfigModel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 #pragma mark - General Methods
-- (void)und_sideSlideShow:(UIViewController *)presentedViewController {
-    [self und_sideSlideShow:presentedViewController
-              withConfig:[UNDSideSlideTransitioningConfigModel new]];
+- (void)und_sideSlideshow:(UIViewController <UNDSideSlidePresentedVCProtocol>*)presentedViewController {
+    [self und_sideSlideshow:presentedViewController completion:nil];
 }
 
-- (void)und_sideSlideShow:(UIViewController *)presentedViewController withConfig:(UNDSideSlideTransitioningConfigModel *)configModel {
-    self.sideSlide_TransitioningConfigModel = configModel;
-    if (CGSizeEqualToSize(presentedViewController.preferredContentSize, CGSizeZero)) {
-        self.sideSlide_TransitioningConfigModel.preferredSize = CGSizeMake([UIScreen mainScreen].bounds.size.width
-                                                                          , [UIScreen mainScreen].bounds.size.height / 2);
-    } else {
-        self.sideSlide_TransitioningConfigModel.preferredSize = presentedViewController.preferredContentSize;
-    }
-    presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
-    presentedViewController.modalPresentationCapturesStatusBarAppearance = true;
-    presentedViewController.transitioningDelegate = configModel;
-    [self presentViewController:presentedViewController animated:true completion:nil];
+- (void)und_sideSlideshow:(UIViewController <UNDSideSlidePresentedVCProtocol>*)presentedViewController completion:(void (^ __nullable)(void))completion {
+   UNDSideSlideTransitioningConfigModel *usingconfigModel = nil;
+   if ([presentedViewController respondsToSelector:@selector(sstConfigModel)]) {
+       usingconfigModel = [presentedViewController sstConfigModel];
+       if (CGSizeEqualToSize(presentedViewController.preferredContentSize, CGSizeZero)) {
+           usingconfigModel.preferredSize = CGSizeMake([UIScreen mainScreen].bounds.size.width
+                                                                             , [UIScreen mainScreen].bounds.size.height / 2);
+       } else {
+           usingconfigModel.preferredSize = presentedViewController.preferredContentSize;
+       }
+   }
+   if (!usingconfigModel) {
+       presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
+       presentedViewController.modalPresentationCapturesStatusBarAppearance = true;
+       presentedViewController.transitioningDelegate = usingconfigModel;
+       [self presentViewController:presentedViewController animated:true completion:completion];
+   } else {
+       [self presentViewController:presentedViewController animated:true completion:completion];
+   }
 }
 
 @end

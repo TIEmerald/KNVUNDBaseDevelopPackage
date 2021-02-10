@@ -45,11 +45,15 @@ typedef NS_ENUM(NSInteger,UNDSideSlidePresentationControllerPresentPosition) {
 
 @end
 
+@protocol UNDSideSlidePresentedVCProtocol <NSObject>
+@property (nonatomic, strong) UNDSideSlideTransitioningConfigModel *sstConfigModel;
+@end
+
 @interface UIViewController (UNDSideSlideTransitioningDelegate)
 
 #pragma mark - General Methods
-- (void)und_sideSlideShow:(UIViewController *)presentedViewController;
-- (void)und_sideSlideShow:(UIViewController *)presentedViewController withConfig:(UNDSideSlideTransitioningConfigModel *)configModel;
+- (void)und_sideSlideshow:(UIViewController <UNDSideSlidePresentedVCProtocol>*)presentedViewController;
+- (void)und_sideSlideshow:(UIViewController <UNDSideSlidePresentedVCProtocol>*)presentedViewController completion:(void (^ __nullable)(void))completion;
 
 @end
 
