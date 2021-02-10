@@ -366,14 +366,12 @@ const NSTimeInterval UNDSideSlideTransitioningDelegate_SlideDuration = 0.4;
            usingconfigModel.preferredSize = presentedViewController.preferredContentSize;
        }
    }
-   if (!usingconfigModel) {
+   if (usingconfigModel) {
        presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
        presentedViewController.modalPresentationCapturesStatusBarAppearance = true;
        presentedViewController.transitioningDelegate = usingconfigModel;
-       [self presentViewController:presentedViewController animated:true completion:completion];
-   } else {
-       [self presentViewController:presentedViewController animated:true completion:completion];
    }
+   [self presentViewController:presentedViewController animated:true completion:completion];
 }
 
 @end
