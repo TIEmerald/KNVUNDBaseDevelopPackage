@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20125CC11FE219730006A70C /* KNVUNDImageRelatedToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */; };
+		2023906925F2530F00A33325 /* UNDTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2023906825F2530F00A33325 /* UNDTestViewController.m */; };
 		204722D62064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 204722D52064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m */; };
 		204722DA2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 204722D82064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m */; };
 		204722DB2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204722D92064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.xib */; };
@@ -50,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		20125CC01FE219730006A70C /* KNVUNDImageRelatedToolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNVUNDImageRelatedToolTests.m; sourceTree = "<group>"; };
+		2023906725F2530F00A33325 /* UNDTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UNDTestViewController.h; sourceTree = "<group>"; };
+		2023906825F2530F00A33325 /* UNDTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UNDTestViewController.m; sourceTree = "<group>"; };
 		204722D42064BD460031660C /* KNVUNDETVRelatedTagButtonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVRelatedTagButtonModel.h; sourceTree = "<group>"; };
 		204722D52064BD460031660C /* KNVUNDETVRelatedTagButtonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNVUNDETVRelatedTagButtonModel.m; sourceTree = "<group>"; };
 		204722D72064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNVUNDETVRelatedTagButtonCell.h; sourceTree = "<group>"; };
@@ -149,6 +152,15 @@
 				209F79CA2325E12100B91881 /* KNVUNDNSObjectPropertyModifyRelatedTests.m */,
 			);
 			path = KNVUNDPropertyModifyRelated;
+			sourceTree = "<group>";
+		};
+		2023906625F252F600A33325 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2023906725F2530F00A33325 /* UNDTestViewController.h */,
+				2023906825F2530F00A33325 /* UNDTestViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		204722D02064B4F00031660C /* Bridging Folder */ = {
@@ -272,6 +284,7 @@
 		6003F593195388D20070C39A /* Example for KNVUNDBaseDevelopPackage */ = {
 			isa = PBXGroup;
 			children = (
+				2023906625F252F600A33325 /* ViewControllers */,
 				20C7D47D25B130E900D01EBC /* PopOverListRelated */,
 				204722D02064B4F00031660C /* Bridging Folder */,
 				6003F59C195388D20070C39A /* KNVUNDAppDelegate.h */,
@@ -576,6 +589,7 @@
 				204722DA2064BE2A0031660C /* KNVUNDETVRelatedTagButtonCell.m in Sources */,
 				6003F5A7195388D20070C39A /* KNVUNDViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				2023906925F2530F00A33325 /* UNDTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

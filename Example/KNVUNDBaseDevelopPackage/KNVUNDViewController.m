@@ -26,6 +26,9 @@
 // Tools
 #import "KNVUNDImageRelatedTool.h"
 
+// View Controllers
+#import "UNDTestViewController.h"
+
 @interface KNVUNDViewController () <KNVUNDETVRelatedTagButtonModelDelegate, UNDPopOverListExampleTableViewCellDelegate> {
     KNVUNDButtonsSelectionHelper *_buttonsSelectionHelper;
     
@@ -50,15 +53,16 @@
     // Do any additional setup after loading the view, typically from a nib.
 //    [self setupTagButtons];
 //    [self setUpExpendableTable];
-    [self setUpPopOverListTest];
-    _cachedStringArray = @[@"Test One - Four Seasons Hotel Jakarta, JI. Daan Mogo Something I don't know",
-                           @"Test Two - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know",
-                           @"Test Three - JI. Daan Mogot Selatan Sekretaris, RT.3/RW.2 Something I don't know",
-                           @"Test Four - JI. Daan Mogot Utara, Gang 0, RT.6 / RW.3 Something I don't know",
-                           @"Five - JI. Daan Mogot Utara Kali Kelawang, RT.5/RW.3 Something I don't know",
-                           @"Test Six - JI. Daan Mogot Karle Jods Ce RT. 2/ RW. 7 Something I don't know",
-                           @"Seven - JI. Daan Mogot Edurs Puffur, RT. 10/ RW. 1 Something I don't know",
-                           @"Test Eight - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know"];
+//    [self setUpPopOverListTest];
+//    _cachedStringArray = @[@"Test One - Four Seasons Hotel Jakarta, JI. Daan Mogo Something I don't know",
+//                           @"Test Two - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know",
+//                           @"Test Three - JI. Daan Mogot Selatan Sekretaris, RT.3/RW.2 Something I don't know",
+//                           @"Test Four - JI. Daan Mogot Utara, Gang 0, RT.6 / RW.3 Something I don't know",
+//                           @"Five - JI. Daan Mogot Utara Kali Kelawang, RT.5/RW.3 Something I don't know",
+//                           @"Test Six - JI. Daan Mogot Karle Jods Ce RT. 2/ RW. 7 Something I don't know",
+//                           @"Seven - JI. Daan Mogot Edurs Puffur, RT. 10/ RW. 1 Something I don't know",
+//                           @"Test Eight - JI. Daan Mogot Dalam kali Duri, RT. 10/ RW. 1 Something I don't know"];
+    [self setUpTestButtonOne];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,6 +80,23 @@
 }
 
 #pragma mark Support Methods
+- (void)setUpTestButtonOne {
+    UIButton *buttonOne = [self generateSelectionButton];
+    [buttonOne setTitle:@"Button One"
+               forState:UIControlStateNormal];
+    [buttonOne addTarget:self action:@selector(testButtonOneAction:) forControlEvents:UIControlEventTouchUpInside];
+    buttonOne.frame = CGRectMake(20, 20, 100, 40);
+    [self.view addSubview:buttonOne];
+
+}
+
+- (IBAction)testButtonOneAction:(id)sender {
+    UNDTestViewController *presentingVC = [[UNDTestViewController alloc] initWithBackgroundColor:[UIColor whiteColor]];
+    [self und_sideSlideshow:presentingVC];
+//    presentingVC.modalPresentationStyle = UIModalPresentationFormSheet;
+//    [self presentViewController:presentingVC animated:true completion:nil];
+}
+
 - (void)setupTagButtons
 {
     UIButton *buttonOne = [self generateSelectionButton];
